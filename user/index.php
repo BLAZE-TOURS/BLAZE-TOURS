@@ -247,7 +247,7 @@ Hero Area
     <!--======== / Hero Section ========--><!--==============================
 Booking Area  
 ==============================-->
-    <div class="booking-sec">
+    <!-- <div class="booking-sec">
         <div class="container">
             <form action="mail.php" method="POST" class="booking-form ajax-contact">
                 <div class="input-wrap">
@@ -320,7 +320,62 @@ Booking Area
                 </div>
             </form>
         </div>
-    </div> <!--==============================
+    </div>  -->
+    <div class="booking-sec">
+        <div class="container">
+            <form action="mail.php" method="POST" class="booking-form ajax-contact">
+                <div class="input-wrap">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="form-group col-md-6 col-lg-auto">
+                            <div class="icon">
+                                <i class="fa-light fa-route"></i>
+                            </div>
+                            <div class="search-input">
+                                <label>Tour Option</label>
+                                <select name="subject" id="subject" class="form-select nice-select">
+                                    <option value="Select Destination" selected disabled>Select Option</option>
+                                    <option value="Tuk Tuk">Private Safari</option>
+                                    <option value="Tour">Historical tour</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-lg-auto">
+                            <div class="icon">
+                                <i class="fa-light fa-clock"></i>
+                            </div>
+                            <div class="search-input">
+                                <label>Duration</label>
+                                <select class="form-select nice-select" name="Duration" id="Duration">
+                                    <option value="Normal" selected disabled>Duration</option>
+                                    <option value="4"> 4 hours</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-lg-auto">
+                            <div class="icon">
+                                <i class="fa-light fa-map-location-dot"></i>
+                            </div>
+                            <div class="search-input">
+                                <label>Tour Area<Area></Area></label>
+                                <select name="subject" id="category" class="form-select nice-select">
+                                    <option value="Normal" selected disabled>Tour Area</option>
+                                    <option value="Colombo">Colombo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-btn col-md-12 col-lg-auto">
+                            <button class="th-btn"><img src="assets/img/icon/search.svg" alt="">Search</button>
+                        </div>
+                    </div>
+                    <p class="form-messages mb-0 mt-3"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!--==============================
 Category Area  
 ==============================-->
     <section class="category-area bg-top-center" data-bg-src="assets/img/bg/category_bg_1.png">
@@ -1651,17 +1706,17 @@ modal Area
     <script src="./assets/js/Footersubscriber.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script>
-            document.getElementById("subscribe-button").addEventListener("click", function(event) {
-                event.preventDefault(); // Prevent default button behavior
+        document.getElementById("subscribe-button").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent default button behavior
 
-                // Lock the preloader
-                var r = new XMLHttpRequest();
-                r.open("GET", "/user/assets/process/StopPreloaderProcess.php", true);
-                r.send();
-            });
-        </script>
+            // Lock the preloader
+            var r = new XMLHttpRequest();
+            r.open("GET", "/user/assets/process/StopPreloaderProcess.php", true);
+            r.send();
+        });
 
-
+    </script>
+    
 </body>
 
 </html>
