@@ -20,4 +20,3 @@ if (isset($_SESSION["adminuser"])) {
     header("Refresh: 2; URL=adminSignIn.php"); // Refresh the page after 2 seconds
     exit();
 }
-?>

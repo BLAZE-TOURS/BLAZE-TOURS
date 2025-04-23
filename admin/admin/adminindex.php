@@ -11,7 +11,7 @@ if (isset($_SESSION["adminuser"])) {
     <head>
 
         <meta charset="utf-8" />
-        <title>Admin Dashboard | Blaze Tours</title>
+        <title>Admin Dashboard | Rakkitha Kanda Rock temple </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin Panel" />
         <meta name="author" content="Malindu Prabod wm" />
@@ -39,8 +39,6 @@ if (isset($_SESSION["adminuser"])) {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
         <style>
-            /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
             .sidebar {
                 max-height: 100vh;
                 /* Set the maximum height to the viewport height */
@@ -50,9 +48,9 @@ if (isset($_SESSION["adminuser"])) {
 
             html,
             body {
-                height: 100%;
+
                 margin: 0;
-                padding: 0;
+
             }
 
             .place-picker-container {
@@ -195,9 +193,9 @@ if (isset($_SESSION["adminuser"])) {
                                         <div class="dropdown-divider"></div>
 
                                         <!-- item-->
-                                        <a href="#" class="dropdown-item notify-item">
+                                        <a href="../admin/adminSignIn.php" class="dropdown-item notify-item">
                                             <i class="mdi mdi-location-exit fs-16 align-middle"></i>
-                                            <span onclick="signout();" >Logout</span>
+                                            <span onclick="signout();">Logout</span>
                                         </a>
 
                                     </div>
@@ -212,14 +210,14 @@ if (isset($_SESSION["adminuser"])) {
                 <!-- end Topbar -->
 
                 <!-- Left Sidebar Start -->
-                <div class="app-sidebar-menu">
+                <div class=" app-sidebar-menu">
                     <div class="h-100" data-simplebar>
 
                         <!--- Sidemenu -->
                         <div id="sidebar-menu">
 
                             <div class="logo-box" style="text-align: center;">
-                                <a href="../adminindex.php" class="logo logo-dark">
+                                <a href="../admin/adminindex.php" class="logo logo-dark">
                                     <span class="logo-sm">
                                         <img src="../SignIn/images/Untit1.png" alt="" height="100">
                                     </span>
@@ -286,10 +284,27 @@ if (isset($_SESSION["adminuser"])) {
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
+
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewGallary();">
+                                        <i data-feather="file-text"></i>
+                                        <span>Gallary</span>
+                                        <!-- <span class="menu-arrow"></span> -->
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewPodcast();">
+                                        <i data-feather="file-text"></i>
+                                        <span>Podcast</span>
+                                        <!-- <span class="menu-arrow"></span> -->
+                                    </a>
+                                </li>
+
                                 <li>
                                     <a href="#" onclick="changeDashboardViewSubscribers();">
                                         <i data-feather="file-text"></i>
-                                        <span>Tours Shedule</span>
+                                        <span>Meditation Shedule</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
@@ -329,7 +344,7 @@ if (isset($_SESSION["adminuser"])) {
                 <!-- ============================================================== -->
                 <!-- Start Page Company  -->
                 <!-- ============================================================== -->
-                <div id="CompanyFormContainer" class="d-none"> <?php include 'fetchCompany.php'; ?> <?php include "../admin/CompanyBody.php"; ?> </div>
+                <div id="CompanyFormContainer" class="d-none"> <?php include 'fetchCompany.php'; ?> <?php include "../admin/companyBody.php"; ?> </div>
                 <!-- ============================================================== -->
                 <!-- End of Company  -->
                 <!-- ============================================================== -->
@@ -352,6 +367,25 @@ if (isset($_SESSION["adminuser"])) {
                 <!-- ============================================================== -->
                 <!-- End of sybscriber test -->
                 <!-- ============================================================== -->
+
+                <!-- ============================================================== -->
+                <!-- Start Page Gallary-->
+                <!-- ============================================================== -->
+                <div id="gallaryContainer" class="d-none"><?php include 'fechGallary.php'; ?> <?php include "../admin/gallaryBody.php"; ?> </div>
+
+                <!-- ============================================================== -->
+                <!-- End of Gallary-- -->
+                <!-- ============================================================== -->
+
+                <!-- ============================================================== -->
+                <!-- Start Page Pod-->
+                <!-- ============================================================== -->
+                <div id="podContainer" class="d-none"><?php include 'fechPod.php'; ?> <?php include "../admin/podBody.php"; ?> </div>
+
+                <!-- ============================================================== -->
+                <!-- End of pod-- -->
+                <!-- ============================================================== -->
+
 
 
             </div>
@@ -395,7 +429,7 @@ if (isset($_SESSION["adminuser"])) {
         <script src="../admin/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
         <script src="../admin/assets/libs/datatables.net-keytable-bs5/js/keyTable.bootstrap5.min.js"></script>
 
-      
+
         <!-- dataTables.select -->
         <script src="../admin/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
         <script src="../admin/assets/libs/datatables.net-select-bs5/js/select.bootstrap5.min.js"></script>
@@ -411,6 +445,11 @@ if (isset($_SESSION["adminuser"])) {
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="../admin/assets/js/mail.js"></script>
         <script src="../admin/assets/js/Company.js"></script>
+        <script src="../admin/assets/js/gallary.js"></script>
+        <script src="../admin/assets/js/pod.js"></script>
+
+        <!-- Add this in your adminindex.php 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
 
     </body>
@@ -420,10 +459,8 @@ if (isset($_SESSION["adminuser"])) {
 
 <?php
 
-} else {
-    echo ("You are not a valid user");
-    header("Refresh: 2; URL=adminSignIn.php"); // Refresh the page after 2 seconds
+}
+if (!isset($_SESSION["adminuser"])) {
+    header("Location: ../admin/adminSignIn.php");
     exit();
 }
-
-?>

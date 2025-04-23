@@ -233,6 +233,7 @@
     </div>
 </div>
 
+
 <script>
     function previewImage(event, previewId) {
         var reader = new FileReader();

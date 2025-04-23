@@ -1,0 +1,160 @@
+<div class="content-page mt-5 fade-in">
+
+    <div class="row justify-content-center mt-2">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Gallary Images</h3>
+
+                    <!-- Add New Company Section -->
+                    <div class="mb-4">
+                        <h4>Add New Image</h4>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addImageModal">
+                            <i class="fas fa-plus"></i> Add New Image
+                        </button>
+                    </div>
+
+
+                    <!-- Add Image Modal -->
+                    <div class="modal fade" id="addImageModal" tabindex="-1" aria-labelledby="addImageModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addImageModalLabel">Add New Image</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="validation-errors-image" class="alert alert-danger d-none" role="alert"></div>
+                                    <div id="success-message-image" class="alert alert-success d-none" role="alert"></div>
+                                    <form id="addaImageForm">
+                                        <div class="row g-3">
+                                            <div class="col-12">
+                                                <label for="image-title" class="form-label">Title</label>
+                                                <input type="text" class="form-control" placeholder="Image Title" name="image_title" id="image_title" required>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <label for="image" class="form-label">Image</label>
+                                                <input type="file" class="form-control" name="logo" id="image_update" onchange="previewImage(event, 'image-preview-update')">
+                                                <img id="image-preview-update" src="" alt="Image Preview" style="width: 100px; height: auto; margin-top: 10px; display: none;">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div id="loading-spinner-add-image" class="d-none">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                    <!-- <button type="button" class="btn btn-primary" id="addImageButton" disabled>Add Image</button> -->
+                                    <button type="button" class="btn btn-primary" onclick=" addImage();" form="addCompanyForm">Add Image</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Update  Image modal -->
+                    <div class="modal fade" id="updateImageModal" tabindex="-1" aria-labelledby="updateImageModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="updateImageModalLabel">Update Image</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="validation-errors-image-update" class="alert alert-danger d-none" role="alert"></div>
+                                    <div id="success-message-image-update" class="alert alert-success d-none" role="alert"></div>
+                                    <form id="updateImageForm">
+                                        <div class="row g-3">
+                                            <div class="col-12">
+                                                <label for="image-title" class="form-label">Title</label>
+                                                <input type="text" class="form-control" placeholder="Image Title" name="image_title" id="image_title" required>
+                                            </div>
+
+                                            <div class="col-12 mt-2">
+                                                <label for="image" class="form-label">Image</label>
+                                                <input type="file" class="form-control" name="logo" id="image_update" onchange="previewImage(event, 'logo-preview-update')">
+                                                <img id="logo-preview-update" src="#" alt="Image Preview" style="width: 100px; height: auto; margin-top: 10px; display: none;">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div id="loading-spinner-image-update" class="d-none">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="updateImageButton" disabled>Update Image</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Existing Company List Table -->
+                    <div class="table-responsive col-12 mx-auto">
+                        <table id="fixed-header-datatable" class="table table-striped table-bordered dt-responsive nowrap">
+                            <thead>
+                                <tr class="Table-header">
+                                    <th>#ID</th>
+                                    <th>title</th>
+                                    <th>image</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if ($gallary_n > 0) {
+                                    while ($row = $gallary_rs->fetch_assoc()) {
+                                ?>
+                                        <tr class="text-center">
+                                            <td><?php echo $row["id"]; ?></td>
+                                            <td><?php echo $row["title"]; ?></td>
+                                            <td><img src="<?php echo $row["url"]; ?>" alt="Image" style="width: 70px; height: auto;"></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary  edit-btn" onclick="updateImage(<?php echo $row['id']; ?>);">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-success edit-btn" onclick="downloadPod(<?php echo $row['id']; ?>);">
+                                                    <i class="fas fa-download"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger delete-btn" onclick="deleteImage(<?php echo $row['id']; ?>);">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                <?php
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='12' class='text-center'>No Company found.</td></tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function previewImage(event, previewId) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById(previewId);
+            output.src = reader.result;
+            output.style.display = 'block';
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
