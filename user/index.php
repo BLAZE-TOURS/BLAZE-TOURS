@@ -337,6 +337,8 @@ Booking Area
                                 <option value="Select Destination" selected disabled>Select Option</option>
                                 <option value="Tuk Tuk">Private Safari</option>
                                 <option value="Tour">Historical tour</option>
+                                <option value="Tour">Private Sightseeing Tours</option>
+                                <option value="Tour">Colombo Street Food Tour</option>
                             </select>
                         </div>
                     </div>
@@ -391,8 +393,8 @@ Category Area
                             <div class="box-img global-img">
                                 <img src="assets/img/category/1.png" alt="Image">
                             </div>
-                            <h3 class="box-title"><a href="#">Adventure</a></h3>
-                            <a class="line-btn" href="#">See more</a>
+                            <h3 class="box-title"><a href="">Adventure</a></h3>
+                            <!-- <a class="line-btn" href="">See more</a> -->
                         </div>
                     </div>
 
@@ -401,8 +403,8 @@ Category Area
                             <div class="box-img global-img">
                                 <img src="assets/img/category/2.png" alt="Image">
                             </div>
-                            <h3 class="box-title"><a href="#">Beach</a></h3>
-                            <a class="line-btn" href="#">See more</a>
+                            <h3 class="box-title"><a href="">Beach</a></h3>
+                            <!-- <a class="line-btn" href="#">See more</a> -->
                         </div>
                     </div>
 
@@ -411,8 +413,8 @@ Category Area
                             <div class="box-img global-img">
                                 <img src="assets/img/category/3.png" alt="Image">
                             </div>
-                            <h3 class="box-title"><a href="#">City</a></h3>
-                            <a class="line-btn" href="#">See more</a>
+                            <h3 class="box-title"><a href="">City</a></h3>
+                            <!-- <a class="line-btn" href="#">See more</a> -->
                         </div>
                     </div>
 
@@ -421,8 +423,8 @@ Category Area
                             <div class="box-img global-img">
                                 <img src="assets/img/category/4.png" alt="Image">
                             </div>
-                            <h3 class="box-title"><a href="#">Family</a></h3>
-                            <a class="line-btn" href="#">See more</a>
+                            <h3 class="box-title"><a href="">Family</a></h3>
+                            <!-- <a class="line-btn" href="#">See more</a> -->
                         </div>
                     </div>
 
@@ -431,8 +433,8 @@ Category Area
                             <div class="box-img global-img">
                                 <img src="assets/img/category/5.png" alt="Image">
                             </div>
-                            <h3 class="box-title"><a href="#">Group</a></h3>
-                            <a class="line-btn" href="#">See more</a>
+                            <h3 class="box-title"><a href="">Group</a></h3>
+                            <!-- <a class="line-btn" href="#">See more</a> -->
                         </div>
                     </div>
 
@@ -441,8 +443,8 @@ Category Area
                             <div class="box-img global-img">
                                 <img src="assets/img/category/3.png" alt="Image">
                             </div>
-                            <h3 class="box-title"><a href="#">Couple</a></h3>
-                            <a class="line-btn" href="#">See more</a>
+                            <h3 class="box-title"><a href="">Couple</a></h3>
+                            <!-- <a class="line-btn" href="#">See more</a> -->
                         </div>
                     </div>
 
@@ -451,8 +453,8 @@ Category Area
                             <div class="box-img global-img">
                                 <img src="assets/img/category/5.png" alt="Image">
                             </div>
-                            <h3 class="box-title"><a href="#">Group</a></h3>
-                            <a class="line-btn" href="#">See more</a>
+                            <h3 class="box-title"><a href="">Group</a></h3>
+                            <!-- <a class="line-btn" href="#">See more</a> -->
                         </div>
                     </div>
                     <div class="swiper-slide">
@@ -460,8 +462,8 @@ Category Area
                             <div class="box-img global-img">
                                 <img src="assets/img/category/4.png" alt="Image">
                             </div>
-                            <h3 class="box-title"><a href="#">Family</a></h3>
-                            <a class="line-btn" href="#">See more</a>
+                            <h3 class="box-title"><a href="">Family</a></h3>
+                            <!-- <a class="line-btn" href="#">See more</a> -->
                         </div>
                     </div>
 
@@ -488,12 +490,12 @@ destination Area
                                 <div class="destination-content">
                                     <div class="media-left">
                                         <h4 class="box-title">
-                                            <a href="#">Galle Face</a>
+                                            <a href="">Galle Face</a>
                                         </h4>
                                         <span class="destination-subtitle">4.5 Rating</span>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="th-btn style2 th-icon">View All</a>
+                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -506,12 +508,12 @@ destination Area
                                 <div class="destination-content">
                                     <div class="media-left">
                                         <h4 class="box-title">
-                                            <a href="#">Mount Lavinia Beach</a>
+                                            <a href="">Mount Lavinia Beach</a>
                                         </h4>
                                         <span class="destination-subtitle">4.5 Rating</span>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="th-btn style2 th-icon">View All</a>
+                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -524,12 +526,12 @@ destination Area
                                 <div class="destination-content">
                                     <div class="media-left">
                                         <h4 class="box-title">
-                                            <a href="#">Viharamahadevi Park</a>
+                                            <a href="">Viharamahadevi Park</a>
                                         </h4>
                                         <span class="destination-subtitle">4.5 Rating</span>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="th-btn style2 th-icon">View All</a>
+                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -542,12 +544,12 @@ destination Area
                                 <div class="destination-content">
                                     <div class="media-left">
                                         <h4 class="box-title">
-                                            <a href="#">Colombo Museum</a>
+                                            <a href="">Colombo Museum</a>
                                         </h4>
                                         <span class="destination-subtitle">4.5 Rating</span>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="th-btn style2 th-icon">View All</a>
+                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -560,12 +562,12 @@ destination Area
                                 <div class="destination-content">
                                     <div class="media-left">
                                         <h4 class="box-title">
-                                            <a href="#">Beira Lake</a>
+                                            <a href="">Beira Lake</a>
                                         </h4>
                                         <span class="destination-subtitle">4.5 Rating</span>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="th-btn style2 th-icon">View All</a>
+                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -578,12 +580,12 @@ destination Area
                                 <div class="destination-content">
                                     <div class="media-left">
                                         <h4 class="box-title">
-                                            <a href="#">Gangaramaya Temple</a>
+                                            <a href="">Gangaramaya Temple</a>
                                         </h4>
                                         <span class="destination-subtitle">4.5 Rating</span>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="th-btn style2 th-icon">View All</a>
+                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -596,12 +598,12 @@ destination Area
                                 <div class="destination-content">
                                     <div class="media-left">
                                         <h4 class="box-title">
-                                            <a href="#">Bellanwila Vihara</a>
+                                            <a href="">Bellanwila Vihara</a>
                                         </h4>
                                         <span class="destination-subtitle">4.5 Rating</span>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="th-btn style2 th-icon">View All</a>
+                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -614,12 +616,12 @@ destination Area
                                 <div class="destination-content">
                                     <div class="media-left">
                                         <h4 class="box-title">
-                                            <a href="#">Clock Tower</a>
+                                            <a href="">Clock Tower</a>
                                         </h4>
                                         <span class="destination-subtitle">4.5 Rating</span>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="th-btn style2 th-icon">View All</a>
+                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -632,12 +634,12 @@ destination Area
                                 <div class="destination-content">
                                     <div class="media-left">
                                         <h4 class="box-title">
-                                            <a href="#">Lotus Tower</a>
+                                            <a href="">Lotus Tower</a>
                                         </h4>
                                         <span class="destination-subtitle">4.5 Rating</span>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="th-btn style2 th-icon">View All</a>
+                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -650,12 +652,12 @@ destination Area
                                 <div class="destination-content">
                                     <div class="media-left">
                                         <h4 class="box-title">
-                                            <a href="#">Hidden Church</a>
+                                            <a href="">Hidden Church</a>
                                         </h4>
                                         <span class="destination-subtitle">4.5 Rating</span>
                                     </div>
                                     <div class="">
-                                        <a href="#" class="th-btn style2 th-icon">View All</a>
+                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -764,10 +766,10 @@ Service Area
                         <div class="swiper-slide">
                             <div class="tour-box th-ani gsap-cursor">
                                 <div class="tour-box_img global-img">
-                                    <img src="assets/img/tour/1.png" alt="image">
+                                    <img src="assets/img/normal/1.png" alt="image">
                                 </div>
                                 <div class="tour-content">
-                                    <h3 class="box-title"><a href="tour-details.php">Galle Face</a></h3>
+                                    <h3 class="box-title"><a href="tour-details.php"> Private Safari</a></h3>
                                     <div class="tour-rating">
                                         <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
                                                 <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
@@ -775,9 +777,9 @@ Service Area
                                         <a href="tour-details.php" class="woocommerce-review-link">(<span class="count">4.8</span>
                                             Rating)</a>
                                     </div>
-                                    <h4 class="tour-box_price"><span class="currency">$25.00</span>/Person</h4>
+                                    <h4 class="tour-box_price"><span class="currency">$32.00</span>/Person</h4>
                                     <div class="tour-action">
-                                        <span><i class="fa-light fa-clock"></i>1 Hours</span>
+                                        <span><i class="fa-light fa-clock"></i>4 Hours</span>
                                         <a href="#" class="th-btn style4 th-icon">Book Now</a>
                                     </div>
                                 </div>
@@ -786,10 +788,10 @@ Service Area
                         <div class="swiper-slide">
                             <div class="tour-box th-ani gsap-cursor">
                                 <div class="tour-box_img global-img">
-                                    <img src="assets/img/tour/2.png" alt="image">
+                                    <img src="assets/img/category/5.png" alt="image">
                                 </div>
                                 <div class="tour-content">
-                                    <h3 class="box-title"><a href="tour-details.php">Beira Lake</a></h3>
+                                    <h3 class="box-title"><a href="tour-details.php"> Historical tour</a></h3>
                                     <div class="tour-rating">
                                         <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
                                                 <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
@@ -797,9 +799,9 @@ Service Area
                                         <a href="tour-details.php" class="woocommerce-review-link">(<span class="count">4.8</span>
                                             Rating)</a>
                                     </div>
-                                    <h4 class="tour-box_price"><span class="currency">$25.00</span>/Person</h4>
+                                    <h4 class="tour-box_price"><span class="currency">$33.00</span>/Person</h4>
                                     <div class="tour-action">
-                                        <span><i class="fa-light fa-clock"></i>1 Hours</span>
+                                        <span><i class="fa-light fa-clock"></i>4 Hours</span>
                                         <a href="#" class="th-btn style4 th-icon">Book Now</a>
                                     </div>
                                 </div>
@@ -808,10 +810,10 @@ Service Area
                         <div class="swiper-slide">
                             <div class="tour-box th-ani gsap-cursor">
                                 <div class="tour-box_img global-img">
-                                    <img src="assets/img/tour/3.png" alt="image">
+                                    <img src="assets/img/category/4.png" alt="image">
                                 </div>
                                 <div class="tour-content">
-                                    <h3 class="box-title"><a href="tour-details.php">Jami Ul-Alfar Mosque</a></h3>
+                                    <h3 class="box-title"><a href="tour-details.php">Morning Private Tours</a></h3>
                                     <div class="tour-rating">
                                         <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
                                                 <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
@@ -819,9 +821,9 @@ Service Area
                                         <a href="tour-details.php" class="woocommerce-review-link">(<span class="count">4.8</span>
                                             Rating)</a>
                                     </div>
-                                    <h4 class="tour-box_price"><span class="currency">$25.00</span>/Person</h4>
+                                    <h4 class="tour-box_price"><span class="currency">$34.00</span>/Person</h4>
                                     <div class="tour-action">
-                                        <span><i class="fa-light fa-clock"></i>1 Hours</span>
+                                        <span><i class="fa-light fa-clock"></i>4 Hours</span>
                                         <a href="#" class="th-btn style4 th-icon">Book Now</a>
                                     </div>
                                 </div>
@@ -830,10 +832,10 @@ Service Area
                         <div class="swiper-slide">
                             <div class="tour-box th-ani gsap-cursor">
                                 <div class="tour-box_img global-img">
-                                    <img src="assets/img/tour/6.png" alt="image">
+                                    <img src="assets/img/category/2.png" alt="image">
                                 </div>
                                 <div class="tour-content">
-                                    <h3 class="box-title"><a href="tour-details.php">Colombo Museum</a></h3>
+                                    <h3 class="box-title"><a href="tour-details.php">Evening Private Tours</a></h3>
                                     <div class="tour-rating">
                                         <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
                                                 <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
@@ -841,21 +843,22 @@ Service Area
                                         <a href="tour-details.php" class="woocommerce-review-link">(<span class="count">4.8</span>
                                             Rating)</a>
                                     </div>
-                                    <h4 class="tour-box_price"><span class="currency">$25.00</span>/Person</h4>
+                                    <h4 class="tour-box_price"><span class="currency">$34.00</span>/Person</h4>
                                     <div class="tour-action">
-                                        <span><i class="fa-light fa-clock"></i>1 Hours</span>
+                                        <span><i class="fa-light fa-clock"></i>4 Hours</span>
                                         <a href="#" class="th-btn style4 th-icon">Book Now</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="swiper-slide">
                             <div class="tour-box th-ani gsap-cursor">
                                 <div class="tour-box_img global-img">
-                                    <img src="assets/img/tour/4.png" alt="image">
+                                    <img src="assets/img/category/5.png" alt="image">
                                 </div>
                                 <div class="tour-content">
-                                    <h3 class="box-title"><a href="tour-details.php">Gangaramaya Temple</a></h3>
+                                    <h3 class="box-title"><a href="tour-details.php">Colombo Street Food Tour</a></h3>
                                     <div class="tour-rating">
                                         <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
                                                 <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
@@ -863,31 +866,9 @@ Service Area
                                         <a href="tour-details.php" class="woocommerce-review-link">(<span class="count">4.8</span>
                                             Rating)</a>
                                     </div>
-                                    <h4 class="tour-box_price"><span class="currency">$25.00</span>/Person</h4>
+                                    <h4 class="tour-box_price"><span class="currency">$39.00</span>/Person</h4>
                                     <div class="tour-action">
-                                        <span><i class="fa-light fa-clock"></i>1 Hours</span>
-                                        <a href="#" class="th-btn style4 th-icon">Book Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="tour-box th-ani gsap-cursor">
-                                <div class="tour-box_img global-img">
-                                    <img src="assets/img/tour/5.png" alt="image">
-                                </div>
-                                <div class="tour-content">
-                                    <h3 class="box-title"><a href="tour-details.php">Mount Lavinia Beach</a></h3>
-                                    <div class="tour-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
-                                                <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
-                                                Rating)</span></div>
-                                        <a href="tour-details.php" class="woocommerce-review-link">(<span class="count">4.8</span>
-                                            Rating)</a>
-                                    </div>
-                                    <h4 class="tour-box_price"><span class="currency">$25.00</span>/Person</h4>
-                                    <div class="tour-action">
-                                        <span><i class="fa-light fa-clock"></i>1 Hours</span>
+                                        <span><i class="fa-light fa-clock"></i>4 Hours</span>
                                         <a href="#" class="th-btn style4 th-icon">Book Now</a>
                                     </div>
                                 </div>
@@ -1000,7 +981,7 @@ Counter Area
                     <div class="counter-card">
                         <div class="counter-shape"><span></span></div>
                         <div class="media-body">
-                            <h3 class="box-number"><span class="counter-number">12</span></h3>
+                            <h3 class="box-number"><span class="counter-number">3</span></h3>
                             <h6 class="counter-title">Years Experience</h6>
                         </div>
                     </div>
@@ -1010,7 +991,7 @@ Counter Area
                     <div class="counter-card">
                         <div class="counter-shape"><span></span></div>
                         <div class="media-body">
-                            <h3 class="box-number"><span class="counter-number">97</span>%</h3>
+                            <h3 class="box-number"><span class="counter-number">98</span>%</h3>
                             <h6 class="counter-title">Retention Rate</h6>
                         </div>
                     </div>
@@ -1020,7 +1001,7 @@ Counter Area
                     <div class="counter-card">
                         <div class="counter-shape"><span></span></div>
                         <div class="media-body">
-                            <h3 class="box-number"><span class="counter-number">8</span>k</h3>
+                            <h3 class="box-number"><span class="counter-number">200</span>+</h3>
                             <h6 class="counter-title">Tour Completed</h6>
                         </div>
                     </div>
@@ -1030,7 +1011,7 @@ Counter Area
                     <div class="counter-card">
                         <div class="counter-shape"><span></span></div>
                         <div class="media-body">
-                            <h3 class="box-number"><span class="counter-number">19</span>k</h3>
+                            <h3 class="box-number"><span class="counter-number">500</span>+</h3>
                             <h6 class="counter-title">Happy Travellers</h6>
                         </div>
                     </div>
@@ -1441,6 +1422,7 @@ Brand Area
     </div>==============================
 Blog Area  
 ==============================-->
+<!-- 
     <section class="bg-smoke overflow-hidden space" id="blog-sec">
         <div class="container">
             <div class="mb-30 text-center text-md-start">
@@ -1574,7 +1556,9 @@ Blog Area
         <div class="shape-mockup shape3 d-none d-xxl-block" data-bottom="12%" data-left="7%">
             <img src="assets/img/shape/shape_3.png" alt="shape">
         </div>
-    </section><!--==============================
+    </section> -->
+    
+    <!--==============================
 	Footer Area
 ==============================-->
     <?php include 'footer.php'; ?>
