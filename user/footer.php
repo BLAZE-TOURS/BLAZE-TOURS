@@ -9,8 +9,12 @@
                         </div>
                         <div class="col-lg-7">
                             <form class="newsletter-form">
-                                <input class="form-control " type="email" placeholder="Enter Email" required="">
-                                <button type="submit" class="th-btn style3">Subscribe Now <img src="assets/img/icon/plane.svg" alt=""></button>
+                                <input class="form-control" type="email" name="email" placeholder="Email address." required id="Footer-Subscriber-email">
+                                <button type="button" id="subscribe-button" class="th-btn style3">
+                                    Subscribe Now 
+                                    <img src="assets/img/icon/plane.svg" alt="">
+                                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                </button>
                             </form>
                         </div>
                     </div>

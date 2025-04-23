@@ -40,6 +40,8 @@
 
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Notify CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
     <!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
@@ -1645,6 +1647,21 @@ modal Area
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+    <!--custome-->
+    <script src="./assets/js/Footersubscriber.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script>
+            document.getElementById("subscribe-button").addEventListener("click", function(event) {
+                event.preventDefault(); // Prevent default button behavior
+
+                // Lock the preloader
+                var r = new XMLHttpRequest();
+                r.open("GET", "/user/assets/process/StopPreloaderProcess.php", true);
+                r.send();
+            });
+        </script>
+
+
 </body>
 
 </html>

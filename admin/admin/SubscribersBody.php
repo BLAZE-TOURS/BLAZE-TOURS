@@ -1,3 +1,34 @@
+<style>.review-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: auto; /* Allow expansion based on content */
+}
+
+.review-text {
+  display: block;
+  transition: height 0.3s ease;
+  white-space: normal;
+  height: 50px; /* Limit height for collapsed state */
+  overflow: hidden;
+  margin-right: 30px; /* Add some space to the right for the button */
+}
+
+.toggle-review-btn {
+  position: absolute;
+  top: 0;
+  right: 0; /* Align it to the right side */
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: #007bff;
+  cursor: pointer;
+  z-index: 1; /* Ensure the button stays above the text */
+}
+
+
+</style>
+
+
 <div class="content-page mt-5 fade-in">
   <div class="row justify-content-center">
     <div class="col-md-12">
@@ -29,52 +60,106 @@
     </div>
   </div>
 
-    <div class="row">
-          <div class="col-12">
-              <div class="card">
-                  <div class="card-header">
-                      <h5 class="card-title mb-0">Subscribers List</h5>
-                  </div><!-- end card header -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Subscribers List</h5>
+        </div><!-- end card header -->
 
-                  <div c=lass="card-body">
-                      <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
-                          <thead>
-                              <tr class="Table-header">
-                                  <th>#ID</th>
-                                  <th>First Name</th>
-                                  <th>Last Name</th>
-                                  <th>Mobile</th>
-                                  <th>Email</th>
-                                  <th>Review</th>
-                                  <th>DateTime</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <?php
-                                if ($subscriber_n > 0) {
-                                    while ($row = $subscriber_rs->fetch_assoc()) {
-                                ?>
-                                      <tr class="text-center">
-                                          <td><?php echo $row["id"]; ?></td>
-                                          <td><?php echo $row["first_name"]; ?></td>
-                                          <td><?php echo $row["last_name"]; ?></td>
-                                          <td><?php echo $row["mobile"]; ?></td>
-                                          <td><?php echo $row["email"]; ?></td>
-                                          <td><?php echo $row["review"]; ?></td>
-                                          <td><?php echo $row["date"]; ?></td>
-                                      </tr>
-                              <?php
-                                    }
-                                } else {
-                                    echo "<tr><td colspan='7' class='text-center'>No subscribers found.</td></tr>";
-                                }
-                                ?>
-                          </tbody>
-                      </table>
-                  </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
+              <thead>
+                <tr class="Table-header">
+                  <th>#ID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Mobile</th>
+                  <th>Email</th>
+                  <th>Review</th>
+                  <th>Rating</th>
+                  <th>DateTime</th>
+                  <th>Send Whatsapp Message</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                if ($subscriber_n > 0) {
+                  while ($row = $subscriber_rs->fetch_assoc()) {
+                ?>
+                    <tr class="text-center">
+                      <td><?php echo $row["id"]; ?></td>
+                      <td><?php echo $row["first_name"]; ?></td>
+                      <td><?php echo $row["last_name"]; ?></td>
+                      <td><?php echo $row["mobile"]; ?></td>
+                      <td><?php echo $row["email"]; ?></td>
+                      <td>
+                        <div class="review-wrapper">
+                          <!-- Button to toggle the review visibility -->
+                          <button type="button" class="btn btn-link toggle-review-btn" data-id="<?php echo $row['id']; ?>" onclick="toggleReview(<?php echo $row['id']; ?>)">
+                            <i class="fas fa-plus"></i> <!-- Initial "+" icon -->
+                          </button>
 
-              </div>
+                          <!-- Review Text -->
+                          <span id="review-text-<?php echo $row['id']; ?>" class="review-text">
+                            <?php echo nl2br(htmlspecialchars($row['review'])); ?>
+                          </span>
+                        </div>
+                      </td>
+
+                      <td><?php echo $row["rating_star_id"]; ?></td>
+                      <td><?php echo $row["date"]; ?></td>
+                      <td>
+                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Thank%20You%20<?php echo urlencode($row["first_name"]); ?>,%20For%20joining%20with%20BLAZE%20TOURS%20PVT"
+                          target="_blank"
+                          class="btn btn-success btn-sm">
+                          Send Message
+                        </a>
+                      </td>
+                    </tr>
+                <?php
+                  }
+                } else {
+                  echo "<tr><td colspan='7' class='text-center'>No subscribers found.</td></tr>";
+                }
+                ?>
+              </tbody>
+            </table>
           </div>
+        </div>
       </div>
+    </div>
   </div>
 </div>
+</div>
+
+<script>
+function toggleReview(id) {
+  const reviewText = document.getElementById('review-text-' + id);
+  const button = document.querySelector('[data-id="' + id + '"]');
+  
+  // Check the current state of the review text and toggle visibility
+  if (reviewText.style.height === "auto") {
+    reviewText.style.height = "50px"; // Collapse to the original height
+    button.innerHTML = '<i class="fas fa-plus"></i>'; // Change to "+" icon
+  } else {
+    reviewText.style.height = "auto"; // Expand to show full review
+    button.innerHTML = '<i class="fas fa-minus"></i>'; // Change to "-" icon
+  }
+}
+
+
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('#datatable-buttons').DataTable({
+      responsive: true, // Enable responsiveness
+      dom: 'Bfrtip',
+      buttons: [
+        'copy', 'csv', 'excel', 'pdf', 'print'
+      ]
+    });
+  });
+</script>

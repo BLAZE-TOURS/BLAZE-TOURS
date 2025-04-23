@@ -119,6 +119,7 @@ Last Update: 20-07-2024
 html,
 body {
   scroll-behavior: auto !important;
+  overflow-x: hidden ;
 }
 
 body {
