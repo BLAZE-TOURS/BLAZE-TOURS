@@ -11,7 +11,7 @@ if (isset($_SESSION["adminuser"])) {
     <head>
 
         <meta charset="utf-8" />
-        <title>Admin Dashboard | Rakkitha Kanda Rock temple </title>
+        <title>Admin Dashboard | BLAZE TOURS </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin Panel" />
         <meta name="author" content="Malindu Prabod wm" />
@@ -296,11 +296,11 @@ if (isset($_SESSION["adminuser"])) {
                                 <li>
                                     <a href="#" onclick="changeDashboardViewPodcast();">
                                         <i data-feather="file-text"></i>
-                                        <span>Podcast</span>
+                                        <span>Tours</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
-
+<!-- 
                                 <li>
                                     <a href="#" onclick="changeDashboardViewSubscribers();">
                                         <i data-feather="file-text"></i>
@@ -311,7 +311,7 @@ if (isset($_SESSION["adminuser"])) {
                                 <li>
                                     <a href="#" onclick="changeDashboardViewSubscribers();">
                                         <i data-feather="file-text"></i>
-                                        <span>Donation</span>
+                                        <span>Payments</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>

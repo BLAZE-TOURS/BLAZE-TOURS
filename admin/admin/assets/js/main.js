@@ -60,6 +60,15 @@ function changeDashboardViewSubscribers() {
     subscriberContainer.style.display = 'block';
 }
 
+function changeDashboardViewGallary() {
+    history.pushState(null, '', 'adminindex.php?view=Gallary');
+    sessionStorage.setItem('currentView', 'Gallary'); // Ensure key matches retrieval
+    hideAllContainers();
+    var gallaryContainer = document.getElementById('gallaryContainer');
+    gallaryContainer.classList.remove('d-none');
+    gallaryContainer.style.display = 'block';
+}
+
 function hideAllContainers() {
     // Hide all content containers
     document.querySelector('.content-page').style.display = 'none';
