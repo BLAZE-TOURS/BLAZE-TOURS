@@ -321,59 +321,58 @@ Booking Area
             </form>
         </div>
     </div>  -->
+    
     <div class="booking-sec">
-        <div class="container">
-            <form action="mail.php" method="POST" class="booking-form ajax-contact">
-                <div class="input-wrap">
-                    <div class="row align-items-center justify-content-between">
-                        <div class="form-group col-md-6 col-lg-auto">
-                            <div class="icon">
-                                <i class="fa-light fa-route"></i>
-                            </div>
-                            <div class="search-input">
-                                <label>Tour Option</label>
-                                <select name="subject" id="subject" class="form-select nice-select">
-                                    <option value="Select Destination" selected disabled>Select Option</option>
-                                    <option value="Tuk Tuk">Private Safari</option>
-                                    <option value="Tour">Historical tour</option>
-                                </select>
-                            </div>
+    <div class="container">
+        <form action="mail.php" method="POST" class="booking-form ajax-contact">
+            <div class="input-wrap">
+                <div class="row align-items-center justify-content-between">
+                    <div class="form-group col-md-6 col-lg-auto">
+                        <div class="icon">
+                            <i class="fa-light fa-route"></i>
                         </div>
-                        <div class="form-group col-md-6 col-lg-auto">
-                            <div class="icon">
-                                <i class="fa-light fa-clock"></i>
-                            </div>
-                            <div class="search-input">
-                                <label>Duration</label>
-                                <select class="form-select nice-select" name="Duration" id="Duration">
-                                    <option value="Normal" selected disabled>Duration</option>
-                                    <option value="4"> 4 hours</option>
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6 col-lg-auto">
-                            <div class="icon">
-                                <i class="fa-light fa-map-location-dot"></i>
-                            </div>
-                            <div class="search-input">
-                                <label>Tour Area<Area></Area></label>
-                                <select name="subject" id="category" class="form-select nice-select">
-                                    <option value="Normal" selected disabled>Tour Area</option>
-                                    <option value="Colombo">Colombo</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-btn col-md-12 col-lg-auto">
-                            <button class="th-btn"><img src="assets/img/icon/search.svg" alt="">Search</button>
+                        <div class="search-input">
+                            <label>Tour Option</label>
+                            <select name="subject" id="subject" class="form-select nice-select">
+                                <option value="Select Destination" selected disabled>Select Option</option>
+                                <option value="Tuk Tuk">Private Safari</option>
+                                <option value="Tour">Historical tour</option>
+                            </select>
                         </div>
                     </div>
-                    <p class="form-messages mb-0 mt-3"></p>
+                    <div class="form-group col-md-6 col-lg-auto">
+                        <div class="icon">
+                            <i class="fa-light fa-clock"></i>
+                        </div>
+                        <div class="search-input">
+                            <label>Duration</label>
+                            <select class="form-select nice-select" name="Duration" id="Duration" disabled>
+                                <option value="Normal" >Duration</option>
+                                <option value="4"selected disabled>4 hours</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-lg-auto">
+                        <div class="icon">
+                            <i class="fa-light fa-map-location-dot"></i>
+                        </div>
+                        <div class="search-input">
+                            <label>Tour Area</label>
+                            <select name="subject" id="category" class="form-select nice-select" disabled>
+                                <option value="Normal" >Tour Area</option>
+                                <option value="Colombo"selected disabled>Colombo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-btn col-md-12 col-lg-auto">
+                        <button class="th-btn"><img src="assets/img/icon/search.svg" alt="">Search</button>
+                    </div>
                 </div>
-            </form>
-        </div>
+                <p class="form-messages mb-0 mt-3"></p>
+            </div>
+        </form>
     </div>
-
+</div>
 
     <!--==============================
 Category Area  
