@@ -1090,7 +1090,7 @@ Testimonial Area
                                             <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Maria Doe</h3>
+                                            <h3 class="box-title">adrolf</h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1103,7 +1103,7 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">“A home that perfectly blends sustainability with luxury until I discovered Ecoland Residence. From the moment I stepped into this community, I knew it was where I wanted to live. The commitment to eco-friendly living”</p>
+                                <p class="testi-card_text">Blaze was a great navigator in the busy city streets. We were able to take back alleys and streets cars could not. We stopped at all the major places in Colombo. He shared the most recent history of the city with protests, attacks on hotels and places of worship all the way to present day. Very humble and full of pride for his country.</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1117,7 +1117,7 @@ Testimonial Area
                                             <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Andrew Simon</h3>
+                                            <h3 class="box-title">Joanne H</h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1130,7 +1130,7 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">“The home boasts sleek, contemporary architecture with clean lines and expansive windows, allowing natural light to flood the interiors It incorporates passive design principles”</p>
+                                <p class="testi-card_text">We highly recommend Blaze! Make sure you do this tour if you visit Columbo. It was great fun, he took us to see all the sights of the city and gave us great insights into life in Sri Lanka. Blaze is not only super polite and friendly, he is also is an amazing driver… the traffic is chaotic and we felt very confident we were in expert hands! We are so pleased we booked Blaze and cancelled our cruise ship coach tour.</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1144,7 +1144,7 @@ Testimonial Area
                                             <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Alex Jordan</h3>
+                                            <h3 class="box-title">Nahie E</h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1157,7 +1157,8 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">“Solar panels adorn the roof, harnessing renewable energy to power the home and even feed excess electricity back into the grid. High-performance insulation and triple-glazed”</p>
+                                <p class="testi-card_text">This tour was the highlight of our Colombo trip! Our guide, Blaze was very knowledgeable and told us all about the different areas we visited including the history and current situations. He was very friendly and accommodating to all our needs throughout our tour in addition for going on much longer than the required time. We really appreciated his kindness and hospitality.
+                                He also made a good recommendations for halal restaurants to try. Highly recommended!</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1171,7 +1172,7 @@ Testimonial Area
                                             <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Maria Doe</h3>
+                                            <h3 class="box-title">MC862014</h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1184,7 +1185,7 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">A sophisticated rainwater harvesting system collects and filters rainwater for irrigation and non-potable uses, reducing reliance on municipal water sources. Greywater systems</p>
+                                <p class="testi-card_text">Blaze is a good driver and takes you to the key sights in Colombo. His Tuk Tuk is comfy and he even waited to take us to dinner.</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1198,7 +1199,8 @@ Testimonial Area
                                             <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Angelina Rose</h3>
+                                            <h3 class="box-title">Jan R
+                                            </h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1211,7 +1213,11 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">Throughout the interior, eco-friendly materials like reclaimed wood, bamboo flooring, and recycled glass countertops create a luxurious yet sustainable ambiance.</p>
+                                <p class="testi-card_text">We had a great trip with Blaze today. His communication was great, and he was at the port to meet us. He showed us around all the attractions of Colombo and had great local knowledge.
+His English was excellent, and we enjoyed hearing all about the history and sights of Colombo.
+I would highly recommend Blaze for a Tuk tuk tour.
+He was also a great photographer and careful driver.
+Thanks for the adventure and making our stay in Colombo so much fun</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1225,7 +1231,8 @@ Testimonial Area
                                             <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Maria Doe</h3>
+                                            <h3 class="box-title">Flightygirl84
+                                            </h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1238,7 +1245,9 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">“A home that perfectly blends sustainability with luxury until I discovered Ecoland Residence. From the moment I stepped into this community, I knew it was where I wanted to live. The commitment to eco-friendly living”</p>
+                                <p class="testi-card_text">Blaze was very professional, spoke very good English, good knowledge of Colombo, helped me with some photocopying, I really enjoyed my tour.
+
+</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1252,7 +1261,8 @@ Testimonial Area
                                             <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Andrew Simon</h3>
+                                            <h3 class="box-title">Deepak D
+                                            </h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1265,7 +1275,9 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">A sophisticated rainwater harvesting system collects and filters rainwater for irrigation and non-potable uses, reducing reliance on municipal water sources. Greywater systems</p>
+                                <p class="testi-card_text">Great guy!
+He just makes everything so easy and comfortable for your sri lankan adventures. Really passionate for his work.
+He quoted so cheap for his service that I suggested him to increase the rates.</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1279,7 +1291,8 @@ Testimonial Area
                                             <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Alex Jordan</h3>
+                                            <h3 class="box-title">jack
+                                            </h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1292,7 +1305,9 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">Throughout the interior, eco-friendly materials like reclaimed wood, bamboo flooring, and recycled glass countertops create a luxurious yet sustainable ambiance.</p>
+                                <p class="testi-card_text">Wicked time with Blaze, saw all the sights I had on my list and more. Very generous with his time and didn’t make me feel rushed at all. Deserves all the luck in the world, keep up the great work!
+
+</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
