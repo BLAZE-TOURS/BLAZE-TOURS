@@ -184,362 +184,18 @@
     </div><!--==============================
     Mobile Menu
   ============================== -->
-    <div class="th-menu-wrapper onepage-nav">
-        <div class="th-menu-area text-center">
-            <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
-            <div class="mobile-logo">
-                <a href="home-travel.php"><img src="assets/img/logo2.svg" alt="Tourm"></a>
-            </div>
-            <div class="th-mobile-menu">
-                <ul>
-                    <li class="menu-item-has-children mega-menu-wrap">
-                        <a class="active" href="home-travel.php">Home</a>
-
-                        <ul class="sub-menu">
-                            <li><a href="home-travel.php">Home Travel</a></li>
-                            <li><a href="home-tour.php">Home Tour</a></li>
-                            <li><a href="home-agency.php">Home Agency</a></li>
-                            <li><a href="home-yacht.php">Home Yacht</a></li>
-                            <li><a href="home-beach.php">Home Beach</a></li>
-                            <li><a href="home-resort.php">Home Resort</a></li>
-                            <li><a href="home-countryside-hotel.php">Home Countryside Hotel</a></li>
-                            <li><a href="home-forest.php">Home Forest</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about.php">About Us</a></li>
-                    <li class="menu-item-has-children">
-                        <a href="#">Destination</a>
-                        <ul class="sub-menu">
-                            <li><a href="destination.php">Destination</a></li>
-                            <li><a href="destination-details.php">Destination Details</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children">
-                        <a href="#">Service</a>
-                        <ul class="sub-menu">
-                            <li><a href="service.php">Services</a></li>
-                            <li><a href="service-details.php">Service Details</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children">
-                        <a href="#">Activities</a>
-                        <ul class="sub-menu">
-                            <li><a href="activities.php">activities</a></li>
-                            <li><a href="activities-details.php">activities Details</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children">
-                        <a href="#">Pages</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item-has-children">
-                                <a href="#">Shop</a>
-                                <ul class="sub-menu">
-                                    <li><a href="shop.php">Shop</a></li>
-                                    <li><a href="shop-details.php">Shop Details</a></li>
-                                    <li><a href="cart.php">Cart Page</a></li>
-                                    <li><a href="checkout.php">Checkout</a></li>
-                                    <li><a href="wishlist.php">Wishlist</a></li>
-                                </ul>
-                            </li>
-
-                            <li><a href="gallery.php">Gallery</a></li>
-                            <li><a href="tour.php">Our Tour</a></li>
-                            <li><a href="tour-details.php">Tour Details</a></li>
-                            <li><a href="resort.php">Resort page</a></li>
-                            <li><a href="resort-details.php">Resort Details</a></li>
-                            <li><a href="tour-details.php">Tour Details</a></li>
-                            <li><a href="tour-guide.php">Tour Guider</a></li>
-                            <li><a href="tour-guider-details.php">Tour Guider Details</a></li>
-                            <li><a href="faq.php">Faq Page</a></li>
-                            <li><a href="price.php">Price Package</a></li>
-                            <li><a href="error.php">Error Page</a></li>
-                        </ul>
-
-                    </li>
-                    <li class="menu-item-has-children">
-                        <a href="#">Blog</a>
-                        <ul class="sub-menu">
-                            <li><a href="blog.php">Blog</a></li>
-                            <li><a href="blog-details.php">Blog Details</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="contact.php">Contact us</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div> <!--==============================
-	Header Area
-==============================-->
-    <header class="th-header header-layout1">
-        <div class="header-top">
-            <div class="container th-container">
-                <div class="row justify-content-center justify-content-xl-between align-items-center">
-                    <div class="col-auto d-none d-md-block">
-                        <div class="header-links">
-                            <ul>
-                                <li class="d-none d-xl-inline-block"><i class="fa-sharp fa-regular  fa-location-dot"></i>
-                                    <span>45 New Eskaton Road, Austria</span>
-                                </li>
-                                <li class="d-none d-xl-inline-block"><i class="fa-regular fa-clock"></i>
-                                    <span>Sun to Friday: 8.00 am - 7.00 pm</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="header-right">
-                            <div class="currency-menu">
-                                <select class="form-select nice-select">
-                                    <option selected="">language </option>
-                                    <option>CNY</option>
-                                    <option>EUR</option>
-                                    <option>AUD</option>
-                                </select>
-                            </div>
-                            <div class="header-links">
-                                <ul>
-                                    <li class="d-none d-md-inline-block"><a href="faq.php">FAQ</a></li>
-                                    <li class="d-none d-md-inline-block"><a href="contact.php">Support</a></li>
-                                    <li><a href="#login-form" class="popup-content">Sign In / Register<i class="fa-regular fa-user"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="sticky-wrapper">
-            <!-- Main Menu Area -->
-            <div class="menu-area">
-                <div class="container th-container">
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col-auto">
-                            <div class="header-logo">
-                                <a href="home-travel.php"><img src="assets/img/logo.svg" alt="Tourm"></a>
-                            </div>
-                        </div>
-                        <div class="col-auto me-xl-auto">
-                            <nav class="main-menu d-none d-xl-inline-block">
-                                <ul>
-                                    <li class="menu-item-has-children mega-menu-wrap">
-                                        <a class="active" href="home-travel.php">Home</a>
-                                        <ul class="mega-menu mega-menu-content">
-                                            <li>
-                                                <div class="container">
-                                                    <div class="row gy-4">
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-travel.jpg" alt="Home One">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="index.php" class="th-btn">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="index.php"><span>01.</span>Home Travel</a></h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-tour.jpg" alt="Home Two">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-tour.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-tour.php"><span>02.</span>Home Tour</a></h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-agency.jpg" alt="Home Three">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-agency.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-agency.php"><span>03.</span>Home Agency</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-yacht.jpg" alt="Home Four">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-yacht.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-yacht.php"><span>04.</span>Home Yacht</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-beach.jpg" alt="Home Five">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-beach.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-beach.php"><span>05.</span>Home Beach</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-resort.jpg" alt="Home Six">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-resort.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-resort.php"><span>06.</span>Home resort</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-countryside-hotel.jpg" alt="Home Six">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-countryside-hotel.php" class="th-btn ">View
-                                                                            Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-countryside-hotel.php"><span>07.</span>Home
-                                                                        Countryside Hotel</a></h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-forest.jpg" alt="Home Six">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-forest.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-forest.php"><span>08.</span>Home Forest</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-hiking.jpg" alt="Home Six">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-hiking.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-hiking.php"><span>09.</span>Home Hiking</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-hiking-2.jpg" alt="Home ten">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-hiking-2.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-hiking-2.php"><span>10.</span>Home Hiking Style 2</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="about.php">About Us</a></li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Destination</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="destination.php">Destination</a></li>
-                                            <li><a href="destination-details.php">Destination Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Service</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="service.php">Services</a></li>
-                                            <li><a href="service-details.php">Service Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Activities</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="activities.php">activities</a></li>
-                                            <li><a href="activities-details.php">activities Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Pages</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item-has-children">
-                                                <a href="#">Shop</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="shop.php">Shop</a></li>
-                                                    <li><a href="shop-details.php">Shop Details</a></li>
-                                                    <li><a href="cart.php">Cart Page</a></li>
-                                                    <li><a href="checkout.php">Checkout</a></li>
-                                                    <li><a href="wishlist.php">Wishlist</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li><a href="gallery.php">Gallery</a></li>
-                                            <li><a href="tour.php">Our Tour</a></li>
-                                            <li><a href="tour-details.php">Tour Details</a></li>
-                                            <li><a href="resort.php">Resort page</a></li>
-                                            <li><a href="resort-details.php">Resort Details</a></li>
-                                            <li><a href="tour-details.php">Tour Details</a></li>
-                                            <li><a href="tour-guide.php">Tour Guider</a></li>
-                                            <li><a href="tour-guider-details.php">Tour Guider Details</a></li>
-                                            <li><a href="faq.php">Faq Page</a></li>
-                                            <li><a href="price.php">Price Package</a></li>
-                                            <li><a href="error.php">Error Page</a></li>
-                                        </ul>
-
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Blog</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog.php">Blog</a></li>
-                                            <li><a href="blog-details.php">Blog Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="contact.php">Contact us</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                            <button type="button" class="th-menu-toggle d-block d-xl-none"><i class="far fa-bars"></i></button>
-                        </div>
-                        <div class="col-auto d-none d-xl-block">
-                            <div class="header-button">
-                                <a href="contact.php" class="th-btn style3 th-icon">Book Now</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="logo-bg" data-mask-src="assets/img/logo_bg_mask.png"></div>
-            </div>
-        </div>
-    </header>
-    <!--==============================
+  <?php include 'header.php'; ?>
+   
+<!--==============================
     Breadcumb
 ============================== -->
-    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/breadcumb-bg.jpg">
+    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/category_bg_1.png">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Service Details</h1>
+                <h1 class="breadcumb-title">Private Safari Tour</h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="home-travel.php">Home</a></li>
-                    <li>Service Details</li>
+                    <li><a href="index.php">Home</a></li>
+                    <li>Tour Details</li>
                 </ul>
             </div>
         </div>
@@ -551,13 +207,13 @@ tour Area
             <div class="row">
                 <div class="col-xxl-8 col-lg-7">
                     <div class="page-single">
-                        <div class="service-img"><img src="assets/img/destination/destination-details.jpg" alt=""></div>
+                        <div class="service-img"><img src="assets/img/destination/private-tour.png" alt=""></div>
                         <div class="page-content d-block">
                             <div class="page-meta mt-50 mb-45">
-                                <a class="page-tag" href="tour.php">Featured</a>
+                                <a class="page-tag" href="tour.php">POPULAR</a>
                                 <span class="ratting"><i class="fa-sharp fa-solid fa-star"></i><span>4.8</span></span>
                             </div>
-                            <h2 class="box-title">Explore the Beauty of Maldives and enjoy</h2>
+                            <h2 class="box-title">Tuk Tuk Private Safari Tour Exploring Sri Lanka's Capital Colombo</h2>
                             <p class="box-text mb-30">voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
                                 ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
                                 Dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
@@ -570,19 +226,31 @@ tour Area
                                 energy-efficient features of your home contribute to a productive and eco-conscious workday.
                                 Smart home systems allow you to monitor and control energy usage, ensuring that your
                                 environmental impact remains minimal.</p>
-                            <div class="service-inner-img mb-40"><img src="assets/img/destination/destination-inner-1.jpg" alt=""></div>
-                            <h2 class="box-title">Highlights</h2>
+                            <div class="service-inner-img mb-40"><img src="assets/img/destination/private-tour1.png" alt=""></div>
+                            <!-- <h2 class="box-title">Itinerary</h2>
                             <div class="checklist">
                                 <ul>
-                                    <li>Visit most popular location of Maldives</li>
-                                    <li>Buffet Breakfast for all traveler with good quality.</li>
-                                    <li>Expert guide always guide you and give informations.</li>
-                                    <li>Best Hotel for all also great food.</li>
-                                    <li>Helping all traveler for Money Exchange.</li>
-                                    <li>Buffet Breakfast for all traveler with good quality..</li>
-                                    <li>Buffet Breakfast for all traveler with good quality.</li>
+                                    <li>You'll get picked up</li>
+                                    <li>
+                                        <STRong>Gangaramaya (Vihara) Buddhist Temple</STRong>
+                                        <SPan>GWEGFR</SPan>
+                                    </li>
+                                    <li>Sri Ponnambalam Vanesar Kovil</li>
+                                    <li>Jami Ul-Alfar Mosque</li>
+                                    <li>Independence Square</li>
+                                    <li>Colombo Galbokka Lighthouse</li>
+                                    <li>Galle Face Green</li>
+                                    <li>Colombo Fort Clock Tower</li>
+                                    <li>Viharamahadevi Park</li>
+                                    <li>Seema Malakaya Temple</li>
+                                    <li>Colombo Lotus Tower</li>
+                                    <li>Pettah</li>
+                                    <li>Pettah Floating Market</li>
+                                    <LI>Dutch Hospital Shopping Precinct</LI>
+                                    <LI>Cargills Department Store</LI>
+                                    <LI>You'll return to the starting point</LI>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="destination-gallery-wrapper">
                             <h3 class="page-title mt-30 mb-30">From our gallery</h3>
@@ -744,123 +412,83 @@ tour Area
                 </div>
                 <div class="col-xxl-4 col-lg-5">
                     <aside class="sidebar-area style3">
-                        <div class="widget widget_search  ">
-                            <form class="search-form">
-                                <input type="text" placeholder="Search">
-                                <button type="submit"><i class="far fa-search"></i></button>
-                            </form>
-                        </div>
-                        <div class="widget widget_categories  ">
-                            <h3 class="widget_title">Categories</h3>
-                            <ul>
-                                <li>
-                                    <a href="blog.php"><img src="assets/img/theme-img/map.svg" alt="">City Tour</a>
-                                    <span>(8)</span>
-                                </li>
-                                <li>
-                                    <a href="blog.php"><img src="assets/img/theme-img/map.svg" alt="">Beach Tours</a>
-                                    <span>(6)</span>
-                                </li>
-                                <li>
-                                    <a href="blog.php"><img src="assets/img/theme-img/map.svg" alt="">Wildlife Tours</a>
-                                    <span>(2)</span>
-                                </li>
-                                <li>
-                                    <a href="blog.php"><img src="assets/img/theme-img/map.svg" alt="">News & Tips</a>
-                                    <span>(7)</span>
-                                </li>
-                                <li>
-                                    <a href="blog.php"><img src="assets/img/theme-img/map.svg" alt="">Adventure Tours</a>
-                                    <span>(9)</span>
-                                </li>
-                                <li>
-                                    <a href="blog.php"><img src="assets/img/theme-img/map.svg" alt="">Mountain Tours</a>
-                                    <span>(10)</span>
-                                </li>
-                            </ul>
-                        </div>
                         <div class="widget tour-booking  ">
-                            <p class="widget_subtitle">From <span class="widget_price">$75.00</span></p>
+                            <p class="widget_subtitle">From <span class="widget_price">$31.35</span>/Person</p>
                             <div class="info-list">
                                 <ul>
                                     <li>
-                                        <strong>Date </strong>
-                                        <span>sun 15 June - Fri 20 July</span>
+                                        <strong>Duration : 4 hours</strong>
                                     </li>
-                                    <li>
-                                        <strong>Number of travelers</strong>
-                                        <span>2 adults - 1 childeren - 1 room</span>
-                                    </li>
+                                    <li><strong>Pickup included</strong></li>
+                                    <li><strong>Reserve Now & Pay Later Eligible</strong></li>
+                                    <li><strong>Free Cancellation</strong></li>
                                 </ul>
                             </div>
                             <a href="contact.php" class="th-btn th-icon">Book Now</a>
                             <span class="review"><i class="fa-light fa-heart"></i> 88% of travelers recommend this experience</span>
                         </div>
-                        <div class="widget  ">
-                            <h3 class="widget_title">Recent Posts</h3>
-                            <div class="recent-post-wrap">
-                                <div class="recent-post">
-                                    <div class="media-img">
-                                        <a href="blog-details.php"><img src="assets/img/blog/recent-post-1-1.jpg" alt="Blog Image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="post-title"><a class="text-inherit" href="blog-details.php">Exploring The Green Spaces Of the island maldives</a></h4>
-                                        <div class="recent-post-meta">
-                                            <a href="blog.php"><i class="fa-regular fa-calendar"></i>22/6/ 2024</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="recent-post">
-                                    <div class="media-img">
-                                        <a href="blog-details.php"><img src="assets/img/blog/recent-post-1-2.jpg" alt="Blog Image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="post-title"><a class="text-inherit" href="blog-details.php">Harmony With Nature Of Belgium Tour and travle</a></h4>
-                                        <div class="recent-post-meta">
-                                            <a href="blog.php"><i class="fa-regular fa-calendar"></i>25/6/ 2024</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="recent-post">
-                                    <div class="media-img">
-                                        <a href="blog-details.php"><img src="assets/img/blog/recent-post-1-3.jpg" alt="Blog Image"></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="post-title"><a class="text-inherit" href="blog-details.php">Exploring The Green Spaces Of Realar Residence</a></h4>
-                                        <div class="recent-post-meta">
-                                            <a href="blog.php"><i class="fa-regular fa-calendar"></i>27/6/ 2024</a>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="widget tour-booking  ">
+                            <p class="widget_subtitle">Highlight <span class="widget_price">Itinerary</span></p>
+                            <div class="info-list">
+                                <ul>
+                                    <li>
+                                        <strong>You'll get picked up</strong>
+                                        <span>See departure details</span>
+                                    </li>
+                                    <li>
+                                        <strong>Gangaramaya (Vihara) Buddhist Temple</strong>
+                                        <span>Stop: 30 minutes - Admission excluded</span>
+                                    </li>
+                                    <li>
+                                        <strong>Sri Ponnambalam Vanesar Kovil</strong>
+                                        <span>Stop: 20 minutes</span>
+                                    </li>
+                                    <li>
+                                        <strong>Jami Ul-Alfar Mosque</strong>
+                                        <span>Stop: 20 minutes</span>
+                                    </li>
+                                    <li>
+                                        <strong>Independence Square</strong>
+                                        <span>Stop: 20 minutes</span>
+                                    </li>
+                                    <li>
+                                        <strong>Colombo Galbokka Lighthouse</strong>
+                                        <span>Stop: 20 minutes</span>
+                                    </li>
+                                    <li>
+                                        <strong>You'll get picked up</strong>
+                                        <span>See departure details</span>
+                                    </li>
+                                    <li>
+                                        <strong>You'll get picked up</strong>
+                                        <span>See departure details</span>
+                                    </li>
+                                    <li>
+                                        <strong>You'll get picked up</strong>
+                                        <span>See departure details</span>
+                                    </li>
+                                    <li>
+                                        <strong>You'll get picked up</strong>
+                                        <span>See departure details</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <div class="widget widget_tag_cloud  ">
-                            <h3 class="widget_title">Popular Tags</h3>
+                            <h3 class="widget_title">Available time</h3>
                             <div class="tagcloud">
-                                <a href="blog.php">Tour</a>
-                                <a href="blog.php">Adventure</a>
-                                <a href="blog.php">Rent</a>
-                                <a href="blog.php">Innovate</a>
-                                <a href="blog.php">Hotel</a>
-                                <a href="blog.php">Modern</a>
-                                <a href="blog.php">Luxury</a>
-                                <a href="blog.php">Travel</a>
-                            </div>
-                        </div>
-                        <div class="widget widget_offer  " data-bg-src="assets/img/bg/widget_bg_1.jpg">
-                            <div class="offer-banner">
-                                <div class="offer">
-                                    <h6 class="box-title">Need Help? We Are Here To Help You</h6>
-                                    <div class="banner-logo">
-                                        <img src="assets/img/logo2.svg" alt="Tourm">
-                                    </div>
-                                    <div class="offer">
-                                        <h6 class="offer-title">You Get Online support</h6>
-                                        <a class="offter-num" href="+256214203215">+256 214 203 215</a>
-                                    </div>
-                                    <a href="contact.php" class="th-btn style2 th-icon">Read More</a>
-                                </div>
+                                <a href="">7:30 AM</a>
+                                <a href="">8:30 AM</a>
+                                <a href="">9:30 AM</a>
+                                <a href="">10:30 AM</a>
+                                <a href="">11:30 AM</a>
+                                <a href="">12:30 PM</a>
+                                <a href="">1:30 PM</a>
+                                <a href="">2:30 PM</a>
+                                <a href="">3:30 PM</a>
+                                <a href="">4:30 PM</a>
+                                <a href="">5:30 PM</a>
+                                <a href="">6:30 PM</a>
                             </div>
                         </div>
                     </aside>

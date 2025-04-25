@@ -193,8 +193,8 @@ Hero Area
                                 <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">
                                     Natural Wonder of the world </h1>
                                 <div class="btn-group" data-ani="slideinup" data-ani-delay="0.6s">
-                                    <a href="#" class="th-btn th-icon">Explore Tours</a>
-                                    <a href="#" class="th-btn style2 th-icon">Our Services</a>
+                                    <a href="#service-sec" class="th-btn th-icon">Explore Tours</a>
+                                    <a href="#top-destination-area" class="th-btn style2 th-icon">Destination</a>
                                 </div>
                             </div>
                         </div>
@@ -210,8 +210,8 @@ Hero Area
                                 <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">
                                     Let’s make your best trip with us </h1>
                                 <div class="btn-group" data-ani="slideinup" data-ani-delay="0.6s">
-                                    <a href="#" class="th-btn th-icon">Explore Tours</a>
-                                    <a href="#" class="th-btn style2 th-icon">Our Services</a>
+                                    <a href="#service-sec" class="th-btn th-icon">Explore Tours</a>
+                                    <a href="#top-destination-area" class="th-btn style2 th-icon">Destination</a>
                                 </div>
                             </div>
                         </div>
@@ -227,8 +227,8 @@ Hero Area
                                 <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">
                                     Explore beauty of the whole world </h1>
                                 <div class="btn-group" data-ani="slideinup" data-ani-delay="0.6s">
-                                    <a href="#" class="th-btn th-icon">Explore Tours</a>
-                                    <a href="#" class="th-btn style2 th-icon">Our Services</a>
+                                    <a href="#service-sec" class="th-btn th-icon">Explore Tours</a>
+                                    <a href="#top-destination-area" class="th-btn style2 th-icon">Destination</a>
                                 </div>
                             </div>
                         </div>
@@ -336,9 +336,10 @@ Booking Area
                             <select name="subject" id="subject" class="form-select nice-select">
                                 <option value="Select Destination" selected disabled>Select Option</option>
                                 <option value="Tuk Tuk">Private Safari</option>
-                                <option value="Tour">Historical tour</option>
-                                <option value="Tour">Private Sightseeing Tours</option>
-                                <option value="Tour">Colombo Street Food Tour</option>
+                                <option value="Tour">Historical Tour</option>
+                                <option value="Tour">Morning Tours</option>
+                                <option value="Tour">Evening Tours</option>
+                                <option value="Tour">Street Food Tour</option>
                             </select>
                         </div>
                     </div>
@@ -474,7 +475,7 @@ Category Area
     </section><!--==============================
 destination Area  
 ==============================-->
-    <div class="destination-area position-relative overflow-hidden ">
+    <div class="destination-area position-relative overflow-hidden " id="top-destination-area">
         <div class="container">
             <div class="title-area text-center">
                 <span class="sub-title">Top Destination</span>
@@ -780,7 +781,7 @@ Service Area
                                     <h4 class="tour-box_price"><span class="currency">$32.00</span>/Person</h4>
                                     <div class="tour-action">
                                         <span><i class="fa-light fa-clock"></i>4 Hours</span>
-                                        <a href="#" class="th-btn style4 th-icon">Book Now</a>
+                                        <a href="private-tour.php" class="th-btn style4 th-icon">Book Now</a>
                                     </div>
                                 </div>
                             </div>
