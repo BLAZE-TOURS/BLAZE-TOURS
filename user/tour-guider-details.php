@@ -70,10 +70,10 @@
    		Code Start From Here 
 	******************************** -->
 
-    <div class="magic-cursor relative z-10">
+    <!-- <div class="magic-cursor relative z-10">
         <div class="cursor"></div>
         <div class="cursor-follower"></div>
-    </div>
+    </div> -->
 
 
     <!--==============================

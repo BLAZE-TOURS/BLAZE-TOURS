@@ -70,10 +70,10 @@
    		Code Start From Here 
 	******************************** -->
 
-    <div class="magic-cursor relative z-10">
+    <!-- <div class="magic-cursor relative z-10">
         <div class="cursor"></div>
         <div class="cursor-follower"></div>
-    </div>
+    </div> -->
 
 
     <!--==============================
@@ -251,6 +251,12 @@ tour Area
                                     <LI>You'll return to the starting point</LI>
                                 </ul>
                             </div> -->
+                        </div>
+                        <div class="destination-gallery-wrapper">
+                            <h3 class="page-title mt-30 mb-30">Destination Map</h3>
+                            <div class="row gy-4">
+                                <iframe src="https://www.google.com/maps/d/embed?mid=1Q_k3EFU6t3kuax-TL6eEfp4O0MUmw_I&hl=si&ehbc=2E312F" width="640" height="480"></iframe>
+                            </div>
                         </div>
                         <div class="destination-gallery-wrapper">
                             <h3 class="page-title mt-30 mb-30">From our gallery</h3>
