@@ -18,11 +18,10 @@
                         <li><a href="#">Adventure Tours</a></li>
                     </ul>
                 </li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Rates & Packages</a></li>
+                <li><a href="about.php">About Us</a></li>
+                <li><a href="gallery.php">Gallery</a></li>
                 <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact us</a></li>
+                <li><a href="contact.php">Contact us</a></li>
             </ul>
         </div>
     </div>
@@ -82,11 +81,10 @@
                                         <li><a href="#">Adventure Tours</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Gallery</a></li>
-                                <li><a href="#">Rates & Packages</a></li>
+                                <li><a href="about.php">About Us</a></li>
+                                <li><a href="gallery.php">Gallery</a></li>
                                 <li><a href="#">Blog</a></li>
-                                <li><a href="#">Contact us</a></li>
+                                <li><a href="contact.php">Contact us</a></li>
                             </ul>
                         </nav>
                         <button type="button" class="th-menu-toggle d-block d-xl-none"><i class="far fa-bars"></i></button>

@@ -86,14 +86,13 @@
             <img src="assets/img/logo.svg" alt="Logo">
             
             <!-- Loading Animation -->
-            <div class="txt-loading">
-                <span preloader-text="L" class="characters">L</span>
-                <span preloader-text="O" class="characters">O</span>
+<div class="txt-loading">
+                <span preloader-text="W" class="characters">W</span>
                 <span preloader-text="A" class="characters">A</span>
-                <span preloader-text="D" class="characters">D</span>
                 <span preloader-text="I" class="characters">I</span>
-                <span preloader-text="N" class="characters">N</span>
-                <span preloader-text="G" class="characters">G</span>
+                <span preloader-text="T" class="characters">T</span>
+                <span preloader-text="." class="characters">.</span>
+                <span preloader-text="." class="characters">.</span>
             </div>
         </div>
     </div> <!--==============================

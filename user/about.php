@@ -70,26 +70,21 @@
    		Code Start From Here 
 	******************************** -->
 
-    <div class="magic-cursor relative z-10">
-        <div class="cursor"></div>
-        <div class="cursor-follower"></div>
-    </div>
 
 
     <div id="preloader" class="preloader">
         <div class="preloader-inner">
             <!-- Logo Image -->
             <img src="assets/img/logo.svg" alt="Logo">
-            
+
             <!-- Loading Animation -->
             <div class="txt-loading">
-                <span preloader-text="L" class="characters">L</span>
-                <span preloader-text="O" class="characters">O</span>
+                <span preloader-text="W" class="characters">W</span>
                 <span preloader-text="A" class="characters">A</span>
-                <span preloader-text="D" class="characters">D</span>
                 <span preloader-text="I" class="characters">I</span>
-                <span preloader-text="N" class="characters">N</span>
-                <span preloader-text="G" class="characters">G</span>
+                <span preloader-text="T" class="characters">T</span>
+                <span preloader-text="." class="characters">.</span>
+                <span preloader-text="." class="characters">.</span>
             </div>
         </div>
     </div>
@@ -181,361 +176,19 @@
     </div><!--==============================
     Mobile Menu
   ============================== -->
-    <div class="th-menu-wrapper onepage-nav">
-        <div class="th-menu-area text-center">
-            <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
-            <div class="mobile-logo">
-                <a href="home-travel.php"><img src="assets/img/logo2.svg" alt="Tourm"></a>
-            </div>
-            <div class="th-mobile-menu">
-                <ul>
-                    <li class="menu-item-has-children mega-menu-wrap">
-                        <a class="active" href="home-travel.php">Home</a>
 
-                        <ul class="sub-menu">
-                            <li><a href="home-travel.php">Home Travel</a></li>
-                            <li><a href="home-tour.php">Home Tour</a></li>
-                            <li><a href="home-agency.php">Home Agency</a></li>
-                            <li><a href="home-yacht.php">Home Yacht</a></li>
-                            <li><a href="home-beach.php">Home Beach</a></li>
-                            <li><a href="home-resort.php">Home Resort</a></li>
-                            <li><a href="home-countryside-hotel.php">Home Countryside Hotel</a></li>
-                            <li><a href="home-forest.php">Home Forest</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about.php">About Us</a></li>
-                    <li class="menu-item-has-children">
-                        <a href="#">Destination</a>
-                        <ul class="sub-menu">
-                            <li><a href="destination.php">Destination</a></li>
-                            <li><a href="destination-details.php">Destination Details</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children">
-                        <a href="#">Service</a>
-                        <ul class="sub-menu">
-                            <li><a href="service.php">Services</a></li>
-                            <li><a href="service-details.php">Service Details</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children">
-                        <a href="#">Activities</a>
-                        <ul class="sub-menu">
-                            <li><a href="activities.php">activities</a></li>
-                            <li><a href="activities-details.php">activities Details</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children">
-                        <a href="#">Pages</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item-has-children">
-                                <a href="#">Shop</a>
-                                <ul class="sub-menu">
-                                    <li><a href="shop.php">Shop</a></li>
-                                    <li><a href="shop-details.php">Shop Details</a></li>
-                                    <li><a href="cart.php">Cart Page</a></li>
-                                    <li><a href="checkout.php">Checkout</a></li>
-                                    <li><a href="wishlist.php">Wishlist</a></li>
-                                </ul>
-                            </li>
 
-                            <li><a href="gallery.php">Gallery</a></li>
-                            <li><a href="tour.php">Our Tour</a></li>
-                            <li><a href="tour-details.php">Tour Details</a></li>
-                            <li><a href="resort.php">Resort page</a></li>
-                            <li><a href="resort-details.php">Resort Details</a></li>
-                            <li><a href="tour-details.php">Tour Details</a></li>
-                            <li><a href="tour-guide.php">Tour Guider</a></li>
-                            <li><a href="tour-guider-details.php">Tour Guider Details</a></li>
-                            <li><a href="faq.php">Faq Page</a></li>
-                            <li><a href="price.php">Price Package</a></li>
-                            <li><a href="error.php">Error Page</a></li>
-                        </ul>
+    <?php include 'header.php'; ?>
 
-                    </li>
-                    <li class="menu-item-has-children">
-                        <a href="#">Blog</a>
-                        <ul class="sub-menu">
-                            <li><a href="blog.php">Blog</a></li>
-                            <li><a href="blog-details.php">Blog Details</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="contact.php">Contact us</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div> <!--==============================
-	Header Area
-==============================-->
-    <header class="th-header header-layout1">
-        <div class="header-top">
-            <div class="container th-container">
-                <div class="row justify-content-center justify-content-xl-between align-items-center">
-                    <div class="col-auto d-none d-md-block">
-                        <div class="header-links">
-                            <ul>
-                                <li class="d-none d-xl-inline-block"><i class="fa-sharp fa-regular  fa-location-dot"></i>
-                                    <span>45 New Eskaton Road, Austria</span>
-                                </li>
-                                <li class="d-none d-xl-inline-block"><i class="fa-regular fa-clock"></i>
-                                    <span>Sun to Friday: 8.00 am - 7.00 pm</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <div class="header-right">
-                            <div class="currency-menu">
-                                <select class="form-select nice-select">
-                                    <option selected="">language </option>
-                                    <option>CNY</option>
-                                    <option>EUR</option>
-                                    <option>AUD</option>
-                                </select>
-                            </div>
-                            <div class="header-links">
-                                <ul>
-                                    <li class="d-none d-md-inline-block"><a href="faq.php">FAQ</a></li>
-                                    <li class="d-none d-md-inline-block"><a href="contact.php">Support</a></li>
-                                    <li><a href="#login-form" class="popup-content">Sign In / Register<i class="fa-regular fa-user"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="sticky-wrapper">
-            <!-- Main Menu Area -->
-            <div class="menu-area">
-                <div class="container th-container">
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col-auto">
-                            <div class="header-logo">
-                                <a href="home-travel.php"><img src="assets/img/logo.svg" alt="Tourm"></a>
-                            </div>
-                        </div>
-                        <div class="col-auto me-xl-auto">
-                            <nav class="main-menu d-none d-xl-inline-block">
-                                <ul>
-                                    <li class="menu-item-has-children mega-menu-wrap">
-                                        <a class="active" href="home-travel.php">Home</a>
-                                        <ul class="mega-menu mega-menu-content">
-                                            <li>
-                                                <div class="container">
-                                                    <div class="row gy-4">
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-travel.jpg" alt="Home One">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="index.php" class="th-btn">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="index.php"><span>01.</span>Home Travel</a></h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-tour.jpg" alt="Home Two">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-tour.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-tour.php"><span>02.</span>Home Tour</a></h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-agency.jpg" alt="Home Three">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-agency.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-agency.php"><span>03.</span>Home Agency</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-yacht.jpg" alt="Home Four">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-yacht.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-yacht.php"><span>04.</span>Home Yacht</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-beach.jpg" alt="Home Five">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-beach.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-beach.php"><span>05.</span>Home Beach</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-resort.jpg" alt="Home Six">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-resort.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-resort.php"><span>06.</span>Home resort</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-countryside-hotel.jpg" alt="Home Six">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-countryside-hotel.php" class="th-btn ">View
-                                                                            Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-countryside-hotel.php"><span>07.</span>Home
-                                                                        Countryside Hotel</a></h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-forest.jpg" alt="Home Six">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-forest.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-forest.php"><span>08.</span>Home Forest</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-hiking.jpg" alt="Home Six">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-hiking.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-hiking.php"><span>09.</span>Home Hiking</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3">
-                                                            <div class="mega-menu-box">
-                                                                <div class="mega-menu-img">
-                                                                    <img src="assets/img/pages/home-hiking-2.jpg" alt="Home ten">
-                                                                    <div class="btn-wrap">
-                                                                        <a target="_blank" href="home-hiking-2.php" class="th-btn ">View Demo</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h3 class="mega-menu-title"><a href="home-hiking-2.php"><span>10.</span>Home Hiking Style 2</a>
-                                                                </h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="about.php">About Us</a></li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Destination</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="destination.php">Destination</a></li>
-                                            <li><a href="destination-details.php">Destination Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Service</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="service.php">Services</a></li>
-                                            <li><a href="service-details.php">Service Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Activities</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="activities.php">activities</a></li>
-                                            <li><a href="activities-details.php">activities Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Pages</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item-has-children">
-                                                <a href="#">Shop</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="shop.php">Shop</a></li>
-                                                    <li><a href="shop-details.php">Shop Details</a></li>
-                                                    <li><a href="cart.php">Cart Page</a></li>
-                                                    <li><a href="checkout.php">Checkout</a></li>
-                                                    <li><a href="wishlist.php">Wishlist</a></li>
-                                                </ul>
-                                            </li>
-
-                                            <li><a href="gallery.php">Gallery</a></li>
-                                            <li><a href="tour.php">Our Tour</a></li>
-                                            <li><a href="tour-details.php">Tour Details</a></li>
-                                            <li><a href="resort.php">Resort page</a></li>
-                                            <li><a href="resort-details.php">Resort Details</a></li>
-                                            <li><a href="tour-details.php">Tour Details</a></li>
-                                            <li><a href="tour-guide.php">Tour Guider</a></li>
-                                            <li><a href="tour-guider-details.php">Tour Guider Details</a></li>
-                                            <li><a href="faq.php">Faq Page</a></li>
-                                            <li><a href="price.php">Price Package</a></li>
-                                            <li><a href="error.php">Error Page</a></li>
-                                        </ul>
-
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Blog</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog.php">Blog</a></li>
-                                            <li><a href="blog-details.php">Blog Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="contact.php">Contact us</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                            <button type="button" class="th-menu-toggle d-block d-xl-none"><i class="far fa-bars"></i></button>
-                        </div>
-                        <div class="col-auto d-none d-xl-block">
-                            <div class="header-button">
-                                <a href="contact.php" class="th-btn style3 th-icon">Book Now</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="logo-bg" data-mask-src="assets/img/logo_bg_mask.png"></div>
-            </div>
-        </div>
-    </header>
     <!--==============================
     Breadcumb
 ============================== -->
-    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/breadcumb-bg.jpg">
+    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/breadcumb-bg.png">
         <div class="container">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">About Tourm</h1>
                 <ul class="breadcumb-menu">
-                    <li><a href="home-travel.php">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li>About Tourm</li>
                 </ul>
             </div>
@@ -549,13 +202,13 @@ About Area
                 <div class="col-xl-7">
                     <div class="img-box3">
                         <div class="img1">
-                            <img src="assets/img/normal/about_3_1.jpg" alt="About">
+                            <img src="assets/img/normal/about_3_1.png" alt="About">
                         </div>
                         <div class="img2">
-                            <img src="assets/img/normal/about_3_2.jpg" alt="About">
+                            <img src="assets/img/normal/about_3_2.png" alt="About">
                         </div>
                         <div class="img3 movingX">
-                            <img src="assets/img/normal/about_3_3.jpg" alt="About">
+                            <img src="assets/img/normal/about_3_3.png" alt="About">
                         </div>
                     </div>
                 </div>
@@ -565,8 +218,8 @@ About Area
                             <span class="sub-title style1 ">Welcome To Tourm</span>
                             <h2 class="sec-title mb-20 pe-xl-5 me-xl-5 heading">We are world reputeted travel agency</h2>
                         </div>
-                        <p class="pe-xl-5">There are many variations of passages of available but the majority have suffered alteration in some form, by injected hum randomised words.</p>
-                        <p class="mb-30 pe-xl-5"> Leiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+                        <p class="pe-xl-5">Embark on an enchanting journey through Colombo, where history merges seamlessly with modernity! Join Vinoth Blaze on our comfortable Blaze cabrio Tuk Tuk. With over a decade of expertise, expect an extraordinary exploration of hidden gems.</p>
+                        <p class="mb-30 pe-xl-5">Glide through labyrinthine streets, conversing in English, Sinhala, or Tamil, unraveling the tales of Colombo's suburbs. Experience Pettah market's vibrant chaos, savoring centuries-old trade. Delve into Sri Lanka's cultural heritage, marveling at ancient temples. With insider insights and practical assistance, let us be your trusted companion on this unforgettable odyssey. Step aboard, fellow traveler, and unlock the treasures of Sri Lanka with us!</p>
                         <div class="about-item-wrap">
                             <div class="about-item style2">
                                 <div class="about-item_img"><img src="assets/img/icon/about_1_1.svg" alt=""></div>
@@ -613,7 +266,7 @@ About Area
 Destination Area  
 ==============================-->
 
-    <section class="position-relative overflow-hidden space-bottom" id="destination-sec">
+    <!-- <section class="position-relative overflow-hidden space-bottom" id="destination-sec">
         <div class="container">
             <div class="title-area text-center">
                 <span class="sub-title">Services We Offer</span>
@@ -726,9 +379,9 @@ Destination Area
 
             </div>
         </div>
-    </section> <!--==============================
-elements Area  
-==============================-->
+    </section> <!--============================== -
+    elements Area
+    ==============================-->
     <div class="elements-sec bg-white overflow-hidden">
         <div class="container-fluid">
             <div class="tags-container relative"></div>
@@ -736,30 +389,28 @@ elements Area
     </div><!--==============================
 Team Area  
 ==============================-->
-    <section class="team-area3 position-relative bg-top-center space" data-bg-src="assets/img/bg/team_bg_2.jpg">
+    <section class="team-area3 position-relative bg-top-center space" data-bg-src="assets/img/bg/team_bg_2.png">
         <div class="container z-index-common">
             <div class="title-area text-center">
                 <span class="sub-title">Meet with Guide</span>
-                <h2 class="sec-title">Meet with Tour Guide</h2>
+                <h2 class="sec-title">Owner</h2>
             </div>
             <div class="slider-area">
                 <div class="swiper th-slider teamSlider3 has-shadow" id="teamSlider3" data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"3"}}}'>
                     <div class="swiper-wrapper">
                         <!-- Single Item -->
                         <div class="swiper-slide">
-                            <div class="th-team team-grid">
+                            <div class="th-team team-grid" style="margin-left:auto; margin-right:auto;">
                                 <div class="team-img">
-                                    <img src="assets/img/team/team_img_1.jpg" alt="Team">
+                                    <img src="assets/img/team/team_img_1.png" alt="Team">
                                 </div>
                                 <div class="team-img2">
-                                    <img src="assets/img/team/team_1_1.jpg" alt="Team">
+                                    <img src="assets/img/team/team_1_1.png" alt="Team">
                                 </div>
                                 <div class="team-content">
                                     <div class="media-body">
-                                        <h3 class="box-title"><a href="tour-guider-details.php">Michel Smith</a></h3>
+                                        <h3 class="box-title"><a href="tour-guider-details.php">M Vinod Kumar</a></h3>
                                         <span class="team-desig">Tourist Guide</span>
-
-
                                         <div class="th-social">
                                             <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
                                             <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
@@ -771,203 +422,12 @@ Team Area
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Single Item -->
-                        <div class="swiper-slide">
-                            <div class="th-team team-grid">
-                                <div class="team-img">
-                                    <img src="assets/img/team/team_img_2.jpg" alt="Team">
-                                </div>
-                                <div class="team-img2">
-                                    <img src="assets/img/team/team_1_2.jpg" alt="Team">
-                                </div>
-                                <div class="team-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="tour-guider-details.php">Janny Willson</a></h3>
-                                        <span class="team-desig">Tourist Guide</span>
-
-
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                                            <a target="_blank" href="https://youtube.com/"><i class="fab fa-youtube"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Item -->
-                        <div class="swiper-slide">
-                            <div class="th-team team-grid">
-                                <div class="team-img">
-                                    <img src="assets/img/team/team_img_3.jpg" alt="Team">
-                                </div>
-                                <div class="team-img2">
-                                    <img src="assets/img/team/team_1_3.jpg" alt="Team">
-                                </div>
-                                <div class="team-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="tour-guider-details.php">Jacob Jones</a></h3>
-                                        <span class="team-desig">Tourist Guide</span>
-
-
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                                            <a target="_blank" href="https://youtube.com/"><i class="fab fa-youtube"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Item -->
-                        <div class="swiper-slide">
-                            <div class="th-team team-grid">
-                                <div class="team-img">
-                                    <img src="assets/img/team/team_img_1.jpg" alt="Team">
-                                </div>
-                                <div class="team-img2">
-                                    <img src="assets/img/team/team_1_4.jpg" alt="Team">
-                                </div>
-                                <div class="team-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="tour-guider-details.php">Maria Prova</a></h3>
-                                        <span class="team-desig">Tourist Guide</span>
-
-
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                                            <a target="_blank" href="https://youtube.com/"><i class="fab fa-youtube"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Item -->
-                        <div class="swiper-slide">
-                            <div class="th-team team-grid">
-                                <div class="team-img">
-                                    <img src="assets/img/team/team_img_2.jpg" alt="Team">
-                                </div>
-                                <div class="team-img2">
-                                    <img src="assets/img/team/team_1_5.jpg" alt="Team">
-                                </div>
-                                <div class="team-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="tour-guider-details.php">Rebeka Maliha</a></h3>
-                                        <span class="team-desig">Tourist Guide</span>
-
-
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                                            <a target="_blank" href="https://youtube.com/"><i class="fab fa-youtube"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Item -->
-                        <div class="swiper-slide">
-                            <div class="th-team team-grid">
-                                <div class="team-img">
-                                    <img src="assets/img/team/team_img_3.jpg" alt="Team">
-                                </div>
-                                <div class="team-img2">
-                                    <img src="assets/img/team/team_1_6.jpg" alt="Team">
-                                </div>
-                                <div class="team-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="tour-guider-details.php">Alif Mahmud</a></h3>
-                                        <span class="team-desig">Tourist Guide</span>
-
-
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                                            <a target="_blank" href="https://youtube.com/"><i class="fab fa-youtube"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Item -->
-                        <div class="swiper-slide">
-                            <div class="th-team team-grid">
-                                <div class="team-img">
-                                    <img src="assets/img/team/team_img_1.jpg" alt="Team">
-                                </div>
-                                <div class="team-img2">
-                                    <img src="assets/img/team/team_1_3.jpg" alt="Team">
-                                </div>
-                                <div class="team-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="tour-guider-details.php">Guy Hawkins</a></h3>
-                                        <span class="team-desig">Tourist Guide</span>
-
-
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                                            <a target="_blank" href="https://youtube.com/"><i class="fab fa-youtube"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Item -->
-                        <div class="swiper-slide">
-                            <div class="th-team team-grid">
-                                <div class="team-img">
-                                    <img src="assets/img/team/team_img_2.jpg" alt="Team">
-                                </div>
-                                <div class="team-img2">
-                                    <img src="assets/img/team/team_1_4.jpg" alt="Team">
-                                </div>
-                                <div class="team-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="tour-guider-details.php">Jenny Wilson</a></h3>
-                                        <span class="team-desig">Tourist Guide</span>
-
-
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                                            <a target="_blank" href="https://youtube.com/"><i class="fab fa-youtube"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
 
                     <div class="slider-pagination"></div>
 
                 </div>
-                <button data-slider-prev="#teamSlider3" class="slider-arrow slider-prev"><img src="assets/img/icon/right-arrow2.svg" alt=""></button>
-                <button data-slider-next="#teamSlider3" class="slider-arrow slider-next"><img src="assets/img/icon/left-arrow2.svg" alt=""></button>
+
             </div>
         </div>
     </section><!--==============================
@@ -987,10 +447,10 @@ Testimonial Area
                                 <div class="testi-card_wrapper">
                                     <div class="testi-card_profile">
                                         <div class="testi-card_avater">
-                                            <img src="assets/img/testimonial/testi_1_1.jpg" alt="testimonial">
+                                            <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Maria Doe</h3>
+                                            <h3 class="box-title">adrolf</h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1003,7 +463,7 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">“A home that perfectly blends sustainability with luxury until I discovered Ecoland Residence. From the moment I stepped into this community, I knew it was where I wanted to live. The commitment to eco-friendly living”</p>
+                                <p class="testi-card_text">Blaze was a great navigator in the busy city streets. We were able to take back alleys and streets cars could not. We stopped at all the major places in Colombo. He shared the most recent history of the city with protests, attacks on hotels and places of worship all the way to present day. Very humble and full of pride for his country.</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1014,10 +474,10 @@ Testimonial Area
                                 <div class="testi-card_wrapper">
                                     <div class="testi-card_profile">
                                         <div class="testi-card_avater">
-                                            <img src="assets/img/testimonial/testi_1_2.jpg" alt="testimonial">
+                                            <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Andrew Simon</h3>
+                                            <h3 class="box-title">Joanne H</h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1030,7 +490,7 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">“The home boasts sleek, contemporary architecture with clean lines and expansive windows, allowing natural light to flood the interiors It incorporates passive design principles”</p>
+                                <p class="testi-card_text">We highly recommend Blaze! Make sure you do this tour if you visit Columbo. It was great fun, he took us to see all the sights of the city and gave us great insights into life in Sri Lanka. Blaze is not only super polite and friendly, he is also is an amazing driver… the traffic is chaotic and we felt very confident we were in expert hands! We are so pleased we booked Blaze and cancelled our cruise ship coach tour.</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1041,10 +501,10 @@ Testimonial Area
                                 <div class="testi-card_wrapper">
                                     <div class="testi-card_profile">
                                         <div class="testi-card_avater">
-                                            <img src="assets/img/testimonial/testi_1_1.jpg" alt="testimonial">
+                                            <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Alex Jordan</h3>
+                                            <h3 class="box-title">Nahie E</h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1057,7 +517,8 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">“Solar panels adorn the roof, harnessing renewable energy to power the home and even feed excess electricity back into the grid. High-performance insulation and triple-glazed”</p>
+                                <p class="testi-card_text">This tour was the highlight of our Colombo trip! Our guide, Blaze was very knowledgeable and told us all about the different areas we visited including the history and current situations. He was very friendly and accommodating to all our needs throughout our tour in addition for going on much longer than the required time. We really appreciated his kindness and hospitality.
+                                    He also made a good recommendations for halal restaurants to try. Highly recommended!</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1068,10 +529,10 @@ Testimonial Area
                                 <div class="testi-card_wrapper">
                                     <div class="testi-card_profile">
                                         <div class="testi-card_avater">
-                                            <img src="assets/img/testimonial/testi_1_2.jpg" alt="testimonial">
+                                            <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Maria Doe</h3>
+                                            <h3 class="box-title">MC862014</h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1084,7 +545,7 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">A sophisticated rainwater harvesting system collects and filters rainwater for irrigation and non-potable uses, reducing reliance on municipal water sources. Greywater systems</p>
+                                <p class="testi-card_text">Blaze is a good driver and takes you to the key sights in Colombo. His Tuk Tuk is comfy and he even waited to take us to dinner.</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1095,10 +556,11 @@ Testimonial Area
                                 <div class="testi-card_wrapper">
                                     <div class="testi-card_profile">
                                         <div class="testi-card_avater">
-                                            <img src="assets/img/testimonial/testi_1_1.jpg" alt="testimonial">
+                                            <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Angelina Rose</h3>
+                                            <h3 class="box-title">Jan R
+                                            </h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1111,7 +573,11 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">Throughout the interior, eco-friendly materials like reclaimed wood, bamboo flooring, and recycled glass countertops create a luxurious yet sustainable ambiance.</p>
+                                <p class="testi-card_text">We had a great trip with Blaze today. His communication was great, and he was at the port to meet us. He showed us around all the attractions of Colombo and had great local knowledge.
+                                    His English was excellent, and we enjoyed hearing all about the history and sights of Colombo.
+                                    I would highly recommend Blaze for a Tuk tuk tour.
+                                    He was also a great photographer and careful driver.
+                                    Thanks for the adventure and making our stay in Colombo so much fun</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1122,10 +588,11 @@ Testimonial Area
                                 <div class="testi-card_wrapper">
                                     <div class="testi-card_profile">
                                         <div class="testi-card_avater">
-                                            <img src="assets/img/testimonial/testi_1_1.jpg" alt="testimonial">
+                                            <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Maria Doe</h3>
+                                            <h3 class="box-title">Flightygirl84
+                                            </h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1138,7 +605,9 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">“A home that perfectly blends sustainability with luxury until I discovered Ecoland Residence. From the moment I stepped into this community, I knew it was where I wanted to live. The commitment to eco-friendly living”</p>
+                                <p class="testi-card_text">Blaze was very professional, spoke very good English, good knowledge of Colombo, helped me with some photocopying, I really enjoyed my tour.
+
+                                </p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1149,10 +618,11 @@ Testimonial Area
                                 <div class="testi-card_wrapper">
                                     <div class="testi-card_profile">
                                         <div class="testi-card_avater">
-                                            <img src="assets/img/testimonial/testi_1_2.jpg" alt="testimonial">
+                                            <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Andrew Simon</h3>
+                                            <h3 class="box-title">Deepak D
+                                            </h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1165,7 +635,9 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">A sophisticated rainwater harvesting system collects and filters rainwater for irrigation and non-potable uses, reducing reliance on municipal water sources. Greywater systems</p>
+                                <p class="testi-card_text">Great guy!
+                                    He just makes everything so easy and comfortable for your sri lankan adventures. Really passionate for his work.
+                                    He quoted so cheap for his service that I suggested him to increase the rates.</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1176,10 +648,11 @@ Testimonial Area
                                 <div class="testi-card_wrapper">
                                     <div class="testi-card_profile">
                                         <div class="testi-card_avater">
-                                            <img src="assets/img/testimonial/testi_1_1.jpg" alt="testimonial">
+                                            <img src="assets/img/testimonial/testi_1_1.png" alt="testimonial">
                                         </div>
                                         <div class="media-body">
-                                            <h3 class="box-title">Alex Jordan</h3>
+                                            <h3 class="box-title">jack
+                                            </h3>
                                             <span class="testi-card_desig">Traveller</span>
                                         </div>
                                     </div>
@@ -1192,7 +665,9 @@ Testimonial Area
                                     </div>
                                 </div>
 
-                                <p class="testi-card_text">Throughout the interior, eco-friendly materials like reclaimed wood, bamboo flooring, and recycled glass countertops create a luxurious yet sustainable ambiance.</p>
+                                <p class="testi-card_text">Wicked time with Blaze, saw all the sights I had on my list and more. Very generous with his time and didn’t make me feel rushed at all. Deserves all the luck in the world, keep up the great work!
+
+                                </p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1213,7 +688,7 @@ Testimonial Area
     </section><!--==============================
 Brand Area  
 ==============================-->
-    <div class="brand-area overflow-hidden ">
+    <!-- <div class="brand-area overflow-hidden ">
         <div class="container th-container">
             <div class="swiper th-slider brandSlider1" id="brandSlider1" data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"3"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"6"},"1400":{"slidesPerView":"8"}}}'>
                 <div class="swiper-wrapper">
@@ -1319,10 +794,11 @@ Brand Area
 
             </div>
         </div>
-    </div><!--==============================
+    </div>
+<!--============================== -
 gallery-thumb Area  
 ==============================-->
-    <div class="sidebar-gallery-area space">
+    <!-- <div class="sidebar-gallery-area space">
         <div class="container-fluid">
             <div class="slider-area">
                 <div class="swiper th-slider has-shadow" data-slider-options='{"centeredSlides":"true","breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"3"},"1300":{"slidesPerView":"4"}}}'>
@@ -1398,146 +874,11 @@ gallery-thumb Area
                 </div>
             </div>
         </div>
-    </div><!--==============================
+    </div><!--============================== --
 	Footer Area
 ==============================-->
-    <footer class="footer-wrapper bg-title footer-layout2">
-        <div class="widget-area">
-            <div class="container">
-                <div class="newsletter-area">
-                    <div class="newsletter-top">
-                        <div class="row gy-4 align-items-center">
-                            <div class="col-lg-5">
-                                <h2 class="newsletter-title text-white text-capitalize mb-0">get updated the latest
-                                    newsletter</h2>
-                            </div>
-                            <div class="col-lg-7">
-                                <form class="newsletter-form style2">
-                                    <input class="form-control " type="email" placeholder="Enter Email" required="">
-                                    <button type="submit" class="th-btn style1">Subscribe Now <img src="assets/img/icon/plane2.svg" alt=""></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-between">
-                    <div class="col-md-6 col-xl-3">
-                        <div class="widget footer-widget">
-                            <div class="th-widget-about">
-                                <div class="about-logo">
-                                    <a href="home-travel.php"><img src="assets/img/logo-white.svg" alt="Tourm"></a>
-                                </div>
-                                <p class="about-text">Rapidiously myocardinate cross-platform intellectual capital model. Appropriately create interactive infrastructures</p>
-                                <div class="th-social">
-                                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                                    <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                                    <a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
-                                    <a href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-xl-auto">
-                        <div class="widget widget_nav_menu footer-widget">
-                            <h3 class="widget_title">Quick Links</h3>
-                            <div class="menu-all-pages-container">
-                                <ul class="menu">
+    <?php include 'footer.php'; ?>
 
-                                    <li><a href="index.php">Home</a></li>
-                                    <li><a href="about.php">About us</a></li>
-                                    <li><a href="service.php">Our Service</a></li>
-                                    <li><a href="contact.php">Terms of Service</a></li>
-                                    <li><a href="contact.php">Tour Booking Now</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-xl-auto">
-                        <div class="widget footer-widget">
-                            <h3 class="widget_title">Get In Touch</h3>
-                            <div class="th-widget-contact">
-                                <div class="info-box_text">
-                                    <div class="icon">
-                                        <img src="assets/img/icon/phone.svg" alt="img">
-                                    </div>
-                                    <div class="details">
-                                        <p><a href="tel:+01234567890" class="info-box_link">+01 234 567 890</a></p>
-                                        <p><a href="tel:+09876543210" class="info-box_link">+09 876 543 210</a></p>
-                                    </div>
-                                </div>
-                                <div class="info-box_text">
-                                    <div class="icon">
-                                        <img src="assets/img/icon/envelope.svg" alt="img">
-                                    </div>
-                                    <div class="details">
-                                        <p><a href="mailto:mailinfo00@tourm.com" class="info-box_link">mailinfo00@tourm.com</a></p>
-                                        <p><a href="mailto:support24@tourm.com" class="info-box_link">support24@tourm.com</a></p>
-                                    </div>
-                                </div>
-                                <div class="info-box_text">
-                                    <div class="icon"><img src="assets/img/icon/location-dot.svg" alt="img"></div>
-                                    <div class="details">
-                                        <p>789 Inner Lane, Holy park, California, USA</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-xl-auto">
-                        <div class="widget footer-widget">
-                            <h3 class="widget_title">Instagram Post</h3>
-                            <div class="sidebar-gallery">
-                                <div class="gallery-thumb">
-                                    <img src="assets/img/widget/gallery_1_1.jpg" alt="Gallery Image">
-                                    <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                                </div>
-                                <div class="gallery-thumb">
-                                    <img src="assets/img/widget/gallery_1_2.jpg" alt="Gallery Image">
-                                    <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                                </div>
-                                <div class="gallery-thumb">
-                                    <img src="assets/img/widget/gallery_1_3.jpg" alt="Gallery Image">
-                                    <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                                </div>
-                                <div class="gallery-thumb">
-                                    <img src="assets/img/widget/gallery_1_4.jpg" alt="Gallery Image">
-                                    <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                                </div>
-                                <div class="gallery-thumb">
-                                    <img src="assets/img/widget/gallery_1_5.jpg" alt="Gallery Image">
-                                    <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                                </div>
-                                <div class="gallery-thumb">
-                                    <img src="assets/img/widget/gallery_1_6.jpg" alt="Gallery Image">
-                                    <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright-wrap">
-            <div class="container">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-md-6">
-                        <p class="copyright-text">Copyright 2024 <a href="home-travel.php">Tourm</a>. All Rights Reserved.</p>
-                    </div>
-                    <div class="col-md-6 text-end d-none d-md-block">
-                        <div class="footer-card">
-                            <span class="title">We Accept</span>
-                            <img src="assets/img/shape/cards.png" alt="">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="shape-mockup movingX d-none d-xxl-block" data-top="24%" data-left="5%">
-            <img src="assets/img/shape/shape_8.png" alt="shape">
-        </div>
-    </footer>
 
     <!--********************************
 			Code End  Here 

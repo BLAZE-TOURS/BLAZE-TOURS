@@ -368,7 +368,7 @@ Booking Area
                         </div>
                     </div>
                     <div class="form-btn col-md-12 col-lg-auto">
-                        <button class="th-btn"><img src="assets/img/icon/search.svg" alt="">Search</button>
+                        <button class="th-btn" onclick="window.location.href='private-tour.php'"><img src="assets/img/icon/search.svg" alt="">Search</button>
                     </div>
                 </div>
                 <p class="form-messages mb-0 mt-3"></p>
