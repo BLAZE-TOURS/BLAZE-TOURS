@@ -18,7 +18,7 @@
                         <li><a href="#">Adventure Tours</a></li>
                     </ul>
                 </li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="about.php">About Us</a></li>
                 <li><a href="#">Gallery</a></li>
                 <li><a href="#">Rates & Packages</a></li>
                 <li><a href="#">Blog</a></li>
@@ -82,7 +82,7 @@
                                         <li><a href="#">Adventure Tours</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">About Us</a></li>
+                                <li><a href="about.php">About Us</a></li>
                                 <li><a href="#">Gallery</a></li>
                                 <li><a href="#">Rates & Packages</a></li>
                                 <li><a href="#">Blog</a></li>
