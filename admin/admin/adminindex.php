@@ -243,23 +243,6 @@ if (isset($_SESSION["adminuser"])) {
                                 <li class="menu-title">Pages</li>
 
 
-                                <li>
-                                    <a href="#sidebarExpages" data-bs-toggle="collapse">
-                                        <i data-feather="file-text"></i>
-                                        <span>Reservation</span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <div class="collapse" id="sidebarExpages">
-                                        <ul class="nav-second-level">
-                                            <li>
-                                                <a href="#" class="tp-link">Reserved</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="tp-link">Arrived</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
 
                                 <li>
                                     <a href="#" onclick="changeDashboardViewCompany();">
@@ -294,34 +277,13 @@ if (isset($_SESSION["adminuser"])) {
                                 </li>
 
                                 <li>
-                                    <a href="#" onclick="changeDashboardViewPodcast();">
+                                    <a href="#" onclick="changeDashboardViewTour();">
                                         <i data-feather="file-text"></i>
                                         <span>Tours</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
-<!-- 
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewSubscribers();">
-                                        <i data-feather="file-text"></i>
-                                        <span>Meditation Shedule</span>
-                                        <!-- <span class="menu-arrow"></span> -->
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewSubscribers();">
-                                        <i data-feather="file-text"></i>
-                                        <span>Payments</span>
-                                        <!-- <span class="menu-arrow"></span> -->
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewSubscribers();">
-                                        <i data-feather="file-text"></i>
-                                        <span>Settngs</span>
-                                        <!-- <span class="menu-arrow"></span> -->
-                                    </a>
-                                </li>
+
                             </ul>
 
                         </div>
@@ -380,11 +342,12 @@ if (isset($_SESSION["adminuser"])) {
                 <!-- ============================================================== -->
                 <!-- Start Page Pod-->
                 <!-- ============================================================== -->
-                <div id="podContainer" class="d-none"><?php include 'fechPod.php'; ?> <?php include "../admin/podBody.php"; ?> </div>
+                <div id="tourContainer" class="d-none"><?php include 'fechTour.php'; ?> <?php include "../admin/tourBody.php"; ?> </div>
 
                 <!-- ============================================================== -->
                 <!-- End of pod-- -->
                 <!-- ============================================================== -->
+
 
 
 

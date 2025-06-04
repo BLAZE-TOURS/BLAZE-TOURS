@@ -60,22 +60,6 @@
 </head>
 
 <body>
-
-    <!--[if lte IE 9]>
-    	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  	<![endif]-->
-
-
-    <!--********************************
-   		Code Start From Here 
-	******************************** -->
-
-    <!-- <div class="magic-cursor relative z-10">
-        <div class="cursor"></div>
-        <div class="cursor-follower"></div>
-    </div> -->
-
-
     <!--==============================
      Preloader
   ==============================-->
@@ -226,32 +210,8 @@ tour Area
                                 Smart home systems allow you to monitor and control energy usage, ensuring that your
                                 environmental impact remains minimal.</p>
                             <div class="service-inner-img mb-40"><img src="assets/img/destination/private-tour1.png" alt=""></div>
-                            <!-- <h2 class="box-title">Itinerary</h2>
-                            <div class="checklist">
-                                <ul>
-                                    <li>You'll get picked up</li>
-                                    <li>
-                                        <STRong>Gangaramaya (Vihara) Buddhist Temple</STRong>
-                                        <SPan>GWEGFR</SPan>
-                                    </li>
-                                    <li>Sri Ponnambalam Vanesar Kovil</li>
-                                    <li>Jami Ul-Alfar Mosque</li>
-                                    <li>Independence Square</li>
-                                    <li>Colombo Galbokka Lighthouse</li>
-                                    <li>Galle Face Green</li>
-                                    <li>Colombo Fort Clock Tower</li>
-                                    <li>Viharamahadevi Park</li>
-                                    <li>Seema Malakaya Temple</li>
-                                    <li>Colombo Lotus Tower</li>
-                                    <li>Pettah</li>
-                                    <li>Pettah Floating Market</li>
-                                    <LI>Dutch Hospital Shopping Precinct</LI>
-                                    <LI>Cargills Department Store</LI>
-                                    <LI>You'll return to the starting point</LI>
-                                </ul>
-                            </div> -->
                         </div>
-                        <div class="destination-gallery-wrapper">
+                        <div class="destination-gallery-wrapper col-12 order-1">
                             <h3 class="page-title mt-30 mb-30">Destination Map</h3>
                             <div class="row gy-4">
                                 <iframe src="https://www.google.com/maps/d/embed?mid=1Q_k3EFU6t3kuax-TL6eEfp4O0MUmw_I&hl=si&ehbc=2E312F" width="640" height="480"></iframe>
@@ -432,7 +392,7 @@ tour Area
                             <a href="contact.php" class="th-btn th-icon">Book Now</a>
                             <span class="review"><i class="fa-light fa-heart"></i> 88% of travelers recommend this experience</span>
                         </div>
-                        <div class="widget tour-booking  ">
+                        <div class="widget tour-booking col-12 order-2 order-lg-3 ">
                             <p class="widget_subtitle">Highlight <span class="widget_price">Itinerary</span></p>
                             <div class="info-list">
                                 <ul>
