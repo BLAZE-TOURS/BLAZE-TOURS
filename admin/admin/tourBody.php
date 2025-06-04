@@ -6,77 +6,85 @@
                 <div class="card-body">
                     <h3 class="card-title text-center">Tour List</h3>
 
-                    <!-- Add New Company Section -->
+                    <!-- Add New Tour Section -->
                     <div class="mb-4">
                         <h4>Add New Tour</h4>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCompanyModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTourModal">
                             <i class="fas fa-plus"></i> Create
                         </button>
                     </div>
 
-                    <!-- Add Company Modal -->
-                    <div class="modal fade" id="addCompanyModal" tabindex="-1" aria-labelledby="addCompanyModalLabel" aria-hidden="true">
+                    <!-- Add Tour Modal -->
+                    <div class="modal fade" id="addTourModal" tabindex="-1" aria-labelledby="addTourModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="addCompanyModalLabel">Add New Company</h5>
+                                    <h5 class="modal-title" id="addTourModalLabel">Add New Tour</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div id="validation-errors-company" class="alert alert-danger d-none" role="alert"></div>
-                                    <div id="success-message-company" class="alert alert-success d-none" role="alert"></div>
-                                    <form id="addCompanyForm">
+                                    <div id="validation-errors-tour" class="alert alert-danger d-none" role="alert"></div>
+                                    <div id="success-message-tour" class="alert alert-success d-none" role="alert"></div>
+                                    <form id="addTourForm">
                                         <div class="row g-3">
                                             <div class="col-12">
-                                                <label for="company_name" class="form-label">Company Name</label>
-                                                <input type="text" class="form-control" placeholder="Company Name" name="company_name" id="company_name" required>
+                                                <label for="title" class="form-label">Tour Name</label>
+                                                <input type="text" class="form-control" placeholder="Tour Name" name="title" id="title" required>
                                             </div>
                                             <div class="col-12">
-                                                <label for="website" class="form-label">Website</label>
-                                                <input type="text" class="form-control" placeholder="Website" name="website" id="website" required>
+                                                <label for="subtitle" class="form-label">Subtitle</label>
+                                                <input type="text" class="form-control" placeholder="Subtitle" name="subtitle" id="subtitle" required>
                                             </div>
                                             <div class="col-12">
-                                                <label for="location" class="form-label">Location</label>
-                                                <input type="text" class="form-control" placeholder="Location" name="location" id="location" required>
+                                                <label for="description" class="form-label">Description</label>
+                                                <textarea class="form-control" placeholder="Description" name="description" id="description" required></textarea>
                                             </div>
                                             <div class="col-6 mt-2">
-                                                <label for="contact1" class="form-label">Contact1</label>
-                                                <input type="text" class="form-control" placeholder="Contact1" name="contact1" id="contact1" required>
+                                                <label for="adult_price" class="form-label">Adult Price</label>
+                                                <input type="number" class="form-control" placeholder="Adult Price" name="adult_price" id="adult_price" required>
                                             </div>
                                             <div class="col-6 mt-2">
-                                                <label for="contact2" class="form-label">Contact2</label>
-                                                <input type="text" class="form-control" placeholder="Contact2" name="contact2" id="contact2" required>
+                                                <label for="children_price" class="form-label">Children Price</label>
+                                                <input type="number" class="form-control" placeholder="Children Price" name="children_price" id="children_price" required>
+                                            </div>
+                                            <div class="col-6 mt-2">
+                                                <label for="maximum_count" class="form-label">Maximum Count</label>
+                                                <input type="number" class="form-control" placeholder="Maximum Count" name="maximum_count" id="maximum_count" required>
+                                            </div>
+                                            <div class="col-6 mt-2">
+                                                <label for="tour_type" class="form-label">Tour Type</label>
+                                                <select class="form-control" name="tour_type" id="tour_type" required>
+                                                    <option value="">Select Tour Type</option>
+                                                    <?php
+                                                    $conn = new mysqli("localhost", "root", "#Lucky2003sql", "blazetuktuk");
+                                                    if ($conn->connect_error) {
+                                                        die("Connection failed: " . $conn->connect_error);
+                                                    }
+
+                                                    $query = "SELECT id, name FROM toure_type";
+                                                    $result = $conn->query($query);
+
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        echo '<option value="' . $row["id"] . '">' . htmlspecialchars($row["name"]) . '</option>';
+                                                    }
+
+                                                    $conn->close();
+                                                    ?>
+                                                </select>
+
                                             </div>
                                             <div class="col-12 mt-2">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
+                                                <label for="datetime_added" class="form-label">Datetime</label>
+                                                <input type="datetime-local" class="form-control" name="datetime_added" id="datetime_added" required>
                                             </div>
                                             <div class="col-12 mt-2">
-                                                <label for="copywrite" class="form-label">Copywrite</label>
-                                                <textarea class="form-control" placeholder="Copywrite" name="copywrite" id="copywrite" required></textarea>
-                                            </div>
-                                            <div class="col-12 mt-2">
-                                                <label for="facebook" class="form-label">Facebook</label>
-                                                <input type="text" class="form-control" placeholder="Facebook" name="facebook" id="facebook" required>
-                                            </div>
-                                            <div class="col-12 mt-2">
-                                                <label for="insta" class="form-label">Instagram</label>
-                                                <input type="text" class="form-control" placeholder="Instagram" name="insta" id="insta" required>
-                                            </div>
-                                            <div class="col-12 mt-2">
-                                                <label for="yt" class="form-label">YouTube</label>
-                                                <input type="text" class="form-control" placeholder="YouTube" name="yt" id="yt" required>
-                                            </div>
-                                            <div class="col-12 mt-2">
-                                                <label for="logo" class="form-label">Logo</label>
-                                                <input type="file" class="form-control" name="logo" id="logo" onchange="previewImage(event, 'logo-preview')">
-                                                <img id="logo-preview" src="#" alt="Logo Preview" style="width: 100px; height: auto; margin-top: 10px; display: none;">
+                                                <label for="status" class="form-label">Status</label>
+                                                <input type="text" class="form-control" placeholder="Status" name="status" id="status" required>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-
-                                <div id="loading-spinner-company" class="d-none">
+                                <div id="loading-spinner-tour" class="d-none">
                                     <div class="d-flex justify-content-center">
                                         <div class="spinner-border text-primary" role="status">
                                             <span class="visually-hidden">Loading...</span>
@@ -85,7 +93,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onclick="addCompany();" form="addCompanyForm">Add Tour</button>
+                                    <button type="button" class="btn btn-primary" onclick="addTour();" form="addTourForm">Add Tour</button>
                                 </div>
                             </div>
                         </div>
