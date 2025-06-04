@@ -69,6 +69,15 @@ function changeDashboardViewGallary() {
     gallaryContainer.style.display = 'block';
 }
 
+function changeDashboardViewTour() {
+    history.pushState(null, '', 'adminindex.php?view=tour');
+    sessionStorage.setItem('currentView', 'tour'); // Ensure key matches retrieval
+    hideAllContainers();
+    var tourContainer = document.getElementById('tourContainer');
+    tourContainer.classList.remove('d-none');
+    tourContainer.style.display = 'block';
+}
+
 function hideAllContainers() {
     // Hide all content containers
     document.querySelector('.content-page').style.display = 'none';
