@@ -5,11 +5,10 @@
                     <div class="col fs-13 text-muted text-center">
                         &copy; <script>
                             document.write(new Date().getFullYear())
-                        </script> -Blaze Tours
+                        </script> -BLAZE TOURS (PVT) LTD
                         <span class="text-danger"></span>
                         Design and Developed By
-                        <a href="#!" class="text-reset fw-semibold">Malindu Prabod W.M</a> <br>
-                        <a>Blaze Tours All Rights Reserved</a>
+                        <a href="#!" class="text-reset fw-semibold">Malindu Prabod W.M.</a> <br>
                     </div>
                 </div>
             </div>

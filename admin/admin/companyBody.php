@@ -1,4 +1,8 @@
-<div class="content-page mt-5 fade-in">
+<?php
+require_once "fetchCompany.php";
+?>
+
+<div class="content-page mt-5 fade-in" id="CompanyFormContainer">
 
     <div class="row justify-content-center mt-2">
         <div class="col-md-12">
@@ -172,7 +176,7 @@
 
                     <!-- Existing Company List Table -->
                     <div class="table-responsive col-12 mx-auto">
-                        <table id="fixed-header-datatable" class="table table-striped table-bordered dt-responsive nowrap">
+                       <table id="dataTableCompany" class="table table-striped table-bordered dt-responsive nowrap">
                             <thead>
                                 <tr class="Table-header">
                                     <th>#ID</th>
@@ -219,8 +223,6 @@
                                         </tr>
                                 <?php
                                     }
-                                } else {
-                                    echo "<tr><td colspan='12' class='text-center'>No Company found.</td></tr>";
                                 }
                                 ?>
                             </tbody>
@@ -244,4 +246,9 @@
         }
         reader.readAsDataURL(event.target.files[0]);
     }
+
+    var companyFormContainer = document.getElementById('CompanyFormContainer');
+    companyFormContainer.classList.remove('d-none');
+    companyFormContainer.style.display = 'block';
 </script>
+

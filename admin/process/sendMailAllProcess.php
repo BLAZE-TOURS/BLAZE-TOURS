@@ -47,7 +47,7 @@ if (empty($subject)) {
                 text-align: center;
             }
             .header {
-                background:#bd3838;
+                background:rgb(90, 5, 8);
                 color: white;
                 padding: 15px;
                 font-size: 24px;
@@ -67,7 +67,7 @@ if (empty($subject)) {
                 border-radius: 0 0 8px 8px;
             }
             .button {
-                background:#bd3838;
+                background:rgb(90, 5, 8);
                 color: #ffffff;
                 text-decoration: none;
                 padding: 10px 20px;
@@ -83,7 +83,7 @@ if (empty($subject)) {
             <div class="header">' . $subject . '</div>
             <div class="content">
                 <p>' . $message . '</p>
-                <a href="https://blaze-tours.com/" target="_blank">
+                <a href="https://rakkithtakandatemple.com/" target="_blank">
                     <button class="button">Visit Our Website</button>
                 </a>
             </div>
@@ -108,14 +108,14 @@ if (empty($subject)) {
 
             try {
                 $mail->IsSMTP();
-                $mail->Host = 'mail.blaze-tours.com';
+                $mail->Host = 'mail.rakkithtakandatemple.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'info@blaze-tours.com';
-                $mail->Password = 'UU68On8u.8;Yfl';
+                $mail->Username = 'booking@rakkithtakandatemple.com';
+                $mail->Password = '07NeYMcm-:a43R';
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                 $mail->Port = 465;
-                $mail->setFrom('info@blaze-tours.com', 'Blaze Tours');
-                $mail->addReplyTo('info@blaze-tours.com', 'Blaze Tours');
+                $mail->setFrom('booking@rakkithtakandatemple.com', 'BLAZE TOURS (PVT) LTD');
+                $mail->addReplyTo('booking@rakkithtakandatemple.com', 'BLAZE TOURS (PVT) LTD');
                 $mail->addAddress($to);
                 $mail->isHTML(true);
                 $mail->Subject = $subject;

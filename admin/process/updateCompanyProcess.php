@@ -70,8 +70,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 die("Sorry, there was an error uploading your file.");
             }
 
-            // Update logo URL in the database
-            $logo_sql = "UPDATE logo SET `url` = '$target_file' WHERE `company_id` = '$id'";
+            // Check if a record already exists for the company_id
+            $logo_check_sql = "SELECT * FROM logo WHERE company_id = '$id'";
+            $logo_check_result = Database::search($logo_check_sql);
+
+            if ($logo_check_result->num_rows > 0) {
+                // Update the existing logo record
+                $logo_sql = "UPDATE logo SET `url` = '$target_file' WHERE `company_id` = '$id'";
+            } else {
+                // Insert a new logo record
+                $logo_sql = "INSERT INTO logo (`company_id`, `url`) VALUES ('$id', '$target_file')";
+            }
+
             if (Database::$connection->query($logo_sql) !== TRUE) {
                 die("Error: " . $logo_sql . "<br>" . Database::$connection->error);
             }
@@ -80,6 +90,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Company updated successfully";
     } else {
         echo "Error: " . $sql . "<br>" . Database::$connection->error;
+    }
+} else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $id = Database::escape_string($_GET['id']);
+    $sql = "SELECT * FROM company WHERE `id` = '$id'";
+    $result = Database::search($sql);
+
+    if ($result->num_rows > 0) {
+        $company = $result->fetch_assoc();
+
+        // Prepend the base path to the logo URL if necessary
+        if (!empty($company['logo'])) {
+            $company['logo'] = "../admin/images/logos/" . basename($company['logo']);
+        }
+
+        echo json_encode($company);
+    } else {
+        echo json_encode(["error" => "Company not found"]);
     }
 }
 ?>

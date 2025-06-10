@@ -4,7 +4,20 @@ function addImage() {
     var validationErrors = document.getElementById('validation-errors-image');
     var successMessage = document.getElementById('success-message-image');
     var loadingSpinner = document.getElementById('loading-spinner-add-image');
+    var progressBarContainer = document.getElementById('upload-progress-pod');
+    var progressBar = document.getElementById('upload-progress-bar-pod');
+
     var r = new XMLHttpRequest();
+
+    // Progress event
+    r.upload.onprogress = function (event) {
+        if (event.lengthComputable) {
+            var percent = Math.round((event.loaded / event.total) * 100);
+            progressBar.style.width = percent + "%";
+            progressBar.innerText = percent + "%";
+            progressBarContainer.classList.remove('d-none');
+        }
+    };
 
     r.onreadystatechange = function () {
         if (r.readyState == 4) {
@@ -92,16 +105,16 @@ function loadImageData(id) {
                 return;
             }
 
-            // Populate the title field
-            document.getElementById('image_title').value = image.title || '';
+            // Populate the title field in the update modal
+            document.getElementById('update_image_title').value = image.title || '';
 
-            // Set the image preview
-            var imagePreview = document.getElementById('logo-preview-update');
+            // Set the image preview in the update modal
+            var imagePreview = document.getElementById('update_logo_preview');
             if (image.url) {
-                imagePreview.src = image.url; // Use the full URL returned by the server
-                imagePreview.style.display = 'block'; // Make the image visible
+                imagePreview.src = image.url;
+                imagePreview.style.display = 'block';
             } else {
-                imagePreview.style.display = 'none'; // Hide if no image
+                imagePreview.style.display = 'none';
             }
 
             document.getElementById('updateImageButton').dataset.id = id;
@@ -119,7 +132,19 @@ document.getElementById('updateImageButton').addEventListener('click', function 
     var validationErrors = document.getElementById('validation-errors-image-update');
     var successMessage = document.getElementById('success-message-image-update');
     var loadingSpinner = document.getElementById('loading-spinner-image-update');
+    var progressBarContainer = document.getElementById('upload-progress-pod');
+    var progressBar = document.getElementById('upload-progress-bar-pod');
     var r = new XMLHttpRequest();
+
+    // Only show progress bar for update
+    r.upload.onprogress = function (event) {
+        if (event.lengthComputable) {
+            var percent = Math.round((event.loaded / event.total) * 100);
+            progressBar.style.width = percent + "%";
+            progressBar.innerText = percent + "%";
+            progressBarContainer.classList.remove('d-none');
+        }
+    };
 
     r.onreadystatechange = function () {
         if (r.readyState == 4) {
@@ -130,6 +155,9 @@ document.getElementById('updateImageButton').addEventListener('click', function 
                     successMessage.innerHTML = t;
                     successMessage.classList.remove('d-none');
                     validationErrors.classList.add('d-none');
+                    progressBar.style.width = "0%";
+                    progressBar.innerText = "0%";
+                    progressBarContainer.classList.add('d-none');
                     var modal = bootstrap.Modal.getInstance(document.getElementById('updateImageModal'));
                     modal.hide(); // Hide the modal
                     Swal.fire(

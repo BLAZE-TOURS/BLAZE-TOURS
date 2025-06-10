@@ -69,7 +69,7 @@
 
         <div class="card-body">
           <div class="table-responsive">
-            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
+            <table id="datatable-subscribe" class="table table-striped table-bordered dt-responsive nowrap">
               <thead>
                 <tr class="Table-header">
                   <th>#ID</th>
@@ -111,7 +111,7 @@
                       <td><?php echo $row["rating_star_id"]; ?></td>
                       <td><?php echo $row["date"]; ?></td>
                       <td>
-                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Thank%20You%20<?php echo urlencode($row["first_name"]); ?>,%20For%20joining%20with%20BLAZE%20TOURS%20PVT"
+                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Namo%20Buddhaya%20<?php echo urlencode($row["first_name"]); ?>,%20Thank%20you%20for%20joining%20with%20Rakkithtakanda%20Rajamaha%20Viharaya!"
                           target="_blank"
                           class="btn btn-success btn-sm">
                           Send Message
@@ -120,8 +120,6 @@
                     </tr>
                 <?php
                   }
-                } else {
-                  echo "<tr><td colspan='7' class='text-center'>No subscribers found.</td></tr>";
                 }
                 ?>
               </tbody>
@@ -163,3 +161,4 @@ function toggleReview(id) {
     });
   });
 </script>
+<script src="../admin/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>

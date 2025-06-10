@@ -11,7 +11,7 @@ if (isset($_SESSION["adminuser"])) {
     <head>
 
         <meta charset="utf-8" />
-        <title>Admin Dashboard | Rakkitha Kanda Rock temple </title>
+        <title>Podcast Dashboard | Rakkitha Kanda Rock temple </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin Panel" />
         <meta name="author" content="Malindu Prabod wm" />
@@ -344,14 +344,6 @@ if (isset($_SESSION["adminuser"])) {
                 <!-- ============================================================== -->
 
 
-                <!-- ============================================================== -->
-                <!-- Start Page sybscriber test-->
-                <!-- ============================================================== -->
-                <div id="SubscriberContainer" class="d-none"> <?php include 'fetchSubscribers.php'; ?> <?php include "../admin/SubscribersBody.php"; ?> </div>
-
-                <!-- ============================================================== -->
-                <!-- End of sybscriber test -->
-                <!-- ============================================================== -->
 
 
             </div>
