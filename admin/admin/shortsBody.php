@@ -78,19 +78,18 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <div id="validation-errors-pod" class="alert alert-danger d-none" role="alert"></div>
-                                        <div id="success-message-pod" class="alert alert-success d-none" role="alert"></div>
-                                        <form id="addPodForm" enctype="multipart/form-data">
+                                        <div id="validation-errors-shorts" class="alert alert-danger d-none" role="alert"></div>
+                                        <div id="success-message-shorts" class="alert alert-success d-none" role="alert"></div>
+                                        <form id="addShortsForm" enctype="multipart/form-data">
                                             <div class="row g-3">
                                                 <div class="col-12">
-                                                    <label for="pod_name" class="form-label">Shorts Name</label>
-                                                    <input type="text" class="form-control" placeholder="Podcast Name" name="pod_name" id="pod_name" required>
+                                                    <label for="shorts_name" class="form-label">Shorts Name</label>
+                                                    <input type="text" class="form-control" placeholder="Shorts Name" name="name" id="shorts_name" required>
                                                 </div>
                                                 <div class="col-12 mt-2">
                                                     <label for="description" class="form-label">Description</label>
                                                     <textarea class="form-control" placeholder="Description" name="description" id="description" required></textarea>
                                                 </div>
-                                                
                                                 <div class="col-12 mt-2">
                                                     <label for="shorts" class="form-label">Shorts Video</label>
                                                     <input type="file" class="form-control" name="shorts" id="shorts" accept="video/*" onchange="previewVideo(event, 'video-preview')" required>
@@ -102,23 +101,20 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <div id="loading-spinner-pod" class="d-none">
+                                    <div id="loading-spinner-shorts" class="d-none">
                                         <div class="d-flex justify-content-center">
                                             <div class="spinner-border text-primary" role="status">
                                                 <span class="visually-hidden">Loading...</span>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- Add this inside the modal-body, after the spinner -->
-                                    <div id="upload-progress-pod" class="progress d-none" style="height: 20px; margin-top: 10px;">
-                                        <div id="upload-progress-bar-pod" class="progress-bar progress-bar-striped progress-bar-animated"
+                                    <div id="upload-progress-shorts" class="progress d-none" style="height: 20px; margin-top: 10px;">
+                                        <div id="upload-progress-bar-shorts" class="progress-bar progress-bar-striped progress-bar-animated"
                                             role="progressbar" style="width: 0%">0%</div>
                                     </div>
-
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="addPod();" form="addPodForm">Add Shorts</button>
+                                        <button type="button" class="btn btn-primary" onclick="addShorts();" form="addShortsForm">Add Shorts</button>
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +142,7 @@
                                                     <label for="update_description" class="form-label">Description</label>
                                                     <textarea class="form-control" name="description" id="update_description" required></textarea>
                                                 </div>
-                                                
+
                                                 <div class="col-12 mt-2">
                                                     <label for="update_shorts" class="form-label">Shorts Video</label>
                                                     <input type="file" class="form-control" name="shorts" id="update_shorts" accept="video/*" onchange="previewVideo(event, 'update-video-preview')">
@@ -197,8 +193,7 @@
                                     if ($shorts_n > 0) {
                                         while ($row = $shorts_rs->fetch_assoc()) {
                                             // Correctly concatenate the base directory with the database paths
-                                            $audioPath = "../" . $row["url"];
-                                            $videoPath = "../" . $row["video_url"]; // Assuming video_url is the correct field for video path
+                                            $videoPath = "../" . $row["url"];
                                     ?>
                                             <tr class="text-center">
                                                 <td><?php echo $row["id"]; ?></td>
@@ -214,13 +209,10 @@
                                                     </video>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-primary" onclick="updatePod(<?php echo $row['id']; ?>);">
+                                                    <button class="btn btn-sm btn-primary" onclick="updateShorts(<?php echo $row['id']; ?>);">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
-                                                    <!-- <button class="btn btn-sm btn-success" onclick="downloadPod(<?php echo $row['id']; ?>);">
-                                                        <i class="fas fa-download"></i>
-                                                    </button> -->
-                                                    <button class="btn btn-sm btn-danger" onclick="deletePod(<?php echo $row['id']; ?>);">
+                                                    <button class="btn btn-sm btn-danger" onclick="deleteShorts(<?php echo $row['id']; ?>);">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </td>

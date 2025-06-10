@@ -23,7 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     } else {
         echo "Invalid Podcast ID";
     }
+} else if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["id"])) {
+    $id = intval($_POST["id"]);
+    $result = Database::search("SELECT * FROM `shorts` WHERE `id` = $id LIMIT 1");
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $videoPath = "../" . $row["url"];
+        if (file_exists($videoPath)) {
+            unlink($videoPath);
+        }
+        Database::iud("DELETE FROM `shorts` WHERE `id` = $id");
+        echo "Shorts deleted successfully";
+    } else {
+        echo "Shorts not found.";
+    }
 } else {
-    echo "Invalid request method";
+    echo "Invalid request.";
 }
 ?>

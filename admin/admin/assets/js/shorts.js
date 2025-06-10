@@ -1,24 +1,3 @@
-function previewImage(event, previewId) {
-    const reader = new FileReader();
-    reader.onload = function () {
-        const output = document.getElementById(previewId);
-        output.src = reader.result;
-        output.style.display = 'block';
-    };
-    reader.readAsDataURL(event.target.files[0]);
-}
-
-function previewAudio(event, previewId) {
-    const file = event.target.files[0];
-    if (file) {
-        const audioPreview = document.getElementById(previewId);
-        const audioSource = audioPreview.querySelector('source');
-        audioSource.src = URL.createObjectURL(file);
-        audioPreview.load();
-        audioPreview.style.display = 'block';
-    }
-}
-
 function previewVideo(event, previewId) {
     const file = event.target.files[0];
     const maxSize = 5 * 1024 * 1024; // 5MB
@@ -38,79 +17,7 @@ function previewVideo(event, previewId) {
     }
 }
 
-function addPod() {
-    var formData = new FormData(document.getElementById('addPodForm'));
 
-    var validationErrors = document.getElementById('validation-errors-pod');
-    var successMessage = document.getElementById('success-message-pod');
-    var loadingSpinner = document.getElementById('loading-spinner-pod');
-    var progressBarContainer = document.getElementById('upload-progress-pod');
-    var progressBar = document.getElementById('upload-progress-bar-pod');
-
-    var r = new XMLHttpRequest();
-
-    // Progress event
-    r.upload.onprogress = function (event) {
-        if (event.lengthComputable) {
-            var percent = Math.round((event.loaded / event.total) * 100);
-            progressBar.style.width = percent + "%";
-            progressBar.innerText = percent + "%";
-            progressBarContainer.classList.remove('d-none');
-        }
-    };
-
-    r.onreadystatechange = function () {
-        if (r.readyState == 4) {
-            loadingSpinner.classList.add('d-none');
-            progressBarContainer.classList.add('d-none');
-            progressBar.style.width = "0%";
-            progressBar.innerText = "0%";
-            var t = r.responseText;
-            if (r.status == 200) {
-                if (t.includes("New Podcast added successfully")) {
-                    successMessage.innerHTML = t;
-                    successMessage.classList.remove('d-none');
-                    validationErrors.classList.add('d-none');
-                    document.getElementById('addPodForm').reset();
-                    var modal = bootstrap.Modal.getInstance(document.getElementById('addPodModal'));
-                    modal.hide();
-                    Swal.fire(
-                        'Success!',
-                        'New Podcast added successfully.',
-                        'success'
-                    ).then(() => {
-                        window.location.reload();
-                    });
-                } else {
-                    validationErrors.innerHTML = t;
-                    validationErrors.classList.remove('d-none');
-                    successMessage.classList.add('d-none');
-                    Swal.fire(
-                        'Error!',
-                        t,
-                        'error'
-                    );
-                }
-            } else {
-                validationErrors.innerHTML = t;
-                validationErrors.classList.remove('d-none');
-                successMessage.classList.add('d-none');
-                Swal.fire(
-                    'Error!',
-                    t,
-                    'error'
-                );
-            }
-        }
-    };
-
-    loadingSpinner.classList.remove('d-none');
-    progressBarContainer.classList.remove('d-none');
-    progressBar.style.width = "0%";
-    progressBar.innerText = "0%";
-    r.open("POST", "../process/addPodProcess.php", true);
-    r.send(formData);
-}
 
 function deletePod(id) {
     Swal.fire({
@@ -230,28 +137,21 @@ $('#updatePodButton').on('click', function () {
             progressBar.innerText = "0%";
             var t = r.responseText;
             if (r.status == 200) {
-                if (t.includes("Podcast updated successfully")) {
-                    successMessage.innerHTML = t;
-                    successMessage.classList.remove('d-none');
-                    validationErrors.classList.add('d-none');
-                    var modal = bootstrap.Modal.getInstance(document.getElementById('updatePodModal'));
-                    modal.hide();
-                    Swal.fire(
-                        'Success!',
-                        'Podcast updated successfully.',
-                        'success'
-                    ).then(() => {
-                        window.location.reload();
-                    });
-                } else {
-                    validationErrors.innerHTML = t;
-                    validationErrors.classList.remove('d-none');
-                    successMessage.classList.add('d-none');
-                    Swal.fire(
-                        'Error!',
-                        t,
-                        'error'
-                    );
+                try {
+                    var json = JSON.parse(t);
+                    if (json.success) {
+                        Swal.fire({
+                            title: 'Success!',
+                            text: json.message,
+                            icon: 'success'
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    } else {
+                        Swal.fire('Error!', json.message || 'Unknown error', 'error');
+                    }
+                } catch (e) {
+                    Swal.fire('Error!', t, 'error');
                 }
             } else {
                 validationErrors.innerHTML = t;
@@ -277,15 +177,147 @@ $('#updatePodButton').on('click', function () {
 function addShorts() {
     var formData = new FormData(document.getElementById('addShortsForm'));
 
-    var validationErrors = document.getElementById('validation-errors-shorts');
-    var successMessage = document.getElementById('success-message-shorts');
     var loadingSpinner = document.getElementById('loading-spinner-shorts');
     var progressBarContainer = document.getElementById('upload-progress-shorts');
     var progressBar = document.getElementById('upload-progress-bar-shorts');
 
     var r = new XMLHttpRequest();
 
-    // Progress event
+    r.upload.onprogress = function (event) {
+        if (event.lengthComputable) {
+            var percent = Math.round((event.loaded / event.total) * 100);
+            progressBar.style.width = percent + "%";
+            progressBar.innerText = percent + "%";
+            progressBarContainer.classList.remove('d-none');
+        }
+    };
+
+    r.onreadystatechange = function () {
+        if (r.readyState == 4) {
+            loadingSpinner.classList.add('d-none');
+            progressBarContainer.classList.add('d-none');
+            progressBar.style.width = "0%";
+            progressBar.innerText = "0%";
+            var t = r.responseText;
+            console.log("Response:", t); // Debug log
+            try {
+                var json = JSON.parse(t);
+                if (json.success) {
+                    console.log("Success"); // Debug log
+                    document.getElementById('addShortsForm').reset();
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('addShortsModal'));
+                    modal.hide();
+                    Swal.fire({
+                        title: 'Success!',
+                        text: json.message,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    console.log("Error:", json.message); // Debug log
+                    Swal.fire({
+                        title: 'Error!',
+                        text: json.message,
+                        icon: 'error',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            } catch (e) {
+                console.log("Parse Error:", e); // Debug log for JSON parse issues
+            }
+        }
+    };
+
+    loadingSpinner.classList.remove('d-none');
+    progressBarContainer.classList.remove('d-none');
+    progressBar.style.width = "0%";
+    progressBar.innerText = "0%";
+    r.open("POST", "../process/addShortsProcess.php", true);
+    r.send(formData);
+}
+
+function deleteShorts(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Are you sure you want to delete this Shorts?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '../process/deleteShortsProcess.php',
+                method: 'POST',
+                data: { id: id },
+                success: function (response) {
+                    if (response.includes("Shorts deleted successfully")) {
+                        Swal.fire('Deleted!', 'Shorts has been deleted.', 'success').then(() => {
+                            window.location.reload();
+                        });
+                    } else {
+                        Swal.fire('Error!', response, 'error');
+                    }
+                },
+                error: function () {
+                    Swal.fire('Error!', 'Failed to delete Shorts.', 'error');
+                }
+            });
+        }
+    });
+}
+
+function updateShorts(id) {
+    // Fetch shorts data via AJAX
+    $.ajax({
+        url: '../process/getShortsProcess.php',
+        method: 'GET',
+        data: { id: id },
+        dataType: 'json',
+        success: function (data) {
+            if (data.success) {
+                $('#update_pod_id').val(data.shorts.id);
+                $('#update_pod_name').val(data.shorts.name);
+                $('#update_description').val(data.shorts.description);
+
+                // Set video preview
+                if (data.shorts.url) {
+                    $('#update-video-preview source').attr('src', '../' + data.shorts.url);
+                    $('#update-video-preview')[0].load();
+                    $('#update-video-preview').show();
+                } else {
+                    $('#update-video-preview').hide();
+                }
+
+                // Show modal
+                var modal = new bootstrap.Modal(document.getElementById('updatePodModal'));
+                modal.show();
+            } else {
+                Swal.fire('Error', data.message, 'error');
+            }
+        },
+        error: function () {
+            Swal.fire('Error', 'Failed to fetch Shorts data.', 'error');
+        }
+    });
+}
+
+// Handle update form submission for Shorts
+$('#updateShortsButton').on('click', function () {
+    var formData = new FormData(document.getElementById('updateShortsForm'));
+    var loadingSpinner = document.getElementById('loading-spinner-shorts-update');
+    var progressBarContainer = document.getElementById('upload-progress-shorts-update');
+    var progressBar = document.getElementById('upload-progress-bar-shorts-update');
+    var validationErrors = document.getElementById('validation-errors-shorts-update');
+    var successMessage = document.getElementById('success-message-shorts-update');
+
+    var r = new XMLHttpRequest();
+
     r.upload.onprogress = function (event) {
         if (event.lengthComputable) {
             var percent = Math.round((event.loaded / event.total) * 100);
@@ -303,16 +335,15 @@ function addShorts() {
             progressBar.innerText = "0%";
             var t = r.responseText;
             if (r.status == 200) {
-                if (t.includes("New Shorts added successfully")) {
+                if (t.includes("Shorts updated successfully")) {
                     successMessage.innerHTML = t;
                     successMessage.classList.remove('d-none');
                     validationErrors.classList.add('d-none');
-                    document.getElementById('addShortsForm').reset();
-                    var modal = bootstrap.Modal.getInstance(document.getElementById('addShortsModal'));
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('updatePodModal'));
                     modal.hide();
                     Swal.fire(
                         'Success!',
-                        'New Shorts added successfully.',
+                        'Shorts updated successfully.',
                         'success'
                     ).then(() => {
                         window.location.reload();
@@ -344,6 +375,6 @@ function addShorts() {
     progressBarContainer.classList.remove('d-none');
     progressBar.style.width = "0%";
     progressBar.innerText = "0%";
-    r.open("POST", "../process/addShortsProcess.php", true);
+    r.open("POST", "../process/updateShortsProcess.php", true);
     r.send(formData);
-}
+});
