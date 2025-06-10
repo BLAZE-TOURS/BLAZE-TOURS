@@ -347,9 +347,9 @@ if (isset($_SESSION["adminuser"])) {
                                 </li>
 
                                 <li>
-                                    <a href="#" onclick="changeDashboardViewPodcast();">
-                                        <i data-feather="mic"></i>
-                                        <span>Podcast</span>
+                                    <a href="#" onclick="changeDashboardViewShorts();">
+                                        <i data-feather="video"></i>
+                                        <span>Shorts</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
@@ -404,7 +404,7 @@ if (isset($_SESSION["adminuser"])) {
 
                 <div id="gallaryContainer" class="d-none"><?php include 'fechGallary.php'; ?> <?php include "../admin/gallaryBody.php"; ?> </div>
 
-                <div id="podContainer" class="d-none"><?php include 'fechPod.php'; ?> <?php include "../admin/podBody.php"; ?> </div>
+                <div id="shortsContainer" class="d-none"><?php include 'fechShorts.php'; ?> <?php include "../admin/shortsBody.php"; ?> </div>
 
                 <div id="mediContainer" class="d-none"> <?php include 'fetchMedi.php'; ?> <?php include "../admin/mediBody.php"; ?> </div>
 
@@ -479,7 +479,7 @@ if (isset($_SESSION["adminuser"])) {
         <script src="../admin/assets/js/mail.js"></script>
         <script src="../admin/assets/js/Company.js"></script>
         <script src="../admin/assets/js/gallary.js"></script>
-        <script src="../admin/assets/js/pod.js"></script>
+        <script src="../admin/assets/js/shorts.js"></script>
         <script src="../admin/assets/js/meditype.js"></script>
         <script src="../admin/assets/js/news.js"></script>
 

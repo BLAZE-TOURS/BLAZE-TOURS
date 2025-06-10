@@ -19,6 +19,25 @@ function previewAudio(event, previewId) {
     }
 }
 
+function previewVideo(event, previewId) {
+    const file = event.target.files[0];
+    const maxSize = 5 * 1024 * 1024; // 5MB
+
+    if (file) {
+        if (file.size > maxSize) {
+            Swal.fire('Error', 'Video must be less than 5MB!', 'error');
+            event.target.value = '';
+            document.getElementById(previewId).style.display = 'none';
+            return;
+        }
+        const videoPreview = document.getElementById(previewId);
+        const videoSource = videoPreview.querySelector('source');
+        videoSource.src = URL.createObjectURL(file);
+        videoPreview.load();
+        videoPreview.style.display = 'block';
+    }
+}
+
 function addPod() {
     var formData = new FormData(document.getElementById('addPodForm'));
 
@@ -254,3 +273,77 @@ $('#updatePodButton').on('click', function () {
     r.open("POST", "../process/updatePodProcess.php", true);
     r.send(formData);
 });
+
+function addShorts() {
+    var formData = new FormData(document.getElementById('addShortsForm'));
+
+    var validationErrors = document.getElementById('validation-errors-shorts');
+    var successMessage = document.getElementById('success-message-shorts');
+    var loadingSpinner = document.getElementById('loading-spinner-shorts');
+    var progressBarContainer = document.getElementById('upload-progress-shorts');
+    var progressBar = document.getElementById('upload-progress-bar-shorts');
+
+    var r = new XMLHttpRequest();
+
+    // Progress event
+    r.upload.onprogress = function (event) {
+        if (event.lengthComputable) {
+            var percent = Math.round((event.loaded / event.total) * 100);
+            progressBar.style.width = percent + "%";
+            progressBar.innerText = percent + "%";
+            progressBarContainer.classList.remove('d-none');
+        }
+    };
+
+    r.onreadystatechange = function () {
+        if (r.readyState == 4) {
+            loadingSpinner.classList.add('d-none');
+            progressBarContainer.classList.add('d-none');
+            progressBar.style.width = "0%";
+            progressBar.innerText = "0%";
+            var t = r.responseText;
+            if (r.status == 200) {
+                if (t.includes("New Shorts added successfully")) {
+                    successMessage.innerHTML = t;
+                    successMessage.classList.remove('d-none');
+                    validationErrors.classList.add('d-none');
+                    document.getElementById('addShortsForm').reset();
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('addShortsModal'));
+                    modal.hide();
+                    Swal.fire(
+                        'Success!',
+                        'New Shorts added successfully.',
+                        'success'
+                    ).then(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    validationErrors.innerHTML = t;
+                    validationErrors.classList.remove('d-none');
+                    successMessage.classList.add('d-none');
+                    Swal.fire(
+                        'Error!',
+                        t,
+                        'error'
+                    );
+                }
+            } else {
+                validationErrors.innerHTML = t;
+                validationErrors.classList.remove('d-none');
+                successMessage.classList.add('d-none');
+                Swal.fire(
+                    'Error!',
+                    t,
+                    'error'
+                );
+            }
+        }
+    };
+
+    loadingSpinner.classList.remove('d-none');
+    progressBarContainer.classList.remove('d-none');
+    progressBar.style.width = "0%";
+    progressBar.innerText = "0%";
+    r.open("POST", "../process/addShortsProcess.php", true);
+    r.send(formData);
+}

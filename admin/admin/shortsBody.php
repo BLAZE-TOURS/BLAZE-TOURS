@@ -7,7 +7,7 @@
     <meta name="description" content="Admin Panel for Rakkitha Kanda Rock Temple">
     <meta name="author" content="Malindu Prabod wm">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Podcast Management | Admin Dashboard</title>
+    <title>Shorts Management | Admin Dashboard</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../SignIn/images/Untit1.png" />
@@ -59,13 +59,13 @@
             <div class="col-md-12">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h3 class="card-title text-center">Podcast List</h3>
+                        <h3 class="card-title text-center">Shorts List</h3>
 
                         <!-- Add New Podcast Section -->
                         <div class="mb-4">
-                            <h4>Add New Podcast</h4>
+                            <h4>Add New Shorts</h4>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPodModal">
-                                <i class="fas fa-plus"></i> Add Podcast
+                                <i class="fas fa-plus"></i> Add Shorts
                             </button>
                         </div>
 
@@ -74,7 +74,7 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="addPodModalLabel">Add New Podcast</h5>
+                                        <h5 class="modal-title" id="addPodModalLabel">Add New Shorts</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -83,25 +83,21 @@
                                         <form id="addPodForm" enctype="multipart/form-data">
                                             <div class="row g-3">
                                                 <div class="col-12">
-                                                    <label for="pod_name" class="form-label">Podcast Name</label>
+                                                    <label for="pod_name" class="form-label">Shorts Name</label>
                                                     <input type="text" class="form-control" placeholder="Podcast Name" name="pod_name" id="pod_name" required>
                                                 </div>
                                                 <div class="col-12 mt-2">
                                                     <label for="description" class="form-label">Description</label>
                                                     <textarea class="form-control" placeholder="Description" name="description" id="description" required></textarea>
                                                 </div>
+                                                
                                                 <div class="col-12 mt-2">
-                                                    <label for="img" class="form-label">Image</label>
-                                                    <input type="file" class="form-control" name="img" id="img" accept="image/*" onchange="previewImage(event, 'img-preview')" required>
-                                                    <img id="img-preview" src="#" alt="Image Preview" style="width: 100px; height: auto; margin-top: 10px; display: none;">
-                                                </div>
-                                                <div class="col-12 mt-2">
-                                                    <label for="podcast" class="form-label">Podcast</label>
-                                                    <input type="file" class="form-control" name="podcast" id="podcast" accept="audio/*" onchange="previewAudio(event, 'audio-preview')" required>
-                                                    <audio id="audio-preview" controls style="margin-top: 10px; display: none;">
-                                                        <source src="#" type="audio/mpeg">
-                                                        Your browser does not support the audio element.
-                                                    </audio>
+                                                    <label for="shorts" class="form-label">Shorts Video</label>
+                                                    <input type="file" class="form-control" name="shorts" id="shorts" accept="video/*" onchange="previewVideo(event, 'video-preview')" required>
+                                                    <video id="video-preview" controls style="margin-top: 10px; display: none; max-width: 100%;">
+                                                        <source src="#" type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>
                                                 </div>
                                             </div>
                                         </form>
@@ -122,7 +118,7 @@
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="addPod();" form="addPodForm">Add Podcast</button>
+                                        <button type="button" class="btn btn-primary" onclick="addPod();" form="addPodForm">Add Shorts</button>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +129,7 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="updatePodModalLabel">Update Podcast</h5>
+                                        <h5 class="modal-title" id="updatePodModalLabel">Update Shorts</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -143,25 +139,21 @@
                                             <input type="hidden" id="update_pod_id" name="id">
                                             <div class="row g-3">
                                                 <div class="col-12">
-                                                    <label for="update_pod_name" class="form-label">Podcast Name</label>
+                                                    <label for="update_pod_name" class="form-label">Shorts Name</label>
                                                     <input type="text" class="form-control" name="pod_name" id="update_pod_name" required>
                                                 </div>
                                                 <div class="col-12 mt-2">
                                                     <label for="update_description" class="form-label">Description</label>
                                                     <textarea class="form-control" name="description" id="update_description" required></textarea>
                                                 </div>
+                                                
                                                 <div class="col-12 mt-2">
-                                                    <label for="update_img" class="form-label">Image</label>
-                                                    <input type="file" class="form-control" name="img" id="update_img" accept="image/*" onchange="previewImage(event, 'update-img-preview')">
-                                                    <img id="update-img-preview" src="#" alt="Image Preview" style="width: 100px; height: auto; margin-top: 10px; display: none;">
-                                                </div>
-                                                <div class="col-12 mt-2">
-                                                    <label for="update_podcast" class="form-label">Podcast</label>
-                                                    <input type="file" class="form-control" name="podcast" id="update_podcast" accept="audio/*" onchange="previewAudio(event, 'update-audio-preview')">
-                                                    <audio id="update-audio-preview" controls style="margin-top: 10px; display: none;">
-                                                        <source src="#" type="audio/mpeg">
-                                                        Your browser does not support the audio element.
-                                                    </audio>
+                                                    <label for="update_shorts" class="form-label">Shorts Video</label>
+                                                    <input type="file" class="form-control" name="shorts" id="update_shorts" accept="video/*" onchange="previewVideo(event, 'update-video-preview')">
+                                                    <video id="update-video-preview" controls style="margin-top: 10px; display: none; max-width: 100%;">
+                                                        <source src="#" type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>
                                                 </div>
                                             </div>
                                         </form>
@@ -179,7 +171,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" id="updatePodButton">Update Podcast</button>
+                                        <button type="button" class="btn btn-primary" id="updatePodButton">Update Shorts</button>
                                     </div>
                                 </div>
                             </div>
@@ -194,35 +186,32 @@
                                 <thead>
                                     <tr>
                                         <th>#ID</th>
-                                        <th>Podcast Name</th>
+                                        <th>Shorts Name</th>
                                         <th>Description</th>
-                                        <th>Image</th>
-                                        <th>Podcast</th>
+                                        <th>Shorts</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    if ($pod_n > 0) {
-                                        while ($row = $pod_rs->fetch_assoc()) {
+                                    if ($shorts_n > 0) {
+                                        while ($row = $shorts_rs->fetch_assoc()) {
                                             // Correctly concatenate the base directory with the database paths
-                                            $imagePath = "../" . $row["pod_img_url"];
-                                            $audioPath = "../" . $row["pod_url"];
+                                            $audioPath = "../" . $row["url"];
+                                            $videoPath = "../" . $row["video_url"]; // Assuming video_url is the correct field for video path
                                     ?>
                                             <tr class="text-center">
                                                 <td><?php echo $row["id"]; ?></td>
-                                                <td><?php echo htmlspecialchars($row["pod_name"]); ?></td>
-                                                <td class="desc-cell" title="<?php echo htmlspecialchars($row["pod_description"]); ?>">
-                                                    <?php echo htmlspecialchars($row["pod_description"]); ?>
+                                                <td><?php echo htmlspecialchars($row["name"]); ?></td>
+                                                <td class="desc-cell" title="<?php echo htmlspecialchars($row["description"]); ?>">
+                                                    <?php echo htmlspecialchars($row["description"]); ?>
                                                 </td>
+
                                                 <td>
-                                                    <img src="<?php echo $imagePath; ?>" alt="Podcast Image" style="width: 50px; height: auto;">
-                                                </td>
-                                                <td>
-                                                    <audio controls>
-                                                        <source src="<?php echo $audioPath; ?>" type="audio/mpeg">
-                                                        Your browser does not support the audio element.
-                                                    </audio>
+                                                    <video controls style="max-width: 150px;">
+                                                        <source src="<?php echo $videoPath; ?>" type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>
                                                 </td>
                                                 <td>
                                                     <button class="btn btn-sm btn-primary" onclick="updatePod(<?php echo $row['id']; ?>);">
@@ -255,7 +244,7 @@
     <script src="../admin/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../admin/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
     <script src="../admin/assets/js/app.js"></script>
-    <script src="../admin/assets/js/pod.js"></script>
+    <script src="../admin/assets/js/shorts.js"></script>
 
     <script>
         $(document).ready(function() {

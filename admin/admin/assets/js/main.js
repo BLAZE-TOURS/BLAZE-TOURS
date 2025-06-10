@@ -99,11 +99,11 @@ function changeDashboardViewReplied() {
 }
 
 
-function changeDashboardViewPodcast() {
-    history.pushState(null, '', 'adminindex.php?view=Podcast');
-    sessionStorage.setItem('currentView', 'Podcast'); // Ensure key matches retrieval
+function changeDashboardViewShorts() {
+    history.pushState(null, '', 'adminindex.php?view=Shorts');
+    sessionStorage.setItem('currentView', 'Shorts'); // Ensure key matches retrieval
     hideAllContainers();
-    var gallaryContainer = document.getElementById('podContainer');
+    var gallaryContainer = document.getElementById('shortsContainer');
     gallaryContainer.classList.remove('d-none');
     gallaryContainer.style.display = 'block';
 }
@@ -121,7 +121,7 @@ function changeDashboardViewNews() {
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'podContainer', '', 'mediContainer', 'mediTypeContainer', 'donationContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'NewsContainer'];
+    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediTypeContainer', 'donationContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'NewsContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -151,8 +151,8 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'Gallary': // Ensured correct key match
                 changeDashboardViewGallary();
                 break;
-            case 'Podcast': // Ensured correct key match
-                changeDashboardViewPodcast();
+            case 'Shorts': // Ensured correct key match
+                changeDashboardViewShorts();
                 break;
             case 'Medi': // Ensured correct key match
                 changeDashboardViewMedi();
