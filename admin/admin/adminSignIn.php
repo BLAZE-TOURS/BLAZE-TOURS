@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Admin Login | BLAZE TOURS</title>
+    <title>Admin Login | Rakkithtakanda Temple</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -97,8 +97,8 @@
 
     <!-- Footer -->
     <footer class="text-center mt-4 fixed-bottom">
-        <p class="text-light">&copy; 2025 BLAZE TOURS | All Rights Reserved</p>
-        <p class="text-light">Developed by Malindu Prabod W.M</p>
+        <p class="text-light">&copy; 2025 Rakkithtakanda Temple | All Rights Reserved</p>
+        <p class="text-light">Developed by Malindu Prabod W.M | Lakshitha Madumal H.J</p>
     </footer>
 
     <!--===============================================================================================-->

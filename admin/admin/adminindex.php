@@ -11,7 +11,7 @@ if (isset($_SESSION["adminuser"])) {
     <head>
 
         <meta charset="utf-8" />
-        <title>Admin Dashboard | BLAZE TOURS </title>
+        <title>Admin Dashboard | Rakkitha Kanda Rock temple </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin Panel" />
         <meta name="author" content="Malindu Prabod wm" />
@@ -31,12 +31,15 @@ if (isset($_SESSION["adminuser"])) {
         <link href="../admin/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
         <link href="../admin/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
 
-
         <!-- Icons -->
         <link href="../admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 
         <link rel="stylesheet" type="text/css" href="../loader/loader.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+        <!--Table UI-->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+
 
         <style>
             .sidebar {
@@ -55,6 +58,33 @@ if (isset($_SESSION["adminuser"])) {
 
             .place-picker-container {
                 padding: 20px;
+            }
+
+            .sidebar-collapse {
+                display: none;
+                transition: all 0.3s;
+            }
+
+            .sidebar-collapse.show {
+                display: block;
+            }
+
+            .menu-arrow {
+                display: inline-block;
+                transition: transform 0.3s;
+                border: solid #888;
+                border-width: 0 2px 2px 0;
+                padding: 3px;
+                margin-left: 8px;
+                transform: rotate(45deg);
+                /* right arrow */
+                width: 8px;
+                height: 8px;
+            }
+
+            a.active .menu-arrow {
+                transform: rotate(135deg);
+                /* down arrow */
             }
         </style>
 
@@ -175,7 +205,7 @@ if (isset($_SESSION["adminuser"])) {
                                     <a class="nav-link dropdown-toggle nav-user me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                         <img src="../admin/assets/images/users/user-12.jpg" alt="user-image" class="rounded-circle">
                                         <span class="pro-user-name ms-1">
-                                            <?php echo $_SESSION["adminuser"]["email"]; ?><i class="mdi mdi-chevron-down"></i>
+                                            <?php echo $_SESSION["adminuser"]["email"]; ?></i>
                                         </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
@@ -239,14 +269,54 @@ if (isset($_SESSION["adminuser"])) {
                                 </li>
 
 
-
                                 <li class="menu-title">Pages</li>
 
-
+                                <li>
+                                    <a href="javascript:void(0);" id="sidebarReservationBtn" onclick="toggleSidebarMenu('sidebarReservation', 'sidebarReservationBtn')">
+                                        <i data-feather="calendar"></i>
+                                        <span>Reservation</span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="sidebar-collapse" id="sidebarReservation">
+                                        <ul class="nav-second-level">
+                                            <li>
+                                                <a href="#" class="tp-link" onclick="changeDashboardViewMedi();">
+                                                    Received
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="tp-link" onclick="changeDashboardViewMedArrivedi();">
+                                                    Arrived
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" id="sidebarInquiryBtn" onclick="toggleSidebarMenu('sidebarInquiry', 'sidebarInquiryBtn')">
+                                        <i data-feather="help-circle"></i>
+                                        <span>Inquiry</span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="sidebar-collapse" id="sidebarInquiry">
+                                        <ul class="nav-second-level">
+                                            <li>
+                                                <a href="#" class="tp-link" onclick="changeDashboardViewMessages();">
+                                                    Messages
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="tp-link" onclick="changeDashboardViewReplied();">
+                                                    Replied
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
 
                                 <li>
                                     <a href="#" onclick="changeDashboardViewCompany();">
-                                        <i data-feather="file-text"></i>
+                                        <i data-feather="briefcase"></i>
                                         <span>Company</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
@@ -254,7 +324,7 @@ if (isset($_SESSION["adminuser"])) {
 
                                 <li>
                                     <a href="#" onclick="changeDashboardViewEmail();">
-                                        <i data-feather="file-text"></i>
+                                        <i data-feather="send"></i>
                                         <span>Send-Emails</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
@@ -262,7 +332,7 @@ if (isset($_SESSION["adminuser"])) {
 
                                 <li>
                                     <a href="#" onclick="changeDashboardViewSubscribers();">
-                                        <i data-feather="file-text"></i>
+                                        <i data-feather="users"></i>
                                         <span>Subscribers</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
@@ -270,20 +340,51 @@ if (isset($_SESSION["adminuser"])) {
 
                                 <li>
                                     <a href="#" onclick="changeDashboardViewGallary();">
-                                        <i data-feather="file-text"></i>
+                                        <i data-feather="image"></i>
                                         <span>Gallary</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" onclick="changeDashboardViewTour();">
-                                        <i data-feather="file-text"></i>
-                                        <span>Tours</span>
+                                    <a href="#" onclick="changeDashboardViewPodcast();">
+                                        <i data-feather="mic"></i>
+                                        <span>Podcast</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
 
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewNews();">
+                                        <i data-feather="file-text"></i>
+                                        <span>News</span>
+                                        <!-- <span class="menu-arrow"></span> -->
+                                    </a>
+                                </li>
+
+
+
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewMediType();">
+                                        <i data-feather="clock"></i>
+                                        <span>Meditation Schedule</span>
+                                        <!-- <span class="menu-arrow"></span> -->
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewDonation();">
+                                        <i data-feather="heart"></i>
+                                        <span>Donation</span>
+                                        <!-- <span class="menu-arrow"></span> -->
+                                    </a>
+                                </li>
+                                <li>
+                                    <a style="color: red;" class="fw-bold" href="#" onclick="changeDashboardViewDonation();">
+                                        <i data-feather="log-out"></i>
+                                        <span onclick="signout();">Logout</span>
+                                        <!-- <span class="menu-arrow"></span> -->
+                                    </a>
+                                </li>
                             </ul>
 
                         </div>
@@ -293,61 +394,31 @@ if (isset($_SESSION["adminuser"])) {
 
                     </div>
                 </div>
-                <!-- Left Sidebar End -->
-
-                <!-- ============================================================== -->
-                <!-- Start Home Page Content here -->
-                <!-- ============================================================== -->
                 <div id="HomeBodyContainer"> <?php include "../admin/HomeBody.php"; ?> </div>
-                <!-- ============================================================== -->
-                <!-- End Home Page content -->
-                <!-- ============================================================== -->
 
-                <!-- ============================================================== -->
-                <!-- Start Page Company  -->
-                <!-- ============================================================== -->
                 <div id="CompanyFormContainer" class="d-none"> <?php include 'fetchCompany.php'; ?> <?php include "../admin/companyBody.php"; ?> </div>
-                <!-- ============================================================== -->
-                <!-- End of Company  -->
-                <!-- ============================================================== -->
 
-                <!-- ============================================================== -->
-                <!-- Start Page Send EMail -->
-                <!-- ============================================================== -->
                 <div id="emailFormContainer" class="d-none"> <?php include "../admin/SendEmailBody.php"; ?> </div>
 
-                <!-- ============================================================== -->
-                <!-- End of Send EMail -->
-                <!-- ============================================================== -->
-
-
-                <!-- ============================================================== -->
-                <!-- Start Page sybscriber test-->
-                <!-- ============================================================== -->
                 <div id="SubscriberContainer" class="d-none"> <?php include 'fetchSubscribers.php'; ?> <?php include "../admin/SubscribersBody.php"; ?> </div>
 
-                <!-- ============================================================== -->
-                <!-- End of sybscriber test -->
-                <!-- ============================================================== -->
-
-                <!-- ============================================================== -->
-                <!-- Start Page Gallary-->
-                <!-- ============================================================== -->
                 <div id="gallaryContainer" class="d-none"><?php include 'fechGallary.php'; ?> <?php include "../admin/gallaryBody.php"; ?> </div>
 
-                <!-- ============================================================== -->
-                <!-- End of Gallary-- -->
-                <!-- ============================================================== -->
+                <div id="podContainer" class="d-none"><?php include 'fechPod.php'; ?> <?php include "../admin/podBody.php"; ?> </div>
 
-                <!-- ============================================================== -->
-                <!-- Start Page Pod-->
-                <!-- ============================================================== -->
-                <div id="tourContainer" class="d-none"><?php include 'fechTour.php'; ?> <?php include "../admin/tourBody.php"; ?> </div>
+                <div id="mediContainer" class="d-none"> <?php include 'fetchMedi.php'; ?> <?php include "../admin/mediBody.php"; ?> </div>
 
-                <!-- ============================================================== -->
-                <!-- End of pod-- -->
-                <!-- ============================================================== -->
+                <div id="mediMediArrivedContainer" class="d-none"> <?php include 'fetchMediArrived.php'; ?> <?php include "../admin/mediArrivedBody.php"; ?> </div>
 
+                <div id="mediTypeContainer" class="d-none"> <?php include 'fetchMediType.php'; ?> <?php include "../admin/mediTypeBody.php"; ?> </div>
+
+                <div id="donationContainer" class="d-none"> <?php include 'fetchDonation.php'; ?> <?php include "../admin/donationBody.php"; ?> </div>
+
+                <div id="MessagesContainer" class="d-none"> <?php include 'fetchMessages.php'; ?> <?php include "../admin/MessagesBody.php"; ?> </div>
+
+                <div id="RepliedContainer" class="d-none"> <?php include 'fetchReplied.php'; ?> <?php include "../admin/RepliedBody.php"; ?> </div>
+
+                <div id="NewsContainer" class="d-none"> <?php include 'fetchNews.php'; ?> <?php include "../admin/newsBody.php"; ?> </div>
 
 
 
@@ -373,7 +444,6 @@ if (isset($_SESSION["adminuser"])) {
         <!-- Widgets Init Js -->
         <script src="../admin/assets/js/pages/analytics-dashboard.init.js"></script>
         <!-- Datatables js -->
-        <script src="../admin/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
 
         <!-- dataTables.bootstrap5 -->
         <script src="../admin/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
@@ -410,10 +480,46 @@ if (isset($_SESSION["adminuser"])) {
         <script src="../admin/assets/js/Company.js"></script>
         <script src="../admin/assets/js/gallary.js"></script>
         <script src="../admin/assets/js/pod.js"></script>
+        <script src="../admin/assets/js/meditype.js"></script>
+        <script src="../admin/assets/js/news.js"></script>
 
-        <!-- Add this in your adminindex.php 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+        </script>
 
+        <!--Table UI-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+
+
+        <script>
+            $(document).ready(function() {
+                $('#dataTableDonation').DataTable();
+                $('#dataTableCompany').DataTable();
+                $('#dataTableGallery').DataTable();
+                $('#datatableMedi').DataTable();
+                $('#datatable-Medi').DataTable();
+                $('#datatable-mediType').DataTable();
+                $('#datatable-Message').DataTable();
+                $('#datatable-pod').DataTable();
+                $('#datatable-reply').DataTable();
+                $('#datatable-subscribe').DataTable();
+                $('#datatable-Message').DataTable();
+                $('#datatable-news').DataTable();
+            });
+        </script>
+
+        <script>
+            function toggleSidebarMenu(contentId, btnId) {
+                var el = document.getElementById(contentId);
+                var btn = document.getElementById(btnId);
+                if (el) {
+                    el.classList.toggle('show');
+                }
+                if (btn) {
+                    btn.classList.toggle('active');
+                }
+            }
+        </script>
 
     </body>
 

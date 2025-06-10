@@ -72,12 +72,32 @@ function updateCompany(id) {
     });
 }
 
+function updateMediType(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Are you sure you want to update this company?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, update it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            loadCompanyData(id);
+            var modal = new bootstrap.Modal(document.getElementById('updateMediTypeModal'));
+            modal.show();
+        }
+    });
+}
+
 
 function loadCompanyData(id) {
     var r = new XMLHttpRequest();
     r.onreadystatechange = function () {
         if (r.readyState == 4 && r.status == 200) {
             var company = JSON.parse(r.responseText);
+
+            // Populate form fields
             document.getElementById('company_name_update').value = company.name;
             document.getElementById('website_update').value = company.website;
             document.getElementById('location_update').value = company.location;
@@ -88,7 +108,16 @@ function loadCompanyData(id) {
             document.getElementById('facebook_update').value = company.facebook;
             document.getElementById('insta_update').value = company.insta;
             document.getElementById('yt_update').value = company.yt;
-            document.getElementById('logo-preview-update').src = company.logo;
+
+            // Set the logo preview
+            if (company.logo) {
+                var logoPreview = document.getElementById('logo-preview-update');
+                logoPreview.src = company.logo; // Set the logo URL
+                logoPreview.style.display = 'block'; // Make the image visible
+            } else {
+                document.getElementById('logo-preview-update').style.display = 'none'; // Hide if no logo
+            }
+
             document.getElementById('updateCompanyButton').dataset.id = id;
         }
     };

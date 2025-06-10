@@ -1,7 +1,6 @@
-
 <div class="content-page mt-5 fade-in">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-6">
             <div class="card shadow-lg border-0 rounded-lg">
                 <div class="card-body p-5">
                     <h3 class="card-title text-center mb-4">Send Email</h3>
@@ -48,7 +47,6 @@
         </div>
     </div>
 </div>
-
 
 <style>
     .content-page {

@@ -75,7 +75,7 @@ if (empty($email)) {
                 text-align: center;
             }
             .header {
-                background:#bd3838;
+                background:rgb(90, 5, 8);
                 color: white;
                 padding: 15px;
                 font-size: 24px;
@@ -95,7 +95,7 @@ if (empty($email)) {
                 border-radius: 0 0 8px 8px;
             }
             .button {
-                background:#bd3838;
+                background:rgb(90, 5, 8);
                 color: #ffffff;
                 text-decoration: none;
                 padding: 10px 20px;
@@ -111,12 +111,12 @@ if (empty($email)) {
             <div class="header">' . $bodyTitle . '</div>
             <div class="content">
                 <p>' . $message . '</p>
-                <a href="https://blaze-tours.com/" target="_blank">
+                <a href="https://rakkithtakandatemple.com/" target="_blank">
                     <button class="button">Visit Our Website</button>
                 </a>
             </div>
             <div class="footer">
-                &copy; ' . date("Y") . ' BLAZE TOURS (PVT) LTD | All Rights Reserved
+                &copy; ' . date("Y") . ' Rakkithtakanda Temple | All Rights Reserved
             </div>
         </div>
     </body>
@@ -126,14 +126,14 @@ if (empty($email)) {
 
     try {
         $mail->IsSMTP();
-        $mail->Host = 'mail.blaze-tours.com';
+        $mail->Host = 'mail.rakkithtakandatemple.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'info@blaze-tours.com';
-        $mail->Password = 'UU68On8u.8;Yfl';
+        $mail->Username = 'booking@rakkithtakandatemple.com';
+        $mail->Password = '07NeYMcm-:a43R';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
-        $mail->setFrom('info@blaze-tours.com', 'Blaze Tours');
-        $mail->addReplyTo('info@blaze-tours.com', 'Blaze Tours');
+        $mail->setFrom('booking@rakkithtakandatemple.com', 'Rakkithtakanda Temple');
+        $mail->addReplyTo('booking@rakkithtakandatemple.com', 'Rakkithtakanda Temple');
         $mail->addAddress($email);
 
         if (!empty($ccEmail)) {
