@@ -94,7 +94,7 @@ try {
                 </a>
             </div>
             <div class="footer">
-                &copy; ' . date("Y") . ' Rakkithtakanda Temple | All Rights Reserved
+                &copy; ' . date("Y") . ' BLAZE TOURS (PVT) LTD | All Rights Reserved
             </div>
         </div>
     </body>

@@ -11,7 +11,7 @@ if (isset($_SESSION["adminuser"])) {
     <head>
 
         <meta charset="utf-8" />
-        <title>Admin Dashboard | Rakkitha Kanda Rock temple </title>
+        <title>Admin Dashboard | BLAZE TOURS (PVT) LTD </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin Panel" />
         <meta name="author" content="Malindu Prabod wm" />

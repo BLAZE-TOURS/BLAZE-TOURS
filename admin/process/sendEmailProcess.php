@@ -116,7 +116,7 @@ if (empty($email)) {
                 </a>
             </div>
             <div class="footer">
-                &copy; ' . date("Y") . ' Rakkithtakanda Temple | All Rights Reserved
+                &copy; ' . date("Y") . ' BLAZE TOURS (PVT) LTD | All Rights Reserved
             </div>
         </div>
     </body>
@@ -132,8 +132,8 @@ if (empty($email)) {
         $mail->Password = '07NeYMcm-:a43R';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
-        $mail->setFrom('booking@rakkithtakandatemple.com', 'Rakkithtakanda Temple');
-        $mail->addReplyTo('booking@rakkithtakandatemple.com', 'Rakkithtakanda Temple');
+        $mail->setFrom('booking@rakkithtakandatemple.com', 'BLAZE TOURS (PVT) LTD');
+        $mail->addReplyTo('booking@rakkithtakandatemple.com', 'BLAZE TOURS (PVT) LTD');
         $mail->addAddress($email);
 
         if (!empty($ccEmail)) {

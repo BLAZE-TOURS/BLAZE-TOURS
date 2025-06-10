@@ -19,7 +19,7 @@ try {
         $successCount = 0;
         $failureCount = 0;
         $subject = "Thank you for your review!";
-        $bodyContent = "<p>Dear Subscriber,</p><p>Thank you for submitting your review. We appreciate your feedback.</p><p>Best regards,<br>Rakkithtakanda Temple</p>";
+        $bodyContent = "<p>Dear Subscriber,</p><p>Thank you for submitting your review. We appreciate your feedback.</p><p>Best regards,<br>BLAZE TOURS (PVT) LTD</p>";
 
         while ($row = $result->fetch_assoc()) {
             $to = $row['email'];
@@ -34,8 +34,8 @@ try {
                 $mail->Password = '07NeYMcm-:a43R';
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                 $mail->Port = 465;
-                $mail->setFrom('booking@rakkithtakandatemple.com', 'Rakkithtakanda Temple');
-                $mail->addReplyTo('booking@rakkithtakandatemple.com', 'Rakkithtakanda Temple');
+                $mail->setFrom('booking@rakkithtakandatemple.com', 'BLAZE TOURS (PVT) LTD');
+                $mail->addReplyTo('booking@rakkithtakandatemple.com', 'BLAZE TOURS (PVT) LTD');
                 $mail->addAddress($to);
                 $mail->isHTML(true);
                 $mail->Subject = $subject;
