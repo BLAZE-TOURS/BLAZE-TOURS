@@ -16,7 +16,11 @@ function previewVideo(event, previewId) {
         videoPreview.style.display = 'block';
     } else {
         // Hide preview if no file selected
-        document.getElementById(previewId).style.display = 'none';
+        const videoPreview = document.getElementById(previewId);
+        const videoSource = videoPreview.querySelector('source');
+        videoSource.src = '';
+        videoPreview.load();
+        videoPreview.style.display = 'none';
     }
 }
 
@@ -145,13 +149,20 @@ function updateShorts(id) {
                         $('#update_description').val(data.shorts.description);
 
                         // Set video preview
+                        const videoPreview = document.getElementById('update-video-preview');
+                        const videoSource = videoPreview.querySelector('source');
                         if (data.shorts.url) {
-                            $('#update-video-preview source').attr('src', '../' + data.shorts.url);
-                            $('#update-video-preview')[0].load();
-                            $('#update-video-preview').show();
+                            videoSource.src = '../' + data.shorts.url;
+                            videoPreview.load();
+                            videoPreview.style.display = 'block';
                         } else {
-                            $('#update-video-preview').hide();
+                            videoSource.src = '';
+                            videoPreview.load();
+                            videoPreview.style.display = 'none';
                         }
+
+                        // Reset file input (so onchange works if user re-selects same file)
+                        $('#update_shorts').val('');
 
                         // Show modal
                         var modal = new bootstrap.Modal(document.getElementById('updateShortsModal'));
@@ -167,6 +178,11 @@ function updateShorts(id) {
         }
     });
 }
+
+// Add this event handler for update file input to preview selected video
+document.getElementById('update_shorts').addEventListener('change', function(event) {
+    previewVideo(event, 'update-video-preview');
+});
 
 // Handle update form submission for Shorts
 $('#updateShortsButton').on('click', function () {

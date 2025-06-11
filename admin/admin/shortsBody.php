@@ -147,7 +147,7 @@
                                                     <label for="update_shorts" class="form-label">Shorts Video</label>
                                                     <input type="file" class="form-control" name="shorts" id="update_shorts" accept="video/*" onchange="previewVideo(event, 'update-video-preview')">
                                                     <video id="update-video-preview" controls style="margin-top: 10px; display: none; max-width: 100%;">
-                                                        <source src="#" type="video/mp4">
+                                                        <source src="" type="video/mp4">
                                                         Your browser does not support the video tag.
                                                     </video>
                                                 </div>
