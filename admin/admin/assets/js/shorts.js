@@ -1,10 +1,10 @@
 function previewVideo(event, previewId) {
     const file = event.target.files[0];
-    const maxSize = 5 * 1024 * 1024; // 5MB
+    const maxSize = 15 * 1024 * 1024; // 15MB
 
     if (file) {
         if (file.size > maxSize) {
-            Swal.fire('Error', 'Video must be less than 5MB!', 'error');
+            Swal.fire('Error', 'Video must be less than 1   5MB!', 'error');
             event.target.value = '';
             document.getElementById(previewId).style.display = 'none';
             return;
@@ -152,7 +152,7 @@ function updateShorts(id) {
                         const videoPreview = document.getElementById('update-video-preview');
                         const videoSource = videoPreview.querySelector('source');
                         if (data.shorts.url) {
-                            videoSource.src = '../' + data.shorts.url;
+                            videoSource.src = 'assets/shorts/' + data.shorts.url;
                             videoPreview.load();
                             videoPreview.style.display = 'block';
                         } else {
