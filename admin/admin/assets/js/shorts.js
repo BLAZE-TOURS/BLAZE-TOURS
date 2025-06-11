@@ -61,8 +61,10 @@ function addShorts() {
                         icon: 'success',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
-                    }).then(() => {
-                        window.location.reload();
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
                     });
                 } else {
                     console.log("Error:", json.message); // Debug log
@@ -207,8 +209,10 @@ $('#updateShortsButton').on('click', function () {
                         icon: 'success',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
-                    }).then(() => {
-                        window.location.reload();
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
                     });
                 } else {
                     validationErrors.innerHTML = json.message || t;
