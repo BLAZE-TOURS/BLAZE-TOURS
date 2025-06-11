@@ -64,17 +64,17 @@
                         <!-- Add New Podcast Section -->
                         <div class="mb-4">
                             <h4>Add New Shorts</h4>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPodModal">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addShortsModal">
                                 <i class="fas fa-plus"></i> Add Shorts
                             </button>
                         </div>
 
                         <!-- Add Podcast Modal -->
-                        <div class="modal fade" id="addPodModal" tabindex="-1" aria-labelledby="addPodModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="addShortsModal" tabindex="-1" aria-labelledby="addShortsModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="addPodModalLabel">Add New Shorts</h5>
+                                        <h5 class="modal-title" id="addShortsModalLabel">Add New Shorts</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -94,7 +94,7 @@
                                                     <label for="shorts" class="form-label">Shorts Video</label>
                                                     <input type="file" class="form-control" name="shorts" id="shorts" accept="video/*" onchange="previewVideo(event, 'video-preview')" required>
                                                     <video id="video-preview" controls style="margin-top: 10px; display: none; max-width: 100%;">
-                                                        <source src="#" type="video/mp4">
+                                                        <source src="" type="video/mp4">
                                                         Your browser does not support the video tag.
                                                     </video>
                                                 </div>

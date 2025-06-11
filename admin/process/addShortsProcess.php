@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             Database::iud($query);
             echo json_encode([
                 "success" => true,
-                "message" => "New Shorts added successfully"
+                "message" => "Shorts added successfully."
             ]);
         } else {
             echo json_encode([
@@ -57,4 +57,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     ]);
     exit;
 }
-?>
