@@ -64,17 +64,17 @@
                         <!-- Add New Podcast Section -->
                         <div class="mb-4">
                             <h4>Add New Shorts</h4>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPodModal">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addShortsModal">
                                 <i class="fas fa-plus"></i> Add Shorts
                             </button>
                         </div>
 
                         <!-- Add Podcast Modal -->
-                        <div class="modal fade" id="addPodModal" tabindex="-1" aria-labelledby="addPodModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="addShortsModal" tabindex="-1" aria-labelledby="addShortsModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="addPodModalLabel">Add New Shorts</h5>
+                                        <h5 class="modal-title" id="addShortsModalLabel">Add New Shorts</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -94,7 +94,7 @@
                                                     <label for="shorts" class="form-label">Shorts Video</label>
                                                     <input type="file" class="form-control" name="shorts" id="shorts" accept="video/*" onchange="previewVideo(event, 'video-preview')" required>
                                                     <video id="video-preview" controls style="margin-top: 10px; display: none; max-width: 100%;">
-                                                        <source src="#" type="video/mp4">
+                                                        <source src="" type="video/mp4">
                                                         Your browser does not support the video tag.
                                                     </video>
                                                 </div>
@@ -121,22 +121,22 @@
                         </div>
 
                         <!-- Update Podcast Modal -->
-                        <div class="modal fade" id="updatePodModal" tabindex="-1" aria-labelledby="updatePodModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="updateShortsModal" tabindex="-1" aria-labelledby="updateShortsModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="updatePodModalLabel">Update Shorts</h5>
+                                        <h5 class="modal-title" id="updateShortsModalLabel">Update Shorts</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <div id="validation-errors-pod-update" class="alert alert-danger d-none" role="alert"></div>
                                         <div id="success-message-pod-update" class="alert alert-success d-none" role="alert"></div>
-                                        <form id="updatePodForm" enctype="multipart/form-data">
+                                        <form id="updateShortsForm" enctype="multipart/form-data">
                                             <input type="hidden" id="update_pod_id" name="id">
                                             <div class="row g-3">
                                                 <div class="col-12">
                                                     <label for="update_pod_name" class="form-label">Shorts Name</label>
-                                                    <input type="text" class="form-control" name="pod_name" id="update_pod_name" required>
+                                                    <input type="text" class="form-control" name="name" id="update_pod_name" required>
                                                 </div>
                                                 <div class="col-12 mt-2">
                                                     <label for="update_description" class="form-label">Description</label>
@@ -145,9 +145,9 @@
 
                                                 <div class="col-12 mt-2">
                                                     <label for="update_shorts" class="form-label">Shorts Video</label>
-                                                    <input type="file" class="form-control" name="shorts" id="update_shorts" accept="video/*" onchange="previewVideo(event, 'update-video-preview')">
+                                                    <input type="file" class="form-control" name="shorts" id="update_shorts" onchange="previewVideo(event, 'update-video-preview')">
                                                     <video id="update-video-preview" controls style="margin-top: 10px; display: none; max-width: 100%;">
-                                                        <source src="#" type="video/mp4">
+                                                        <source src="" type="video/mp4">
                                                         Your browser does not support the video tag.
                                                     </video>
                                                 </div>
@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" id="updatePodButton">Update Shorts</button>
+                                        <button type="button" class="btn btn-primary" id="updateShortsButton">Update Shorts</button>
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +193,7 @@
                                     if ($shorts_n > 0) {
                                         while ($row = $shorts_rs->fetch_assoc()) {
                                             // Correctly concatenate the base directory with the database paths
-                                            $videoPath = "../" . $row["url"];
+                                            $videoPath = "assets/shorts/" . $row["url"];
                                     ?>
                                             <tr class="text-center">
                                                 <td><?php echo $row["id"]; ?></td>
