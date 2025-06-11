@@ -152,7 +152,7 @@ function updateShorts(id) {
                         }
 
                         // Show modal
-                        var modal = new bootstrap.Modal(document.getElementById('updatePodModal'));
+                        var modal = new bootstrap.Modal(document.getElementById('updateShortsModal'));
                         modal.show();
                     } else {
                         Swal.fire('Error', data.message, 'error');
@@ -169,11 +169,11 @@ function updateShorts(id) {
 // Handle update form submission for Shorts
 $('#updateShortsButton').on('click', function () {
     var formData = new FormData(document.getElementById('updateShortsForm'));
-    var loadingSpinner = document.getElementById('loading-spinner-shorts-update');
-    var progressBarContainer = document.getElementById('upload-progress-shorts-update');
-    var progressBar = document.getElementById('upload-progress-bar-shorts-update');
-    var validationErrors = document.getElementById('validation-errors-shorts-update');
-    var successMessage = document.getElementById('success-message-shorts-update');
+    var loadingSpinner = document.getElementById('loading-spinner-pod-update');
+    var progressBarContainer = document.getElementById('upload-progress-pod-update');
+    var progressBar = document.getElementById('upload-progress-bar-pod-update');
+    var validationErrors = document.getElementById('validation-errors-pod-update');
+    var successMessage = document.getElementById('success-message-pod-update');
 
     var r = new XMLHttpRequest();
 
@@ -193,39 +193,46 @@ $('#updateShortsButton').on('click', function () {
             progressBar.style.width = "0%";
             progressBar.innerText = "0%";
             var t = r.responseText;
-            if (r.status == 200) {
-                if (t.includes("Shorts updated successfully")) {
-                    successMessage.innerHTML = t;
+            try {
+                var json = JSON.parse(t);
+                if (r.status == 200 && json.success) {
+                    successMessage.innerHTML = json.message;
                     successMessage.classList.remove('d-none');
                     validationErrors.classList.add('d-none');
-                    var modal = bootstrap.Modal.getInstance(document.getElementById('updatePodModal'));
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('updateShortsModal'));
                     modal.hide();
-                    Swal.fire(
-                        'Success!',
-                        'Shorts updated successfully.',
-                        'success'
-                    ).then(() => {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: json.message,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
                         window.location.reload();
                     });
                 } else {
-                    validationErrors.innerHTML = t;
+                    validationErrors.innerHTML = json.message || t;
                     validationErrors.classList.remove('d-none');
                     successMessage.classList.add('d-none');
-                    Swal.fire(
-                        'Error!',
-                        t,
-                        'error'
-                    );
+                    Swal.fire({
+                        title: 'Error!',
+                        text: json.message || t,
+                        icon: 'error',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    });
                 }
-            } else {
+            } catch (e) {
                 validationErrors.innerHTML = t;
                 validationErrors.classList.remove('d-none');
                 successMessage.classList.add('d-none');
-                Swal.fire(
-                    'Error!',
-                    t,
-                    'error'
-                );
+                Swal.fire({
+                    title: 'Error!',
+                    text: t,
+                    icon: 'error',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
             }
         }
     };

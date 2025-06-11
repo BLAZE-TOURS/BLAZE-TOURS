@@ -121,22 +121,22 @@
                         </div>
 
                         <!-- Update Podcast Modal -->
-                        <div class="modal fade" id="updatePodModal" tabindex="-1" aria-labelledby="updatePodModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="updateShortsModal" tabindex="-1" aria-labelledby="updateShortsModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="updatePodModalLabel">Update Shorts</h5>
+                                        <h5 class="modal-title" id="updateShortsModalLabel">Update Shorts</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <div id="validation-errors-pod-update" class="alert alert-danger d-none" role="alert"></div>
                                         <div id="success-message-pod-update" class="alert alert-success d-none" role="alert"></div>
-                                        <form id="updatePodForm" enctype="multipart/form-data">
+                                        <form id="updateShortsForm" enctype="multipart/form-data">
                                             <input type="hidden" id="update_pod_id" name="id">
                                             <div class="row g-3">
                                                 <div class="col-12">
                                                     <label for="update_pod_name" class="form-label">Shorts Name</label>
-                                                    <input type="text" class="form-control" name="pod_name" id="update_pod_name" required>
+                                                    <input type="text" class="form-control" name="name" id="update_pod_name" required>
                                                 </div>
                                                 <div class="col-12 mt-2">
                                                     <label for="update_description" class="form-label">Description</label>
@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" id="updatePodButton">Update Shorts</button>
+                                        <button type="button" class="btn btn-primary" id="updateShortsButton">Update Shorts</button>
                                     </div>
                                 </div>
                             </div>
