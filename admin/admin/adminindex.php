@@ -321,7 +321,13 @@ if (isset($_SESSION["adminuser"])) {
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
-
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewToursType();">
+                                        <i data-feather="map-pin"></i>
+                                        <span>Tours Type</span>
+                                        <!-- <span class="menu-arrow"></span> -->
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="#" onclick="changeDashboardViewEmail();">
                                         <i data-feather="send"></i>
@@ -361,13 +367,7 @@ if (isset($_SESSION["adminuser"])) {
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewToursType();">
-                                        <i data-feather="clock"></i>
-                                        <span>Tours Type</span>
-                                        <!-- <span class="menu-arrow"></span> -->
-                                    </a>
-                                </li>
+
                                 <li>
                                     <a style="color: red;" class="fw-bold" href="#" onclick="changeDashboardViewDonation();">
                                         <i data-feather="log-out"></i>
