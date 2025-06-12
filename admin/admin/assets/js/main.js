@@ -108,11 +108,11 @@ function changeDashboardViewShorts() {
     gallaryContainer.style.display = 'block';
 }
 
-function changeDashboardViewNews() {
-    history.pushState(null, '', 'adminindex.php?view=News');
-    sessionStorage.setItem('currentView', 'News'); // Ensure key matches retrieval
+function changeDashboardViewStory() {
+    history.pushState(null, '', 'adminindex.php?view=Story');
+    sessionStorage.setItem('currentView', 'Story'); // Ensure key matches retrieval
     hideAllContainers();
-    var gallaryContainer = document.getElementById('NewsContainer');
+    var gallaryContainer = document.getElementById('StoryContainer');
     gallaryContainer.classList.remove('d-none');
     gallaryContainer.style.display = 'block';
 }
@@ -121,7 +121,7 @@ function changeDashboardViewNews() {
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediTypeContainer', 'donationContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'NewsContainer'];
+    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediTypeContainer', 'donationContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -172,8 +172,8 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'Replied': // Ensured correct key match
                 changeDashboardViewReplied();
                 break;
-            case 'News': // Ensured correct key match
-                changeDashboardViewNews();
+            case 'Story': // Ensured correct key match
+                changeDashboardViewStory();
                 break;
             default:
                 changeDashboardView();

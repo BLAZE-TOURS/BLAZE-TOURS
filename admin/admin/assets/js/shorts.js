@@ -1,19 +1,34 @@
 function previewVideo(event, previewId) {
     const file = event.target.files[0];
-    const maxSize = 15 * 1024 * 1024; // 15MB
+    const maxSize = 30 * 1024 * 1024; // 30MB
 
     if (file) {
         if (file.size > maxSize) {
-            Swal.fire('Error', 'Video must be less than 1   5MB!', 'error');
+            Swal.fire('Error', 'Video must be less than 30MB!', 'error');
             event.target.value = '';
             document.getElementById(previewId).style.display = 'none';
             return;
         }
-        const videoPreview = document.getElementById(previewId);
-        const videoSource = videoPreview.querySelector('source');
-        videoSource.src = URL.createObjectURL(file);
-        videoPreview.load();
-        videoPreview.style.display = 'block';
+
+        // Validate portrait orientation
+        const video = document.createElement('video');
+        video.preload = 'metadata';
+        video.onloadedmetadata = function () {
+            window.URL.revokeObjectURL(video.src);
+            if (video.videoHeight <= video.videoWidth) {
+                Swal.fire('Error', 'Video must be in portrait orientation (height > width).', 'error');
+                event.target.value = '';
+                document.getElementById(previewId).style.display = 'none';
+                return;
+            }
+            // Show preview if valid
+            const videoPreview = document.getElementById(previewId);
+            const videoSource = videoPreview.querySelector('source');
+            videoSource.src = URL.createObjectURL(file);
+            videoPreview.load();
+            videoPreview.style.display = 'block';
+        };
+        video.src = URL.createObjectURL(file);
     } else {
         // Hide preview if no file selected
         const videoPreview = document.getElementById(previewId);

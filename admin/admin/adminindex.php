@@ -355,9 +355,9 @@ if (isset($_SESSION["adminuser"])) {
                                 </li>
 
                                 <li>
-                                    <a href="#" onclick="changeDashboardViewNews();">
-                                        <i data-feather="file-text"></i>
-                                        <span>News</span>
+                                    <a href="#" onclick="changeDashboardViewStory();">
+                                        <i data-feather="book-open"></i>
+                                        <span>Story</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
@@ -418,7 +418,7 @@ if (isset($_SESSION["adminuser"])) {
 
                 <div id="RepliedContainer" class="d-none"> <?php include 'fetchReplied.php'; ?> <?php include "../admin/RepliedBody.php"; ?> </div>
 
-                <div id="NewsContainer" class="d-none"> <?php include 'fetchNews.php'; ?> <?php include "../admin/newsBody.php"; ?> </div>
+                <div id="StoryContainer" class="d-none"> <?php include 'fetchStory.php'; ?> <?php include "../admin/storyBody.php"; ?> </div>
 
 
 
@@ -481,7 +481,7 @@ if (isset($_SESSION["adminuser"])) {
         <script src="../admin/assets/js/gallary.js"></script>
         <script src="../admin/assets/js/shorts.js"></script>
         <script src="../admin/assets/js/meditype.js"></script>
-        <script src="../admin/assets/js/news.js"></script>
+        <script src="../admin/assets/js/story.js"></script>
 
         </script>
 
