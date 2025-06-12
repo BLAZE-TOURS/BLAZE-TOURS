@@ -31,18 +31,7 @@
                                                 <label for="meditation_name" class="form-label">Meditation Schedule Name</label>
                                                 <input type="text" class="form-control" name="meditation_name" id="meditation_name" required>
                                             </div>
-                                            <div class="col-12">
-                                                <label for="meditation_category_id" class="form-label">Category</label>
-                                                <select class="form-control" name="meditation_category_id" id="meditation_category_id" required>
-                                                    <option value="">Select Category</option>
-                                                    <?php
-                                                    $cat_rs = Database::search("SELECT * FROM meditation_category WHERE status_id=1");
-                                                    while ($cat = $cat_rs->fetch_assoc()) {
-                                                        echo "<option value='{$cat['id']}'>{$cat['name']}</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
+            
                                             <div class="col-12">
                                                 <label for="meditation_start_time" class="form-label">Start Time</label>
                                                 <input type="time" class="form-control" name="meditation_start_time" id="meditation_start_time" required>
@@ -98,18 +87,7 @@
                                                 <label for="update_meditation_name" class="form-label">Meditation Schedule Name</label>
                                                 <input type="text" class="form-control" name="meditation_name" id="update_meditation_name" required>
                                             </div>
-                                            <div class="col-12">
-                                                <label for="update_meditation_category_id" class="form-label">Category</label>
-                                                <select class="form-control" name="meditation_category_id" id="update_meditation_category_id" required>
-                                                    <option value="">Select Category</option>
-                                                    <?php
-                                                    $cat_rs = Database::search("SELECT * FROM meditation_category WHERE status_id=1");
-                                                    while ($cat = $cat_rs->fetch_assoc()) {
-                                                        echo "<option value='{$cat['id']}'>{$cat['name']}</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
+                                            
                                             <div class="col-12">
                                                 <label for="update_meditation_start_time" class="form-label">Start Time</label>
                                                 <input type="time" class="form-control" name="meditation_start_time" id="update_meditation_start_time" required>
@@ -149,51 +127,22 @@
 
                     <!-- Existing Company List Table -->
                     <div class="table-responsive col-12 mx-auto">
-                        <table id="datatable-mediType" class="table table-striped table-bordered dt-responsive nowrap">
+                        <table id="datatable-tourType" class="table table-striped table-bordered dt-responsive nowrap">
                             <thead>
                                 <tr class="Table-header">
                                     <th>#ID</th>
-                                    <th>Meditation Type Name</th>
-                                    <th>Category</th>
-                                    <th>Start Time</th>
-                                    <th>End Time</th>
-                                    <th>Image</th>
+                                    <th>Tours Type Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                if ($mediType_n > 0) {
-                                    while ($row = $mediType_rs->fetch_assoc()) {
+                                if ($toursType_n > 0) {
+                                    while ($row = $toursType_rs->fetch_assoc()) {
                                 ?>
                                         <tr class="text-center">
                                             <td><?php echo $row["id"]; ?></td>
                                             <td><?php echo $row["name"]; ?></td>
-                                            <td><?php echo $row["category"]; ?></td>
-                                            <td><?php echo $row["start"]; ?></td>
-                                            <td><?php echo $row["end"]; ?></td>
-                                            <td>
-                                                <?php
-                                                $fileUrl = $row["img_url"];
-                                                $filePath = "images/medi/" . $fileUrl; // Corrected path
-                                                $fileExt = strtolower(pathinfo($fileUrl, PATHINFO_EXTENSION));
-                                                if (in_array($fileExt, ['jpg', 'jpeg', 'png'])) {
-                                                    // Show image thumbnail, clickable to open full image
-                                                    echo '<a href="' . $filePath . '" target="_blank">';
-                                                    echo '<img src="' . $filePath . '" alt="img" style="max-width:70px;max-height:70px;border-radius:4px;border:1px solid #ccc;box-shadow:0 2px 6px rgba(0,0,0,0.1);">';
-                                                    echo '</a><br>';
-                                                } elseif ($fileExt === 'pdf') {
-                                                    // Show PDF icon, clickable to open PDF
-                                                    echo '<a href="' . $filePath . '" target="_blank" style="display:inline-block;">';
-                                                    echo '<img src="https://cdn.jsdelivr.net/gh/edent/SuperTinyIcons/images/svg/pdf.svg" alt="PDF" style="width:32px;height:32px;vertical-align:middle;">';
-                                                    echo '</a><br>';
-                                                    echo '<small>' . htmlspecialchars($fileUrl) . '</small>';
-                                                } else {
-                                                    // Just show the file name as fallback
-                                                    echo htmlspecialchars($fileUrl);
-                                                }
-                                                ?>
-                                            </td>
                                             <td>
                                                 <button class="btn btn-sm btn-success edit-btn" onclick="updateMediType(<?php echo $row['id']; ?>);">
                                                     <i class="fas fa-edit"></i>
@@ -216,16 +165,3 @@
         </div>
     </div>
 </div>
-
-<!-- 
-<script>
-    function previewImage(event, previewId) {
-        var reader = new FileReader();
-        reader.onload = function() {
-            var output = document.getElementById(previewId);
-            output.src = reader.result;
-            output.style.display = 'block';
-        }
-        reader.readAsDataURL(event.target.files[0]);
-    }
-</script> -->
