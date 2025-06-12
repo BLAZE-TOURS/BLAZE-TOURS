@@ -13,11 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $description = Database::escape_string(remove_4byte_utf8($_POST["description"]));
         $video_file = $_FILES["shorts"];
 
-        // Validate file size (max 15MB)
-        if ($video_file["size"] > 15 * 1024 * 1024) {
+        // Validate file size (max 30MB)
+        if ($video_file["size"] > 30 * 1024 * 1024) {
             echo json_encode([
                 "success" => false,
-                "message" => "Video must be less than 15MB."
+                "message" => "Video must be less than 30MB."
             ]);
             exit;
         }

@@ -355,26 +355,16 @@ if (isset($_SESSION["adminuser"])) {
                                 </li>
 
                                 <li>
-                                    <a href="#" onclick="changeDashboardViewNews();">
-                                        <i data-feather="file-text"></i>
-                                        <span>News</span>
+                                    <a href="#" onclick="changeDashboardViewStory();">
+                                        <i data-feather="book-open"></i>
+                                        <span>Story</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
-
-
-
                                 <li>
-                                    <a href="#" onclick="changeDashboardViewMediType();">
+                                    <a href="#" onclick="changeDashboardViewToursType();">
                                         <i data-feather="clock"></i>
-                                        <span>Meditation Schedule</span>
-                                        <!-- <span class="menu-arrow"></span> -->
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewDonation();">
-                                        <i data-feather="heart"></i>
-                                        <span>Donation</span>
+                                        <span>Tours Type</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
@@ -410,15 +400,13 @@ if (isset($_SESSION["adminuser"])) {
 
                 <div id="mediMediArrivedContainer" class="d-none"> <?php include 'fetchMediArrived.php'; ?> <?php include "../admin/mediArrivedBody.php"; ?> </div>
 
-                <div id="mediTypeContainer" class="d-none"> <?php include 'fetchMediType.php'; ?> <?php include "../admin/mediTypeBody.php"; ?> </div>
-
-                <div id="donationContainer" class="d-none"> <?php include 'fetchDonation.php'; ?> <?php include "../admin/donationBody.php"; ?> </div>
+                <div id="toursTypeContainer" class="d-none"> <?php include 'fetchToursType.php'; ?> <?php include "../admin/toursTypeBody.php"; ?> </div>
 
                 <div id="MessagesContainer" class="d-none"> <?php include 'fetchMessages.php'; ?> <?php include "../admin/MessagesBody.php"; ?> </div>
 
                 <div id="RepliedContainer" class="d-none"> <?php include 'fetchReplied.php'; ?> <?php include "../admin/RepliedBody.php"; ?> </div>
 
-                <div id="NewsContainer" class="d-none"> <?php include 'fetchNews.php'; ?> <?php include "../admin/newsBody.php"; ?> </div>
+                <div id="StoryContainer" class="d-none"> <?php include 'fetchStory.php'; ?> <?php include "../admin/storyBody.php"; ?> </div>
 
 
 
@@ -480,8 +468,8 @@ if (isset($_SESSION["adminuser"])) {
         <script src="../admin/assets/js/Company.js"></script>
         <script src="../admin/assets/js/gallary.js"></script>
         <script src="../admin/assets/js/shorts.js"></script>
-        <script src="../admin/assets/js/meditype.js"></script>
-        <script src="../admin/assets/js/news.js"></script>
+        <script src="../admin/assets/js/tourstype.js"></script>
+        <script src="../admin/assets/js/story.js"></script>
 
         </script>
 
@@ -493,12 +481,11 @@ if (isset($_SESSION["adminuser"])) {
 
         <script>
             $(document).ready(function() {
-                $('#dataTableDonation').DataTable();
                 $('#dataTableCompany').DataTable();
                 $('#dataTableGallery').DataTable();
                 $('#datatableMedi').DataTable();
                 $('#datatable-Medi').DataTable();
-                $('#datatable-mediType').DataTable();
+                $('#datatable-tourType').DataTable();
                 $('#datatable-Message').DataTable();
                 $('#datatable-pod').DataTable();
                 $('#datatable-reply').DataTable();

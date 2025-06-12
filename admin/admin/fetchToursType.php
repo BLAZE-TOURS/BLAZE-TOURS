@@ -11,10 +11,10 @@ if (isset($_SESSION["adminuser"])) {
     }
     $start_from = ($page - 1) * $limit;
 
-    $mediType_rs = Database::search("SELECT * FROM `news` LIMIT $start_from, $limit" );
-    $mediType_n = $mediType_rs->num_rows;
-    $total_mediType_records = Database::search("SELECT COUNT(*) FROM `news`")->fetch_row()[0];
-    $total_mediType_pages = ceil($total_mediType_records / $limit);
+    $toursType_rs = Database::search("SELECT * FROM `tours_type` LIMIT $start_from, $limit");
+    $toursType_n = $toursType_rs->num_rows;
+    $total_toursType_records = Database::search("SELECT COUNT(*) FROM `tours_type`")->fetch_row()[0];
+    $total_toursType_pages = ceil($total_toursType_records / $limit);
 } else {
     echo ("You are not a valid user");
     header("Refresh: 2; URL=adminSignIn.php"); // Refresh the page after 2 seconds

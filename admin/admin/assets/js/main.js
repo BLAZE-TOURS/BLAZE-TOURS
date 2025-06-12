@@ -51,22 +51,13 @@ function changeDashboardViewMedArrivedi() {
 }
 
 
-function changeDashboardViewMediType() {
-    history.pushState(null, '', 'adminindex.php?view=MediType');
-    sessionStorage.setItem('currentView', 'MediType');
+function changeDashboardViewToursType() {
+    history.pushState(null, '', 'adminindex.php?view=ToursType');
+    sessionStorage.setItem('currentView', 'ToursType');
     hideAllContainers();
-    var mediTypeContainer = document.getElementById('mediTypeContainer');
-    mediTypeContainer.classList.remove('d-none');
-    mediTypeContainer.style.display = 'block';
-}
-
-function changeDashboardViewDonation() {
-    history.pushState(null, '', 'adminindex.php?view=Donation');
-    sessionStorage.setItem('currentView', 'Donation');
-    hideAllContainers();
-    var mediTypeContainer = document.getElementById('donationContainer');
-    mediTypeContainer.classList.remove('d-none');
-    mediTypeContainer.style.display = 'block';
+    var toursTypeContainer = document.getElementById('toursTypeContainer');
+    toursTypeContainer.classList.remove('d-none');
+    toursTypeContainer.style.display = 'block';
 }
 
 function changeDashboardViewGallary() {
@@ -108,11 +99,11 @@ function changeDashboardViewShorts() {
     gallaryContainer.style.display = 'block';
 }
 
-function changeDashboardViewNews() {
-    history.pushState(null, '', 'adminindex.php?view=News');
-    sessionStorage.setItem('currentView', 'News'); // Ensure key matches retrieval
+function changeDashboardViewStory() {
+    history.pushState(null, '', 'adminindex.php?view=Story');
+    sessionStorage.setItem('currentView', 'Story'); // Ensure key matches retrieval
     hideAllContainers();
-    var gallaryContainer = document.getElementById('NewsContainer');
+    var gallaryContainer = document.getElementById('StoryContainer');
     gallaryContainer.classList.remove('d-none');
     gallaryContainer.style.display = 'block';
 }
@@ -121,7 +112,7 @@ function changeDashboardViewNews() {
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediTypeContainer', 'donationContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'NewsContainer'];
+    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'toursTypeContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -157,11 +148,8 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'Medi': // Ensured correct key match
                 changeDashboardViewMedi();
                 break;
-            case 'MediType': // Ensured correct key match
-                changeDashboardViewMediType();
-                break;
-            case 'Donation': // Ensured correct key match
-                changeDashboardViewDonation();
+            case 'ToursType': // Ensured correct key match
+                changeDashboardViewToursType();
                 break;
             case 'MediArrived': // Ensured correct key match
                 changeDashboardViewMedArrivedi();
@@ -172,8 +160,8 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'Replied': // Ensured correct key match
                 changeDashboardViewReplied();
                 break;
-            case 'News': // Ensured correct key match
-                changeDashboardViewNews();
+            case 'Story': // Ensured correct key match
+                changeDashboardViewStory();
                 break;
             default:
                 changeDashboardView();

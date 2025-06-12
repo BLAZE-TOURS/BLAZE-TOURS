@@ -11,14 +11,12 @@ if (isset($_SESSION["adminuser"])) {
     }
     $start_from = ($page - 1) * $limit;
 
-    // Modified query to join company and logo tables
-    $donate_rs = Database::search("SELECT * FROM `donate` LIMIT $start_from, $limit");
-    $donate_n = $donate_rs->num_rows;
-    $total_donate_records = Database::search("SELECT COUNT(*) FROM `donate`")->fetch_row()[0];
-    $total_donate_pages = ceil($total_donate_records / $limit);
+    $story_rs = Database::search("SELECT * FROM `story` LIMIT $start_from, $limit");
+    $story_n = $story_rs->num_rows;
+    $total_story_records = Database::search("SELECT COUNT(*) FROM `story`")->fetch_row()[0];
+    $total_story_pages = ceil($total_story_records / $limit);
 } else {
     echo ("You are not a valid user");
     header("Refresh: 2; URL=adminSignIn.php"); // Refresh the page after 2 seconds
     exit();
 }
-?>  

@@ -11,9 +11,9 @@ if (isset($_SESSION["adminuser"])) {
     }
     $start_from = ($page - 1) * $limit;
 
-    $medi_rs = Database::search("SELECT meditation.*, meditation_type.name AS meditation_type_name, meditation_type.start AS meditation_type_start, meditation_type.end AS meditation_type_end FROM `meditation` INNER JOIN `meditation_type` ON meditation.meditation_type_id = meditation_type.id WHERE meditation.status_id = 2 LIMIT $start_from, $limit");
+    $medi_rs = Database::search("SELECT meditation.*, tours_type.name AS tours_type_name FROM `meditation` INNER JOIN `tours_type` ON meditation.tours_type_id = tours_type.id WHERE meditation.status_id = 2 LIMIT $start_from, $limit");
     $medi_n = $medi_rs->num_rows;
-    $total_medi_records = Database::search("SELECT COUNT(*) FROM `meditation` INNER JOIN `meditation_type` ON `meditation`.meditation_type_id=`meditation_type`.id WHERE meditation.status_id = 2")->fetch_row()[0];
+    $total_medi_records = Database::search("SELECT COUNT(*) FROM `meditation` INNER JOIN `tours_type` ON `meditation`.tours_type_id=`tours_type`.id WHERE meditation.status_id = 2")->fetch_row()[0];
     $total_medi_pages = ceil($total_medi_records / $limit);
 } else {
     echo ("You are not a valid user");

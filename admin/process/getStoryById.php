@@ -2,7 +2,7 @@
 require "../connection.php";
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
-    $result = Database::search("SELECT * FROM news WHERE id = $id");
+    $result = Database::search("SELECT * FROM story WHERE id = $id");
     if ($result && $result->num_rows > 0) {
         echo json_encode($result->fetch_assoc());
     } else {

@@ -63,8 +63,6 @@
                   <th>Date</th>
                   <th>People of Count</th>
                   <th>Meditation Name</th>
-                  <th>Start Time</th>
-                  <th>End Time</th>
                   <th>Send Whatsapp Message</th>
                 </tr>
               </thead>
@@ -80,9 +78,7 @@
                       <td><?php echo $row["email"]; ?></td>
                       <td class="booking-date"><?php echo $row["date"]; ?></td>
                       <td><?php echo $row["numberOfCount"]; ?></td>
-                      <td><?php echo $row["meditation_type_name"]; ?></td>
-                      <td><?php echo $row["meditation_type_start"]; ?></td>
-                      <td><?php echo $row["meditation_type_end"]; ?></td>
+                      <td><?php echo $row["tours_type_name"]; ?></td>
                       <td>
                         <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Namo%20Buddhaya%20<?php echo urlencode($row["name"]); ?>,Thank%20you%20for%20booking%20the%20Meditation%20program%20at%20Rakkittakanda%20Raja%20Maha%20Viharaya."
                           target="_blank"
