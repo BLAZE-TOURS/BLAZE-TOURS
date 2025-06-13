@@ -313,6 +313,32 @@ if (isset($_SESSION["adminuser"])) {
                                         </ul>
                                     </div>
                                 </li>
+                                <li>
+                                    <a href="javascript:void(0);" id="sidebarToursBtn" onclick="toggleSidebarMenu('sidebarTours', 'sidebarToursBtn')">
+                                        <i data-feather="map-pin"></i>
+                                        <span>Tours</span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="sidebar-collapse" id="sidebarTours">
+                                        <ul class="nav-second-level">
+                                            <li>
+                                                <a href="#" class="tp-link" onclick="">
+                                                    Manage Tours
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="tp-link" onclick="">
+                                                    Add Tours
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="tp-link" onclick="changeDashboardViewToursType();">
+                                                    Tour Types
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
 
                                 <li>
                                     <a href="#" onclick="changeDashboardViewCompany();">
@@ -321,7 +347,6 @@ if (isset($_SESSION["adminuser"])) {
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
-
                                 <li>
                                     <a href="#" onclick="changeDashboardViewEmail();">
                                         <i data-feather="send"></i>
@@ -361,13 +386,7 @@ if (isset($_SESSION["adminuser"])) {
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewToursType();">
-                                        <i data-feather="clock"></i>
-                                        <span>Tours Type</span>
-                                        <!-- <span class="menu-arrow"></span> -->
-                                    </a>
-                                </li>
+
                                 <li>
                                     <a style="color: red;" class="fw-bold" href="#" onclick="changeDashboardViewDonation();">
                                         <i data-feather="log-out"></i>
