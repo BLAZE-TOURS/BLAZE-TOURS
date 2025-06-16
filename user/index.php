@@ -70,12 +70,11 @@
      Preloader
   ==============================-->
 
-    <div id="preloader" class="preloader">
+    <!-- <div id="preloader" class="preloader">
         <div class="preloader-inner">
-            <!-- Logo Image -->
+
             <img src="assets/img/Preloader-logo.png" alt="Logo">
 
-            <!-- Loading Animation -->
             <div class="txt-loading">
                 <span preloader-text="W" class="characters">W</span>
                 <span preloader-text="A" class="characters">A</span>
@@ -85,7 +84,8 @@
                 <span preloader-text="." class="characters">.</span>
             </div>
         </div>
-    </div> <!--==============================
+    </div>  -->
+    <!--==============================
     Sidemenu
 ============================== -->
     <div class="sidemenu-wrapper sidemenu-info ">
@@ -720,7 +720,7 @@ About Area
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-35"><a href="#" class="th-btn style3 th-icon">Learn More</a></div>
+                        <div class="mt-35"><a href="contact.php" class="th-btn style3 th-icon">Learn More</a></div>
                     </div>
                 </div>
             </div>
@@ -803,7 +803,7 @@ Service Area
                                     <h4 class="tour-box_price"><span class="currency">$33.00</span>/Person</h4>
                                     <div class="tour-action">
                                         <span><i class="fa-light fa-clock"></i>4 Hours</span>
-                                        <a href="#" class="th-btn style4 th-icon">Book Now</a>
+                                        <a href="private-tour.php" class="th-btn style4 th-icon">Book Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -825,7 +825,7 @@ Service Area
                                     <h4 class="tour-box_price"><span class="currency">$34.00</span>/Person</h4>
                                     <div class="tour-action">
                                         <span><i class="fa-light fa-clock"></i>4 Hours</span>
-                                        <a href="#" class="th-btn style4 th-icon">Book Now</a>
+                                        <a href="private-tour.php" class="th-btn style4 th-icon">Book Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -847,7 +847,7 @@ Service Area
                                     <h4 class="tour-box_price"><span class="currency">$34.00</span>/Person</h4>
                                     <div class="tour-action">
                                         <span><i class="fa-light fa-clock"></i>4 Hours</span>
-                                        <a href="#" class="th-btn style4 th-icon">Book Now</a>
+                                        <a href="private-tour.php" class="th-btn style4 th-icon">Book Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -870,7 +870,7 @@ Service Area
                                     <h4 class="tour-box_price"><span class="currency">$39.00</span>/Person</h4>
                                     <div class="tour-action">
                                         <span><i class="fa-light fa-clock"></i>4 Hours</span>
-                                        <a href="#" class="th-btn style4 th-icon">Book Now</a>
+                                        <a href="private-tour.php" class="th-btn style4 th-icon">Book Now</a>
                                     </div>
                                 </div>
                             </div>
