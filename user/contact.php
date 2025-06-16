@@ -77,12 +77,12 @@
      Preloader
   ==============================-->
 
-    <div id="preloader" class="preloader">
+    <!-- <div id="preloader" class="preloader">
         <div class="preloader-inner">
-            <!-- Logo Image -->
+        
             <img src="assets/img/logo.svg" alt="Logo">
             
-            <!-- Loading Animation -->
+        
             <div class="txt-loading">
                 <span preloader-text="W" class="characters">W</span>
                 <span preloader-text="A" class="characters">A</span>
@@ -92,7 +92,8 @@
                 <span preloader-text="." class="characters">.</span>
             </div>
         </div>
-    </div> <!--==============================
+    </div> -->
+     <!--==============================
     Sidemenu
 ============================== -->
     <div class="sidemenu-wrapper sidemenu-info ">

@@ -91,7 +91,7 @@
                     </div>
                     <div class="col-auto d-none d-xl-block">
                         <div class="header-button">
-                            <a href="#" class="th-btn style3 th-icon">Book Now</a>
+                            <a href="#" onclick="window.location.href='private-tour.php'" class="th-btn style3 th-icon">Book Now</a>
 
                         </div>
                     </div>
