@@ -331,6 +331,7 @@ if (isset($_SESSION["adminuser"])) {
                                                     Add Tours
                                                 </a>
                                             </li>
+                                            
                                             <li>
                                                 <a href="#" class="tp-link" onclick="changeDashboardViewToursType();">
                                                     Tour Types
