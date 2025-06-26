@@ -62,7 +62,7 @@
                   <th>Email</th>
                   <th>Date</th>
                   <th>People of Count</th>
-                  <th>Meditation Name</th>
+                  <th>Tour Name</th>
                   <th>Send Whatsapp Message</th>
                   <th>Confirmation</th>
                 </tr>
@@ -81,7 +81,7 @@
                       <td><?php echo $row["numberOfCount"]; ?></td>
                       <td><?php echo $row["tours_type_name"]; ?></td>
                       <td>
-                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Namo%20Buddhaya%20<?php echo urlencode($row["name"]); ?>,Thank%20you%20for%20booking%20the%20Meditation%20program%20at%20Rakkittakanda%20Raja%20Maha%20Viharaya."
+                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Thank%20You%20<?php echo urlencode($row["name"]); ?>,Thank%20you%20for%20booking%20the%20Meditation%20program%20at%20Rakkittakanda%20Raja%20Maha%20Viharaya."
                           target="_blank"
                           class="btn btn-success btn-sm">
                           Send Message
@@ -158,7 +158,7 @@
       cancelButtonText: 'No'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch('updateMediStatus.php', {
+        fetch('updateTourStatus.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: 'id=' + encodeURIComponent(id)
