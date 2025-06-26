@@ -5,7 +5,7 @@ require "../connection.php";
 if (isset($_GET['id'])) {
     $id = Database::escape_string($_GET['id']);
 
-    $query = "SELECT i.id, i.title, i.url FROM gallary i WHERE i.id = '$id'";
+    $query = "SELECT i.id, i.title, i.url, i.tour_id FROM gallary i WHERE i.id = '$id'";
     $result = Database::search($query);
 
     if ($result->num_rows > 0) {

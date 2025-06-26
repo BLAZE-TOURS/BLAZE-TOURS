@@ -219,6 +219,6 @@
     // Load for Update modal (with selected)
     document.getElementById('updateImageModal').addEventListener('show.bs.modal', function () {
         // selected value will be set after loading image data
-        loadTours('update_tour_id');
+        // loadTours('update_tour_id');
     });
 </script>

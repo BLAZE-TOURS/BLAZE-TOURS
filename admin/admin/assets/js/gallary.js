@@ -117,7 +117,7 @@ function loadImageData(id) {
                 imagePreview.style.display = 'none';
             }
 
-            // Set the tour dropdown in the update modal
+            // Set the tour dropdown in the update modal with selected value
             loadTours('update_tour_id', image.tour_id);
 
             document.getElementById('updateImageButton').dataset.id = id;
