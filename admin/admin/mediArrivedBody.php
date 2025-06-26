@@ -62,7 +62,7 @@
                   <th>Email</th>
                   <th>Date</th>
                   <th>People of Count</th>
-                  <th>Meditation Name</th>
+                  <th>Tour Name</th>
                   <th>Send Whatsapp Message</th>
                 </tr>
               </thead>

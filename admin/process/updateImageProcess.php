@@ -5,9 +5,10 @@ require "../connection.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = Database::escape_string($_POST['id']);
     $image_title = Database::escape_string($_POST['image_title']);
+    $tour_id = isset($_POST['tour_id']) && $_POST['tour_id'] !== "" ? Database::escape_string($_POST['tour_id']) : "NULL";
 
     // Update the title
-    $sql = "UPDATE gallary SET `title` = '$image_title' WHERE `id` = '$id'";
+    $sql = "UPDATE gallary SET `title` = '$image_title', `tour_id` = $tour_id WHERE `id` = '$id'";
     if (Database::$connection->query($sql) === TRUE) {
         // Handle image upload if a new image is provided
         if (!empty($_FILES['logo']['name'])) {
