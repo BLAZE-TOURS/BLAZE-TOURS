@@ -343,6 +343,8 @@ if (isset($_SESSION["adminuser"])) {
 
                 <div id="addLocationContainer" class="d-none"> <?php include "../tour/addLocationBody.php"; ?> </div>
 
+                <div id="liveMapContainer" class="d-none"> <?php include "../tour/livemapBody.php"; ?> </div>
+
 
             </div>
 
