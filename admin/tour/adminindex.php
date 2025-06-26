@@ -265,7 +265,7 @@ if (isset($_SESSION["adminuser"])) {
 
                                 
                                 <li>
-                                    <a href="#" onclick="changeDashboardViewTours();">
+                                    <a href="#" onclick="changeDashboardView();">
                                         <i data-feather="map-pin"></i>
                                         <span>Tours</span>
                                     </a>
@@ -329,8 +329,6 @@ if (isset($_SESSION["adminuser"])) {
 
                 <div id="toursTypeContainer" class="d-none"> <?php include 'fetchToursType.php'; ?> <?php include "../tour/toursTypeBody.php"; ?> </div>
 
-                <div id="toursContainer" class="d-none"> <?php include 'fetchTours.php'; ?> <?php include "../tour/toursBody.php"; ?> </div>
-
 
             </div>
 
@@ -388,6 +386,8 @@ if (isset($_SESSION["adminuser"])) {
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="../tour/assets/js/mail.js"></script>
         <script src="../tour/assets/js/tourstype.js"></script>
+        <script src="../tour/assets/js/tour.js"></script>
+        
 
         </script>
 

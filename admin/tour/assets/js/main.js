@@ -14,15 +14,6 @@ function changeDashboardViewToursType() {
     toursTypeContainer.style.display = 'block';
 }
 
-function changeDashboardViewTours() {
-    history.pushState(null, '', 'adminindex.php?view=Tours');
-    sessionStorage.setItem('currentView', 'Tours');
-    hideAllContainers();
-    var toursContainer = document.getElementById('toursContainer');
-    toursContainer.classList.remove('d-none');
-    toursContainer.style.display = 'block';
-}
-
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
@@ -46,9 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
             case 'ToursType': // Ensured correct key match
                 changeDashboardViewToursType();
-                break;
-            case 'Tours': // Ensured correct key match
-                changeDashboardViewTours();
                 break;
             default:
                 changeDashboardView();
