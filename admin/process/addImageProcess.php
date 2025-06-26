@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $image_title = Database::escape_string($_POST['image_title']);
     $image = $_FILES['logo'];
+    $tour_id = isset($_POST['tour_id']) && $_POST['tour_id'] !== "" ? Database::escape_string($_POST['tour_id']) : "NULL";
 
     // Handle file upload
     $target_dir = "../admin/images/gallry/";
@@ -41,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Insert data into the database
     Database::setUpConnection();
-    $sql = "INSERT INTO gallary(`title`, `url`) VALUES ('$image_title', '$target_file')";
+    $sql = "INSERT INTO gallary(`title`, `url`, `tour_id`) VALUES ('$image_title', '$target_file', $tour_id)";
 
     if (Database::$connection->query($sql) === TRUE) {
         echo "New image added successfully";
