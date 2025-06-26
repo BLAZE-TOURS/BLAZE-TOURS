@@ -314,31 +314,10 @@ if (isset($_SESSION["adminuser"])) {
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);" id="sidebarToursBtn" onclick="toggleSidebarMenu('sidebarTours', 'sidebarToursBtn')">
+                                    <a href="../tour/adminindex.php">
                                         <i data-feather="map-pin"></i>
                                         <span>Tours</span>
-                                        <span class="menu-arrow"></span>
                                     </a>
-                                    <div class="sidebar-collapse" id="sidebarTours">
-                                        <ul class="nav-second-level">
-                                            <li>
-                                                <a href="#" class="tp-link" onclick="">
-                                                    Manage Tours
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="tp-link" onclick="">
-                                                    Add Tours
-                                                </a>
-                                            </li>
-                                            
-                                            <li>
-                                                <a href="#" class="tp-link" onclick="changeDashboardViewToursType();">
-                                                    Tour Types
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </li>
 
                                 <li>
@@ -419,8 +398,6 @@ if (isset($_SESSION["adminuser"])) {
                 <div id="mediContainer" class="d-none"> <?php include 'fetchMedi.php'; ?> <?php include "../admin/mediBody.php"; ?> </div>
 
                 <div id="mediMediArrivedContainer" class="d-none"> <?php include 'fetchMediArrived.php'; ?> <?php include "../admin/mediArrivedBody.php"; ?> </div>
-
-                <div id="toursTypeContainer" class="d-none"> <?php include 'fetchToursType.php'; ?> <?php include "../admin/toursTypeBody.php"; ?> </div>
 
                 <div id="MessagesContainer" class="d-none"> <?php include 'fetchMessages.php'; ?> <?php include "../admin/MessagesBody.php"; ?> </div>
 

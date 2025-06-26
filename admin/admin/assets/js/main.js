@@ -51,15 +51,6 @@ function changeDashboardViewMedArrivedi() {
 }
 
 
-function changeDashboardViewToursType() {
-    history.pushState(null, '', 'adminindex.php?view=ToursType');
-    sessionStorage.setItem('currentView', 'ToursType');
-    hideAllContainers();
-    var toursTypeContainer = document.getElementById('toursTypeContainer');
-    toursTypeContainer.classList.remove('d-none');
-    toursTypeContainer.style.display = 'block';
-}
-
 function changeDashboardViewGallary() {
     history.pushState(null, '', 'adminindex.php?view=Gallary');
     sessionStorage.setItem('currentView', 'Gallary'); // Ensure key matches retrieval
@@ -112,7 +103,7 @@ function changeDashboardViewStory() {
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'toursTypeContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer'];
+    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -147,9 +138,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
             case 'Medi': // Ensured correct key match
                 changeDashboardViewMedi();
-                break;
-            case 'ToursType': // Ensured correct key match
-                changeDashboardViewToursType();
                 break;
             case 'MediArrived': // Ensured correct key match
                 changeDashboardViewMedArrivedi();
