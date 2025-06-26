@@ -259,86 +259,36 @@ if (isset($_SESSION["adminuser"])) {
 
                             <ul id="side-menu" style="margin-top: 30px;">
 
-                                <li class="menu-title">Menu</li>
-                                <li>
-                                    <a href="#" onclick="changeDashboardView();">
-                                        <i data-feather="home"></i>
-                                        <span> Dashboard </span>
-                                        <!-- <span class="menu-arrow"></span> -->
-                                    </a>
-                                </li>
 
 
                                 <li class="menu-title">Pages</li>
 
-                                <li>
-                                    <a href="javascript:void(0);" id="sidebarReservationBtn" onclick="toggleSidebarMenu('sidebarReservation', 'sidebarReservationBtn')">
-                                        <i data-feather="calendar"></i>
-                                        <span>Reservation</span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <div class="sidebar-collapse" id="sidebarReservation">
-                                        <ul class="nav-second-level">
-                                            <li>
-                                                <a href="#" class="tp-link" onclick="changeDashboardViewMedi();">
-                                                    Received
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="tp-link" onclick="changeDashboardViewMedArrivedi();">
-                                                    Arrived
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" id="sidebarInquiryBtn" onclick="toggleSidebarMenu('sidebarInquiry', 'sidebarInquiryBtn')">
-                                        <i data-feather="help-circle"></i>
-                                        <span>Inquiry</span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <div class="sidebar-collapse" id="sidebarInquiry">
-                                        <ul class="nav-second-level">
-                                            <li>
-                                                <a href="#" class="tp-link" onclick="changeDashboardViewMessages();">
-                                                    Messages
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="tp-link" onclick="changeDashboardViewReplied();">
-                                                    Replied
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
+                                
                                 <li>
                                     <a href="tourindex.php">
                                         <i data-feather="map-pin"></i>
                                         <span>Tours</span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewEmail();">
+                                        <i data-feather="send"></i>
+                                        <span>Tour Type</span>
+                                        <!-- <span class="menu-arrow"></span> -->
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewSubscribers();">
+                                        <i data-feather="users"></i>
+                                        <span>Add Location</span>
+                                        <!-- <span class="menu-arrow"></span> -->
+                                    </a>
+                                </li>
 
                                 <li>
                                     <a href="#" onclick="changeDashboardViewCompany();">
                                         <i data-feather="briefcase"></i>
-                                        <span>Company</span>
-                                        <!-- <span class="menu-arrow"></span> -->
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewEmail();">
-                                        <i data-feather="send"></i>
-                                        <span>Send-Emails</span>
-                                        <!-- <span class="menu-arrow"></span> -->
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewSubscribers();">
-                                        <i data-feather="users"></i>
-                                        <span>Subscribers</span>
+                                        <span>Tour Images</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
@@ -346,7 +296,7 @@ if (isset($_SESSION["adminuser"])) {
                                 <li>
                                     <a href="#" onclick="changeDashboardViewGallary();">
                                         <i data-feather="image"></i>
-                                        <span>Gallary</span>
+                                        <span>Live Map</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
@@ -354,7 +304,7 @@ if (isset($_SESSION["adminuser"])) {
                                 <li>
                                     <a href="#" onclick="changeDashboardViewShorts();">
                                         <i data-feather="video"></i>
-                                        <span>Shorts</span>
+                                        <span>Time</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
@@ -362,20 +312,19 @@ if (isset($_SESSION["adminuser"])) {
                                 <li>
                                     <a href="#" onclick="changeDashboardViewStory();">
                                         <i data-feather="book-open"></i>
-                                        <span>Story</span>
+                                        <span>Highlight</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a style="color: red;" class="fw-bold" href="#" onclick="changeDashboardViewDonation();">
+                                    <a style="color: red;" class="fw-bold" href="adminindex.php">
                                         <i data-feather="log-out"></i>
-                                        <span onclick="signout();">Logout</span>
+                                        <span>Back</span>
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
                             </ul>
-
                         </div>
                         <!-- End Sidebar -->
 
