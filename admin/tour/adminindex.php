@@ -294,16 +294,16 @@ if (isset($_SESSION["adminuser"])) {
                                 </li>
 
                                 <li>
-                                    <a href="#" onclick="changeDashboardViewTourImage();">
-                                        <i data-feather="image"></i>
-                                        <span>Tour Images</span>
+                                    <a href="#" onclick="changeDashboardViewLivemap();">
+                                        <i data-feather="globe"></i>
+                                        <span>Live Map</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="#" onclick="changeDashboardViewLivemap();">
-                                        <i data-feather="globe"></i>
-                                        <span>Live Map</span>
+                                    <a href="#" onclick="changeDashboardViewTourImage();">
+                                        <i data-feather="image"></i>
+                                        <span>Tour Images</span>
                                     </a>
                                 </li>
 
@@ -401,6 +401,7 @@ if (isset($_SESSION["adminuser"])) {
         <script src="../tour/assets/js/mail.js"></script>
         <script src="../tour/assets/js/tourstype.js"></script>
         <script src="../tour/assets/js/tour.js"></script>
+        <script src="../tour/assets/js/marker.js"></script>
 
 
         </script>
