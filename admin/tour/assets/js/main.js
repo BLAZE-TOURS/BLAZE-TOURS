@@ -14,10 +14,19 @@ function changeDashboardViewToursType() {
     toursTypeContainer.style.display = 'block';
 }
 
+function changeDashboardViewAddTour() {
+    history.pushState(null, '', 'adminindex.php?view=AddTours');
+    sessionStorage.setItem('currentView', 'AddTours');
+    hideAllContainers();
+    var addToursContainer = document.getElementById('addToursContainer');
+    addToursContainer.classList.remove('d-none');
+    addToursContainer.style.display = 'block';
+}
+
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['toursTypeContainer','toursContainer'];
+    var containers = ['toursTypeContainer','toursContainer','addToursContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -37,6 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
             case 'ToursType': // Ensured correct key match
                 changeDashboardViewToursType();
+                break;
+            case 'AddTours': // Ensured correct key match
+                changeDashboardViewAddTour();
                 break;
             default:
                 changeDashboardView();

@@ -267,9 +267,16 @@ if (isset($_SESSION["adminuser"])) {
                                 <li>
                                     <a href="#" onclick="changeDashboardView();">
                                         <i data-feather="map-pin"></i>
-                                        <span>Tours</span>
+                                        <span>All Tours</span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewAddTour();">
+                                        <i data-feather="plus-square"></i>
+                                        <span>Add Tour</span>
+                                    </a>
+                                </li>
+                                <li>
                                 <li>
                                     <a href="#" onclick="changeDashboardViewToursType();">
                                         <i data-feather="layers"></i>
@@ -325,9 +332,11 @@ if (isset($_SESSION["adminuser"])) {
 
                     </div>
                 </div>
-                <div id="HomeBodyContainer"> <?php include "../tour/toursBody.php"; ?> </div>
+                <div id="HomeBodyContainer"> <?php include 'fetchTours.php'; ?> <?php include "../tour/toursBody.php"; ?> </div>
 
                 <div id="toursTypeContainer" class="d-none"> <?php include 'fetchToursType.php'; ?> <?php include "../tour/toursTypeBody.php"; ?> </div>
+
+                <div id="addToursContainer" class="d-none">  <?php include "../tour/addToursBody.php"; ?> </div>
 
 
             </div>
