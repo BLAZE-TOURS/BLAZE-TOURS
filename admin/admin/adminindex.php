@@ -314,7 +314,7 @@ if (isset($_SESSION["adminuser"])) {
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="../tour/adminindex.php">
+                                    <a href="../tour/adminindex.php?view=Tours">
                                         <i data-feather="map-pin"></i>
                                         <span>Tours</span>
                                     </a>
