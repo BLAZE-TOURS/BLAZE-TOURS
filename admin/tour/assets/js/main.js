@@ -23,10 +23,18 @@ function changeDashboardViewAddTour() {
     addToursContainer.style.display = 'block';
 }
 
+function changeDashboardViewAddLocation() {
+    history.pushState(null, '', 'adminindex.php?view=AddLocation');
+    sessionStorage.setItem('currentView', 'AddLocation');
+    hideAllContainers();
+    var addLocationContainer = document.getElementById('addLocationContainer');
+    addLocationContainer.classList.remove('d-none');
+    addLocationContainer.style.display = 'block';
+}
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['toursTypeContainer','toursContainer','addToursContainer'];
+    var containers = ['toursTypeContainer', 'toursContainer', 'addToursContainer', 'addLocationContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -49,6 +57,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
             case 'AddTours': // Ensured correct key match
                 changeDashboardViewAddTour();
+                break;
+            case 'AddLocation': // Ensured correct key match
+                changeDashboardViewAddLocation();
                 break;
             default:
                 changeDashboardView();

@@ -40,6 +40,9 @@ if (isset($_SESSION["adminuser"])) {
         <!--Table UI-->
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
 
+        <!-- Google Maps API -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzj96kj0RB6UZ7iNAvuLm6fLBWO4mfa5A&libraries=places"></script>
+
 
         <style>
             .sidebar {
@@ -263,7 +266,7 @@ if (isset($_SESSION["adminuser"])) {
 
                                 <li class="menu-title">Pages</li>
 
-                                
+
                                 <li>
                                     <a href="#" onclick="changeDashboardView();">
                                         <i data-feather="map-pin"></i>
@@ -336,7 +339,9 @@ if (isset($_SESSION["adminuser"])) {
 
                 <div id="toursTypeContainer" class="d-none"> <?php include 'fetchToursType.php'; ?> <?php include "../tour/toursTypeBody.php"; ?> </div>
 
-                <div id="addToursContainer" class="d-none">  <?php include "../tour/addToursBody.php"; ?> </div>
+                <div id="addToursContainer" class="d-none"> <?php include "../tour/addToursBody.php"; ?> </div>
+
+                <div id="addLocationContainer" class="d-none"> <?php include "../tour/addLocationBody.php"; ?> </div>
 
 
             </div>
@@ -396,7 +401,7 @@ if (isset($_SESSION["adminuser"])) {
         <script src="../tour/assets/js/mail.js"></script>
         <script src="../tour/assets/js/tourstype.js"></script>
         <script src="../tour/assets/js/tour.js"></script>
-        
+
 
         </script>
 
