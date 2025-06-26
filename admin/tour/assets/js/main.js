@@ -1,6 +1,6 @@
 function changeDashboardView() {
-    history.pushState(null, '', 'adminindex.php?view=dashboard');
-    sessionStorage.setItem('currentView', 'dashboard');
+    history.pushState(null, '', 'adminindex.php?view=Tours');
+    sessionStorage.setItem('currentView', 'Tours');
     hideAllContainers();
     document.querySelector('.content-page').style.display = 'block';
 }
@@ -14,10 +14,19 @@ function changeDashboardViewToursType() {
     toursTypeContainer.style.display = 'block';
 }
 
+function changeDashboardViewTours() {
+    history.pushState(null, '', 'adminindex.php?view=Tours');
+    sessionStorage.setItem('currentView', 'Tours');
+    hideAllContainers();
+    var toursContainer = document.getElementById('toursContainer');
+    toursContainer.classList.remove('d-none');
+    toursContainer.style.display = 'block';
+}
+
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['toursTypeContainer', ];
+    var containers = ['toursTypeContainer','toursContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -32,11 +41,14 @@ document.addEventListener('DOMContentLoaded', function () {
     var currentView = sessionStorage.getItem('currentView');
     if (currentView) {
         switch (currentView) {
-            case 'dashboard':
+            case 'Tours':
                 changeDashboardView();
                 break;
             case 'ToursType': // Ensured correct key match
                 changeDashboardViewToursType();
+                break;
+            case 'Tours': // Ensured correct key match
+                changeDashboardViewTours();
                 break;
             default:
                 changeDashboardView();

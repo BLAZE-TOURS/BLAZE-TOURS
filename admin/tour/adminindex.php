@@ -325,10 +325,11 @@ if (isset($_SESSION["adminuser"])) {
 
                     </div>
                 </div>
-                <div id="HomeBodyContainer"> <?php include "../tour/HomeBody.php"; ?> </div>
-
+                <div id="HomeBodyContainer"> <?php include "../tour/toursBody.php"; ?> </div>
 
                 <div id="toursTypeContainer" class="d-none"> <?php include 'fetchToursType.php'; ?> <?php include "../tour/toursTypeBody.php"; ?> </div>
+
+                <div id="toursContainer" class="d-none"> <?php include 'fetchTours.php'; ?> <?php include "../tour/toursBody.php"; ?> </div>
 
 
             </div>
