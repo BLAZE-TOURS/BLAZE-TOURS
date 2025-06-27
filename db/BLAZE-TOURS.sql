@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `booking` (
   KEY `fk_booking_tour1_idx` (`tour_id`),
   CONSTRAINT `fk_booking_tour1` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`),
   CONSTRAINT `fk_meditation_status1` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table blaze-tours_db.booking: ~0 rows (approximately)
 
@@ -76,11 +76,11 @@ CREATE TABLE IF NOT EXISTS `gallary` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
-  `tour_id` int NOT NULL,
+  `tour_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_gallary_tour1_idx` (`tour_id`),
   CONSTRAINT `fk_gallary_tour1` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table blaze-tours_db.gallary: ~0 rows (approximately)
 
@@ -130,11 +130,13 @@ CREATE TABLE IF NOT EXISTS `location` (
   `lng` float DEFAULT NULL,
   `icon_url` text,
   `description` text,
-  `stop-duration_time` int DEFAULT NULL,
+  `stop_duration_time` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.location: ~0 rows (approximately)
+-- Dumping data for table blaze-tours_db.location: ~3 rows (approximately)
+INSERT INTO `location` (`id`, `name`, `address`, `lat`, `lng`, `icon_url`, `description`, `stop_duration_time`) VALUES
+	(21, 'Badulla City', 'X3Q4+WQV, Bandarawela Rd, Badulla, Sri Lanka', 6.98997, 81.0569, '../tour/images/marker/icon_685e83d31be79.png', 'Badulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla CityBadulla City', 10);
 
 -- Dumping structure for table blaze-tours_db.logo
 CREATE TABLE IF NOT EXISTS `logo` (
@@ -160,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `massage` (
   PRIMARY KEY (`id`),
   KEY `fk_massage_status1_idx` (`status_id`),
   CONSTRAINT `fk_massage_status1` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table blaze-tours_db.massage: ~0 rows (approximately)
 
@@ -236,18 +238,23 @@ CREATE TABLE IF NOT EXISTS `tour` (
   CONSTRAINT `fk_tour_location1` FOREIGN KEY (`location_id`) REFERENCES `location` (`id`),
   CONSTRAINT `fk_tour_status1` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`),
   CONSTRAINT `fk_tour_tours_type1` FOREIGN KEY (`tours_type_id`) REFERENCES `tours_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table blaze-tours_db.tour: ~0 rows (approximately)
+INSERT INTO `tour` (`id`, `name`, `description`, `duration`, `kids_price`, `adult_price`, `maximum_people_count`, `location_id`, `tours_type_id`, `status_id`) VALUES
+	(2, 'edkugh', 'rtbtr', 54, 545, 4545, 44, 21, 1, 1);
 
 -- Dumping structure for table blaze-tours_db.tours_type
 CREATE TABLE IF NOT EXISTS `tours_type` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.tours_type: ~0 rows (approximately)
+-- Dumping data for table blaze-tours_db.tours_type: ~1 rows (approximately)
+INSERT INTO `tours_type` (`id`, `name`) VALUES
+	(1, 'City'),
+	(3, 'Adventure');
 
 -- Dumping structure for table blaze-tours_db.tour_image
 CREATE TABLE IF NOT EXISTS `tour_image` (
