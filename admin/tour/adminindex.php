@@ -292,7 +292,12 @@ if (isset($_SESSION["adminuser"])) {
                                         <span>Add Location</span>
                                     </a>
                                 </li>
-
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewAllLocation();">
+                                        <i data-feather="map-pin"></i>
+                                        <span>All Location</span>
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="../liveMap/livemapBody.php" target="_blank">
                                         <i data-feather="globe"></i>
@@ -343,6 +348,7 @@ if (isset($_SESSION["adminuser"])) {
 
                 <div id="addLocationContainer" class="d-none"> <?php include "../tour/addLocationBody.php"; ?> </div>
 
+                <div id="allLocationContainer" class="d-none"> <?php include 'fetchAllLocation.php'; ?> <?php include "../tour/allLocationBody.php"; ?> </div>        
 
             </div>
 

@@ -32,18 +32,18 @@ function changeDashboardViewAddLocation() {
     addLocationContainer.style.display = 'block';
 }
 
-function changeDashboardViewLivemap() {
-    history.pushState(null, '', 'adminindex.php?view=Livemap');
-    sessionStorage.setItem('currentView', 'Livemap');
+function changeDashboardViewAllLocation() {
+    history.pushState(null, '', 'adminindex.php?view=AllLocation');
+    sessionStorage.setItem('currentView', 'AllLocation');
     hideAllContainers();
-    var liveMapContainer = document.getElementById('liveMapContainer');
-    liveMapContainer.classList.remove('d-none');
-    liveMapContainer.style.display = 'block';
+    var allLocationContainer = document.getElementById('allLocationContainer');
+    allLocationContainer.classList.remove('d-none');
+    allLocationContainer.style.display = 'block';
 }
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['toursTypeContainer', 'toursContainer', 'addToursContainer', 'addLocationContainer','liveMapContainer'];
+    var containers = ['toursTypeContainer', 'toursContainer', 'addToursContainer', 'addLocationContainer','allLocationContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'AddLocation': // Ensured correct key match
                 changeDashboardViewAddLocation();
                 break;
-            case 'Livemap': // Ensured correct key match
-                changeDashboardViewLivemap();
+            case 'AllLocation': // Ensured correct key match
+                changeDashboardViewAllLocation();
                 break;
             default:
                 changeDashboardView();
