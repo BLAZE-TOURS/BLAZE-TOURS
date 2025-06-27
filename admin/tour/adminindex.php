@@ -294,7 +294,7 @@ if (isset($_SESSION["adminuser"])) {
                                 </li>
 
                                 <li>
-                                    <a href="#" onclick="changeDashboardViewLivemap();">
+                                    <a href="../livemapBody.php" target="_blank">
                                         <i data-feather="globe"></i>
                                         <span>Live Map</span>
                                     </a>
@@ -342,8 +342,6 @@ if (isset($_SESSION["adminuser"])) {
                 <div id="addToursContainer" class="d-none"> <?php include "../tour/addToursBody.php"; ?> </div>
 
                 <div id="addLocationContainer" class="d-none"> <?php include "../tour/addLocationBody.php"; ?> </div>
-
-                <div id="liveMapContainer" class="d-none"> <?php include "../tour/livemapBody.php"; ?> </div>
 
 
             </div>
