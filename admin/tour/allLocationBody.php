@@ -43,6 +43,55 @@
                         </div>
                     </div>  
 
+                    <!-- Update Location Modal -->
+                    <div class="modal fade" id="updateLocationModal" tabindex="-1" aria-labelledby="updateLocationModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="updateLocationModalLabel">Update Location</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="validation-errors-location-update" class="alert alert-danger d-none" role="alert"></div>
+                                    <div id="success-message-location-update" class="alert alert-success d-none" role="alert"></div>
+                                    <form id="updateLocationForm">
+                                        <input type="hidden" name="id" id="update_location_id">
+                                        <div class="row g-3">
+                                            <div class="col-12">
+                                                <label for="update_location_name" class="form-label">Location Name</label>
+                                                <input type="text" class="form-control" name="name" id="update_location_name" required>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="update_location_address" class="form-label">Address</label>
+                                                <input type="text" class="form-control" name="address" id="update_location_address" disabled>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="update_location_lat" class="form-label">Latitude</label>
+                                                <input type="text" class="form-control" name="lat" id="update_location_lat" disabled>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="update_location_lng" class="form-label">Longitude</label>
+                                                <input type="text" class="form-control" name="lng" id="update_location_lng" disabled>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="update_location_description" class="form-label">Description</label>
+                                                <textarea class="form-control" name="description" id="update_location_description"></textarea>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="update_location_stop_time" class="form-label">Stop Time</label>
+                                                <input type="number" class="form-control" name="stop_duration_time" id="update_location_stop_time">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="submitUpdateLocation();">Update Location</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Existing Company List Table -->
                     <div class="table-responsive col-12 mx-auto">
                         <table id="datatable-tourType" class="table table-striped table-bordered dt-responsive nowrap">
@@ -88,7 +137,7 @@
                                             </td> <!-- Hide column -->
                                             <td><?php echo $row["stop_duration_time"]; ?></td>
                                             <td>
-                                                <button class="btn btn-sm btn-success edit-btn" onclick="updateLocation(<?php echo $row['id']; ?>);">
+                                                <button class="btn btn-sm btn-success edit-btn" onclick="confirmUpdateLocation(<?php echo $row['id']; ?>);">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-danger delete-btn" onclick="deleteLocation(<?php echo $row['id']; ?>);">
