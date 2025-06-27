@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $iconPath = Database::escape_string($iconPath);
 
     $sql = sprintf(
-        "INSERT INTO `location` (`name`, `address`, `lat`, `lng`, `icon_url`, `description`, `stop-duration_time`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', %d);",
+        "INSERT INTO `location` (`name`, `address`, `lat`, `lng`, `icon_url`, `description`, `stop_duration_time`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', %d);",
         $name, $address, $lat, $lng, $iconPath, $description, $stop_duration_time
     );
     $result = Database::search($sql);
