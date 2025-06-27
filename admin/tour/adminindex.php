@@ -408,6 +408,7 @@ if (isset($_SESSION["adminuser"])) {
         <script src="../tour/assets/js/tourstype.js"></script>
         <script src="../tour/assets/js/tour.js"></script>
         <script src="../tour/assets/js/marker.js"></script>
+        <script src="../tour/assets/js/alllocation.js"></script>
 
 
         </script>
