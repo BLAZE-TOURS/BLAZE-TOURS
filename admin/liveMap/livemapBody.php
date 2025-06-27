@@ -1,11 +1,11 @@
- <?php require 'connection.php'; ?>
+ <?php require '../connection.php'; ?>
 
  <!DOCTYPE html>
  <html>
 
  <head>
      <title>Live Map | BLAZE TOURS (PVT) LTD </title>
-     <link rel="icon" type="image/png" href="SignIn/images/Untit1.png" />
+     <link rel="icon" type="image/png" href="../SignIn/images/Untit1.png" />
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzj96kj0RB6UZ7iNAvuLm6fLBWO4mfa5A"></script>
      <script>
          function LoadMap() {

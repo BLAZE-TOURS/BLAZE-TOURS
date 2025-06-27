@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $iconPath = 'tour/images/marker/' . $iconName;
+    $iconPath = '../tour/images/marker/' . $iconName;
 
     // Escape values to prevent SQL injection
     $name = Database::escape_string($name);

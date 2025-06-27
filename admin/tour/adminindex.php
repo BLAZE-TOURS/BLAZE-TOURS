@@ -294,7 +294,7 @@ if (isset($_SESSION["adminuser"])) {
                                 </li>
 
                                 <li>
-                                    <a href="../livemapBody.php" target="_blank">
+                                    <a href="../liveMap/livemapBody.php" target="_blank">
                                         <i data-feather="globe"></i>
                                         <span>Live Map</span>
                                     </a>
