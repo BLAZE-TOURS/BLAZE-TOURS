@@ -11,6 +11,7 @@ class Database
         if (!isset(Database::$connection)) {
 
         Database::$connection = new mysqli("localhost", "root", "#Lucky2003sql", "blaze-tours_db", 3306);
+        Database::$connection = new mysqli("localhost", "root", "SMsuperX@262", "blaze-tours_db", 3306);
         //    Database::$connection = new mysqli("localhost", "root", "SMsuperX@262", "rakkiththakanda_db", 3306, '/tmp/mysql.sock');
          //Database::$connection = new mysqli("localhost", "root", "SMsuperX@262", "rakkiththakanda_db", 3306, );
         //Database::$connection = new mysqli("localhost", "rakkitht_db", "SMsuperX@262", "rakkitht_admin_db", 3306);
