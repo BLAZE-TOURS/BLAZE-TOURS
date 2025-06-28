@@ -1,6 +1,6 @@
 <div class="content-page mt-5 fade-in">
     <div class="row justify-content-center">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="card shadow-lg border-0 rounded-lg">
                 <div class="card-body p-5">
                     <h3 class="card-title text-center mb-4">Add Tour</h3>
@@ -8,29 +8,13 @@
                     <div id="success-message1" class="alert alert-success d-none" role="alert"></div>
 
                     <form id="email-form">
-                        <div class="form-group mb-3">
-                            <label for="email" class="form-label">Tour Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="cc-email" class="form-label">Description</label>
-                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="bcc-email" class="form-label">Duration</label>
-                            <input type="number" class="form-control" id="Duration" name="Duration">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="subject" class="form-label">Kids Price:</label>
-                            <input type="number" class="form-control" id="subject" name="subject" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="body-title" class="form-label">Maximum People Count</label>
-                            <input type="number" class="form-control" id="body-title" name="body-title" required>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="message" class="form-label">Tour Type</label>
-                            <section>
+                        <div class="form-group mb-3 d-flex gap-2 align-items-end">
+                            <div class="flex-fill" style="flex:2;">
+                                <label for="email" class="form-label">Tour Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="flex-fill" style="flex:1; max-width:380px;">
+                                <label for="tourType" class="form-label">Tour Type</label>
                                 <select class="form-select" id="tourType" name="tourType" required>
                                     <option value="" disabled selected>Select Tour Type</option>
                                     <?php
@@ -40,8 +24,31 @@
                                     }
                                     ?>
                                 </select>
-                            </section>
+                            </div>
                         </div>
+                        <div class="form-group mb-3">
+                            <label for="cc-email" class="form-label">Description</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group mb-3 d-flex gap-2 align-items-end">
+                            <div class="flex-fill">
+                                <label for="bcc-email" class="form-label">Duration</label>
+                                <input type="number" class="form-control" id="Duration" name="Duration">
+                            </div>
+                            <div class="flex-fill">
+                                <label for="subject" class="form-label">Kids Price:</label>
+                                <input type="number" class="form-control" id="subject" name="subject" required>
+                            </div>
+                            <div class="flex-fill">
+                                <label for="adult-price" class="form-label">Adult Price:</label>
+                                <input type="number" class="form-control" id="adult-price" name="adult-price" required>
+                            </div>
+                            <div class="flex-fill">
+                                <label for="body-title" class="form-label">Maximum People Count</label>
+                                <input type="number" class="form-control" id="body-title" name="body-title" required>
+                            </div>
+                        </div>
+
 
                         <div id="loading-spinner1" class="d-none">
                             <div class="d-flex justify-content-center">

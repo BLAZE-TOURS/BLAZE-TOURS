@@ -14,6 +14,15 @@ function changeDashboardViewToursType() {
     toursTypeContainer.style.display = 'block';
 }
 
+function changeDashboardViewUpdateTour() {
+    history.pushState(null, '', 'adminindex.php?view=UpdateTours');
+    sessionStorage.setItem('currentView', 'UpdateTours');
+    hideAllContainers();
+    var updateToursContainer = document.getElementById('updateToursContainer');
+    updateToursContainer.classList.remove('d-none');
+    updateToursContainer.style.display = 'block';
+}
+
 function changeDashboardViewAddTour() {
     history.pushState(null, '', 'adminindex.php?view=AddTours');
     sessionStorage.setItem('currentView', 'AddTours');
@@ -43,7 +52,7 @@ function changeDashboardViewAllLocation() {
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['toursTypeContainer', 'toursContainer', 'addToursContainer', 'addLocationContainer','allLocationContainer'];
+    var containers = ['toursTypeContainer', 'toursContainer', 'addToursContainer', 'addLocationContainer','allLocationContainer','updateToursContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -72,6 +81,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
             case 'AllLocation': // Ensured correct key match
                 changeDashboardViewAllLocation();
+                break;
+            case 'UpdateTours': // Ensured correct key match
+                changeDashboardViewUpdateTour();
                 break;
             default:
                 changeDashboardView();

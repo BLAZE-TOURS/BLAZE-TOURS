@@ -80,6 +80,7 @@ document.getElementById('addTourBtn').addEventListener('click', function() {
     const description = document.getElementById('message').value.trim();
     const duration = document.getElementById('Duration').value.trim();
     const kidsPrice = document.getElementById('subject').value.trim();
+    const adultPrice = document.getElementById('adult-price').value.trim();
     const maxPeople = document.getElementById('body-title').value.trim();
     const tourType = document.getElementById('tourType').value;
     const errors = [];
@@ -89,6 +90,7 @@ document.getElementById('addTourBtn').addEventListener('click', function() {
     if (!description) errors.push('Description is required.');
     if (!duration || isNaN(duration) || duration <= 0) errors.push('Duration must be a positive number.');
     if (!kidsPrice || isNaN(kidsPrice) || kidsPrice < 0) errors.push('Kids Price must be a non-negative number.');
+    if (!adultPrice || isNaN(adultPrice) || adultPrice < 0) errors.push('Adult Price must be a non-negative number.');
     if (!maxPeople || isNaN(maxPeople) || maxPeople <= 0) errors.push('Maximum People Count must be a positive number.');
     if (!tourType) errors.push('Tour Type is required.');
 
@@ -116,6 +118,7 @@ document.getElementById('addTourBtn').addEventListener('click', function() {
             description: description,
             duration: duration,
             kids_price: kidsPrice,
+            adult_price: adultPrice,
             maximum_people_count: maxPeople,
             tours_type_id: tourType
         })
