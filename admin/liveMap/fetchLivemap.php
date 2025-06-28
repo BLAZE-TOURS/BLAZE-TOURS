@@ -1,9 +1,9 @@
-    <?php
+<?php
     require '../connection.php';
 
     Database::setUpConnection();
 
-    $sql = "SELECT * FROM `location`";
+    $sql = "SELECT location.*, tour.name AS tour_name FROM `location` INNER JOIN `tour` ON location.tour_id = tour.id";
     $result = Database::search($sql);
 
     $markers = [];
@@ -14,3 +14,4 @@
 
     header('Content-Type: application/json');
     echo json_encode($markers);
+?>

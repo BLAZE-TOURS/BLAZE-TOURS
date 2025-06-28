@@ -19,7 +19,6 @@ include_once "fetchTours.php";
                                     <th>Kids Price</th>
                                     <th>Adult Price</th>
                                     <th>Maximum People Count</th>
-                                    <th>Location Name</th>
                                     <th>Tours Type</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -35,8 +34,8 @@ include_once "fetchTours.php";
                                             $status_badge = '<span class="badge bg-success">Active</span>';
                                         } else if ($row['status_id'] == 2) {
                                             $status_badge = '<span class="badge bg-danger">Inactive</span>';
-                                        } else {
-                                            $status_badge = '<span class="badge bg-secondary">' . htmlspecialchars($row['status_name']) . '</span>';
+                                        } else if ($row['status_id'] == 3) {
+                                            $status_badge = '<span class="badge bg-warning">Processing</span>';
                                         }
                                 ?>
                                         <tr class="text-center">
@@ -47,11 +46,10 @@ include_once "fetchTours.php";
                                             <td><?php echo htmlspecialchars($row["kids_price"]); ?></td>
                                             <td><?php echo htmlspecialchars($row["adult_price"]); ?></td>
                                             <td><?php echo htmlspecialchars($row["maximum_people_count"]); ?></td>
-                                            <td><?php echo htmlspecialchars($row["location_name"]); ?></td>
                                             <td><?php echo htmlspecialchars($row["tours_type_name"]); ?></td>
                                             <td><?php echo $status_badge; ?></td>
                                             <td>
-                                                <button class="btn btn-sm btn-primary edit-btn" onclick="changeStatusTours(<?php echo $row['id']; ?>);">
+                                                <button class="btn btn-sm btn-primary edit-btn" onclick="changeStatusTours(<?php echo $row['id']; ?>);" <?php echo ($row['status_id'] == 3) ? 'disabled' : ''; ?>>
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                                 <button class="btn btn-sm btn-success edit-btn" onclick="updateTours(<?php echo $row['id']; ?>);">

@@ -306,27 +306,6 @@ if (isset($_SESSION["adminuser"])) {
                                 </li>
 
                                 <li>
-                                    <a href="#" onclick="changeDashboardViewTourImage();">
-                                        <i data-feather="image"></i>
-                                        <span>Tour Images</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewTime();">
-                                        <i data-feather="clock"></i>
-                                        <span>Time</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewHighlight();">
-                                        <i data-feather="star"></i>
-                                        <span>Highlight</span>
-                                    </a>
-                                </li>
-
-                                <li>
                                     <a style="color: red;" class="fw-bold" href="../admin/adminindex.php">
                                         <i data-feather="log-out"></i>
                                         <span>Back</span>

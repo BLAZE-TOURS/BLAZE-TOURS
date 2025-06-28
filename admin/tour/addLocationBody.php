@@ -1,3 +1,11 @@
+<?php
+
+$tours = [];
+$result = Database::search("SELECT id, name FROM tour ");
+while ($row = $result->fetch_assoc()) {
+    $tours[] = $row;
+}
+?>
 <div class="content-page mt-5 fade-in">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -13,6 +21,17 @@
                     <div id="map" style="width:100%;height:300px;" class="mb-4"></div>
 
                     <form id="locationForm" action="../process/addMarkerProcess.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group mb-3">
+                            <label for="tour_id" class="form-label">Select Tour:</label>
+                            <select name="tour_id" id="tour_id" class="form-control" required>
+                                <option value="">-- Select Tour --</option>
+                                <?php foreach ($tours as $tour): ?>
+                                    <option value="<?= htmlspecialchars($tour['id']) ?>">
+                                        <?= htmlspecialchars($tour['name']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                         <div class="form-group mb-3">
                             <label for="name" class="form-label">Name:</label>
                             <input name="name" id="name" class="form-control" required>

@@ -8,7 +8,7 @@ if (isset($_SESSION["adminuser"])) {
     $page = isset($_GET["page"]) ? intval($_GET["page"]) : 1;
     $start_from = ($page - 1) * $limit;
 
-    // Fetch tours with JOINs for location, tours_type, and status
+    // Fetch tours with JOINs for tours_type and status (location removed)
     $query = "SELECT 
                 t.id, 
                 t.name, 
@@ -17,12 +17,10 @@ if (isset($_SESSION["adminuser"])) {
                 t.kids_price, 
                 t.adult_price, 
                 t.maximum_people_count, 
-                l.name AS location_name, 
                 tt.name AS tours_type_name, 
                 s.id AS status_id, 
                 s.name AS status_name
             FROM tour t
-            INNER JOIN location l ON t.location_id = l.id
             INNER JOIN tours_type tt ON t.tours_type_id = tt.id
             INNER JOIN status s ON t.status_id = s.id
             LIMIT $start_from, $limit";

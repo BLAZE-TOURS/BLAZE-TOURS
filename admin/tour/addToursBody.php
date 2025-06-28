@@ -1,6 +1,6 @@
 <div class="content-page mt-5 fade-in">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-9">
             <div class="card shadow-lg border-0 rounded-lg">
                 <div class="card-body p-5">
                     <h3 class="card-title text-center mb-4">Add Tour</h3>
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" onclick="" class="btn btn-primary col-12 mt-3 mx-auto d-block btn-animate">Add Tour</button>
+                        <button type="button" id="addTourBtn" class="btn btn-primary col-12 mt-3 mx-auto d-block btn-animate">Add Tour</button>
                     </form>
                 </div>
             </div>
