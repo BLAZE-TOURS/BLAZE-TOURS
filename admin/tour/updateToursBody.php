@@ -89,7 +89,62 @@
                         <!-- Section 4: Add Location -->
                         <div class="mb-4">
                             <h5>Add Location</h5>
-                            <div class="border rounded p-3 text-muted" style="min-height:60px;">Location section placeholder</div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                    <div class="card shadow-lg border-0 rounded-lg">
+                                        <div class="card-body p-4">
+                                            <div class="form-group mb-3">
+                                                <input id="searchInput" class="form-control" type="text" placeholder="Search location">
+                                            </div>
+                                            <div id="map" style="width:100%;height:300px;" class="mb-4"></div>
+                                            <form id="locationForm" action="../process/addMarkerProcess.php" method="POST" enctype="multipart/form-data">
+                                                <div class="form-group mb-3">
+                                                    <label for="name" class="form-label">Name:</label>
+                                                    <input name="name" id="name" class="form-control" required>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label for="address" class="form-label">Address:</label>
+                                                    <input name="address" id="address" class="form-control" required>
+                                                </div>
+                                                <div class="form-group mb-4 d-flex gap-2 align-items-end">
+                                                    <div class="flex-fill">
+                                                        <label for="lat" class="form-label">Latitude:</label>
+                                                        <input name="lat" id="lat" class="form-control" required readonly>
+                                                    </div>
+                                                    <div class="flex-fill">
+                                                        <label for="lng" class="form-label">Longitude:</label>
+                                                        <input name="lng" id="lng" class="form-control" required readonly>
+                                                    </div>
+                                                    <div class="flex-fill">
+                                                        <label for="stop_duration_time" class="form-label">Add Stop Time Duration(min):</label>
+                                                        <input type="number" name="stop_duration_time" id="stop_duration_time" class="form-control" min="0" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                        <label for="icon" class="form-label">Icon Image:</label>
+                                                        <input type="file" name="icon" id="icon" class="form-control" accept="image/*" required>
+                                                        <div id="icon-info" class="mt-2">
+                                                            <span id="icon-filename" class="text-muted small"></span>
+                                                            <div id="icon-preview" style="max-width:60px;max-height:60px;"></div>
+                                                        </div>
+                                                    </div>
+                                                <div class="form-group mb-3">
+                                                    <label for="description" class="form-label">Description:</label>
+                                                    <textarea name="description" id="description" class="form-control" rows="4" required></textarea>
+                                                </div>
+                                                <div id="loading-spinner1" class="d-none">
+                                                    <div class="d-flex justify-content-center">
+                                                        <div class="spinner-border text-primary" role="status">
+                                                            <span class="visually-hidden">Loading...</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary col-3 mt-3 mx-auto d-block btn-animate">Add Location</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Section 5: Update Button -->
@@ -100,7 +155,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" id="addTourBtn" class="btn btn-primary col-12 mt-3 mx-auto d-block btn-animate" style="font-size:1.3rem; padding: 0.75rem 0;">Update Tour</button>
+                        <button type="button" id="addTourBtn" class="btn btn-success col-12 mt-3 mx-auto d-block btn-animate" style="font-size:1.3rem; padding: 0.75rem 0;">Update Tour</button>
                     </form>
                 </div>
             </div>
@@ -110,117 +165,135 @@
 
 <!-- JS for dynamic add/remove and image preview -->
 <script>
-// Time add/remove
-let times = [];
-const timeInput = document.getElementById('tour-time-input');
-const timeList = document.getElementById('time-list');
-document.getElementById('add-time-btn').onclick = function() {
-    if (timeInput.value && !times.includes(timeInput.value)) {
-        times.push(timeInput.value);
-        renderTimeList();
-        timeInput.value = '';
-    }
-};
-function renderTimeList() {
-    timeList.innerHTML = '';
-    times.forEach((t, i) => {
-        const li = document.createElement('li');
-        li.className = 'list-group-item d-flex justify-content-between align-items-center';
-        li.textContent = t;
-        const btn = document.createElement('button');
-        btn.className = 'btn btn-sm btn-danger';
-        btn.textContent = 'Remove';
-        btn.onclick = () => { times.splice(i,1); renderTimeList(); };
-        li.appendChild(btn);
-        timeList.appendChild(li);
-    });
-}
-// Highlight add/remove
-let highlights = [];
-const highlightInput = document.getElementById('highlight-input');
-const highlightList = document.getElementById('highlight-list');
-document.getElementById('add-highlight-btn').onclick = function() {
-    if (highlightInput.value.trim() && !highlights.includes(highlightInput.value.trim())) {
-        highlights.push(highlightInput.value.trim());
-        renderHighlightList();
-        highlightInput.value = '';
-    }
-};
-function renderHighlightList() {
-    highlightList.innerHTML = '';
-    highlights.forEach((h, i) => {
-        const li = document.createElement('li');
-        li.className = 'list-group-item d-flex justify-content-between align-items-center';
-        li.textContent = h;
-        const btn = document.createElement('button');
-        btn.className = 'btn btn-sm btn-danger';
-        btn.textContent = 'Remove';
-        btn.onclick = () => { highlights.splice(i,1); renderHighlightList(); };
-        li.appendChild(btn);
-        highlightList.appendChild(li);
-    });
-}
-// Image preview and remove
-function handleImagePreview(inputId, previewId) {
-    const input = document.getElementById(inputId);
-    const preview = document.getElementById(previewId);
-    input.onchange = function() {
-        preview.innerHTML = '';
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.maxWidth = '120px';
-                img.style.maxHeight = '120px';
-                img.className = 'me-2 mb-2 rounded shadow-sm';
-                const rmBtn = document.createElement('button');
-                rmBtn.className = 'btn btn-sm btn-danger ms-2';
-                rmBtn.textContent = 'Remove';
-                rmBtn.onclick = function() {
-                    input.value = '';
-                    preview.innerHTML = '';
-                };
-                preview.appendChild(img);
-                preview.appendChild(rmBtn);
-            };
-            reader.readAsDataURL(input.files[0]);
+    // Time add/remove
+    let times = [];
+    const timeInput = document.getElementById('tour-time-input');
+    const timeList = document.getElementById('time-list');
+    document.getElementById('add-time-btn').onclick = function() {
+        if (timeInput.value && !times.includes(timeInput.value)) {
+            times.push(timeInput.value);
+            renderTimeList();
+            timeInput.value = '';
         }
     };
-}
-handleImagePreview('main-image', 'main-image-preview');
-handleImagePreview('second-image', 'second-image-preview');
+
+    function renderTimeList() {
+        timeList.innerHTML = '';
+        times.forEach((t, i) => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+            li.textContent = t;
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-sm btn-danger';
+            btn.textContent = 'Remove';
+            btn.onclick = () => {
+                times.splice(i, 1);
+                renderTimeList();
+            };
+            li.appendChild(btn);
+            timeList.appendChild(li);
+        });
+    }
+    // Highlight add/remove
+    let highlights = [];
+    const highlightInput = document.getElementById('highlight-input');
+    const highlightList = document.getElementById('highlight-list');
+    document.getElementById('add-highlight-btn').onclick = function() {
+        if (highlightInput.value.trim() && !highlights.includes(highlightInput.value.trim())) {
+            highlights.push(highlightInput.value.trim());
+            renderHighlightList();
+            highlightInput.value = '';
+        }
+    };
+
+    function renderHighlightList() {
+        highlightList.innerHTML = '';
+        highlights.forEach((h, i) => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+            li.textContent = h;
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-sm btn-danger';
+            btn.textContent = 'Remove';
+            btn.onclick = () => {
+                highlights.splice(i, 1);
+                renderHighlightList();
+            };
+            li.appendChild(btn);
+            highlightList.appendChild(li);
+        });
+    }
+    // Image preview and remove
+    function handleImagePreview(inputId, previewId) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        input.onchange = function() {
+            preview.innerHTML = '';
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '120px';
+                    img.style.maxHeight = '120px';
+                    img.className = 'me-2 mb-2 rounded shadow-sm';
+                    const rmBtn = document.createElement('button');
+                    rmBtn.className = 'btn btn-sm btn-danger ms-2';
+                    rmBtn.textContent = 'Remove';
+                    rmBtn.onclick = function() {
+                        input.value = '';
+                        preview.innerHTML = '';
+                    };
+                    preview.appendChild(img);
+                    preview.appendChild(rmBtn);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+    }
+    handleImagePreview('main-image', 'main-image-preview');
+    handleImagePreview('second-image', 'second-image-preview');
 </script>
 
 <style>
-.content-page {
-    animation: fadeIn 1s ease-in-out;
-}
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-.btn-animate {
-    transition: background-color 0.3s, transform 0.3s;
-}
-.btn-animate:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
-.card {
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-}
-.form-control {
-    border-radius: 0.25rem;
-}
-.form-label {
-    font-weight: bold;
-}
-#main-image-preview img, #second-image-preview img {
-    border: 1px solid #ddd;
-    margin-bottom: 4px;
-}
+    .content-page {
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .btn-animate {
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-animate:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .card {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    }
+
+    .form-control {
+        border-radius: 0.25rem;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    #main-image-preview img,
+    #second-image-preview img {
+        border: 1px solid #ddd;
+        margin-bottom: 4px;
+    }
 </style>
-
-
-
