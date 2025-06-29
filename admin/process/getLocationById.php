@@ -17,6 +17,6 @@ $result = Database::search("SELECT * FROM location WHERE id = $id_escaped LIMIT 
 if ($row = $result->fetch_assoc()) {
     echo json_encode(['success' => true, 'data' => $row]);
 } else {
-    echo json_encode(['success' => false, 'message' => 'Location not found']);
+    echo json_encode(['success' => false, 'message' => 'Location not found']);
 }
 ?>

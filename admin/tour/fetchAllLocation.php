@@ -11,9 +11,9 @@ if (isset($_SESSION["adminuser"])) {
     }
     $start_from = ($page - 1) * $limit;
 
-    $allLocation_rs = Database::search("SELECT * FROM `location` LIMIT $start_from, $limit");
+    $allLocation_rs = Database::search("SELECT * FROM location LIMIT $start_from, $limit");
     $allLocation_n = $allLocation_rs->num_rows;
-    $total_allLocation_records = Database::search("SELECT COUNT(*) FROM `location`")->fetch_row()[0];
+    $total_allLocation_records = Database::search("SELECT COUNT(*) FROM location")->fetch_row()[0];
     $total_allLocation_pages = ceil($total_allLocation_records / $limit);
 } else {
     echo ("You are not a valid user");

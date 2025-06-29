@@ -318,8 +318,7 @@ if (isset($_SESSION["adminuser"])) {
 
                 <div id="addToursContainer" class="d-none"> <?php include "../tour/addToursBody.php"; ?> </div>
 
-                <div id="allLocationContainer" class="d-none"> <?php include 'fetchAllLocation.php'; ?> <?php include "../tour/allLocationBody.php"; ?> </div>
-
+                <div id="allLocationContainer" class="d-none"> <?php include 'fetchAllLocation.php'; ?> <?php include "../tour/allLocationBody.php"; ?></div>
             </div>
 
         </div>

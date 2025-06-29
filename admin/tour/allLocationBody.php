@@ -6,24 +6,6 @@
                 <div class="card-body">
                     <h3 class="card-title text-center">All Location List</h3>
 
-                    <div class="mb-3" style="max-width: 300px; margin-left: 0; margin-right: auto;">
-                        <label for="SelectTourName" class="form-label">Select Tour Name</label>
-                        <select id="SelectTourName" class="form-select">
-                            <option value="">All</option>
-                            <?php
-                            require_once __DIR__ . '/../connection.php';
-                            $tour_query = "SELECT id, name FROM tour";
-                            $tour_result = Database::search($tour_query);
-                            if ($tour_result && $tour_result->num_rows > 0) {
-                                while ($tour = $tour_result->fetch_assoc()) {
-
-                                    echo '<option value="' . htmlspecialchars($tour['id']) . '">' . htmlspecialchars($tour['name']) . '</option>';
-                                }
-                            }
-                            ?>
-                        </select>
-                    </div>
-
                     <!-- Update Tours Type Modal -->
                     <div class="modal fade" id="updateToursTypeModal" tabindex="-1" aria-labelledby="updateToursTypeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -59,7 +41,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>  
 
                     <!-- Update Location Modal -->
                     <div class="modal fade" id="updateLocationModal" tabindex="-1" aria-labelledby="updateLocationModalLabel" aria-hidden="true">
@@ -72,46 +54,33 @@
                                 <div class="modal-body">
                                     <div id="validation-errors-location-update" class="alert alert-danger d-none" role="alert"></div>
                                     <div id="success-message-location-update" class="alert alert-success d-none" role="alert"></div>
-                                    <form id="updateLocationForm" enctype="multipart/form-data">
+                                    <form id="updateLocationForm">
                                         <input type="hidden" name="id" id="update_location_id">
-                                        <input type="hidden" name="tour_id" id="update_location_tour_id">
-
-                                        <div class="form-group mb-3">
-                                            <input id="update_searchInput" class="form-control" type="text" placeholder="Search location">
-                                        </div>
-                                        <div id="update_map" style="width:100%;height:300px;" class="mb-4"></div>
-
-                                        <div class="form-group mb-3">
-                                            <label for="update_location_name" class="form-label">Name:</label>
-                                            <input name="name" id="update_location_name" class="form-control" required>
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="update_location_address" class="form-label">Address:</label>
-                                            <input name="address" id="update_location_address" class="form-control" required>
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="update_location_lat" class="form-label">Latitude:</label>
-                                            <input name="lat" id="update_location_lat" class="form-control" required readonly>
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="update_location_lng" class="form-label">Longitude:</label>
-                                            <input name="lng" id="update_location_lng" class="form-control" required readonly>
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="update_icon" class="form-label">Icon Image:</label>
-                                            <input type="file" name="icon" id="update_icon" class="form-control" accept="image/*">
-                                            <div id="update-icon-info" class="mt-2">
-                                                <span id="update-icon-filename" class="text-muted small"></span>
-                                                <div id="update-icon-preview" style="max-width:60px;max-height:60px;"></div>
+                                        <div class="row g-3">
+                                            <div class="col-12">
+                                                <label for="update_location_name" class="form-label">Location Name</label>
+                                                <input type="text" class="form-control" name="name" id="update_location_name" required>
                                             </div>
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="update_location_description" class="form-label">Description:</label>
-                                            <textarea name="description" id="update_location_description" class="form-control" rows="4" required></textarea>
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="update_location_stop_time" class="form-label">Add Stop Time Duration(min):</label>
-                                            <input type="number" name="stop_duration_time" id="update_location_stop_time" class="form-control" min="0" required>
+                                            <div class="col-12">
+                                                <label for="update_location_address" class="form-label">Address</label>
+                                                <input type="text" class="form-control" name="address" id="update_location_address" disabled>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="update_location_lat" class="form-label">Latitude</label>
+                                                <input type="text" class="form-control" name="lat" id="update_location_lat" disabled>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="update_location_lng" class="form-label">Longitude</label>
+                                                <input type="text" class="form-control" name="lng" id="update_location_lng" disabled>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="update_location_description" class="form-label">Description</label>
+                                                <textarea class="form-control" name="description" id="update_location_description"></textarea>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="update_location_stop_time" class="form-label">Stop Time</label>
+                                                <input type="number" class="form-control" name="stop_duration_time" id="update_location_stop_time">
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
@@ -139,8 +108,47 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody id="location-table-body">
-                                <!-- Table rows will be loaded dynamically via JS. -->
+                            <tbody>
+                                <?php
+                                if ($allLocation_n > 0) {
+                                    while ($row = $allLocation_rs->fetch_assoc()) {
+                                ?>
+                                        <tr class="text-center">
+                                            <td><?php echo $row["id"]; ?></td>
+                                            <td><?php echo $row["name"]; ?></td>
+                                            <td>
+                                                <?php
+                                                    $address = explode(',', $row["address"], 2);
+                                                    echo htmlspecialchars($address[0]);
+                                                    if (isset($address[1])) {
+                                                        echo "<br>" . htmlspecialchars($address[1]);
+                                                    }
+                                                ?>
+                                            </td>
+                                            <td><?php echo $row["lat"]; ?></td>
+                                            <td><?php echo $row["lng"]; ?></td>
+                                            <td>
+                                                <?php if (!empty($row["icon_url"])): ?>
+                                                    <img src="<?php echo htmlspecialchars($row["icon_url"]); ?>" alt="Icon" style="width:32px;height:32px;">
+                                                <?php endif; ?>
+                                            </td>
+                                            <td style="max-width:200px; word-break:break-word; white-space:pre-line;">
+                                                <?php echo htmlspecialchars($row["description"]); ?>
+                                            </td> <!-- Hide column -->
+                                            <td><?php echo $row["stop_duration_time"]; ?></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-success edit-btn" onclick="confirmUpdateLocation(<?php echo $row['id']; ?>);">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger delete-btn" onclick="deleteLocation(<?php echo $row['id']; ?>);">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                <?php
+                                    }
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -148,16 +156,5 @@
 
             </div>
         </div>
-    </div>
+    </div>
 </div>
-
-<script>
-document.getElementById('SelectTourName').addEventListener('change', function() {
-    const tourId = this.value;
-    fetch('fetchLocationsByTour.php?tour_id=' + encodeURIComponent(tourId))
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('location-table-body').innerHTML = html;
-        });
-});
-</script>
