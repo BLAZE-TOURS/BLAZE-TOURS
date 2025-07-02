@@ -5,7 +5,22 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h3 class="card-title text-center">All Location List</h3>
-
+                    <div class="flex-fill" style="flex:1; max-width:250px;">
+                        <label for="tourSelected" class="form-label mb-1">Select Tour</label>
+                        <select id="tourSelected" class="form-select">
+                            <option value="">All</option>
+                            <?php
+                            require_once __DIR__ . '/../connection.php';
+                            $tour_query = "SELECT id, name FROM tour";
+                            $tour_result = Database::search($tour_query);
+                            if ($tour_result && $tour_result->num_rows > 0) {
+                                while ($tour = $tour_result->fetch_assoc()) {
+                                    echo '<option value="' . htmlspecialchars($tour['id']) . '">' . htmlspecialchars($tour['name']) . '</option>';
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
                     <!-- Update Tours Type Modal -->
                     <div class="modal fade" id="updateToursTypeModal" tabindex="-1" aria-labelledby="updateToursTypeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -41,7 +56,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>  
+                    </div>
 
                     <!-- Update Location Modal -->
                     <div class="modal fade" id="updateLocationModal" tabindex="-1" aria-labelledby="updateLocationModalLabel" aria-hidden="true">
@@ -118,11 +133,11 @@
                                             <td><?php echo $row["name"]; ?></td>
                                             <td>
                                                 <?php
-                                                    $address = explode(',', $row["address"], 2);
-                                                    echo htmlspecialchars($address[0]);
-                                                    if (isset($address[1])) {
-                                                        echo "<br>" . htmlspecialchars($address[1]);
-                                                    }
+                                                $address = explode(',', $row["address"], 2);
+                                                echo htmlspecialchars($address[0]);
+                                                if (isset($address[1])) {
+                                                    echo "<br>" . htmlspecialchars($address[1]);
+                                                }
                                                 ?>
                                             </td>
                                             <td><?php echo $row["lat"]; ?></td>
@@ -156,5 +171,6 @@
 
             </div>
         </div>
+           
     </div>
 </div>

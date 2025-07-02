@@ -43,7 +43,7 @@ function changeDashboardViewAllLocation() {
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['toursTypeContainer', 'toursContainer', 'addToursContainer', 'addLocationContainer','allLocationContainer'];
+    var containers = ['toursTypeContainer', 'toursContainer', 'addToursContainer', 'addLocationContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -69,9 +69,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
             case 'AddLocation': // Ensured correct key match
                 changeDashboardViewAddLocation();
-                break;
-            case 'AllLocation': // Ensured correct key match
-                changeDashboardViewAllLocation();
                 break;
             default:
                 changeDashboardView();

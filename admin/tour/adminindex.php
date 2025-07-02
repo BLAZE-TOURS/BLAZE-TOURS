@@ -287,12 +287,6 @@ if (isset($_SESSION["adminuser"])) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" onclick="changeDashboardViewAddLocation();">
-                                        <i data-feather="map"></i>
-                                        <span>Add Location</span>
-                                    </a>
-                                </li>
-                                <li>
                                     <a href="#" onclick="changeDashboardViewAllLocation();">
                                         <i data-feather="map-pin"></i>
                                         <span>All Location</span>
@@ -304,28 +298,6 @@ if (isset($_SESSION["adminuser"])) {
                                         <span>Live Map</span>
                                     </a>
                                 </li>
-
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewTourImage();">
-                                        <i data-feather="image"></i>
-                                        <span>Tour Images</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewTime();">
-                                        <i data-feather="clock"></i>
-                                        <span>Time</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewHighlight();">
-                                        <i data-feather="star"></i>
-                                        <span>Highlight</span>
-                                    </a>
-                                </li>
-
                                 <li>
                                     <a style="color: red;" class="fw-bold" href="../admin/adminindex.php">
                                         <i data-feather="log-out"></i>
@@ -346,10 +318,7 @@ if (isset($_SESSION["adminuser"])) {
 
                 <div id="addToursContainer" class="d-none"> <?php include "../tour/addToursBody.php"; ?> </div>
 
-                <div id="addLocationContainer" class="d-none"> <?php include "../tour/addLocationBody.php"; ?> </div>
-
-                <div id="allLocationContainer" class="d-none"> <?php include 'fetchAllLocation.php'; ?> <?php include "../tour/allLocationBody.php"; ?> </div>        
-
+                <div id="allLocationContainer" class="d-none"> <?php include 'fetchAllLocation.php'; ?> <?php include "../tour/allLocationBody.php"; ?></div>
             </div>
 
         </div>
@@ -411,6 +380,7 @@ if (isset($_SESSION["adminuser"])) {
         <script src="../tour/assets/js/alllocation.js"></script>
 
 
+
         </script>
 
         <!--Table UI-->
@@ -437,6 +407,8 @@ if (isset($_SESSION["adminuser"])) {
                 }
             }
         </script>
+
+        <script src="../tour/assets/js/completeToure.js"></script>
 
     </body>
 

@@ -96,6 +96,52 @@ function submitUpdateLocation() {
         },
         error: function(xhr) {
             $('#validation-errors-location-update').removeClass('d-none').text('Update failed.');
+        }
+    });
+}
+
+$('#tourSelected').on('change', function() {
+    var tourId = $(this).val();
+    $.ajax({
+        url: 'process/filterLocationByTour.php',
+        type: 'POST',
+        data: { tour_id: tourId },
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                var tbody = $('#datatable-tourType tbody');
+                tbody.empty();
+                if (response.data.length > 0) {
+                    response.data.forEach(function(row) {
+                        var address = row.address ? row.address.split(',', 2) : [];
+                        var addressHtml = address[0] ? $('<div>').text(address[0]).html() : '';
+                        if (address[1]) addressHtml += "<br>" + $('<div>').text(address[1]).html();
+                        var iconHtml = row.icon_url ? '<img src="' + $('<div>').text(row.icon_url).html() + '" alt="Icon" style="width:32px;height:32px;">' : '';
+                        tbody.append(
+                            `<tr class="text-center">
+                                <td>${row.id}</td>
+                                <td>${$('<div>').text(row.name).html()}</td>
+                                <td>${addressHtml}</td>
+                                <td>${row.lat ?? ''}</td>
+                                <td>${row.lng ?? ''}</td>
+                                <td>${iconHtml}</td>
+                                <td style="max-width:200px; word-break:break-word; white-space:pre-line;">${$('<div>').text(row.description ?? '').html()}</td>
+                                <td>${row.stop_duration_time ?? ''}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-success edit-btn" onclick="confirmUpdateLocation(${row.id});">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger delete-btn" onclick="deleteLocation(${row.id});">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>`
+                        );
+                    });
+                } else {
+                    tbody.append('<tr><td colspan="9" class="text-center">No locations found.</td></tr>');
+                }
+            }
         }
     });
-}
+});

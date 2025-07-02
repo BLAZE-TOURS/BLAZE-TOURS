@@ -1,4 +1,4 @@
- <?php require '../connection.php'; ?>
+<?php require '../connection.php'; ?>
 
  <!DOCTYPE html>
  <html>
@@ -52,6 +52,7 @@
     ">
       <h3 style="margin: 0 0 6px; font-size: 16px; color: #2c3e50;">${marker.name}</h3>
       <p style="margin: 0 0 6px; font-size: 14px;">📍 ${marker.address}</p>
+      <p style="margin: 0 0 6px; font-size: 14px; color: #555; font-weight: 500;">🗺️ Tour: ${marker.tour_name || 'N/A'}</p>
       ${marker.description ? `<p style="margin: 0 0 6px; font-style: italic; color: #555;">📝 ${marker.description}</p>` : ''}
       <p style="margin: 0; font-size: 14px; color: #666;">⏱️ Stop: ${marker.stop_duration_time || 0} min</p>
     </div>
@@ -70,6 +71,9 @@
          }
      </script>
      <style>
+
+
+
          #map {
              height: 100vh;
              width: 100%;
@@ -78,6 +82,22 @@
  </head>
 
  <body onload="LoadMap()">
+     <div style="width:100%;display:flex;justify-content:start;align-items:start;margin-top:30px;margin-bottom:20px;">
+         <select id="tourSelector" style="min-width:300px;padding:10px 16px;border-radius:8px;border:1px solid #ccc;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);outline:none;transition:border 0.2s;">
+             <option value="">All</option>
+                            <?php
+                            require_once __DIR__ . '/../connection.php';
+                            $tour_query = "SELECT id, name FROM tour";
+                            $tour_result = Database::search($tour_query);
+                            if ($tour_result && $tour_result->num_rows > 0) {
+                                while ($tour = $tour_result->fetch_assoc()) {
+
+                                    echo '<option value="' . htmlspecialchars($tour['id']) . '">' . htmlspecialchars($tour['name']) . '</option>';
+                                }
+                            }
+                            ?>
+         </select>
+     </div>
      <div id="map"></div>
  </body>
 

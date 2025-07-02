@@ -11,10 +11,9 @@ class Database
         if (!isset(Database::$connection)) {
 
         //Database::$connection = new mysqli("localhost", "root", "#Lucky2003sql", "blaze-tours_db", 3306);
-        Database::$connection = new mysqli("localhost", "root", "SMsuperX@262", "blaze-tours_db", 3306);
-        //    Database::$connection = new mysqli("localhost", "root", "SMsuperX@262", "rakkiththakanda_db", 3306, '/tmp/mysql.sock');
-         //Database::$connection = new mysqli("localhost", "root", "SMsuperX@262", "rakkiththakanda_db", 3306, );
-        //Database::$connection = new mysqli("localhost", "rakkitht_db", "SMsuperX@262", "rakkitht_admin_db", 3306);
+           // Database::$connection = new mysqli("localhost", "root", "SMsuperX@262", "blaze-tours_db", 3306, '/tmp/mysql.sock');
+         Database::$connection = new mysqli("localhost", "root", "SMsuperX@262", "blaze-tours_db", 3306 );
+       
 
 
             // Check for connection errors
@@ -36,7 +35,7 @@ class Database
     {
         Database::setUpConnection();
         if (!Database::$connection->query($q)) {
-            die("Error executing query: " . Database::$connection->error);
+            throw new Exception("Error executing query: " . Database::$connection->error . " | SQL: $q");
         }
     }
 
@@ -46,7 +45,7 @@ class Database
         Database::setUpConnection();
         $resultset = Database::$connection->query($q);
         if ($resultset === false) {
-            die("Error executing query: " . Database::$connection->error);
+            throw new Exception("Error executing query: " . Database::$connection->error . " | SQL: $q");
         }
         return $resultset;
     }

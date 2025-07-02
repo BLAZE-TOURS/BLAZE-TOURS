@@ -13,6 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lng = $_POST['lng'] ?? '';
     $description = $_POST['description'] ?? '';
     $stop_duration_time = $_POST['stop_duration_time'] ?? 0;
+    $tour_id = $_POST['tour_id'] ?? '';
+    if (empty($tour_id)) {
+        echo json_encode(['success' => false, 'message' => 'Tour is required']);
+        exit;
+    }
 
     // Handle icon upload
     $iconName = '';
@@ -48,11 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lng = Database::escape_string($lng);
     $description = Database::escape_string($description);
     $stop_duration_time = (int)$stop_duration_time;
+    $tour_id = Database::escape_string($tour_id);
     $iconPath = Database::escape_string($iconPath);
 
     $sql = sprintf(
-        "INSERT INTO `location` (`name`, `address`, `lat`, `lng`, `icon_url`, `description`, `stop_duration_time`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', %d);",
-        $name, $address, $lat, $lng, $iconPath, $description, $stop_duration_time
+        "INSERT INTO `location` (`name`, `address`, `lat`, `lng`, `icon_url`, `description`, `stop_duration_time`, `tour_id`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', %d, '%s');",
+        $name, $address, $lat, $lng, $iconPath, $description, $stop_duration_time, $tour_id
     );
     $result = Database::search($sql);
 
