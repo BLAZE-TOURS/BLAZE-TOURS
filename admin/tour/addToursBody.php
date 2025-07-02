@@ -249,7 +249,7 @@
                         </div>
 
                         <!-- Section 5: Update Button -->
-                        <div id="loading-spinner1" class="d-none">
+                        <div id="loading-spinner2" class="d-none">
                             <div class="d-flex justify-content-center">
                                 <div class="spinner-border text-primary" role="status">
                                     <span class="visually-hidden">Loading...</span>
