@@ -1,3 +1,7 @@
+<?php
+$tour_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+include 'assets/process/fetchTour.php';
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -63,7 +67,7 @@
     <!--==============================
      Preloader
   ==============================-->
-<!-- 
+    <!-- 
     <div id="preloader" class="preloader">
         <div class="preloader-inner">
             <img src="assets/img/logo.svg" alt="Logo">
@@ -78,7 +82,7 @@
             </div>
         </div>
     </div> -->
-     <!--==============================
+    <!--==============================
     Sidemenu
 ============================== -->
     <div class="sidemenu-wrapper sidemenu-info ">
@@ -174,7 +178,7 @@
     <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/category_bg_1.png">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Private Safari Tour</h1>
+                <h1 class="breadcumb-title">Single Tour Page</h1>
                 <ul class="breadcumb-menu">
                     <li><a href="index.php">Home</a></li>
                     <li>Tour Details</li>
@@ -189,26 +193,34 @@ tour Area
             <div class="row">
                 <div class="col-xxl-8 col-lg-7">
                     <div class="page-single">
-                        <div class="service-img"><img src="assets/img/destination/private-tour.png" alt=""></div>
+                        <!-- Main Image -->
+                        <div class="service-img">
+                            <?php
+                            $main_image_name = '';
+                            if (!empty($tour['main_image'])) {
+                                $main_image_name = basename($tour['main_image']);
+                            }
+                            ?>
+                            <img src="../admin/assets/uploads/tour_images/<?php echo $main_image_name ? $main_image_name : 'default.png'; ?>" alt="image">
+                        </div>
                         <div class="page-content d-block">
                             <div class="page-meta mt-50 mb-45">
                                 <a class="page-tag" href="tour.php">POPULAR</a>
                                 <span class="ratting"><i class="fa-sharp fa-solid fa-star"></i><span>4.8</span></span>
                             </div>
-                            <h2 class="box-title">Tuk Tuk Private Safari Tour Exploring Sri Lanka's Capital Colombo</h2>
-                            <p class="box-text mb-30">voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
-                                ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                                Dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
-                                modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Quis autem vel
-                                eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel
-                                illum qui dolorem eum fugiat quo voluptas nulla pariatur Quis autem vel eum iure
-                                reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui
-                                dolorem eum fugiat quo voluptas nulla pariatur</p>
-                            <p class="box-text mb-50"> ‍Whether you work from home or commute to a nearby office, the
-                                energy-efficient features of your home contribute to a productive and eco-conscious workday.
-                                Smart home systems allow you to monitor and control energy usage, ensuring that your
-                                environmental impact remains minimal.</p>
-                            <div class="service-inner-img mb-40"><img src="assets/img/destination/private-tour1.png" alt=""></div>
+                            <h2 class="box-title"><?php echo htmlspecialchars($tour['name'] ?? ''); ?></h2>
+                            <p class="box-text mb-30"><?php echo htmlspecialchars($tour['description'] ?? ''); ?></p>
+                            -->
+                            <div class="service-inner-img mb-40">
+                                <?php
+                                $second_image_name = '';
+                                if (!empty($tour['second_image'])) {
+                                    $second_image_name = basename($tour['second_image']);
+                                }
+                                ?>
+
+                            <img src="../admin/assets/uploads/tour_images/<?php echo $second_image_name ? $second_image_name : 'default.png'; ?>" alt="image">
+                            </div>
                         </div>
                         <div class="destination-gallery-wrapper col-12 order-1">
                             <h3 class="page-title mt-30 mb-30">Destination Map</h3>
@@ -376,16 +388,16 @@ tour Area
                 </div>
                 <div class="col-xxl-4 col-lg-5">
                     <aside class="sidebar-area style3">
-                        <div class="widget tour-booking  ">
-                            <p class="widget_subtitle">From <span class="widget_price">$31.35</span>/Person</p>
+                        <div class="widget tour-booking">
+                            <p class="widget_subtitle">From <span class="widget_price">$<?php echo number_format($tour['adult_price'] ?? 0, 2); ?></span>/Person</p>
                             <div class="info-list">
                                 <ul>
                                     <li>
-                                        <strong>Duration : 4 hours</strong>
+                                        <strong>Duration : <?php echo htmlspecialchars($tour['duration'] ?? ''); ?> hours</strong>
                                     </li>
-                                    <li><strong>Pickup included</strong></li>
-                                    <li><strong>Reserve Now & Pay Later Eligible</strong></li>
-                                    <li><strong>Free Cancellation</strong></li>
+                                    <?php foreach ($highlights as $hl): ?>
+                                        <li><strong><?php echo htmlspecialchars($hl); ?></strong></li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                             <a href="contact.php" class="th-btn th-icon">Book Now</a>
@@ -395,87 +407,21 @@ tour Area
                             <p class="widget_subtitle">Highlight <span class="widget_price">Itinerary</span></p>
                             <div class="info-list">
                                 <ul>
-                                    <li>
-                                        <strong>You'll get picked up</strong>
-                                        <span>See departure details</span>
-                                    </li>
-                                    <li>
-                                        <strong>Gangaramaya (Vihara) Buddhist Temple</strong>
-                                        <span>Stop: 30 minutes - Admission excluded</span>
-                                    </li>
-                                    <li>
-                                        <strong>Sri Ponnambalam Vanesar Kovil</strong>
-                                        <span>Stop: 20 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Jami Ul-Alfar Mosque</strong>
-                                        <span>Stop: 20 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Independence Square</strong>
-                                        <span>Stop: 20 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Colombo Galbokka Lighthouse</strong>
-                                        <span>Stop: 20 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Galle Face Green</strong>
-                                        <span>Stop: 15 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Colombo Fort Clock Tower</strong>
-                                        <span>Stop: 15 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Viharamahadevi Park</strong>
-                                        <span>Stop: 30 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Seema Malakaya Temple</strong>
-                                        <span>Stop: 20 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Colombo Lotus Tower</strong>
-                                        <span>Stop: 10 minutes - Admission excluded</span>
-                                    </li>
-                                    <li>
-                                        <strong>Pettah</strong>
-                                        <span>Stop: 30 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Pettah Floating Market</strong>
-                                        <span>Stop: 20 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Dutch Hospital Shopping Precinct</strong>
-                                        <span>Stop: 10 minutes - Admission included</span>
-                                    </li>
-                                    <li>
-                                        <strong>Cargills Department Store</strong>
-                                        <span>Stop: 5 minutes - Admission included</span>
-                                    </li>
-                                    <li>
-                                        <strong>You'll return to the starting point</strong>
-                                    </li>
+                                    <?php foreach ($locations as $loc): ?>
+                                        <li>
+                                            <strong><?php echo htmlspecialchars($loc['name']); ?></strong>
+                                            <span>Stop: <?php echo intval($loc['stop_duration_time']); ?> minutes</span>
+                                        </li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                         </div>
-                        <div class="widget widget_tag_cloud  ">
+                        <div class="widget widget_tag_cloud">
                             <h3 class="widget_title">Available time</h3>
                             <div class="tagcloud">
-                                <a href="">7:30 AM</a>
-                                <a href="">8:30 AM</a>
-                                <a href="">9:30 AM</a>
-                                <a href="">10:30 AM</a>
-                                <a href="">11:30 AM</a>
-                                <a href="">12:30 PM</a>
-                                <a href="">1:30 PM</a>
-                                <a href="">2:30 PM</a>
-                                <a href="">3:30 PM</a>
-                                <a href="">4:30 PM</a>
-                                <a href="">5:30 PM</a>
-                                <a href="">6:30 PM</a>
+                                <?php foreach ($times as $time): ?>
+                                    <a href=""><?php echo date('g:i A', strtotime($time)); ?></a>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </aside>

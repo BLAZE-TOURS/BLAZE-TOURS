@@ -59,7 +59,7 @@
     <!--********************************
    		Code Start From Here 
 	******************************** -->
-<!-- 
+    <!-- 
     <div class="magic-cursor relative z-10">
         <div class="cursor"></div>
         <div class="cursor-follower"></div>
@@ -321,61 +321,61 @@ Booking Area
             </form>
         </div>
     </div>  -->
-    
+
     <div class="booking-sec">
-    <div class="container">
-        <form action="mail.php" method="POST" class="booking-form ajax-contact">
-            <div class="input-wrap">
-                <div class="row align-items-center justify-content-between">
-                    <div class="form-group col-md-6 col-lg-auto">
-                        <div class="icon">
-                            <i class="fa-light fa-route"></i>
+        <div class="container">
+            <form action="mail.php" method="POST" class="booking-form ajax-contact">
+                <div class="input-wrap">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="form-group col-md-6 col-lg-auto">
+                            <div class="icon">
+                                <i class="fa-light fa-route"></i>
+                            </div>
+                            <div class="search-input">
+                                <label>Tour Option</label>
+                                <select name="subject" id="subject" class="form-select nice-select">
+                                    <option value="Select Destination" selected disabled>Select Option</option>
+                                    <option value="Tuk Tuk">Private Safari</option>
+                                    <option value="Tour">Historical Tour</option>
+                                    <option value="Tour">Morning Tours</option>
+                                    <option value="Tour">Evening Tours</option>
+                                    <option value="Tour">Street Food Tour</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="search-input">
-                            <label>Tour Option</label>
-                            <select name="subject" id="subject" class="form-select nice-select">
-                                <option value="Select Destination" selected disabled>Select Option</option>
-                                <option value="Tuk Tuk">Private Safari</option>
-                                <option value="Tour">Historical Tour</option>
-                                <option value="Tour">Morning Tours</option>
-                                <option value="Tour">Evening Tours</option>
-                                <option value="Tour">Street Food Tour</option>
-                            </select>
+                        <div class="form-group col-md-6 col-lg-auto">
+                            <div class="icon">
+                                <i class="fa-light fa-clock"></i>
+                            </div>
+                            <div class="search-input">
+                                <label>Duration</label>
+                                <select class="form-select nice-select" name="Duration" id="Duration" disabled>
+                                    <option value="Normal">Duration</option>
+                                    <option value="4" selected disabled>4 hours</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-lg-auto">
+                            <div class="icon">
+                                <i class="fa-light fa-map-location-dot"></i>
+                            </div>
+                            <div class="search-input">
+                                <label>Tour Area</label>
+                                <select name="subject" id="category" class="form-select nice-select" disabled>
+                                    <option value="Normal">Tour Area</option>
+                                    <option value="Colombo" selected disabled>Colombo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-btn col-md-12 col-lg-auto">
+                            <button class="th-btn" onclick="window.location.href='private-tour.php'"><img src="assets/img/icon/search.svg" alt="">Search</button>
                         </div>
                     </div>
-                    <div class="form-group col-md-6 col-lg-auto">
-                        <div class="icon">
-                            <i class="fa-light fa-clock"></i>
-                        </div>
-                        <div class="search-input">
-                            <label>Duration</label>
-                            <select class="form-select nice-select" name="Duration" id="Duration" disabled>
-                                <option value="Normal" >Duration</option>
-                                <option value="4"selected disabled>4 hours</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6 col-lg-auto">
-                        <div class="icon">
-                            <i class="fa-light fa-map-location-dot"></i>
-                        </div>
-                        <div class="search-input">
-                            <label>Tour Area</label>
-                            <select name="subject" id="category" class="form-select nice-select" disabled>
-                                <option value="Normal" >Tour Area</option>
-                                <option value="Colombo"selected disabled>Colombo</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-btn col-md-12 col-lg-auto">
-                        <button class="th-btn" onclick="window.location.href='private-tour.php'"><img src="assets/img/icon/search.svg" alt="">Search</button>
-                    </div>
+                    <p class="form-messages mb-0 mt-3"></p>
                 </div>
-                <p class="form-messages mb-0 mt-3"></p>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
     <!--==============================
 Category Area  
@@ -749,6 +749,23 @@ About Area
 Service Area  
 ==============================-->
 
+    <?php
+    require_once 'assets/process/connection.php';
+
+    $tours = [];
+    try {
+        $query = "SELECT t.id, t.name, t.description, t.duration, t.adult_price, ti.main_image
+              FROM tour t
+              LEFT JOIN tour_image ti ON t.id = ti.tour_id
+              WHERE t.status_id = 1";
+        $result = Database::search($query);
+        while ($row = $result->fetch_assoc()) {
+            $tours[] = $row;
+        }
+    } catch (Exception $e) {
+        // Error handling
+    }
+    ?>
     <section class="position-relative bg-top-center overflow-hidden space" id="service-sec" data-bg-src="assets/img/bg/tour_bg_1.png">
         <div class="container">
             <div class="row">
@@ -764,122 +781,45 @@ Service Area
             <div class="slider-area tour-slider ">
                 <div class="swiper th-slider has-shadow slider-drag-wrap" data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"2"},"1200":{"slidesPerView":"3"},"1300":{"slidesPerView":"4"}}}'>
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="tour-box th-ani gsap-cursor">
-                                <div class="tour-box_img global-img">
-                                    <img src="assets/img/normal/1.png" alt="image">
-                                </div>
-                                <div class="tour-content">
-                                    <h3 class="box-title"><a href="tour-details.php"> Private Safari</a></h3>
-                                    <div class="tour-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
-                                                <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
-                                                Rating)</span></div>
-                                        <a href="tour-details.php" class="woocommerce-review-link">(<span class="count">4.8</span>
-                                            Rating)</a>
+                        <?php foreach ($tours as $tour): ?>
+                            <div class="swiper-slide">
+                                <div class="tour-box th-ani gsap-cursor">
+                                    <div class="tour-box_img global-img">
+                                        <?php
+                                        $main_image_name = '';
+                                        if (!empty($tour['main_image'])) {
+                                            $main_image_name = basename($tour['main_image']);
+                                        }
+                                        ?>
+                                        <img src="../admin/assets/uploads/tour_images/<?php echo $main_image_name ? $main_image_name : 'default.png'; ?>" alt="image">
                                     </div>
-                                    <h4 class="tour-box_price"><span class="currency">$32.00</span>/Person</h4>
-                                    <div class="tour-action">
-                                        <span><i class="fa-light fa-clock"></i>4 Hours</span>
-                                        <a href="private-tour.php" class="th-btn style4 th-icon">Book Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="tour-box th-ani gsap-cursor">
-                                <div class="tour-box_img global-img">
-                                    <img src="assets/img/category/5.png" alt="image">
-                                </div>
-                                <div class="tour-content">
-                                    <h3 class="box-title"><a href="tour-details.php"> Historical tour</a></h3>
-                                    <div class="tour-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
-                                                <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
-                                                Rating)</span></div>
-                                        <a href="tour-details.php" class="woocommerce-review-link">(<span class="count">4.8</span>
-                                            Rating)</a>
-                                    </div>
-                                    <h4 class="tour-box_price"><span class="currency">$33.00</span>/Person</h4>
-                                    <div class="tour-action">
-                                        <span><i class="fa-light fa-clock"></i>4 Hours</span>
-                                        <a href="private-tour.php" class="th-btn style4 th-icon">Book Now</a>
+                                    <div class="tour-content">
+                                        <h3 class="box-title">
+                                            <a href="private-tour.php?id=<?php echo $tour['id']; ?>">
+                                                <?php echo htmlspecialchars($tour['name']); ?>
+                                            </a>
+                                        </h3>
+                                        <div class="tour-rating">
+                                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
+                                                <span style="width:100%">Rated
+                                                    <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8 Rating)
+                                                </span>
+                                            </div>
+                                            <a href="private-tour.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">4.8</span> Rating)</a>
+                                        </div>
+                                        <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Person</h4>
+                                        <div class="tour-action">
+                                            <span><i class="fa-light fa-clock"></i><?php echo (int)$tour['duration']; ?> Hours</span>
+                                            <a href="private-tour.php?id=<?php echo $tour['id']; ?>" class="th-btn th-icon">Book Now</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="tour-box th-ani gsap-cursor">
-                                <div class="tour-box_img global-img">
-                                    <img src="assets/img/category/4.png" alt="image">
-                                </div>
-                                <div class="tour-content">
-                                    <h3 class="box-title"><a href="tour-details.php">Morning Private Tours</a></h3>
-                                    <div class="tour-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
-                                                <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
-                                                Rating)</span></div>
-                                        <a href="tour-details.php" class="woocommerce-review-link">(<span class="count">4.8</span>
-                                            Rating)</a>
-                                    </div>
-                                    <h4 class="tour-box_price"><span class="currency">$34.00</span>/Person</h4>
-                                    <div class="tour-action">
-                                        <span><i class="fa-light fa-clock"></i>4 Hours</span>
-                                        <a href="private-tour.php" class="th-btn style4 th-icon">Book Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="tour-box th-ani gsap-cursor">
-                                <div class="tour-box_img global-img">
-                                    <img src="assets/img/category/2.png" alt="image">
-                                </div>
-                                <div class="tour-content">
-                                    <h3 class="box-title"><a href="tour-details.php">Evening Private Tours</a></h3>
-                                    <div class="tour-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
-                                                <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
-                                                Rating)</span></div>
-                                        <a href="tour-details.php" class="woocommerce-review-link">(<span class="count">4.8</span>
-                                            Rating)</a>
-                                    </div>
-                                    <h4 class="tour-box_price"><span class="currency">$34.00</span>/Person</h4>
-                                    <div class="tour-action">
-                                        <span><i class="fa-light fa-clock"></i>4 Hours</span>
-                                        <a href="private-tour.php" class="th-btn style4 th-icon">Book Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="swiper-slide">
-                            <div class="tour-box th-ani gsap-cursor">
-                                <div class="tour-box_img global-img">
-                                    <img src="assets/img/category/5.png" alt="image">
-                                </div>
-                                <div class="tour-content">
-                                    <h3 class="box-title"><a href="tour-details.php">Colombo Street Food Tour</a></h3>
-                                    <div class="tour-rating">
-                                        <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
-                                                <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
-                                                Rating)</span></div>
-                                        <a href="tour-details.php" class="woocommerce-review-link">(<span class="count">4.8</span>
-                                            Rating)</a>
-                                    </div>
-                                    <h4 class="tour-box_price"><span class="currency">$39.00</span>/Person</h4>
-                                    <div class="tour-action">
-                                        <span><i class="fa-light fa-clock"></i>4 Hours</span>
-                                        <a href="private-tour.php" class="th-btn style4 th-icon">Book Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
         </div>
-
     </section>
 
 
@@ -1159,7 +1099,7 @@ Testimonial Area
                                 </div>
 
                                 <p class="testi-card_text">This tour was the highlight of our Colombo trip! Our guide, Blaze was very knowledgeable and told us all about the different areas we visited including the history and current situations. He was very friendly and accommodating to all our needs throughout our tour in addition for going on much longer than the required time. We really appreciated his kindness and hospitality.
-                                He also made a good recommendations for halal restaurants to try. Highly recommended!</p>
+                                    He also made a good recommendations for halal restaurants to try. Highly recommended!</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1215,10 +1155,10 @@ Testimonial Area
                                 </div>
 
                                 <p class="testi-card_text">We had a great trip with Blaze today. His communication was great, and he was at the port to meet us. He showed us around all the attractions of Colombo and had great local knowledge.
-His English was excellent, and we enjoyed hearing all about the history and sights of Colombo.
-I would highly recommend Blaze for a Tuk tuk tour.
-He was also a great photographer and careful driver.
-Thanks for the adventure and making our stay in Colombo so much fun</p>
+                                    His English was excellent, and we enjoyed hearing all about the history and sights of Colombo.
+                                    I would highly recommend Blaze for a Tuk tuk tour.
+                                    He was also a great photographer and careful driver.
+                                    Thanks for the adventure and making our stay in Colombo so much fun</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1248,7 +1188,7 @@ Thanks for the adventure and making our stay in Colombo so much fun</p>
 
                                 <p class="testi-card_text">Blaze was very professional, spoke very good English, good knowledge of Colombo, helped me with some photocopying, I really enjoyed my tour.
 
-</p>
+                                </p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1277,8 +1217,8 @@ Thanks for the adventure and making our stay in Colombo so much fun</p>
                                 </div>
 
                                 <p class="testi-card_text">Great guy!
-He just makes everything so easy and comfortable for your sri lankan adventures. Really passionate for his work.
-He quoted so cheap for his service that I suggested him to increase the rates.</p>
+                                    He just makes everything so easy and comfortable for your sri lankan adventures. Really passionate for his work.
+                                    He quoted so cheap for his service that I suggested him to increase the rates.</p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1308,7 +1248,7 @@ He quoted so cheap for his service that I suggested him to increase the rates.</
 
                                 <p class="testi-card_text">Wicked time with Blaze, saw all the sights I had on my list and more. Very generous with his time and didn’t make me feel rushed at all. Deserves all the luck in the world, keep up the great work!
 
-</p>
+                                </p>
                                 <div class="testi-card-quote">
                                     <img src="assets/img/icon/testi-quote.svg" alt="img">
                                 </div>
@@ -1438,7 +1378,7 @@ Brand Area
     </div>==============================
 Blog Area  
 ==============================-->
-<!-- 
+    <!-- 
     <section class="bg-smoke overflow-hidden space" id="blog-sec">
         <div class="container">
             <div class="mb-30 text-center text-md-start">
@@ -1573,7 +1513,7 @@ Blog Area
             <img src="assets/img/shape/shape_3.png" alt="shape">
         </div>
     </section> -->
-    
+
     <!--==============================
 	Footer Area
 ==============================-->
@@ -1713,9 +1653,8 @@ modal Area
             r.open("GET", "/user/assets/process/StopPreloaderProcess.php", true);
             r.send();
         });
-
     </script>
-    
+
 </body>
 
 </html>

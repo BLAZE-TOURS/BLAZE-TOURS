@@ -160,12 +160,12 @@
                         <div class="row mb-4">
                             <h5>Images</h5>
                           
-                            <div class="col-md-4 mb-2">
+                            <div class="col-md-6 mb-2">
                                 <label for="main-image" class="form-label">Main Image</label>
                                 <input type="file" class="form-control" id="main-image" accept="image/*">
                                 <div id="main-image-preview" class="mt-2"></div>
                             </div>
-                            <div class="col-md-4 mb-2">
+                            <div class="col-md-6 mb-2">
                                 <label for="second-image" class="form-label">Second Image</label>
                                 <input type="file" class="form-control" id="second-image" accept="image/*">
                                 <div id="second-image-preview" class="mt-2"></div>
@@ -207,7 +207,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-3">
-                                                    <label for="location-icon" class="form-label">Icon Image:</label>
+                                                    <label for="location-icon" class="form-label">Icon Image(icon only):</label>
                                                     <input type="file" name="icon" id="location-icon" class="form-control" accept="image/*" required>
                                                     <div id="icon-info" class="mt-2">
                                                         <span id="icon-filename" class="text-muted small"></span>

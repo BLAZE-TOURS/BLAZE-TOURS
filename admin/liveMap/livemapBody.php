@@ -1,45 +1,45 @@
 <?php require '../connection.php'; ?>
 
- <!DOCTYPE html>
- <html>
+<!DOCTYPE html>
+<html>
 
- <head>
-     <title>Live Map | BLAZE TOURS (PVT) LTD </title>
-     <link rel="icon" type="image/png" href="../SignIn/images/Untit1.png" />
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzj96kj0RB6UZ7iNAvuLm6fLBWO4mfa5A"></script>
-     <script>
-         function LoadMap() {
-             const center = {
-                 lat: 7.2906,
-                 lng: 80.6337
-             }; // Center on Sri Lanka
-             const map = new google.maps.Map(document.getElementById("map"), {
-                 zoom: 10,
-                 center: center
-             });
+<head>
+    <title>Live Map | BLAZE TOURS (PVT) LTD </title>
+    <link rel="icon" type="image/png" href="../SignIn/images/Untit1.png" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzj96kj0RB6UZ7iNAvuLm6fLBWO4mfa5A"></script>
+    <script>
+        function LoadMap() {
+            const center = {
+                lat: 7.2906,
+                lng: 80.6337
+            }; // Center on Sri Lanka
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 10,
+                center: center
+            });
 
-             fetch("fetchLivemap.php")
-                 .then(response => response.json())
-                 .then(data => {
-                     data.forEach(marker => {
-                         const position = {
-                             lat: parseFloat(marker.lat),
-                             lng: parseFloat(marker.lng)
-                         };
+            fetch("fetchLivemap.php")
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(marker => {
+                        const position = {
+                            lat: parseFloat(marker.lat),
+                            lng: parseFloat(marker.lng)
+                        };
 
-                         const mapMarker = new google.maps.Marker({
-                             position: position,
-                             map: map,
-                             title: marker.name,
-                             icon: {
-                                 url: marker.icon_url, // Use the path as stored in DBmg/maker/icon_684925cc6dc9c.png
-                                 scaledSize: new google.maps.Size(40, 40), // Resize icon
-                                 anchor: new google.maps.Point(20, 40) // Anchor bottom-center
-                             }
-                         });
+                        const mapMarker = new google.maps.Marker({
+                            position: position,
+                            map: map,
+                            title: marker.name,
+                            icon: {
+                                url: "../tour/tour/" + marker.icon_url, // <-- මෙහෙම වෙනස් කරන්න
+                                scaledSize: new google.maps.Size(40, 40), // Resize icon
+                                anchor: new google.maps.Point(20, 40) // Anchor bottom-center
+                            }
+                        });
 
-                         const infoWindow = new google.maps.InfoWindow({
-                             content: `
+                        const infoWindow = new google.maps.InfoWindow({
+                            content: `
     <div style="
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #ffffff;
@@ -57,48 +57,30 @@
       <p style="margin: 0; font-size: 14px; color: #666;">⏱️ Stop: ${marker.stop_duration_time || 0} min</p>
     </div>
   `
-                         });
+                        });
 
 
-                         mapMarker.addListener("click", () => {
-                             infoWindow.open(map, mapMarker);
-                         });
-                     });
-                 })
-                 .catch(err => {
-                     console.error("Failed to load marker data:", err);
-                 });
-         }
-     </script>
-     <style>
+                        mapMarker.addListener("click", () => {
+                            infoWindow.open(map, mapMarker);
+                        });
+                    });
+                })
+                .catch(err => {
+                    console.error("Failed to load marker data:", err);
+                });
+        }
+    </script>
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
 
+<body onload="LoadMap()">
+    <div id="map"></div>
+    <img src="../tour/" alt="">
+</body>
 
-
-         #map {
-             height: 100vh;
-             width: 100%;
-         }
-     </style>
- </head>
-
- <body onload="LoadMap()">
-     <div style="width:100%;display:flex;justify-content:start;align-items:start;margin-top:30px;margin-bottom:20px;">
-         <select id="tourSelector" style="min-width:300px;padding:10px 16px;border-radius:8px;border:1px solid #ccc;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);outline:none;transition:border 0.2s;">
-             <option value="">All</option>
-                            <?php
-                            require_once __DIR__ . '/../connection.php';
-                            $tour_query = "SELECT id, name FROM tour";
-                            $tour_result = Database::search($tour_query);
-                            if ($tour_result && $tour_result->num_rows > 0) {
-                                while ($tour = $tour_result->fetch_assoc()) {
-
-                                    echo '<option value="' . htmlspecialchars($tour['id']) . '">' . htmlspecialchars($tour['name']) . '</option>';
-                                }
-                            }
-                            ?>
-         </select>
-     </div>
-     <div id="map"></div>
- </body>
-
- </html>
+</html>
