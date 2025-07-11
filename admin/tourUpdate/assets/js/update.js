@@ -1,6 +1,29 @@
 $(document).ready(function () {
-    fillTourForm();
+    var id = getParameterByName('id');
+    if (!id) {
+        alert('No tour id provided in URL.');
+        return;
+    }
+    $.get('fetchTourById.php?id=' + id, function(data) {
+        try {
+            window.tourData = typeof data === 'string' ? JSON.parse(data) : data;
+        } catch (e) {
+            window.tourData = null;
+        }
+        fillTourForm();
+    });
 });
+
+// Helper to get query parameter from URL
+function getParameterByName(name) {
+    const url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+    const results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 
 function fillTourForm() {
     if (!window.tourData) return;

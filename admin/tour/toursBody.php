@@ -52,7 +52,7 @@ include_once "fetchTours.php";
                                                 <button class="btn btn-sm btn-primary edit-btn" onclick="changeStatusTours(<?php echo $row['id']; ?>);" <?php echo ($row['status_id'] == 3) ? 'disabled' : ''; ?>>
                                                     <i class="fas fa-eye"></i>
                                                 </button>
-                                                <button class="btn btn-sm btn-success edit-btn" onclick="window.open('../tourUpdate/adminindex.php?id=<?php echo $row['id']; ?>', '_blank');" <?php echo ($row['status_id'] == 3) ? 'disabled' : ''; ?>>
+                                                <button class="btn btn-sm btn-success edit-btn" onclick="window.open('../tourUpdate/updateToure.php?id=<?php echo $row['id']; ?>', '_blank');" <?php echo ($row['status_id'] == 3) ? 'disabled' : ''; ?>>
                                                     <i class="fas fa-edit"></i>
                                                 </button>
                                                 <!-- <button class="btn btn-sm btn-danger delete-btn" onclick="deleteTours(<?php echo $row['id']; ?>);">

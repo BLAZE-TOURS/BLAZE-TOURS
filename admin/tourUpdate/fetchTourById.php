@@ -1,4 +1,3 @@
-
 <?php
 require "../connection.php";
 
@@ -20,7 +19,8 @@ if (!$tourData) {
 
 // Images
 $img_rs = Database::search("SELECT * FROM tour_image WHERE tour_id='$tour_id'");
-$tourData['images'] = $img_rs->fetch_assoc();
+$tourData['images'] = [];
+while ($img = $img_rs->fetch_assoc()) $tourData['images'][] = $img;
 
 // Times
 $time_rs = Database::search("SELECT t.timeslot FROM idx_time it JOIN time t ON it.time_id = t.id WHERE it.tour_id='$tour_id'");
@@ -40,4 +40,3 @@ while ($row = $loc_rs->fetch_assoc()) $tourData['locations'][] = $row;
 echo json_encode($tourData);
 
 
-?>
