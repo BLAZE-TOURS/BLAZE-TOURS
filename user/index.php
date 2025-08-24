@@ -1642,18 +1642,6 @@ modal Area
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
     <!--custome-->
-    <script src="./assets/js/Footersubscriber.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-    <script>
-        document.getElementById("subscribe-button").addEventListener("click", function(event) {
-            event.preventDefault(); // Prevent default button behavior
-
-            // Lock the preloader
-            var r = new XMLHttpRequest();
-            r.open("GET", "/user/assets/process/StopPreloaderProcess.php", true);
-            r.send();
-        });
-    </script>
 
 </body>
 

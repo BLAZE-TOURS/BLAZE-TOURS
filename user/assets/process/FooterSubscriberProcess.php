@@ -45,7 +45,7 @@ try {
     $result = Database::search($checkEmailQuery);
 
     if ($result->num_rows > 0) {
-        throw new Exception("Email address already exists");
+        throw new Exception("Already Subscribed!");
     }
 
     // Insert data into the database
@@ -110,7 +110,7 @@ try {
         $mail->Body = $bodyContent;
 
         if ($mail->send()) {
-            $response = ["status" => "success", "message" => "Subscription successful"];
+            $response = ["status" => "success", "message" => "Thank You for Subscribing!"];
         } else {
             error_log("Email sending failed: " . $mail->ErrorInfo);
             throw new Exception("Subscription successful, but email sending failed");

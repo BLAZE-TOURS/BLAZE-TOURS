@@ -57,6 +57,13 @@
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <!-- Intl-Tel-Input CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/css/intlTelInput.min.css" />
+
+    <!-- Alert -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
+
 </head>
 
 <body>
@@ -93,10 +100,10 @@
             </div>
         </div>
     </div> -->
-     <!--==============================
+    <!--==============================
     Sidemenu
 ============================== -->
-    <div class="sidemenu-wrapper sidemenu-info ">
+    <!-- <div class="sidemenu-wrapper sidemenu-info ">
         <div class="sidemenu-content">
             <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
             <div class="widget  ">
@@ -178,10 +185,12 @@
             <input type="text" placeholder="What are you looking for?">
             <button type="submit"><i class="fal fa-search"></i></button>
         </form>
-    </div><!--==============================
+    </div> -->
+
+    <!--==============================
     Mobile Menu
   ============================== -->
-       <?php include 'header.php'; ?>
+    <?php include 'header.php'; ?>
 
     <!--==============================
     Breadcumb
@@ -259,26 +268,20 @@ Video Area
                 <div class="col-lg-6">
                     <div>
                         <form action="mail.php" method="POST" class="contact-form style2 ajax-contact">
-                            <h3 class="sec-title mb-30 text-capitalize">Book a tour</h3>
+                            <h3 class="sec-title mb-30 text-capitalize">Send a Message</h3>
                             <div class="row">
                                 <div class="col-12 form-group">
-                                    <input type="text" class="form-control" name="name" id="name3" placeholder="First Name">
+                                    <input type="text" class="form-control" name="name" id="name3" placeholder="Full Name">
                                     <img src="assets/img/icon/user.svg" alt="">
                                 </div>
                                 <div class="col-12 form-group">
+                                    <input type="tel" class="form-control" name="number3" id="number3" placeholder="Your Number">
+                                    <img src="assets/img/icon/tour2.svg" alt="">
+                                </div>
+
+                                <div class="col-12 form-group">
                                     <input type="email" class="form-control" name="email3" id="email3" placeholder="Your Mail">
                                     <img src="assets/img/icon/mail.svg" alt="">
-                                </div>
-                                <div class="form-group col-12">
-                                    <select name="subject" id="subject" class="form-select nice-select">
-                                        <option value="Select Tour Type" selected disabled>Select Tour Type
-                                        </option>
-                                        <option value="Africa Adventure">Africa Adventure</option>
-                                        <option value="Africa Wild">Africa Wild</option>
-                                        <option value="Asia">Asia</option>
-                                        <option value="Scandinavia">Scandinavia</option>
-                                        <option value="Western Europe">Western Europe</option>
-                                    </select>
                                 </div>
                                 <div class="form-group col-12">
                                     <textarea name="message" id="message" cols="30" rows="3" class="form-control" placeholder="Your Message"></textarea>
@@ -326,7 +329,7 @@ Map Area
     <!--==============================
 modal Area  
 ==============================-->
-    <div id="login-form" class="popup-login-register mfp-hide">
+    <!-- <div id="login-form" class="popup-login-register mfp-hide">
         <ul class="nav" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-menu" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="false">Login</button>
@@ -397,7 +400,7 @@ modal Area
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!--==============================
     All Js File
@@ -434,6 +437,25 @@ modal Area
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/sendMessage.js"></script>
+
+    <!-- Intl-Tel-Input JS -->
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/intlTelInput.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"></script>
+
+    <!-- Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+
+    <script>
+        const input = document.querySelector("#number3");
+        const iti = window.intlTelInput(input, {
+            initialCountry: "lk", // default Sri Lanka
+            separateDialCode: true, // show +94 separately
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"
+        });
+    </script>
+
 </body>
 
 </html>

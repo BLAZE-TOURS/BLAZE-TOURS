@@ -219,13 +219,13 @@ tour Area
                                 }
                                 ?>
 
-                            <img src="../admin/assets/uploads/tour_images/<?php echo $second_image_name ? $second_image_name : 'default.png'; ?>" alt="image">
+                                <img src="../admin/assets/uploads/tour_images/<?php echo $second_image_name ? $second_image_name : 'default.png'; ?>" alt="image">
                             </div>
                         </div>
                         <div class="destination-gallery-wrapper col-12 order-1">
                             <h3 class="page-title mt-30 mb-30">Destination Map</h3>
                             <div class="row gy-4">
-                                <iframe src="https://www.google.com/maps/d/embed?mid=1Q_k3EFU6t3kuax-TL6eEfp4O0MUmw_I&hl=si&ehbc=2E312F" width="640" height="480"></iframe>
+                                <iframe src="assets/process/livemapBody.php?id=<?php echo $tour_id; ?>" width="100%" height="480" style="border:0;"></iframe>
                             </div>
                         </div>
                         <div class="destination-gallery-wrapper">
