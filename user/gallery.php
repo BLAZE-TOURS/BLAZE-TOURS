@@ -84,7 +84,7 @@
     <!--==============================
     Sidemenu
 ============================== -->
-    <div class="sidemenu-wrapper sidemenu-info ">
+    <!-- <div class="sidemenu-wrapper sidemenu-info ">
         <div class="sidemenu-content">
             <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
             <div class="widget  ">
@@ -159,7 +159,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="popup-search-box">
         <button class="searchClose"><i class="fal fa-times"></i></button>
         <form action="#">
@@ -169,7 +169,7 @@
     </div><!--==============================
     Mobile Menu
   ============================== -->
-        <?php include 'header.php'; ?>
+    <?php include 'header.php'; ?>
 
     <!--==============================
     Breadcumb
@@ -193,72 +193,37 @@ Gallery Area
                 <span class="sub-title">Explore Us</span>
                 <h2 class="sec-title">A truly exceptional experience</h2>
             </div>
+            <!-- ==================================================================================================================================================================== -->
+            <!-- Chnage Gallery fech link in hosting -->
+
+            <?php
+            $gallery = [];
+            $ch = curl_init('http://localhost/BLAZE-TOURS/user/assets/process/fetchGallery.php');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);
+            if ($response) {
+                $gallery = json_decode($response, true);
+                if (!is_array($gallery)) {
+                    $gallery = [];
+                }
+            }
+            ?>
             <div class="row gy-4 gallery-row4">
-                <div class="col-auto">
-                    <div class="gallery-box style5">
-                        <div class="gallery-img global-img">
-                            <img src="assets/img/gallery/gallery_8_1.jpg" alt="gallery image">
-                            <a href="assets/img/gallery/gallery_8_1.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
+                <?php foreach ($gallery as $img): ?>
+                    <div class="col-auto">
+                        <div class="gallery-box style5">
+                            <div class="gallery-img global-img">
+                                <img src="<?php echo htmlspecialchars($img['url']); ?>" alt="<?php echo htmlspecialchars($img['title']); ?>">
+                                <a href="<?php echo htmlspecialchars($img['url']); ?>" class="icon-btn popup-image">
+                                    <i class="fal fa-magnifying-glass-plus"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-auto">
-                    <div class="gallery-box style5">
-                        <div class="gallery-img global-img">
-                            <img src="assets/img/gallery/gallery_8_2.jpg" alt="gallery image">
-                            <a href="assets/img/gallery/gallery_8_2.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="gallery-box style5">
-                        <div class="gallery-img global-img">
-                            <img src="assets/img/gallery/gallery_8_3.jpg" alt="gallery image">
-                            <a href="assets/img/gallery/gallery_8_3.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="gallery-box style5">
-                        <div class="gallery-img global-img">
-                            <img src="assets/img/gallery/gallery_8_4.jpg" alt="gallery image">
-                            <a href="assets/img/gallery/gallery_8_4.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="gallery-box style5">
-                        <div class="gallery-img global-img">
-                            <img src="assets/img/gallery/gallery_8_5.jpg" alt="gallery image">
-                            <a href="assets/img/gallery/gallery_8_5.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="gallery-box style5">
-                        <div class="gallery-img global-img">
-                            <img src="assets/img/gallery/gallery_8_6.jpg" alt="gallery image">
-                            <a href="assets/img/gallery/gallery_8_6.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="gallery-box style5">
-                        <div class="gallery-img global-img">
-                            <img src="assets/img/gallery/gallery_8_7.jpg" alt="gallery image">
-                            <a href="assets/img/gallery/gallery_8_7.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="gallery-box style5">
-                        <div class="gallery-img global-img">
-                            <img src="assets/img/gallery/gallery_8_8.jpg" alt="gallery image">
-                            <a href="assets/img/gallery/gallery_8_8.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
+
         </div>
     </div><!--==============================
 	Footer Area
@@ -280,7 +245,7 @@ Gallery Area
     <!--==============================
 modal Area  
 ==============================-->
-    <div id="login-form" class="popup-login-register mfp-hide">
+    <!-- <div id="login-form" class="popup-login-register mfp-hide">
         <ul class="nav" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-menu" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="false">Login</button>
@@ -351,7 +316,7 @@ modal Area
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!--==============================
     All Js File
