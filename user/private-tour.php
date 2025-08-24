@@ -231,38 +231,42 @@ tour Area
                         <div class="destination-gallery-wrapper">
                             <h3 class="page-title mt-30 mb-30">From our gallery</h3>
                             <div class="row gy-4 gallery-row filter-active">
+                                <?php
+                                // Fetch gallery images for this tour
+                                $gallery_items = [];
+                                $ch = curl_init('http://localhost/BLAZE-TOURS/user/assets/process/fetchTourGallery.php?tour_id=' . $tour_id);
+                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                                $response = curl_exec($ch);
+                                curl_close($ch);
+                                if ($response) {
+                                    $gallery_items = json_decode($response, true);
+                                    if (!is_array($gallery_items)) $gallery_items = [];
+                                }
+                                $sizes = [
+                                    ['w' => 312, 'h' => 215],
+                                    ['w' => 526, 'h' => 215],
+                                    ['w' => 526, 'h' => 215],
+                                    ['w' => 312, 'h' => 215],
+                                ];
+                                for ($i = 0; $i < 4; $i++):
+                                    $img = $gallery_items[$i] ?? ['url' => 'assets/img/gallery/gallery_6_' . ($i+1) . '.jpg', 'title' => 'Default'];
+                                    $w = $sizes[$i]['w'];
+                                    $h = $sizes[$i]['h'];
+                                ?>
                                 <div class="col-xxl-auto filter-item">
                                     <div class="gallery-box style3">
                                         <div class="gallery-img global-img">
-                                            <img src="assets/img/gallery/gallery_6_1.jpg" alt="gallery image">
-                                            <a href="assets/img/gallery/gallery_6_1.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
+                                            <img src="<?php echo htmlspecialchars($img['url']); ?>"
+                                                 alt="<?php echo htmlspecialchars($img['title']); ?>"
+                                                 width="<?php echo $w; ?>" height="<?php echo $h; ?>"
+                                                 style="object-fit:cover; width:<?php echo $w; ?>px; height:<?php echo $h; ?>px;">
+                                            <a href="<?php echo htmlspecialchars($img['url']); ?>" class="icon-btn popup-image">
+                                                <i class="fal fa-magnifying-glass-plus"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xxl-auto filter-item">
-                                    <div class="gallery-box style3">
-                                        <div class="gallery-img global-img">
-                                            <img src="assets/img/gallery/gallery_6_2.jpg" alt="gallery image">
-                                            <a href="assets/img/gallery/gallery_6_2.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-auto filter-item">
-                                    <div class="gallery-box style3">
-                                        <div class="gallery-img global-img">
-                                            <img src="assets/img/gallery/gallery_6_3.jpg" alt="gallery image">
-                                            <a href="assets/img/gallery/gallery_6_3.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-auto filter-item">
-                                    <div class="gallery-box style3">
-                                        <div class="gallery-img global-img">
-                                            <img src="assets/img/gallery/gallery_6_4.jpg" alt="gallery image">
-                                            <a href="assets/img/gallery/gallery_6_4.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php endfor; ?>
                             </div>
                         </div>
                         <div class="th-comments-wrap style2 ">
