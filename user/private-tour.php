@@ -266,64 +266,8 @@ tour Area
                             </div>
                         </div>
                         <div class="th-comments-wrap style2 ">
-                            <h2 class="blog-inner-title h4">Reviews (3)</h2>
+                            <h2 class="blog-inner-title h4">Reviews (1)</h2>
                             <ul class="comment-list">
-                                <li class="th-comment-item">
-                                    <div class="th-post-comment">
-                                        <div class="comment-avater">
-                                            <img src="assets/img/blog/comment-author-1.jpg" alt="Comment Author">
-                                        </div>
-                                        <div class="comment-content">
-                                            <h3 class="name">Adam Jhon</h3>
-                                            <div class="commented-wrapp">
-                                                <span class="commented-on">20 Jun, 2024</span>
-                                                <span class="commented-time">08:56pm </span>
-                                                <span class="comment-review">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                </span>
-                                            </div>
-                                            <p class="text">Credibly pontificate transparent quality vectors with quality mindshare. Efficiently
-                                                architect worldwide strategic theme areas after user.</p>
-                                            <div class="reply_and_edit">
-                                                <i class="fa-solid fa-thumbs-up"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ul class="children">
-                                        <li class="th-comment-item">
-                                            <div class="th-post-comment">
-                                                <div class="comment-avater">
-                                                    <img src="assets/img/blog/comment-author-4.jpg" alt="Comment Author">
-                                                </div>
-                                                <div class="comment-content">
-                                                    <div class="">
-                                                        <h3 class="name">Maria Willson</h3>
-                                                        <div class="commented-wrapp">
-                                                            <span class="commented-on">23 Jun, 2024</span>
-                                                            <span class="commented-time">08:56pm </span>
-                                                            <span class="comment-review">
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <p class="text">It is different from airport transfer or port transfer, which are services
-                                                        that pick you up</p>
-                                                    <div class="reply_and_edit">
-                                                        <i class="fa-solid fa-thumbs-up"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
                                 <li class="th-comment-item">
                                     <div class="th-post-comment">
                                         <div class="comment-avater">
@@ -346,9 +290,6 @@ tour Area
                                             </div>
                                             <p class="text">Credibly pontificate transparent quality vectors with quality mindshare. Efficiently
                                                 architect worldwide strategic theme areas after user.</p>
-                                            <div class="reply_and_edit">
-                                                <i class="fa-solid fa-thumbs-up"></i>
-                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -356,7 +297,7 @@ tour Area
                         </div> <!-- Comment end --> <!-- Comment Form -->
                         <div class="th-comment-form ">
                             <div class="row">
-                                <h3 class="blog-inner-title h4 mb-2">Leave a Reply</h3>
+                                <h3 class="blog-inner-title h4 mb-2">Share Your Experience</h3>
                                 <p class="mb-25">Your email address will not be published. Required fields are marked</p>
                                 <div class="col-md-6 form-group">
                                     <input type="text" placeholder="Full Name*" class="form-control" required>
@@ -367,20 +308,22 @@ tour Area
                                     <i class="far fa-envelope"></i>
                                 </div>
                                 <div class="col-12 form-group">
-                                    <input type="text" placeholder="Website" class="form-control" required>
-                                    <i class="far fa-globe"></i>
+                                    <label class="mb-2">Your Rating*</label>
+                                    <div id="star-rating" style="font-size: 1.7em; color: #FFD700; cursor: pointer;">
+                                        <span class="star" data-value="1">&#9733;</span>
+                                        <span class="star" data-value="2">&#9733;</span>
+                                        <span class="star" data-value="3">&#9733;</span>
+                                        <span class="star" data-value="4">&#9733;</span>
+                                        <span class="star" data-value="5">&#9733;</span>
+                                    </div>
+                                    <input type="hidden" name="rating" id="rating" value="5" required>
                                 </div>
                                 <div class="col-12 form-group">
                                     <textarea placeholder="Comment*" class="form-control"></textarea>
                                     <i class="far fa-pencil"></i>
                                 </div>
-                                <div class="col-12 form-group">
-                                    <input type="checkbox" id="html">
-                                    <label for="html">Save my name, email, and website in this browser for the next time I
-                                        comment.</label>
-                                </div>
                                 <div class="col-12 form-group mb-0">
-                                    <button class="th-btn">Send Message<img src="assets/img/icon/plane2.svg" alt=""></button>
+                                    <button class="th-btn">Submit Review<img src="assets/img/icon/plane2.svg" alt=""></button>
                                 </div>
                             </div>
                         </div>
@@ -564,6 +507,23 @@ modal Area
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const stars = document.querySelectorAll("#star-rating .star");
+        const ratingInput = document.getElementById("rating");
+
+        stars.forEach(star => {
+            star.addEventListener("click", function () {
+                const rating = this.getAttribute("data-value");
+                ratingInput.value = rating;
+                stars.forEach(s => {
+                    s.style.color = (s.getAttribute("data-value") <= rating) ? "#FFD700" : "#ccc";
+                });
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
