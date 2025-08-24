@@ -6,7 +6,7 @@ $tour_id = isset($_GET['tour_id']) ? intval($_GET['tour_id']) : 0;
 
 Database::setUpConnection();
 
-$sql = "SELECT r.*, rs.value AS rating_value 
+$sql = "SELECT r.*, rs.star AS rating_value 
         FROM review r 
         INNER JOIN rating_star rs ON r.rating_star_id = rs.id 
         WHERE r.tour_id = $tour_id 
