@@ -20,7 +20,6 @@
                 </li>
                 <li><a href="about.php">About Us</a></li>
                 <li><a href="gallery.php">Gallery</a></li>
-                <li><a href="#">Blog</a></li>
                 <li><a href="contact.php">Contact us</a></li>
             </ul>
         </div>
@@ -83,7 +82,6 @@
                                 </li>
                                 <li><a href="about.php">About Us</a></li>
                                 <li><a href="gallery.php">Gallery</a></li>
-                                <li><a href="#">Blog</a></li>
                                 <li><a href="contact.php">Contact us</a></li>
                             </ul>
                         </nav>
