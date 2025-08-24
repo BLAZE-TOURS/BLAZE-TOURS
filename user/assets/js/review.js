@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <li class="th-comment-item">
                             <div class="th-post-comment">
                                 <div class="comment-avater">
-                                    <img src="assets/img/blog/comment-author-5.jpg" alt="Comment Author">
+                                    <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(r.name)}&background=0D8ABC&color=fff&size=64" alt="Comment Author">
                                 </div>
                                 <div class="comment-content">
                                     <div>
