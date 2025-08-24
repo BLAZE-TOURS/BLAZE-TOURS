@@ -60,7 +60,7 @@ include 'assets/process/fetchTour.php';
 
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 </head>
 
 <body>
@@ -266,45 +266,19 @@ tour Area
                             </div>
                         </div>
                         <div class="th-comments-wrap style2 ">
-                            <h2 class="blog-inner-title h4">Reviews (1)</h2>
-                            <ul class="comment-list">
-                                <li class="th-comment-item">
-                                    <div class="th-post-comment">
-                                        <div class="comment-avater">
-                                            <img src="assets/img/blog/comment-author-5.jpg" alt="Comment Author">
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="">
-                                                <h3 class="name">Michel Edwards</h3>
-                                                <div class="commented-wrapp">
-                                                    <span class="commented-on">27 Jun, 2024</span>
-                                                    <span class="commented-time">08:56pm </span>
-                                                    <span class="comment-review">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <p class="text">Credibly pontificate transparent quality vectors with quality mindshare. Efficiently
-                                                architect worldwide strategic theme areas after user.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div> <!-- Comment end --> <!-- Comment Form -->
+                            <h2 class="blog-inner-title h4">Reviews (0)</h2>
+                            <ul class="comment-list"></ul>
+                        </div>
                         <div class="th-comment-form ">
                             <div class="row">
                                 <h3 class="blog-inner-title h4 mb-2">Share Your Experience</h3>
                                 <p class="mb-25">Your email address will not be published. Required fields are marked</p>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" placeholder="Full Name*" class="form-control" required>
+                                    <input type="text" placeholder="Full Name*" class="form-control" name="name" required>
                                     <i class="far fa-user"></i>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" placeholder="Your Email*" class="form-control" required>
+                                    <input type="text" placeholder="Your Email*" class="form-control" name="email" required>
                                     <i class="far fa-envelope"></i>
                                 </div>
                                 <div class="col-12 form-group">
@@ -319,11 +293,11 @@ tour Area
                                     <input type="hidden" name="rating" id="rating" value="5" required>
                                 </div>
                                 <div class="col-12 form-group">
-                                    <textarea placeholder="Comment*" class="form-control"></textarea>
+                                    <textarea placeholder="Comment*" class="form-control" name="comment" required></textarea>
                                     <i class="far fa-pencil"></i>
                                 </div>
                                 <div class="col-12 form-group mb-0">
-                                    <button class="th-btn">Submit Review<img src="assets/img/icon/plane2.svg" alt=""></button>
+                                    <button class="th-btn" type="button">Submit Review<img src="assets/img/icon/plane2.svg" alt=""></button>
                                 </div>
                             </div>
                         </div>
@@ -399,7 +373,7 @@ tour Area
     <!--==============================
 modal Area  
 ==============================-->
-    <div id="login-form" class="popup-login-register mfp-hide">
+    <!-- <div id="login-form" class="popup-login-register mfp-hide">
         <ul class="nav" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-menu" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="false">Login</button>
@@ -470,7 +444,7 @@ modal Area
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!--==============================
     All Js File
@@ -507,6 +481,8 @@ modal Area
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/review.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
     <script>
     document.addEventListener("DOMContentLoaded", function () {
