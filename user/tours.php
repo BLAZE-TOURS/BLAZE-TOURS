@@ -395,7 +395,7 @@ Product Area
                         </div>
 
 
-                        <div class="widget widget_offer  " data-bg-src="assets/img/destination/0.png">
+                        <div class="widget widget_offer  " data-bg-src="assets/img/normal/tour-contact.png">
                             <div class="offer-banner">
                                 <div class="offer">
                                     <h6 class="box-title">Need Help? We Are Here To Help You</h6>
