@@ -44,11 +44,12 @@
                         <div class="menu-all-pages-container">
                             <ul class="menu">
 
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Tuk Tuk</a></li>
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Terms of Service</a></li>
-                                <li><a href="#">Tour Booking Now</a></li>
+                                <li><a href="index.php">Home</a></li>
+                                <li><a href="tours.php">Tours</a></li>
+                                <li><a href="about.php">About us</a></li>
+                                <!-- <li><a href="#">Terms of Service</a></li> -->
+                                <li><a href="gallery.php">Gallery</a></li>
+                                <li><a href="contact.php">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>

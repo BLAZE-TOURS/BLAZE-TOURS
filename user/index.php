@@ -4,11 +4,25 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>BLAZE TOURS - Home</title>
-    <meta name="author" content="Tourm">
-    <meta name="description" content="Tourm - Travel & Tour Booking Agency HTML Template ">
-    <meta name="keywords" content="Tourm - Travel & Tour Booking Agency HTML Template ">
+    <title>Blaze Tours (Pvt) Ltd | Colombo City & Sri Lanka Tours</title>
+    <meta name="author" content="Blaze Tours (Pvt) Ltd">
+    <meta name="description" content="Blaze Tours (Pvt) Ltd is a Colombo-based travel company offering unforgettable city tours, cultural trips, and scenic getaways across Sri Lanka. Explore paradise with us!">
+    <meta name="keywords" content="Colombo tours, Sri Lanka travel, Blaze Tours, day trips Colombo, Sri Lanka sightseeing, private tours, cultural tours, beach tours">
     <meta name="robots" content="INDEX,FOLLOW">
+
+    <!-- meta -->
+    <meta property="og:title" content="Blaze Tours (Pvt) Ltd | Colombo & Sri Lanka Tours">
+    <meta property="og:description" content="Explore stunning Colombo city and Sri Lanka tours with Blaze Tours (Pvt) Ltd. Book your adventure today!">
+    <meta property="og:image" content="https://yourdomain.com/assets/img/preview.png">
+    <meta property="og:url" content="https://blaze-tours.com/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blaze Tours (Pvt) Ltd | Colombo & Sri Lanka Tours">
+    <meta name="twitter:description" content="Explore stunning Colombo city and Sri Lanka tours with Blaze Tours (Pvt) Ltd. Book your adventure today!">
+    <meta name="twitter:image" content="https://blaze-tours.com/assets/img/preview.png">
+
+
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -193,8 +207,8 @@ Hero Area
                                 <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">
                                     Natural Wonder of the world </h1>
                                 <div class="btn-group" data-ani="slideinup" data-ani-delay="0.6s">
-                                    <a href="#service-sec" class="th-btn th-icon">Explore Tours</a>
-                                    <a href="#top-destination-area" class="th-btn style2 th-icon">Destination</a>
+                                    <a href="tours.php" class="th-btn th-icon">Explore Tours</a>
+                                    <a href="gallery.php" class="th-btn style2 th-icon">Gallery</a>
                                 </div>
                             </div>
                         </div>
@@ -210,8 +224,8 @@ Hero Area
                                 <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">
                                     Let’s make your best trip with us </h1>
                                 <div class="btn-group" data-ani="slideinup" data-ani-delay="0.6s">
-                                    <a href="#service-sec" class="th-btn th-icon">Explore Tours</a>
-                                    <a href="#top-destination-area" class="th-btn style2 th-icon">Destination</a>
+                                    <a href="tours.php" class="th-btn th-icon">Explore Tours</a>
+                                    <a href="gallery.php" class="th-btn style2 th-icon">Gallery</a>
                                 </div>
                             </div>
                         </div>
@@ -227,8 +241,8 @@ Hero Area
                                 <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.4s">
                                     Explore beauty of the whole world </h1>
                                 <div class="btn-group" data-ani="slideinup" data-ani-delay="0.6s">
-                                    <a href="#service-sec" class="th-btn th-icon">Explore Tours</a>
-                                    <a href="#top-destination-area" class="th-btn style2 th-icon">Destination</a>
+                                    <a href="tours.php" class="th-btn th-icon">Explore Tours</a>
+                                    <a href="gallery.php" class="th-btn style2 th-icon">Gallery</a>
                                 </div>
                             </div>
                         </div>
@@ -378,300 +392,6 @@ Booking Area
     </div>
 
     <!--==============================
-Category Area  
-==============================-->
-    <section class="category-area bg-top-center" data-bg-src="assets/img/bg/category_bg_1.png">
-        <div class="container th-container">
-            <div class="title-area text-center">
-                <span class="sub-title">Wornderful Place For You</span>
-                <h2 class="sec-title">Tour Categories</h2>
-
-            </div>
-            <div class="swiper categorySlider" id="categorySlide">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="category-card single">
-                            <div class="box-img global-img">
-                                <img src="assets/img/category/1.png" alt="Image">
-                            </div>
-                            <h3 class="box-title"><a href="">Adventure</a></h3>
-                            <!-- <a class="line-btn" href="">See more</a> -->
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="category-card single">
-                            <div class="box-img global-img">
-                                <img src="assets/img/category/2.png" alt="Image">
-                            </div>
-                            <h3 class="box-title"><a href="">Beach</a></h3>
-                            <!-- <a class="line-btn" href="#">See more</a> -->
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="category-card single">
-                            <div class="box-img global-img">
-                                <img src="assets/img/category/3.png" alt="Image">
-                            </div>
-                            <h3 class="box-title"><a href="">City</a></h3>
-                            <!-- <a class="line-btn" href="#">See more</a> -->
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="category-card single">
-                            <div class="box-img global-img">
-                                <img src="assets/img/category/4.png" alt="Image">
-                            </div>
-                            <h3 class="box-title"><a href="">Family</a></h3>
-                            <!-- <a class="line-btn" href="#">See more</a> -->
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="category-card single">
-                            <div class="box-img global-img">
-                                <img src="assets/img/category/5.png" alt="Image">
-                            </div>
-                            <h3 class="box-title"><a href="">Group</a></h3>
-                            <!-- <a class="line-btn" href="#">See more</a> -->
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="category-card single">
-                            <div class="box-img global-img">
-                                <img src="assets/img/category/3.png" alt="Image">
-                            </div>
-                            <h3 class="box-title"><a href="">Couple</a></h3>
-                            <!-- <a class="line-btn" href="#">See more</a> -->
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="category-card single">
-                            <div class="box-img global-img">
-                                <img src="assets/img/category/5.png" alt="Image">
-                            </div>
-                            <h3 class="box-title"><a href="">Group</a></h3>
-                            <!-- <a class="line-btn" href="#">See more</a> -->
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="category-card single">
-                            <div class="box-img global-img">
-                                <img src="assets/img/category/4.png" alt="Image">
-                            </div>
-                            <h3 class="box-title"><a href="">Family</a></h3>
-                            <!-- <a class="line-btn" href="#">See more</a> -->
-                        </div>
-                    </div>
-
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
-    </section><!--==============================
-destination Area  
-==============================-->
-    <div class="destination-area position-relative overflow-hidden " id="top-destination-area">
-        <div class="container">
-            <div class="title-area text-center">
-                <span class="sub-title">Top Destination</span>
-                <h2 class="sec-title">Popular Destination</h2>
-
-            </div>
-            <div class="swiper th-slider destination-slider slider-drag-wrap" id="aboutSlider1" data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"3"}},"effect":"coverflow","coverflowEffect":{"rotate":"0","stretch":"95","depth":"212","modifier":"1"},"centeredSlides":"true"}'>
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="destination-box gsap-cursor">
-                            <div class="destination-img">
-                                <img src="assets/img/destination/1.png" alt="destination image">
-                                <div class="destination-content">
-                                    <div class="media-left">
-                                        <h4 class="box-title">
-                                            <a href="">Galle Face</a>
-                                        </h4>
-                                        <span class="destination-subtitle">4.5 Rating</span>
-                                    </div>
-                                    <div class="">
-                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="destination-box gsap-cursor">
-                            <div class="destination-img">
-                                <img src="assets/img/destination/5.png" alt="destination image">
-                                <div class="destination-content">
-                                    <div class="media-left">
-                                        <h4 class="box-title">
-                                            <a href="">Mount Lavinia Beach</a>
-                                        </h4>
-                                        <span class="destination-subtitle">4.5 Rating</span>
-                                    </div>
-                                    <div class="">
-                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="destination-box gsap-cursor">
-                            <div class="destination-img">
-                                <img src="assets/img/destination/9.png" alt="destination image">
-                                <div class="destination-content">
-                                    <div class="media-left">
-                                        <h4 class="box-title">
-                                            <a href="">Viharamahadevi Park</a>
-                                        </h4>
-                                        <span class="destination-subtitle">4.5 Rating</span>
-                                    </div>
-                                    <div class="">
-                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="destination-box gsap-cursor">
-                            <div class="destination-img">
-                                <img src="assets/img/destination/10.png" alt="destination image">
-                                <div class="destination-content">
-                                    <div class="media-left">
-                                        <h4 class="box-title">
-                                            <a href="">Colombo Museum</a>
-                                        </h4>
-                                        <span class="destination-subtitle">4.5 Rating</span>
-                                    </div>
-                                    <div class="">
-                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="destination-box gsap-cursor">
-                            <div class="destination-img">
-                                <img src="assets/img/destination/2.png" alt="destination image">
-                                <div class="destination-content">
-                                    <div class="media-left">
-                                        <h4 class="box-title">
-                                            <a href="">Beira Lake</a>
-                                        </h4>
-                                        <span class="destination-subtitle">4.5 Rating</span>
-                                    </div>
-                                    <div class="">
-                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="destination-box gsap-cursor">
-                            <div class="destination-img">
-                                <img src="assets/img/destination/4.png" alt="destination image">
-                                <div class="destination-content">
-                                    <div class="media-left">
-                                        <h4 class="box-title">
-                                            <a href="">Gangaramaya Temple</a>
-                                        </h4>
-                                        <span class="destination-subtitle">4.5 Rating</span>
-                                    </div>
-                                    <div class="">
-                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="destination-box gsap-cursor">
-                            <div class="destination-img">
-                                <img src="assets/img/destination/3.png" alt="destination image">
-                                <div class="destination-content">
-                                    <div class="media-left">
-                                        <h4 class="box-title">
-                                            <a href="">Bellanwila Vihara</a>
-                                        </h4>
-                                        <span class="destination-subtitle">4.5 Rating</span>
-                                    </div>
-                                    <div class="">
-                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="destination-box gsap-cursor">
-                            <div class="destination-img">
-                                <img src="assets/img/destination/6.png" alt="destination image">
-                                <div class="destination-content">
-                                    <div class="media-left">
-                                        <h4 class="box-title">
-                                            <a href="">Clock Tower</a>
-                                        </h4>
-                                        <span class="destination-subtitle">4.5 Rating</span>
-                                    </div>
-                                    <div class="">
-                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="destination-box gsap-cursor">
-                            <div class="destination-img">
-                                <img src="assets/img/destination/7.png" alt="destination image">
-                                <div class="destination-content">
-                                    <div class="media-left">
-                                        <h4 class="box-title">
-                                            <a href="">Lotus Tower</a>
-                                        </h4>
-                                        <span class="destination-subtitle">4.5 Rating</span>
-                                    </div>
-                                    <div class="">
-                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="destination-box gsap-cursor">
-                            <div class="destination-img">
-                                <img src="assets/img/destination/8.png" alt="destination image">
-                                <div class="destination-content">
-                                    <div class="media-left">
-                                        <h4 class="box-title">
-                                            <a href="">Hidden Church</a>
-                                        </h4>
-                                        <span class="destination-subtitle">4.5 Rating</span>
-                                    </div>
-                                    <div class="">
-                                        <!-- <a href="#" class="th-btn style2 th-icon">View All</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-
-    <!--==============================
 About Area  
 ==============================-->
     <div class="about-area position-relative overflow-hidden space" id="about-sec">
@@ -736,9 +456,6 @@ About Area
             <img src="assets/img/shape/shape_3.png" alt="shape">
         </div>
 
-        <div class="shape-mockup about-shape movingX d-none d-xxl-block" data-bottom="0%" data-right="8%">
-            <img src="assets/img/normal/about-slide-img.png" alt="shape">
-        </div>
         <div class="shape-mockup about-rating d-none d-xxl-block" data-bottom="45%" data-right="2%">
             <i class="fa-sharp fa-solid fa-star"></i><span>4.9k</span>
         </div>
@@ -977,7 +694,7 @@ Counter Area
     </div> <!--==============================
 Team Area  
 ==============================-->
-    <section class="bg-smoke space" data-bg-src="assets/img/bg/team_bg_1.png">
+    <!-- <section class="bg-smoke space" data-bg-src="assets/img/bg/team_bg_1.png">
         <div class="container z-index-common">
             <div class="title-area text-center">
                 <span class="sub-title">Meet with Guide</span>
@@ -986,7 +703,6 @@ Team Area
             <div class="slider-area">
                 <div class="swiper th-slider teamSlider1 has-shadow" id="teamSlider1" data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"4"}}}'>
                     <div class="swiper-wrapper d-flex justify-content-center align-items-center">
-                        <!-- Single Item -->
                         <div class="swiper-slide">
                             <div class="th-team team-box">
                                 <div class="team-img">
@@ -1011,7 +727,8 @@ Team Area
                 </div>
             </div>
         </div>
-    </section><!--==============================
+    </section> -->
+    <!--==============================
 Testimonial Area  
 ==============================-->
     <section class="testi-area overflow-hidden space" id="testi-sec">

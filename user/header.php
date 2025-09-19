@@ -10,14 +10,7 @@
                 <li class="mega-menu-wrap">
                     <a class="active" href="index.php">Home</a>
                 </li>
-                <li><a href="">Tuk Tuk</a></li>
-                <li class="menu-item-has-children">
-                    <a href="#">Tours</a>
-                    <ul class="sub-menu">
-                        <li><a href="#">City Tours</a></li>
-                        <li><a href="#">Adventure Tours</a></li>
-                    </ul>
-                </li>
+                <li><a href="tours.php">Tours</a></a></li>
                 <li><a href="about.php">About Us</a></li>
                 <li><a href="gallery.php">Gallery</a></li>
                 <li><a href="contact.php">Contact us</a></li>
@@ -72,14 +65,7 @@
                         <nav class="main-menu d-none d-xl-inline-block">
                             <ul>
                                 <li><a href="index.php">Home</a></li>
-                                <li><a href="#">Tuk Tuk</a></li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Tours</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="#">City Tours</a></li>
-                                        <li><a href="#">Adventure Tours</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="tours.php">Tours</a></a></li>
                                 <li><a href="about.php">About Us</a></li>
                                 <li><a href="gallery.php">Gallery</a></li>
                                 <li><a href="contact.php">Contact us</a></li>
