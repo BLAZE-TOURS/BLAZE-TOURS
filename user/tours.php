@@ -174,6 +174,15 @@ Product Area
                         // Base WHERE clause (extend later if filters are added)
                         $whereClause = "WHERE t.status_id = 1";
 
+                        // Filter by category (tours_type)
+                        $typeFilter = null;
+                        if (isset($_GET['type']) && is_numeric($_GET['type'])) {
+                            $typeFilter = (int)$_GET['type'];
+                            if ($typeFilter > 0) {
+                                $whereClause .= " AND t.tours_type_id = $typeFilter";
+                            }
+                        }
+
                         // Search by tour name
                         $searchTerm = '';
                         if (isset($_GET['search']) && $_GET['search'] !== '') {
@@ -372,10 +381,19 @@ Product Area
                                     // Error handling
                                 }
                                 ?>
-                                <?php foreach ($tours as $tour): ?>
-
+                                <?php
+                                $currentParams = $_GET;
+                                $currentTypeId = isset($_GET['type']) ? (int)$_GET['type'] : 0;
+                                foreach ($tours as $tour):
+                                    $params = $currentParams;
+                                    $params['type'] = $tour['id'];
+                                    $params['page'] = 1; // reset pagination when changing category
+                                    $qs = http_build_query($params);
+                                    $url = 'tours.php' . ($qs ? ('?' . $qs) : '');
+                                    $isActiveType = ($currentTypeId === (int)$tour['id']);
+                                ?>
                                     <li>
-                                        <a href="tours.php?type=<?php echo $tour['id']; ?>">
+                                        <a href="<?php echo htmlspecialchars($url); ?>"<?php echo $isActiveType ? ' style="color:#bd3838"' : ''; ?>>
                                             <img src="assets/img/theme-img/map.svg" alt="">
                                             <?php echo htmlspecialchars($tour['name']); ?>
                                         </a>
