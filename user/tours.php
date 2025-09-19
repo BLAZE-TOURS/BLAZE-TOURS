@@ -147,18 +147,52 @@ Product Area
                         <?php
                         require_once 'assets/process/connection.php';
 
+                        // Pagination setup
+                        $limit = 10;
+                        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                        if ($page < 1) { $page = 1; }
+                        $offset = ($page - 1) * $limit;
+
+                        // Base WHERE clause (extend later if filters are added)
+                        $whereClause = "WHERE t.status_id = 1";
+
+                        // Count total tours
+                        $totalTours = 0;
+                        try {
+                            $countQuery = "SELECT COUNT(*) AS total FROM tour t $whereClause";
+                            $countResult = Database::search($countQuery);
+                            if ($countRow = $countResult->fetch_assoc()) {
+                                $totalTours = (int)$countRow['total'];
+                            }
+                        } catch (Exception $e) {
+                            $totalTours = 0;
+                        }
+
+                        $totalPages = ($totalTours > 0) ? (int)ceil($totalTours / $limit) : 1;
+                        if ($page > $totalPages) { $page = $totalPages; $offset = ($page - 1) * $limit; }
+
+                        // Fetch paginated tours
                         $tours = [];
                         try {
                             $query = "SELECT t.id, t.name, t.description, t.duration, t.adult_price, ti.main_image
               FROM tour t
               LEFT JOIN tour_image ti ON t.id = ti.tour_id
-              WHERE t.status_id = 1";
+              $whereClause
+              LIMIT $limit OFFSET $offset";
                             $result = Database::search($query);
                             while ($row = $result->fetch_assoc()) {
                                 $tours[] = $row;
                             }
                         } catch (Exception $e) {
                             // Error handling
+                        }
+
+                        // Helper to build pagination URLs preserving existing query params
+                        function buildPageUrl($pageNumber) {
+                            $params = $_GET;
+                            $params['page'] = $pageNumber;
+                            $qs = http_build_query($params);
+                            return 'tours.php' . ($qs ? ('?' . $qs) : '');
                         }
                         ?>
 
@@ -250,11 +284,21 @@ Product Area
                         </div>
                         <div class="th-pagination text-center mt-60">
                             <ul>
-                                <li><a class="active" href="tours.php">1</a></li>
-                                <li><a href="tours.php">2</a></li>
-                                <li><a href="tours.php">3</a></li>
-                                <li><a href="tours.php">4</a></li>
-                                <li><a class="next-page" href="tours.php">Next <img src="assets/img/icon/arrow-right4.svg" alt=""></a></li>
+                                <?php if ($page > 1): ?>
+                                    <li><a href="<?php echo htmlspecialchars(buildPageUrl($page - 1)); ?>">Prev</a></li>
+                                <?php endif; ?>
+
+                                <?php
+                                // Simple numbered pagination
+                                for ($i = 1; $i <= $totalPages; $i++):
+                                    $isActive = ($i === $page) ? 'active' : '';
+                                ?>
+                                    <li><a class="<?php echo $isActive; ?>" href="<?php echo htmlspecialchars(buildPageUrl($i)); ?>"><?php echo $i; ?></a></li>
+                                <?php endfor; ?>
+
+                                <?php if ($page < $totalPages): ?>
+                                    <li><a class="next-page" href="<?php echo htmlspecialchars(buildPageUrl($page + 1)); ?>">Next <img src="assets/img/icon/arrow-right4.svg" alt=""></a></li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
