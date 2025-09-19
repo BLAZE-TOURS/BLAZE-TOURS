@@ -277,8 +277,19 @@ Product Area
                             <div class="row gy-24 gx-24">
 
                                 <!-- Tour Card -->
-
-                                <?php foreach ($tours as $tour): ?>
+                                <?php if (empty($tours)): ?>
+                                    <div class="col-12"></div>
+                                        <div class="text-center py-5">
+                                            <div class="mb-4">
+                                                <i class="fa-light fa-search" style="font-size: 4rem; color: #ccc;"></i>
+                                            </div>
+                                            <h3 class="mb-3">No Tours Found</h3>
+                                            <p class="text-muted mb-4">Sorry, we couldn't find any tours matching your search criteria.</p>
+                                            <a href="tours.php" class="th-btn">View All Tours</a>
+                                        </div>
+                                    </div>
+                                <?php else: ?>
+                                    <?php foreach ($tours as $tour): ?>
                                     <div class="col-md-6">
                                         <div class="tour-box th-ani">
                                             <div class="tour-box_img global-img">
@@ -313,8 +324,8 @@ Product Area
                                             </div>
                                         </div>
                                     </div>
-                                <?php endforeach; ?>
-
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
 
                             </div>
                         </div>
@@ -323,7 +334,19 @@ Product Area
                             <div class="row gy-30">
 
                                 <!-- Tour List Card -->
-                                <?php foreach ($tours as $tour): ?>
+                                <?php if (empty($tours)): ?>
+                                    <div class="col-12">
+                                        <div class="text-center py-5">
+                                            <div class="mb-4">
+                                                <i class="fa-light fa-search" style="font-size: 4rem; color: #ccc;"></i>
+                                            </div>
+                                            <h3 class="mb-3">No Tours Found</h3>
+                                            <p class="text-muted mb-4">Sorry, we couldn't find any tours matching your search criteria.</p>
+                                            <a href="tours.php" class="th-btn">View All Tours</a>
+                                        </div>
+                                    </div>
+                                <?php else: ?>
+                                    <?php foreach ($tours as $tour): ?>
 
                                     <div class="col-12">
                                         <div class="tour-box style-flex th-ani">
@@ -353,11 +376,12 @@ Product Area
                                             </div>
                                         </div>
                                     </div>
-                                <?php endforeach; ?>
-
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
 
                             </div>
                         </div>
+                        <?php if (!empty($tours)): ?>
                         <div class="th-pagination text-center mt-60">
                             <ul>
                                 <?php if ($page > 1): ?>
@@ -377,6 +401,7 @@ Product Area
                                 <?php endif; ?>
                             </ul>
                         </div>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-xxl-4 col-lg-5">
