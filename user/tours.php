@@ -125,13 +125,22 @@ Product Area
                                 <a href="#" id="tab-destination-list" data-bs-toggle="tab" data-bs-target="#tab-list" role="tab" aria-controls="tab-list" aria-selected="false" class=""><i class="fa-solid fa-list"></i></a>
                             </div>
                             <form class="woocommerce-ordering" method="get">
-                                <select name="orderby" class="orderby" aria-label="destination order">
-                                    <option value="menu_order" selected="selected">Default Sorting</option>
-                                    <option value="popularity">Sort by popularity</option>
-                                    <option value="rating">Sort by average rating</option>
-                                    <option value="date">Sort by latest</option>
-                                    <option value="price">Sort by price: low to high</option>
-                                    <option value="price-desc">Sort by price: high to low</option>
+                                <?php
+                                // Preserve existing query params except orderby and page (we reset page on sort)
+                                foreach ($_GET as $key => $value) {
+                                    if ($key === 'orderby' || $key === 'page') { continue; }
+                                    echo '<input type="hidden" name="' . htmlspecialchars($key) . '" value="' . htmlspecialchars($value) . '">';
+                                }
+                                echo '<input type="hidden" name="page" value="1">';
+                                $currentOrder = isset($_GET['orderby']) ? $_GET['orderby'] : 'menu_order';
+                                ?>
+                                <select name="orderby" class="orderby" aria-label="destination order" onchange="this.form.submit()">
+                                    <option value="menu_order" <?php echo ($currentOrder==='menu_order')?'selected':''; ?>>Default Sorting</option>
+                                    <option value="popularity" <?php echo ($currentOrder==='popularity')?'selected':''; ?>>Sort by popularity</option>
+                                    <option value="rating" <?php echo ($currentOrder==='rating')?'selected':''; ?>>Sort by average rating</option>
+                                    <option value="date" <?php echo ($currentOrder==='date')?'selected':''; ?>>Sort by latest</option>
+                                    <option value="price" <?php echo ($currentOrder==='price')?'selected':''; ?>>Sort by price: low to high</option>
+                                    <option value="price-desc" <?php echo ($currentOrder==='price-desc')?'selected':''; ?>>Sort by price: high to low</option>
                                 </select>
                             </form>
                         </div>
@@ -156,6 +165,29 @@ Product Area
                         // Base WHERE clause (extend later if filters are added)
                         $whereClause = "WHERE t.status_id = 1";
 
+                        // Sorting setup
+                        $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'menu_order';
+                        switch ($orderby) {
+                            case 'price':
+                                $orderBySql = "ORDER BY t.adult_price ASC";
+                                break;
+                            case 'price-desc':
+                                $orderBySql = "ORDER BY t.adult_price DESC";
+                                break;
+                            case 'date':
+                                // Assuming higher id == newer; adjust to created_at if available
+                                $orderBySql = "ORDER BY t.id DESC";
+                                break;
+                            case 'rating':
+                            case 'popularity':
+                                // No explicit columns; fallback to name
+                                $orderBySql = "ORDER BY t.name ASC";
+                                break;
+                            case 'menu_order':
+                            default:
+                                $orderBySql = "ORDER BY t.id ASC";
+                        }
+
                         // Count total tours
                         $totalTours = 0;
                         try {
@@ -178,6 +210,7 @@ Product Area
               FROM tour t
               LEFT JOIN tour_image ti ON t.id = ti.tour_id
               $whereClause
+              $orderBySql
               LIMIT $limit OFFSET $offset";
                             $result = Database::search($query);
                             while ($row = $result->fetch_assoc()) {
