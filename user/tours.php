@@ -189,6 +189,14 @@ Product Area
                             }
                         }
 
+                        // Filter by duration
+                        if (isset($_GET['duration']) && is_numeric($_GET['duration'])) {
+                            $duration = (int)$_GET['duration'];
+                            if ($duration > 0) {
+                                $whereClause .= " AND t.duration = $duration";
+                            }
+                        }
+
                         // Search by tour name
                         $searchTerm = '';
                         if (isset($_GET['search']) && $_GET['search'] !== '') {
