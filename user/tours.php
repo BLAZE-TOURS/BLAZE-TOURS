@@ -381,15 +381,15 @@ Product Area
                                     // Error handling
                                 }
                                 ?>
-    <?php foreach ($tours as $tour): ?>
+                                <?php foreach ($tours as $tour): ?>
 
-                                <li>
-                                               <a href="tours.php?type=<?php echo $tour['id']; ?>">
-                <img src="assets/img/theme-img/map.svg" alt="">
-                <?php echo htmlspecialchars($tour['name']); ?>
-            </a>
-                                </li>
-    <?php endforeach; ?>
+                                    <li>
+                                        <a href="tours.php?type=<?php echo $tour['id']; ?>">
+                                            <img src="assets/img/theme-img/map.svg" alt="">
+                                            <?php echo htmlspecialchars($tour['name']); ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
 
                             </ul>
                         </div>
