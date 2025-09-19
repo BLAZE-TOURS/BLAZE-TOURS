@@ -173,8 +173,18 @@ Booking Area
                             <div class="search-input">
                                 <label>Tour Category</label>
                                 <select name="subject" id="subject" class="form-select nice-select">
-                                    <option value="Select Destination" selected disabled>Select Category</option>
-                                    <option value=""></option>
+                                    <option value="" selected disabled>Select Category</option>
+                                    <?php
+                                    require_once 'assets/process/connection.php';
+                                    try {
+                                        $typesResult = Database::search("SELECT id, name FROM tours_type ORDER BY name ASC");
+                                        while ($type = $typesResult->fetch_assoc()) {
+                                            echo '<option value="' . htmlspecialchars($type['id']) . '">' . htmlspecialchars($type['name']) . '</option>';
+                                        }
+                                    } catch (Exception $e) {
+                                        // silently ignore
+                                    }
+                                    ?>
                                 </select>
                             </div>
                         </div>
