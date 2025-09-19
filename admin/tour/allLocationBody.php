@@ -144,7 +144,7 @@
                                             <td><?php echo $row["lng"]; ?></td>
                                             <td>
                                                 <?php if (!empty($row["icon_url"])): ?>
-                                                    <img src="<?php echo htmlspecialchars($row["icon_url"]); ?>" alt="Icon" style="width:32px;height:32px;">
+                                                    <img src="tour/<?php echo htmlspecialchars($row["icon_url"]); ?>" alt="Icon" style="width:32px;height:32px;">
                                                 <?php endif; ?>
                                             </td>
                                             <td style="max-width:200px; word-break:break-word; white-space:pre-line;">

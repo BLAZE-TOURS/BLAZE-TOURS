@@ -4,33 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Tourm - Travel & Tour Booking Agency HTML Template - About Tourm</title>
-    <meta name="author" content="Tourm">
-    <meta name="description" content="Tourm - Travel & Tour Booking Agency HTML Template ">
-    <meta name="keywords" content="Tourm - Travel & Tour Booking Agency HTML Template ">
-    <meta name="robots" content="INDEX,FOLLOW">
+<title>About Us | Blaze Tours (Pvt) Ltd - Colombo & Sri Lanka Travel Experts</title>
+<meta name="author" content="Blaze Tours (Pvt) Ltd">
+<meta name="description" content="Learn more about Blaze Tours (Pvt) Ltd, a trusted Colombo-based travel company offering city tours, cultural experiences, and scenic trips across Sri Lanka. Discover our story, mission, and passion for travel.">
+<meta name="keywords" content="About Blaze Tours, Colombo travel agency, Sri Lanka tour company, private limited tours, cultural trips Sri Lanka, Blaze Tours story, travel experts Colombo">
+<meta name="robots" content="INDEX,FOLLOW">
+
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Favicons - Place favicon.ico in the root directory -->
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="assets/img/favicons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/favicons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/favicons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/favicons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
-    <link rel="manifest" href="assets/img/favicons/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="assets/img/favicons/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/png" href="assets/img/logo.png">
 
     <!--==============================
 	  Google Fonts
@@ -183,13 +168,13 @@
     <!--==============================
     Breadcumb
 ============================== -->
-    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/breadcumb-bg.png">
+    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/about-bg.jpg">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">About Tourm</h1>
+                <h1 class="breadcumb-title">About Blaze Tour</h1>
                 <ul class="breadcumb-menu">
                     <li><a href="index.php">Home</a></li>
-                    <li>About Tourm</li>
+                    <li>About Blaze Tour</li>
                 </ul>
             </div>
         </div>
@@ -685,196 +670,9 @@ Testimonial Area
         <div class="shape-mockup movingX d-none d-xl-block" data-top="30%" data-left="5%">
             <img src="assets/img/shape/shape_7.png" alt="shape">
         </div>
-    </section><!--==============================
-Brand Area  
-==============================-->
-    <!-- <div class="brand-area overflow-hidden ">
-        <div class="container th-container">
-            <div class="swiper th-slider brandSlider1" id="brandSlider1" data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"3"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"6"},"1400":{"slidesPerView":"8"}}}'>
-                <div class="swiper-wrapper">
-
-                    <div class="swiper-slide">
-                        <div class="brand-box">
-                            <a href="">
-                                <img class="original" src="assets/img/brand/brand_1_1.svg" alt="Brand Logo">
-                                <img class="gray" src="assets/img/brand/brand_1_1.svg" alt="Brand Logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="brand-box">
-                            <a href="">
-                                <img class="original" src="assets/img/brand/brand_1_2.svg" alt="Brand Logo">
-                                <img class="gray" src="assets/img/brand/brand_1_2.svg" alt="Brand Logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="brand-box">
-                            <a href="">
-                                <img class="original" src="assets/img/brand/brand_1_3.svg" alt="Brand Logo">
-                                <img class="gray" src="assets/img/brand/brand_1_3.svg" alt="Brand Logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="brand-box">
-                            <a href="">
-                                <img class="original" src="assets/img/brand/brand_1_4.svg" alt="Brand Logo">
-                                <img class="gray" src="assets/img/brand/brand_1_4.svg" alt="Brand Logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="brand-box">
-                            <a href="">
-                                <img class="original" src="assets/img/brand/brand_1_5.svg" alt="Brand Logo">
-                                <img class="gray" src="assets/img/brand/brand_1_5.svg" alt="Brand Logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="brand-box">
-                            <a href="">
-                                <img class="original" src="assets/img/brand/brand_1_6.svg" alt="Brand Logo">
-                                <img class="gray" src="assets/img/brand/brand_1_6.svg" alt="Brand Logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="brand-box">
-                            <a href="">
-                                <img class="original" src="assets/img/brand/brand_1_7.svg" alt="Brand Logo">
-                                <img class="gray" src="assets/img/brand/brand_1_7.svg" alt="Brand Logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="brand-box">
-                            <a href="">
-                                <img class="original" src="assets/img/brand/brand_1_8.svg" alt="Brand Logo">
-                                <img class="gray" src="assets/img/brand/brand_1_8.svg" alt="Brand Logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="brand-box">
-                            <a href="">
-                                <img class="original" src="assets/img/brand/brand_1_4.svg" alt="Brand Logo">
-                                <img class="gray" src="assets/img/brand/brand_1_4.svg" alt="Brand Logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="brand-box">
-                            <a href="">
-                                <img class="original" src="assets/img/brand/brand_1_3.svg" alt="Brand Logo">
-                                <img class="gray" src="assets/img/brand/brand_1_3.svg" alt="Brand Logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="brand-box">
-                            <a href="">
-                                <img class="original" src="assets/img/brand/brand_1_2.svg" alt="Brand Logo">
-                                <img class="gray" src="assets/img/brand/brand_1_2.svg" alt="Brand Logo">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="brand-box">
-                            <a href="">
-                                <img class="original" src="assets/img/brand/brand_1_1.svg" alt="Brand Logo">
-                                <img class="gray" src="assets/img/brand/brand_1_1.svg" alt="Brand Logo">
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-<!--============================== -
-gallery-thumb Area  
-==============================-->
-    <!-- <div class="sidebar-gallery-area space">
-        <div class="container-fluid">
-            <div class="slider-area">
-                <div class="swiper th-slider has-shadow" data-slider-options='{"centeredSlides":"true","breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"2"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"3"},"1300":{"slidesPerView":"4"}}}'>
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="gallery-thumb style2 global-img">
-                                <img src="assets/img/gallery/gallery_4_1.jpg" alt="Gallery Image">
-                                <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="gallery-thumb style2 global-img">
-                                <img src="assets/img/gallery/gallery_4_2.jpg" alt="Gallery Image">
-                                <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="gallery-thumb style2 global-img">
-                                <img src="assets/img/gallery/gallery_4_3.jpg" alt="Gallery Image">
-                                <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="gallery-thumb style2 global-img">
-                                <img src="assets/img/gallery/gallery_4_4.jpg" alt="Gallery Image">
-                                <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="gallery-thumb style2 global-img">
-                                <img src="assets/img/gallery/gallery_4_5.jpg" alt="Gallery Image">
-                                <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="gallery-thumb style2 global-img">
-                                <img src="assets/img/gallery/gallery_4_1.jpg" alt="Gallery Image">
-                                <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="gallery-thumb style2 global-img">
-                                <img src="assets/img/gallery/gallery_4_2.jpg" alt="Gallery Image">
-                                <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="gallery-thumb style2 global-img">
-                                <img src="assets/img/gallery/gallery_4_3.jpg" alt="Gallery Image">
-                                <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="gallery-thumb style2 global-img">
-                                <img src="assets/img/gallery/gallery_4_4.jpg" alt="Gallery Image">
-                                <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="gallery-thumb style2 global-img">
-                                <img src="assets/img/gallery/gallery_4_5.jpg" alt="Gallery Image">
-                                <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="gallery-thumb style2 global-img">
-                                <img src="assets/img/gallery/gallery_4_2.jpg" alt="Gallery Image">
-                                <a target="_blank" href="https://www.instagram.com/" class="gallery-btn"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!--============================== --
+    </section>
+    
+<!--============================== --
 	Footer Area
 ==============================-->
     <?php include 'footer.php'; ?>

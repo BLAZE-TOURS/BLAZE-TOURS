@@ -1,36 +1,36 @@
+<?php
+$tour_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+include 'assets/process/fetchTour.php';
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>BLAZE TOURS - Service Details</title>
-    <meta name="author" content="Tourm">
-    <meta name="description" content="Tourm - Travel & Tour Booking Agency HTML Template ">
-    <meta name="keywords" content="Tourm - Travel & Tour Booking Agency HTML Template ">
+    <title>Blaze Tours (Pvt) Ltd | Colombo City & Sri Lanka Tours</title>
+    <meta name="author" content="Blaze Tours (Pvt) Ltd">
+    <meta name="description" content="Blaze Tours (Pvt) Ltd is a Colombo-based travel company offering unforgettable city tours, cultural trips, and scenic getaways across Sri Lanka. Explore paradise with us!">
+    <meta name="keywords" content="Colombo tours, Sri Lanka travel, Blaze Tours, day trips Colombo, Sri Lanka sightseeing, private tours, cultural tours, beach tours">
     <meta name="robots" content="INDEX,FOLLOW">
+
+    <!-- meta -->
+    <meta property="og:title" content="Blaze Tours (Pvt) Ltd | Colombo & Sri Lanka Tours">
+    <meta property="og:description" content="Explore stunning Colombo city and Sri Lanka tours with Blaze Tours (Pvt) Ltd. Book your adventure today!">
+    <meta property="og:image" content="https://yourdomain.com/assets/img/preview.png">
+    <meta property="og:url" content="https://blaze-tours.com/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blaze Tours (Pvt) Ltd | Colombo & Sri Lanka Tours">
+    <meta name="twitter:description" content="Explore stunning Colombo city and Sri Lanka tours with Blaze Tours (Pvt) Ltd. Book your adventure today!">
+    <meta name="twitter:image" content="https://blaze-tours.com/assets/img/preview.png">
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Favicons - Place favicon.ico in the root directory -->
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="assets/img/favicons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/favicons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/favicons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/favicons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
-    <link rel="manifest" href="assets/img/favicons/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="assets/img/favicons/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/png" href="assets/img/logo.png">
 
     <!--==============================
 	  Google Fonts
@@ -56,14 +56,14 @@
 
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 </head>
 
 <body>
     <!--==============================
      Preloader
   ==============================-->
-<!-- 
+    <!-- 
     <div id="preloader" class="preloader">
         <div class="preloader-inner">
             <img src="assets/img/logo.svg" alt="Logo">
@@ -78,7 +78,7 @@
             </div>
         </div>
     </div> -->
-     <!--==============================
+    <!--==============================
     Sidemenu
 ============================== -->
     <div class="sidemenu-wrapper sidemenu-info ">
@@ -174,7 +174,7 @@
     <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/category_bg_1.png">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Private Safari Tour</h1>
+                <h1 class="breadcumb-title">Single Tour Page</h1>
                 <ul class="breadcumb-menu">
                     <li><a href="index.php">Home</a></li>
                     <li>Tour Details</li>
@@ -189,186 +189,115 @@ tour Area
             <div class="row">
                 <div class="col-xxl-8 col-lg-7">
                     <div class="page-single">
-                        <div class="service-img"><img src="assets/img/destination/private-tour.png" alt=""></div>
+                        <!-- Main Image -->
+                        <div class="service-img">
+                            <?php
+                            $main_image_name = '';
+                            if (!empty($tour['main_image'])) {
+                                $main_image_name = basename($tour['main_image']);
+                            }
+                            ?>
+                            <img src="../admin/assets/uploads/tour_images/<?php echo $main_image_name ? $main_image_name : 'default.png'; ?>" alt="image">
+                        </div>
                         <div class="page-content d-block">
                             <div class="page-meta mt-50 mb-45">
                                 <a class="page-tag" href="tour.php">POPULAR</a>
                                 <span class="ratting"><i class="fa-sharp fa-solid fa-star"></i><span>4.8</span></span>
                             </div>
-                            <h2 class="box-title">Tuk Tuk Private Safari Tour Exploring Sri Lanka's Capital Colombo</h2>
-                            <p class="box-text mb-30">voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
-                                ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                                Dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
-                                modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Quis autem vel
-                                eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel
-                                illum qui dolorem eum fugiat quo voluptas nulla pariatur Quis autem vel eum iure
-                                reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui
-                                dolorem eum fugiat quo voluptas nulla pariatur</p>
-                            <p class="box-text mb-50"> ‍Whether you work from home or commute to a nearby office, the
-                                energy-efficient features of your home contribute to a productive and eco-conscious workday.
-                                Smart home systems allow you to monitor and control energy usage, ensuring that your
-                                environmental impact remains minimal.</p>
-                            <div class="service-inner-img mb-40"><img src="assets/img/destination/private-tour1.png" alt=""></div>
+                            <h2 class="box-title"><?php echo htmlspecialchars($tour['name'] ?? ''); ?></h2>
+                            <p class="box-text mb-30"><?php echo htmlspecialchars($tour['description'] ?? ''); ?></p>
+                            -->
+                            <div class="service-inner-img mb-40">
+                                <?php
+                                $second_image_name = '';
+                                if (!empty($tour['second_image'])) {
+                                    $second_image_name = basename($tour['second_image']);
+                                }
+                                ?>
+
+                                <img src="../admin/assets/uploads/tour_images/<?php echo $second_image_name ? $second_image_name : 'default.png'; ?>" alt="image">
+                            </div>
                         </div>
                         <div class="destination-gallery-wrapper col-12 order-1">
                             <h3 class="page-title mt-30 mb-30">Destination Map</h3>
                             <div class="row gy-4">
-                                <iframe src="https://www.google.com/maps/d/embed?mid=1Q_k3EFU6t3kuax-TL6eEfp4O0MUmw_I&hl=si&ehbc=2E312F" width="640" height="480"></iframe>
+                                <iframe src="assets/process/livemapBody.php?id=<?php echo $tour_id; ?>" width="100%" height="480" style="border:0;"></iframe>
                             </div>
                         </div>
                         <div class="destination-gallery-wrapper">
                             <h3 class="page-title mt-30 mb-30">From our gallery</h3>
                             <div class="row gy-4 gallery-row filter-active">
+                                <?php
+                                // Fetch gallery images for this tour
+                                $gallery_items = [];
+                                $ch = curl_init('http://localhost/BLAZE-TOURS/user/assets/process/fetchTourGallery.php?tour_id=' . $tour_id);
+                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                                $response = curl_exec($ch);
+                                curl_close($ch);
+                                if ($response) {
+                                    $gallery_items = json_decode($response, true);
+                                    if (!is_array($gallery_items)) $gallery_items = [];
+                                }
+                                $sizes = [
+                                    ['w' => 312, 'h' => 215],
+                                    ['w' => 526, 'h' => 215],
+                                    ['w' => 526, 'h' => 215],
+                                    ['w' => 312, 'h' => 215],
+                                ];
+                                for ($i = 0; $i < 4; $i++):
+                                    $img = $gallery_items[$i] ?? ['url' => 'assets/img/gallery/gallery_6_' . ($i+1) . '.jpg', 'title' => 'Default'];
+                                    $w = $sizes[$i]['w'];
+                                    $h = $sizes[$i]['h'];
+                                ?>
                                 <div class="col-xxl-auto filter-item">
                                     <div class="gallery-box style3">
                                         <div class="gallery-img global-img">
-                                            <img src="assets/img/gallery/gallery_6_1.jpg" alt="gallery image">
-                                            <a href="assets/img/gallery/gallery_6_1.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
+                                            <img src="<?php echo htmlspecialchars($img['url']); ?>"
+                                                 alt="<?php echo htmlspecialchars($img['title']); ?>"
+                                                 width="<?php echo $w; ?>" height="<?php echo $h; ?>"
+                                                 style="object-fit:cover; width:<?php echo $w; ?>px; height:<?php echo $h; ?>px;">
+                                            <a href="<?php echo htmlspecialchars($img['url']); ?>" class="icon-btn popup-image">
+                                                <i class="fal fa-magnifying-glass-plus"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xxl-auto filter-item">
-                                    <div class="gallery-box style3">
-                                        <div class="gallery-img global-img">
-                                            <img src="assets/img/gallery/gallery_6_2.jpg" alt="gallery image">
-                                            <a href="assets/img/gallery/gallery_6_2.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-auto filter-item">
-                                    <div class="gallery-box style3">
-                                        <div class="gallery-img global-img">
-                                            <img src="assets/img/gallery/gallery_6_3.jpg" alt="gallery image">
-                                            <a href="assets/img/gallery/gallery_6_3.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-auto filter-item">
-                                    <div class="gallery-box style3">
-                                        <div class="gallery-img global-img">
-                                            <img src="assets/img/gallery/gallery_6_4.jpg" alt="gallery image">
-                                            <a href="assets/img/gallery/gallery_6_4.jpg" class="icon-btn popup-image"><i class="fal fa-magnifying-glass-plus"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php endfor; ?>
                             </div>
                         </div>
                         <div class="th-comments-wrap style2 ">
-                            <h2 class="blog-inner-title h4">Reviews (3)</h2>
-                            <ul class="comment-list">
-                                <li class="th-comment-item">
-                                    <div class="th-post-comment">
-                                        <div class="comment-avater">
-                                            <img src="assets/img/blog/comment-author-1.jpg" alt="Comment Author">
-                                        </div>
-                                        <div class="comment-content">
-                                            <h3 class="name">Adam Jhon</h3>
-                                            <div class="commented-wrapp">
-                                                <span class="commented-on">20 Jun, 2024</span>
-                                                <span class="commented-time">08:56pm </span>
-                                                <span class="comment-review">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                </span>
-                                            </div>
-                                            <p class="text">Credibly pontificate transparent quality vectors with quality mindshare. Efficiently
-                                                architect worldwide strategic theme areas after user.</p>
-                                            <div class="reply_and_edit">
-                                                <i class="fa-solid fa-thumbs-up"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ul class="children">
-                                        <li class="th-comment-item">
-                                            <div class="th-post-comment">
-                                                <div class="comment-avater">
-                                                    <img src="assets/img/blog/comment-author-4.jpg" alt="Comment Author">
-                                                </div>
-                                                <div class="comment-content">
-                                                    <div class="">
-                                                        <h3 class="name">Maria Willson</h3>
-                                                        <div class="commented-wrapp">
-                                                            <span class="commented-on">23 Jun, 2024</span>
-                                                            <span class="commented-time">08:56pm </span>
-                                                            <span class="comment-review">
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                                <i class="fa-solid fa-star"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <p class="text">It is different from airport transfer or port transfer, which are services
-                                                        that pick you up</p>
-                                                    <div class="reply_and_edit">
-                                                        <i class="fa-solid fa-thumbs-up"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="th-comment-item">
-                                    <div class="th-post-comment">
-                                        <div class="comment-avater">
-                                            <img src="assets/img/blog/comment-author-5.jpg" alt="Comment Author">
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="">
-                                                <h3 class="name">Michel Edwards</h3>
-                                                <div class="commented-wrapp">
-                                                    <span class="commented-on">27 Jun, 2024</span>
-                                                    <span class="commented-time">08:56pm </span>
-                                                    <span class="comment-review">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <p class="text">Credibly pontificate transparent quality vectors with quality mindshare. Efficiently
-                                                architect worldwide strategic theme areas after user.</p>
-                                            <div class="reply_and_edit">
-                                                <i class="fa-solid fa-thumbs-up"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div> <!-- Comment end --> <!-- Comment Form -->
+                            <h2 class="blog-inner-title h4">Reviews (0)</h2>
+                            <ul class="comment-list"></ul>
+                        </div>
                         <div class="th-comment-form ">
                             <div class="row">
-                                <h3 class="blog-inner-title h4 mb-2">Leave a Reply</h3>
+                                <h3 class="blog-inner-title h4 mb-2">Share Your Experience</h3>
                                 <p class="mb-25">Your email address will not be published. Required fields are marked</p>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" placeholder="Full Name*" class="form-control" required>
+                                    <input type="text" placeholder="Full Name*" class="form-control" name="name" required>
                                     <i class="far fa-user"></i>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" placeholder="Your Email*" class="form-control" required>
+                                    <input type="text" placeholder="Your Email*" class="form-control" name="email" required>
                                     <i class="far fa-envelope"></i>
                                 </div>
                                 <div class="col-12 form-group">
-                                    <input type="text" placeholder="Website" class="form-control" required>
-                                    <i class="far fa-globe"></i>
+                                    <label class="mb-2">Your Rating*</label>
+                                    <div id="star-rating" style="font-size: 1.7em; color: #FFD700; cursor: pointer;">
+                                        <span class="star" data-value="1">&#9733;</span>
+                                        <span class="star" data-value="2">&#9733;</span>
+                                        <span class="star" data-value="3">&#9733;</span>
+                                        <span class="star" data-value="4">&#9733;</span>
+                                        <span class="star" data-value="5">&#9733;</span>
+                                    </div>
+                                    <input type="hidden" name="rating" id="rating" value="5" required>
                                 </div>
                                 <div class="col-12 form-group">
-                                    <textarea placeholder="Comment*" class="form-control"></textarea>
+                                    <textarea placeholder="Comment*" class="form-control" name="comment" required></textarea>
                                     <i class="far fa-pencil"></i>
                                 </div>
-                                <div class="col-12 form-group">
-                                    <input type="checkbox" id="html">
-                                    <label for="html">Save my name, email, and website in this browser for the next time I
-                                        comment.</label>
-                                </div>
                                 <div class="col-12 form-group mb-0">
-                                    <button class="th-btn">Send Message<img src="assets/img/icon/plane2.svg" alt=""></button>
+                                    <button class="th-btn" type="button">Submit Review<img src="assets/img/icon/plane2.svg" alt=""></button>
                                 </div>
                             </div>
                         </div>
@@ -376,16 +305,16 @@ tour Area
                 </div>
                 <div class="col-xxl-4 col-lg-5">
                     <aside class="sidebar-area style3">
-                        <div class="widget tour-booking  ">
-                            <p class="widget_subtitle">From <span class="widget_price">$31.35</span>/Person</p>
+                        <div class="widget tour-booking">
+                            <p class="widget_subtitle">From <span class="widget_price">$<?php echo number_format($tour['adult_price'] ?? 0, 2); ?></span>/Person</p>
                             <div class="info-list">
                                 <ul>
                                     <li>
-                                        <strong>Duration : 4 hours</strong>
+                                        <strong>Duration : <?php echo htmlspecialchars($tour['duration'] ?? ''); ?> hours</strong>
                                     </li>
-                                    <li><strong>Pickup included</strong></li>
-                                    <li><strong>Reserve Now & Pay Later Eligible</strong></li>
-                                    <li><strong>Free Cancellation</strong></li>
+                                    <?php foreach ($highlights as $hl): ?>
+                                        <li><strong><?php echo htmlspecialchars($hl); ?></strong></li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                             <a href="contact.php" class="th-btn th-icon">Book Now</a>
@@ -395,87 +324,21 @@ tour Area
                             <p class="widget_subtitle">Highlight <span class="widget_price">Itinerary</span></p>
                             <div class="info-list">
                                 <ul>
-                                    <li>
-                                        <strong>You'll get picked up</strong>
-                                        <span>See departure details</span>
-                                    </li>
-                                    <li>
-                                        <strong>Gangaramaya (Vihara) Buddhist Temple</strong>
-                                        <span>Stop: 30 minutes - Admission excluded</span>
-                                    </li>
-                                    <li>
-                                        <strong>Sri Ponnambalam Vanesar Kovil</strong>
-                                        <span>Stop: 20 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Jami Ul-Alfar Mosque</strong>
-                                        <span>Stop: 20 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Independence Square</strong>
-                                        <span>Stop: 20 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Colombo Galbokka Lighthouse</strong>
-                                        <span>Stop: 20 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Galle Face Green</strong>
-                                        <span>Stop: 15 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Colombo Fort Clock Tower</strong>
-                                        <span>Stop: 15 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Viharamahadevi Park</strong>
-                                        <span>Stop: 30 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Seema Malakaya Temple</strong>
-                                        <span>Stop: 20 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Colombo Lotus Tower</strong>
-                                        <span>Stop: 10 minutes - Admission excluded</span>
-                                    </li>
-                                    <li>
-                                        <strong>Pettah</strong>
-                                        <span>Stop: 30 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Pettah Floating Market</strong>
-                                        <span>Stop: 20 minutes</span>
-                                    </li>
-                                    <li>
-                                        <strong>Dutch Hospital Shopping Precinct</strong>
-                                        <span>Stop: 10 minutes - Admission included</span>
-                                    </li>
-                                    <li>
-                                        <strong>Cargills Department Store</strong>
-                                        <span>Stop: 5 minutes - Admission included</span>
-                                    </li>
-                                    <li>
-                                        <strong>You'll return to the starting point</strong>
-                                    </li>
+                                    <?php foreach ($locations as $loc): ?>
+                                        <li>
+                                            <strong><?php echo htmlspecialchars($loc['name']); ?></strong>
+                                            <span>Stop: <?php echo intval($loc['stop_duration_time']); ?> minutes</span>
+                                        </li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
                         </div>
-                        <div class="widget widget_tag_cloud  ">
+                        <div class="widget widget_tag_cloud">
                             <h3 class="widget_title">Available time</h3>
                             <div class="tagcloud">
-                                <a href="">7:30 AM</a>
-                                <a href="">8:30 AM</a>
-                                <a href="">9:30 AM</a>
-                                <a href="">10:30 AM</a>
-                                <a href="">11:30 AM</a>
-                                <a href="">12:30 PM</a>
-                                <a href="">1:30 PM</a>
-                                <a href="">2:30 PM</a>
-                                <a href="">3:30 PM</a>
-                                <a href="">4:30 PM</a>
-                                <a href="">5:30 PM</a>
-                                <a href="">6:30 PM</a>
+                                <?php foreach ($times as $time): ?>
+                                    <a href=""><?php echo date('g:i A', strtotime($time)); ?></a>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </aside>
@@ -510,7 +373,7 @@ tour Area
     <!--==============================
 modal Area  
 ==============================-->
-    <div id="login-form" class="popup-login-register mfp-hide">
+    <!-- <div id="login-form" class="popup-login-register mfp-hide">
         <ul class="nav" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-menu" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="false">Login</button>
@@ -581,7 +444,7 @@ modal Area
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!--==============================
     All Js File
@@ -618,6 +481,25 @@ modal Area
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/review.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const stars = document.querySelectorAll("#star-rating .star");
+        const ratingInput = document.getElementById("rating");
+
+        stars.forEach(star => {
+            star.addEventListener("click", function () {
+                const rating = this.getAttribute("data-value");
+                ratingInput.value = rating;
+                stars.forEach(s => {
+                    s.style.color = (s.getAttribute("data-value") <= rating) ? "#FFD700" : "#ccc";
+                });
+            });
+        });
+    });
+</script>
 </body>
 
 </html>

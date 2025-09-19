@@ -126,31 +126,44 @@ foreach ($locations as $loc) {
         }
     }
     // Handle icon image (base64)
-    $icon_url = null;
-    if (!empty($loc['iconPreview'])) {
-        $icon_data = $loc['iconPreview'];
-        // Only allow .ico files
-        if (preg_match('/^data:image\/([a-zA-Z0-9\-\+\.]+);base64,/', $icon_data, $type)) {
-            $icon_ext = strtolower($type[1]);
-            if ($icon_ext !== 'x-icon' && $icon_ext !== 'ico' && $icon_ext !== 'vnd.microsoft.icon') {
-                echo json_encode(['success' => false, 'message' => "Only .ico files are allowed for location icons."]);
-                exit;
-            }
-            $icon_data = substr($icon_data, strpos($icon_data, ',') + 1);
-            $icon_data = base64_decode($icon_data);
-            $icon_filename = uniqid('icon_') . ".ico";
-            $icon_full_path = $icon_upload_dir . $icon_filename;
-            if (file_put_contents($icon_full_path, $icon_data) === false) {
-                echo json_encode(['success' => false, 'message' => "Failed to save icon image."]);
-                exit;
-            }
-            // Save relative path for DB
-            $icon_url = Database::escape_string("images/marker/" . $icon_filename);
-        } else {
-            echo json_encode(['success' => false, 'message' => "Invalid icon image format."]);
+$icon_url = null;
+if (!empty($loc['iconPreview'])) {
+    $icon_data = $loc['iconPreview'];
+    // Allow only .ico and .png files
+    if (preg_match('/^data:image\/([a-zA-Z0-9\-\+\.]+);base64,/', $icon_data, $type)) {
+        $icon_ext = strtolower($type[1]);
+        if (
+            $icon_ext !== 'x-icon' &&
+            $icon_ext !== 'ico' &&
+            $icon_ext !== 'vnd.microsoft.icon' &&
+            $icon_ext !== 'png'
+        ) {
+            echo json_encode(['success' => false, 'message' => "Only .ico or .png files are allowed for location icons."]);
             exit;
         }
+
+        $icon_data = substr($icon_data, strpos($icon_data, ',') + 1);
+        $icon_data = base64_decode($icon_data);
+
+        // File extension handling
+        $ext = ($icon_ext === 'png') ? '.png' : '.ico';
+
+        $icon_filename = uniqid('icon_') . $ext;
+        $icon_full_path = $icon_upload_dir . $icon_filename;
+
+        if (file_put_contents($icon_full_path, $icon_data) === false) {
+            echo json_encode(['success' => false, 'message' => "Failed to save icon image."]);
+            exit;
+        }
+
+        // Save relative path for DB
+        $icon_url = Database::escape_string("images/marker/" . $icon_filename);
+    } else {
+        echo json_encode(['success' => false, 'message' => "Invalid icon image format."]);
+        exit;
     }
+}
+
     $loc_name = Database::escape_string($loc['name']);
     $loc_address = Database::escape_string($loc['address']);
     $loc_lat = Database::escape_string($loc['lat']);
