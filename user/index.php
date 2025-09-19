@@ -241,10 +241,7 @@ About Area
                             <span class="sub-title style1 ">Let’s Go Together</span>
                             <h2 class="sec-title mb-20 pe-xl-5 me-xl-5 heading">Plan Your Trip With us</h2>
 
-                            <p class="sec-text mb-30">There are many variations of passages of available but the majority
-                                have
-                                suffered alteration in some form, by injected hum randomised words which don't look even
-                                slightly.
+                            <p class="sec-text mb-30">Create unforgettable memories as we guide you through Sri Lanka’s vibrant culture, scenic landscapes, and hidden gems with expert planning, trusted service, and personalized travel experiences.
                             </p>
                         </div>
                         <div class="about-item-wrap">
@@ -252,16 +249,14 @@ About Area
                                 <div class="about-item_img"><img src="assets/img/icon/map3.svg" alt=""></div>
                                 <div class="about-item_centent">
                                     <h5 class="box-title">Exclusive Trip</h5>
-                                    <p class="about-item_text">There are many variations of passages of available but the
-                                        majority.</p>
+                                    <p class="about-item_text">Enjoy a private Colombo adventure with personalized tuk tuk service.</p>
                                 </div>
                             </div>
                             <div class="about-item">
                                 <div class="about-item_img"><img src="assets/img/icon/guide.svg" alt=""></div>
                                 <div class="about-item_centent">
                                     <h5 class="box-title">Professional Guide</h5>
-                                    <p class="about-item_text">There are many variations of passages of available but the
-                                        majority.</p>
+                                    <p class="about-item_text">Expert local guides share culture, history, and hidden gems.</p>
                                 </div>
                             </div>
                         </div>
@@ -315,8 +310,7 @@ Service Area
                     <div class="title-area text-center">
                         <span class="sub-title">Best Place For You</span>
                         <h2 class="sec-title">Most Popular Tour</h2>
-                        <p class="sec-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.</p>
+                        <p class="sec-text">Join our most popular tour and explore Colombo’s highlights, local culture, and hidden gems for an unforgettable adventure.</p>
                     </div>
                 </div>
             </div>

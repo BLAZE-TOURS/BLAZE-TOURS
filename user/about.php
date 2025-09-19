@@ -105,33 +105,31 @@ About Area
                 <div class="col-xl-5">
                     <div class="ps-xl-4">
                         <div class="title-area mb-20">
-                            <span class="sub-title style1 ">Welcome To Tourm</span>
-                            <h2 class="sec-title mb-20 pe-xl-5 me-xl-5 heading">We are world reputeted travel agency</h2>
+                            <span class="sub-title style1 ">Welcome To Blaze Tours</span>
+                            <h2 class="sec-title mb-20 pe-xl-5 me-xl-5 heading">Your trusted Sri Lankan travel partner, known worldwide</h2>
                         </div>
-                        <p class="pe-xl-5">Embark on an enchanting journey through Colombo, where history merges seamlessly with modernity! Join Vinoth Blaze on our comfortable Blaze cabrio Tuk Tuk. With over a decade of expertise, expect an extraordinary exploration of hidden gems.</p>
-                        <p class="mb-30 pe-xl-5">Glide through labyrinthine streets, conversing in English, Sinhala, or Tamil, unraveling the tales of Colombo's suburbs. Experience Pettah market's vibrant chaos, savoring centuries-old trade. Delve into Sri Lanka's cultural heritage, marveling at ancient temples. With insider insights and practical assistance, let us be your trusted companion on this unforgettable odyssey. Step aboard, fellow traveler, and unlock the treasures of Sri Lanka with us!</p>
+                        <p class="pe-xl-5">Experience the vibrant soul of Colombo on the BLAZE Tuk Tuk Safari. Glide through colorful streets, bustling markets, and historic landmarks while your local guide reveals hidden gems and fascinating stories. Comfortable, safe, and immersive, this tuk tuk tour captures Sri Lanka’s energy like no other.</p>
+                        <p class="mb-30 pe-xl-5">Hop aboard as your tuk tuk weaves through narrow lanes, past colonial architecture, modern skyscrapers, and fragrant spice shops. Witness serene temple courtyards, observe street food vendors preparing savory treats, and absorb the mix of tradition and progress. Ideal for photographers, culture lovers, or anyone curious to explore beyond the tourist map. Let BLAZE Tuk Tuk Safari transform your Colombo visit into a vivid, unforgettable journey.</p>
                         <div class="about-item-wrap">
                             <div class="about-item style2">
                                 <div class="about-item_img"><img src="assets/img/icon/about_1_1.svg" alt=""></div>
                                 <div class="about-item_centent">
                                     <h5 class="box-title">Exclusive Trip</h5>
-                                    <p class="about-item_text">There are many variations of passages of available but the
-                                        majority.</p>
+                                    <p class="about-item_text">Enjoy a private Colombo adventure with personalized tuk tuk service.</p>
                                 </div>
                             </div>
                             <div class="about-item style2">
                                 <div class="about-item_img"><img src="assets/img/icon/about_1_2.svg" alt=""></div>
                                 <div class="about-item_centent">
                                     <h5 class="box-title">Safety First Always</h5>
-                                    <p class="about-item_text">There are many variations of passages of available but the majority.</p>
+                                    <p class="about-item_text">Well-maintained tuk tuks, skilled drivers, and reliable safety standards.</p>
                                 </div>
                             </div>
                             <div class="about-item style2">
                                 <div class="about-item_img"><img src="assets/img/icon/about_1_3.svg" alt=""></div>
                                 <div class="about-item_centent">
                                     <h5 class="box-title">Professional Guide</h5>
-                                    <p class="about-item_text">There are many variations of passages of available but the
-                                        majority.</p>
+                                    <p class="about-item_text">Expert local guides share culture, history, and hidden gems.</p>
                                 </div>
                             </div>
                         </div>

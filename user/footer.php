@@ -27,7 +27,7 @@
                             <div class="about-logo">
                                 <a href="home-travel.php"><img src="assets/img/footer-logo.png" alt="Tour"></a>
                             </div>
-                            <p class="about-text">Rapidiously myocardinate cross-platform intellectual capital model. Appropriately create interactive infrastructures</p>
+                            <p class="about-text">Discover Sri Lanka with trusted tours, safe rides, lasting memories.</p>
                             <div class="th-social">
                                 <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
                                 <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
