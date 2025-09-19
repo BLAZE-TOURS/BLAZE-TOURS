@@ -110,8 +110,17 @@ Product Area
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-4">
                         <div class="search-form-area">
-                            <form class="search-form">
-                                <input type="text" placeholder="Search">
+                            <form class="search-form" method="get" action="tours.php">
+                                <?php
+                                // Preserve params except search and page
+                                foreach ($_GET as $key => $value) {
+                                    if ($key === 'search' || $key === 'page') { continue; }
+                                    echo '<input type="hidden" name="' . htmlspecialchars($key) . '" value="' . htmlspecialchars($value) . '">';
+                                }
+                                echo '<input type="hidden" name="page" value="1">';
+                                $currentSearch = isset($_GET['search']) ? $_GET['search'] : '';
+                                ?>
+                                <input type="text" name="search" value="<?php echo htmlspecialchars($currentSearch); ?>" placeholder="Search by tour name">
                                 <button type="submit"><i class="fa-light fa-magnifying-glass"></i></button>
                             </form>
                         </div>
@@ -164,6 +173,13 @@ Product Area
 
                         // Base WHERE clause (extend later if filters are added)
                         $whereClause = "WHERE t.status_id = 1";
+
+                        // Search by tour name
+                        $searchTerm = '';
+                        if (isset($_GET['search']) && $_GET['search'] !== '') {
+                            $searchTerm = Database::escape_string($_GET['search']);
+                            $whereClause .= " AND t.name LIKE '%$searchTerm%'";
+                        }
 
                         // Sorting setup
                         $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'menu_order';
