@@ -171,14 +171,10 @@ Booking Area
                                 <i class="fa-light fa-route"></i>
                             </div>
                             <div class="search-input">
-                                <label>Tour Option</label>
+                                <label>Tour Category</label>
                                 <select name="subject" id="subject" class="form-select nice-select">
-                                    <option value="Select Destination" selected disabled>Select Option</option>
-                                    <option value="Tuk Tuk">Private Safari</option>
-                                    <option value="Tour">Historical Tour</option>
-                                    <option value="Tour">Morning Tours</option>
-                                    <option value="Tour">Evening Tours</option>
-                                    <option value="Tour">Street Food Tour</option>
+                                    <option value="Select Destination" selected disabled>Select Category</option>
+                                    <option value=""></option>
                                 </select>
                             </div>
                         </div>
@@ -188,9 +184,12 @@ Booking Area
                             </div>
                             <div class="search-input">
                                 <label>Duration</label>
-                                <select class="form-select nice-select" name="Duration" id="Duration" disabled>
-                                    <option value="Normal">Duration</option>
-                                    <option value="4" selected disabled>4 hours</option>
+                                <select class="form-select nice-select" name="Duration" id="Duration">
+                                    <option value="2" >2 hours</option>
+                                    <option value="3" >3 hours</option>
+                                    <option value="4" selected>4 hours</option>
+                                    <option value="6" >5 hours</option>
+                                    <option value="6" >6 hours</option>
                                 </select>
                             </div>
                         </div>
