@@ -194,12 +194,13 @@ Booking Area
                             </div>
                             <div class="search-input">
                                 <label>Duration</label>
-                                <select class="form-select nice-select" name="Duration" id="Duration">
-                                    <option value="2" >2 hours</option>
-                                    <option value="3" >3 hours</option>
-                                    <option value="4" selected>4 hours</option>
-                                    <option value="6" >5 hours</option>
-                                    <option value="6" >6 hours</option>
+                                <select class="form-select nice-select" name="duration" id="duration">
+                                    <option value="" selected>Any Duration</option>
+                                    <option value="2">2 hours</option>
+                                    <option value="3">3 hours</option>
+                                    <option value="4">4 hours</option>
+                                    <option value="5">5 hours</option>
+                                    <option value="6">6 hours</option>
                                 </select>
                             </div>
                         </div>
@@ -216,7 +217,7 @@ Booking Area
                             </div>
                         </div>
                         <div class="form-btn col-md-12 col-lg-auto">
-                            <button class="th-btn" onclick="window.location.href='private-tour.php'"><img src="assets/img/icon/search.svg" alt="">Search</button>
+                            <button class="th-btn" onclick="searchTours()"><img src="assets/img/icon/search.svg" alt="">Search</button>
                         </div>
                     </div>
                     <p class="form-messages mb-0 mt-3"></p>
@@ -829,6 +830,32 @@ Testimonial Area
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
     <!--custome-->
+    <script>
+        function searchTours() {
+            const categorySelect = document.getElementById('subject');
+            const durationSelect = document.getElementById('duration');
+            
+            const category = categorySelect.value;
+            const duration = durationSelect.value;
+            
+            let url = 'tours.php?';
+            let params = [];
+            
+            if (category && category !== '') {
+                params.push('type=' + encodeURIComponent(category));
+            }
+            
+            if (duration && duration !== '') {
+                params.push('duration=' + encodeURIComponent(duration));
+            }
+            
+            if (params.length > 0) {
+                url += params.join('&');
+            }
+            
+            window.location.href = url;
+        }
+    </script>
 
 </body>
 
