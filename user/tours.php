@@ -114,7 +114,9 @@ Product Area
                                 <?php
                                 // Preserve params except search and page
                                 foreach ($_GET as $key => $value) {
-                                    if ($key === 'search' || $key === 'page') { continue; }
+                                    if ($key === 'search' || $key === 'page') {
+                                        continue;
+                                    }
                                     echo '<input type="hidden" name="' . htmlspecialchars($key) . '" value="' . htmlspecialchars($value) . '">';
                                 }
                                 echo '<input type="hidden" name="page" value="1">';
@@ -137,19 +139,21 @@ Product Area
                                 <?php
                                 // Preserve existing query params except orderby and page (we reset page on sort)
                                 foreach ($_GET as $key => $value) {
-                                    if ($key === 'orderby' || $key === 'page') { continue; }
+                                    if ($key === 'orderby' || $key === 'page') {
+                                        continue;
+                                    }
                                     echo '<input type="hidden" name="' . htmlspecialchars($key) . '" value="' . htmlspecialchars($value) . '">';
                                 }
                                 echo '<input type="hidden" name="page" value="1">';
                                 $currentOrder = isset($_GET['orderby']) ? $_GET['orderby'] : 'menu_order';
                                 ?>
                                 <select name="orderby" class="orderby" aria-label="destination order" onchange="this.form.submit()">
-                                    <option value="menu_order" <?php echo ($currentOrder==='menu_order')?'selected':''; ?>>Default Sorting</option>
-                                    <option value="popularity" <?php echo ($currentOrder==='popularity')?'selected':''; ?>>Sort by popularity</option>
-                                    <option value="rating" <?php echo ($currentOrder==='rating')?'selected':''; ?>>Sort by average rating</option>
-                                    <option value="date" <?php echo ($currentOrder==='date')?'selected':''; ?>>Sort by latest</option>
-                                    <option value="price" <?php echo ($currentOrder==='price')?'selected':''; ?>>Sort by price: low to high</option>
-                                    <option value="price-desc" <?php echo ($currentOrder==='price-desc')?'selected':''; ?>>Sort by price: high to low</option>
+                                    <option value="menu_order" <?php echo ($currentOrder === 'menu_order') ? 'selected' : ''; ?>>Default Sorting</option>
+                                    <option value="popularity" <?php echo ($currentOrder === 'popularity') ? 'selected' : ''; ?>>Sort by popularity</option>
+                                    <option value="rating" <?php echo ($currentOrder === 'rating') ? 'selected' : ''; ?>>Sort by average rating</option>
+                                    <option value="date" <?php echo ($currentOrder === 'date') ? 'selected' : ''; ?>>Sort by latest</option>
+                                    <option value="price" <?php echo ($currentOrder === 'price') ? 'selected' : ''; ?>>Sort by price: low to high</option>
+                                    <option value="price-desc" <?php echo ($currentOrder === 'price-desc') ? 'selected' : ''; ?>>Sort by price: high to low</option>
                                 </select>
                             </form>
                         </div>
@@ -168,7 +172,9 @@ Product Area
                         // Pagination setup
                         $limit = 10;
                         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-                        if ($page < 1) { $page = 1; }
+                        if ($page < 1) {
+                            $page = 1;
+                        }
                         $offset = ($page - 1) * $limit;
 
                         // Base WHERE clause (extend later if filters are added)
@@ -226,7 +232,10 @@ Product Area
                         }
 
                         $totalPages = ($totalTours > 0) ? (int)ceil($totalTours / $limit) : 1;
-                        if ($page > $totalPages) { $page = $totalPages; $offset = ($page - 1) * $limit; }
+                        if ($page > $totalPages) {
+                            $page = $totalPages;
+                            $offset = ($page - 1) * $limit;
+                        }
 
                         // Fetch paginated tours
                         $tours = [];
@@ -246,7 +255,8 @@ Product Area
                         }
 
                         // Helper to build pagination URLs preserving existing query params
-                        function buildPageUrl($pageNumber) {
+                        function buildPageUrl($pageNumber)
+                        {
                             $params = $_GET;
                             $params['page'] = $pageNumber;
                             $qs = http_build_query($params);
@@ -366,6 +376,22 @@ Product Area
                         <div class="widget widget_categories  ">
                             <h3 class="widget_title">Categories</h3>
                             <ul>
+                                <!-- All -->
+                                <?php
+                                $allCurrentParams = $_GET;
+                                $currentTypeIdAll = isset($_GET['type']) ? (int)$_GET['type'] : 0;
+                                if (isset($allCurrentParams['type'])) { unset($allCurrentParams['type']); }
+                                $allCurrentParams['page'] = 1;
+                                $allQs = http_build_query($allCurrentParams);
+                                $allUrl = 'tours.php' . ($allQs ? ('?' . $allQs) : '');
+                                $isAllActive = ($currentTypeIdAll === 0);
+                                ?>
+                                <li>
+                                    <a href="<?php echo htmlspecialchars($allUrl); ?>" <?php echo $isAllActive ? ' style="color:#bd3838"' : ''; ?>>
+                                        <img src="assets/img/theme-img/map.svg" alt="">
+                                        All
+                                    </a>
+                                </li>
 
                                 <?php
                                 require_once 'assets/process/connection.php';
@@ -393,7 +419,7 @@ Product Area
                                     $isActiveType = ($currentTypeId === (int)$tour['id']);
                                 ?>
                                     <li>
-                                        <a href="<?php echo htmlspecialchars($url); ?>"<?php echo $isActiveType ? ' style="color:#bd3838"' : ''; ?>>
+                                        <a href="<?php echo htmlspecialchars($url); ?>" <?php echo $isActiveType ? ' style="color:#bd3838"' : ''; ?>>
                                             <img src="assets/img/theme-img/map.svg" alt="">
                                             <?php echo htmlspecialchars($tour['name']); ?>
                                         </a>
