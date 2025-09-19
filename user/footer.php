@@ -25,7 +25,7 @@
                     <div class="widget footer-widget">
                         <div class="th-widget-about">
                             <div class="about-logo">
-                                <a href="home-travel.php"><img src="assets/img/footer-logo.png" alt="Tourm"></a>
+                                <a href="home-travel.php"><img src="assets/img/footer-logo.png" alt="Tour"></a>
                             </div>
                             <p class="about-text">Rapidiously myocardinate cross-platform intellectual capital model. Appropriately create interactive infrastructures</p>
                             <div class="th-social">
@@ -47,7 +47,6 @@
                                 <li><a href="index.php">Home</a></li>
                                 <li><a href="tours.php">Tours</a></li>
                                 <li><a href="about.php">About us</a></li>
-                                <!-- <li><a href="#">Terms of Service</a></li> -->
                                 <li><a href="gallery.php">Gallery</a></li>
                                 <li><a href="contact.php">Contact Us</a></li>
                             </ul>

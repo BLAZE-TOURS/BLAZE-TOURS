@@ -65,21 +65,6 @@
 
 <body>
 
-    <!--[if lte IE 9]>
-    	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  	<![endif]-->
-
-
-    <!--********************************
-   		Code Start From Here 
-	******************************** -->
-    <!-- 
-    <div class="magic-cursor relative z-10">
-        <div class="cursor"></div>
-        <div class="cursor-follower"></div>
-    </div>
- -->
-
     <!--==============================
      Preloader
   ==============================-->
@@ -99,94 +84,7 @@
             </div>
         </div>
     </div>  -->
-    <!--==============================
-    Sidemenu
-============================== -->
-    <div class="sidemenu-wrapper sidemenu-info ">
-        <div class="sidemenu-content">
-            <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
-            <div class="widget  ">
-                <div class="th-widget-about">
-                    <div class="about-logo">
-                        <a href="home-travel.php"><img src="assets/img/BLAZE_TUK_TUK_LOGO.png" alt="Tourm"></a>
-                    </div>
-                    <p class="about-text">Rapidiously myocardinate cross-platform intellectual capital model. Appropriately create interactive infrastructures</p>
-                    <div class="th-social">
-                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="widget  ">
-                <h3 class="widget_title">Recent Posts</h3>
-                <div class="recent-post-wrap">
-                    <div class="recent-post">
-                        <div class="media-img">
-                            <a href="#"><img src="assets/img/blog/recent-post-1-1.jpg" alt="Blog Image"></a>
-                        </div>
-                        <div class="media-body">
-                            <div class="recent-post-meta">
-                                <a href="#"><i class="far fa-calendar"></i>24 Jun , 2024</a>
-                            </div>
-                            <h4 class="post-title"><a class="text-inherit" href="#">Where Vision Meets Concrete
-                                    Reality</a></h4>
-                        </div>
-                    </div>
-                    <div class="recent-post">
-                        <div class="media-img">
-                            <a href="#"><img src="assets/img/blog/recent-post-1-2.jpg" alt="Blog Image"></a>
-                        </div>
-                        <div class="media-body">
-                            <div class="recent-post-meta">
-                                <a href="#"><i class="far fa-calendar"></i>22 Jun , 2024</a>
-                            </div>
-                            <h4 class="post-title"><a class="text-inherit" href="#">Raising the Bar in Construction.</a></h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="widget  ">
-                <h3 class="widget_title">Get In Touch</h3>
-                <div class="th-widget-contact">
-                    <div class="info-box_text">
-                        <div class="icon">
-                            <img src="assets/img/icon/phone.svg" alt="img">
-                        </div>
-                        <div class="details">
-                            <p><a href="tel:+01234567890" class="info-box_link">+01 234 567 890</a></p>
-                            <p><a href="tel:+09876543210" class="info-box_link">+09 876 543 210</a></p>
-                        </div>
-                    </div>
-                    <div class="info-box_text">
-                        <div class="icon">
-                            <img src="assets/img/icon/envelope.svg" alt="img">
-                        </div>
-                        <div class="details">
-                            <p><a href="mailto:mailinfo00@tourm.com" class="info-box_link">mailinfo00@tourm.com</a></p>
-                            <p><a href="mailto:support24@tourm.com" class="info-box_link">support24@tourm.com</a></p>
-                        </div>
-                    </div>
-                    <div class="info-box_text">
-                        <div class="icon"><img src="assets/img/icon/location-dot.svg" alt="img"></div>
-                        <div class="details">
-                            <p>789 Inner Lane, Holy park, California, USA</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="popup-search-box">
-        <button class="searchClose"><i class="fal fa-times"></i></button>
-        <form action="#">
-            <input type="text" placeholder="What are you looking for?">
-            <button type="submit"><i class="fal fa-search"></i></button>
-        </form>
-    </div><!--==============================
-    Mobile Menu
-  ============================== -->
+
     <!--==============================
 	Header Area
 ==============================-->
@@ -258,83 +156,10 @@ Hero Area
 
         </div>
     </div>
-    <!--======== / Hero Section ========--><!--==============================
+
+        <!--==============================
 Booking Area  
 ==============================-->
-    <!-- <div class="booking-sec">
-        <div class="container">
-            <form action="mail.php" method="POST" class="booking-form ajax-contact">
-                <div class="input-wrap">
-                    <div class="row align-items-center justify-content-between">
-                        <div class="form-group col-md-6 col-lg-auto">
-                            <div class="icon">
-                                <i class="fa-light fa-route"></i>
-                            </div>
-                            <div class="search-input">
-                                <label>Category</label>
-                                <select name="subject" id="subject" class="form-select nice-select">
-                                    <option value="Select Destination" selected disabled>Select Category</option>
-                                    <option value="Tuk Tuk">Tuk Tuk</option>
-                                    <option value="Tour">Tour</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6 col-lg-auto">
-                            <div class="icon">
-                                <i class="fa-regular fa-person-hiking"></i>
-                            </div>
-                            <div class="search-input">
-                                <label>Type</label>
-                                <select class=" nice-select" name="Adventure" id="Adventure">
-                                    <option value="Adventure" selected disabled>Adventure</option>
-                                    <option value="Beach">Beach</option>
-                                    <option value="City Tour">City Tour</option>
-                                    <option value="Couple Tour">Couple Tour</option>
-                                    <option value="Family Tour">Family Tour</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6 col-lg-auto">
-                            <div class="icon">
-                                <i class="fa-light fa-clock"></i>
-                            </div>
-                            <div class="search-input">
-                                <label>Duration</label>
-                                <select class="form-select nice-select" name="Duration" id="Duration">
-                                    <option value="Normal" selected disabled>Duration</option>
-                                    <option value="1">1 hour</option>
-                                    <option value="2">2 hour</option>
-                                    <option value="3">3 hour</option>
-                                    <option value="4">4 hour</option>
-                                    <option value="5">5 hour</option>
-                                    <option value="6">6 hour</option>
-                                    <option value="7">7 hour</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6 col-lg-auto">
-                            <div class="icon">
-                                <i class="fa-light fa-map-location-dot"></i>
-                            </div>
-                            <div class="search-input">
-                                <label>Tour <Area></Area></label>
-                                <select name="subject" id="category" class="form-select nice-select">
-                                    <option value="Normal" selected disabled>Colombo 01</option>
-                                    <option value="1">Colombo 02</option>
-                                    <option value="2">Colombo 03</option>
-                                    <option value="2">Colombo 04</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-btn col-md-12 col-lg-auto">
-                            <button class="th-btn"><img src="assets/img/icon/search.svg" alt="">Search</button>
-                        </div>
-                    </div>
-                    <p class="form-messages mb-0 mt-3"></p>
-                </div>
-            </form>
-        </div>
-    </div>  -->
 
     <div class="booking-sec">
         <div class="container">
@@ -539,8 +364,6 @@ Service Area
         </div>
     </section>
 
-
-
     <!--==============================
 Gallery Area  
 ==============================-->
@@ -691,43 +514,8 @@ Counter Area
         <div class="shape-mockup jump d-none d-xl-block" data-top="5%" data-right="5%">
             <img src="assets/img/shape/shape_5.png" alt="shape">
         </div>
-    </div> <!--==============================
-Team Area  
-==============================-->
-    <!-- <section class="bg-smoke space" data-bg-src="assets/img/bg/team_bg_1.png">
-        <div class="container z-index-common">
-            <div class="title-area text-center">
-                <span class="sub-title">Meet with Guide</span>
-                <h2 class="sec-title">Owner</h2>
-            </div>
-            <div class="slider-area">
-                <div class="swiper th-slider teamSlider1 has-shadow" id="teamSlider1" data-slider-options='{"breakpoints":{"0":{"slidesPerView":1},"576":{"slidesPerView":"1"},"768":{"slidesPerView":"2"},"992":{"slidesPerView":"3"},"1200":{"slidesPerView":"4"}}}'>
-                    <div class="swiper-wrapper d-flex justify-content-center align-items-center">
-                        <div class="swiper-slide">
-                            <div class="th-team team-box">
-                                <div class="team-img">
-                                    <img src="assets/img/team/team_1_1.png" alt="Team">
-                                </div>
-                                <div class="team-content">
-                                    <div class="media-body">
-                                        <h3 class="box-title"><a href="#">M Vinod Kumar</a></h3>
-                                        <span class="team-desig">Tourist Guide</span>
-                                        <div class="th-social">
-                                            <a target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                            <a target="_blank" href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                                            <a target="_blank" href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
-                                            <a target="_blank" href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider-pagination"></div>
-                </div>
-            </div>
-        </div>
-    </section> -->
+    </div> 
+
     <!--==============================
 Testimonial Area  
 ==============================-->
@@ -1000,81 +788,6 @@ Testimonial Area
             <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;">
             </path>
         </svg>
-    </div>
-    <!--==============================
-modal Area  
-==============================-->
-    <div id="login-form" class="popup-login-register mfp-hide">
-        <ul class="nav" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-menu" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="false">Login</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-menu active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="true">Register</button>
-            </li>
-        </ul>
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                <h3 class="box-title mb-30">Sign in to your account</h3>
-                <div class="th-login-form">
-                    <form action="mail.php" method="POST" class="login-form ajax-contact">
-                        <div class="row">
-                            <div class="form-group col-12">
-                                <label>Username or email</label>
-                                <input type="text" class="form-control" name="email" id="email" required="required">
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Password</label>
-                                <input type="password" class="form-control" name="pasword" id="pasword" required="required">
-                            </div>
-
-                            <div class="form-btn mb-20 col-12">
-                                <button class="th-btn btn-fw th-radius2 ">Send Message</button>
-                            </div>
-                        </div>
-                        <div id="forgot_url">
-                            <a href="my-account.php">Forgot password?</a>
-                        </div>
-                        <p class="form-messages mb-0 mt-3"></p>
-                    </form>
-                </div>
-            </div>
-            <div class="tab-pane fade active show" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <h3 class="th-form-title mb-30">Sign in to your account</h3>
-                <form action="mail.php" method="POST" class="login-form ajax-contact">
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label>Username*</label>
-                            <input type="text" class="form-control" name="usename" id="usename" required="required">
-                        </div>
-                        <div class="form-group col-12">
-                            <label>First name*</label>
-                            <input type="text" class="form-control" name="firstname" id="firstname" required="required">
-                        </div>
-                        <div class="form-group col-12">
-                            <label>Last name*</label>
-                            <input type="text" class="form-control" name="lastname" id="lastname" required="required">
-                        </div>
-                        <div class="form-group col-12">
-                            <label for="new_email">Your email*</label>
-                            <input type="text" class="form-control" name="new_email" id="new_email" required="required">
-                        </div>
-                        <div class="form-group col-12">
-                            <label for="new_email_confirm">Confirm email*</label>
-                            <input type="text" class="form-control" name="new_email_confirm" id="new_email_confirm" required="required">
-                        </div>
-                        <div class="statement">
-                            <span class="register-notes">A password will be emailed to you.</span>
-                        </div>
-
-                        <div class="form-btn mt-20 col-12">
-                            <button class="th-btn btn-fw th-radius2 ">Sign up</button>
-                        </div>
-                    </div>
-                    <p class="form-messages mb-0 mt-3"></p>
-                </form>
-            </div>
-        </div>
     </div>
 
     <!--==============================

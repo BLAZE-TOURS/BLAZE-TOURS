@@ -3,7 +3,7 @@
     <div class="th-menu-area text-center">
         <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
         <div class="mobile-logo">
-            <a href="index.php"><img src="assets/img/logo-main.png" alt="Tourm"></a>
+            <a href="index.php"><img src="assets/img/logo-main.png" alt="Tour"></a>
         </div>
         <div class="th-mobile-menu">
             <ul>
@@ -31,8 +31,8 @@
                             <li class="d-none d-xl-inline-block"><i class="fa-sharp fa-regular  fa-location-dot"></i>
                                 <span>68/29, Sri Sidhartha road, Kirulapane, Colombo-6</span>
                             </li>
-                            <li class="d-none d-xl-inline-block"><i class="fa-regular fa-clock"></i>
-                                <span>Always Open</span>
+                            <li class="d-none d-xl-inline-block"><i class="fa-regular fa-clock text-success"></i>
+                                <span class="text-success">Always Open</span>
                             </li>
                         </ul>
                     </div>
@@ -58,7 +58,7 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto">
                         <div class="header-logo">
-                            <a href="index.php"><img src="assets/img/logo-main.png" alt="Tourm"></a>
+                            <a href="index.php"><img src="assets/img/logo-main.png" alt="Tour"></a>
                         </div>
                     </div>
                     <div class="col-auto me-xl-auto">
@@ -75,7 +75,7 @@
                     </div>
                     <div class="col-auto d-none d-xl-block">
                         <div class="header-button">
-                            <a href="#" onclick="window.location.href='private-tour.php'" class="th-btn style3 th-icon">Book Now</a>
+                            <a href="#" onclick="window.location.href='tours.php'" class="th-btn style3 th-icon">Book Now</a>
 
                         </div>
                     </div>
