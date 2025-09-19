@@ -56,21 +56,6 @@
 
 <body>
 
-    <!--[if lte IE 9]>
-    	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  	<![endif]-->
-
-
-    <!--********************************
-   		Code Start From Here 
-	******************************** -->
-
-    <!-- <div class="magic-cursor relative z-10">
-        <div class="cursor"></div>
-        <div class="cursor-follower"></div>
-    </div> -->
-
-
     <!--==============================
      Preloader
   ==============================-->
@@ -97,93 +82,10 @@
         </div>
 
     </div>  -->
-    <!--==============================
-    Sidemenu
-============================== -->
-    <div class="sidemenu-wrapper sidemenu-info ">
-        <div class="sidemenu-content">
-            <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
-            <div class="widget  ">
-                <div class="th-widget-about">
-                    <div class="about-logo">
-                        <a href="home-travel.html"><img src="assets/img/logo2.svg" alt="Tourm"></a>
-                    </div>
-                    <p class="about-text">Rapidiously myocardinate cross-platform intellectual capital model. Appropriately create interactive infrastructures</p>
-                    <div class="th-social">
-                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="widget  ">
-                <h3 class="widget_title">Recent Posts</h3>
-                <div class="recent-post-wrap">
-                    <div class="recent-post">
-                        <div class="media-img">
-                            <a href="blog-details.html"><img src="assets/img/blog/recent-post-1-1.jpg" alt="Blog Image"></a>
-                        </div>
-                        <div class="media-body">
-                            <div class="recent-post-meta">
-                                <a href="blog.html"><i class="far fa-calendar"></i>24 Jun , 2024</a>
-                            </div>
-                            <h4 class="post-title"><a class="text-inherit" href="blog-details.html">Where Vision Meets Concrete
-                                    Reality</a></h4>
-                        </div>
-                    </div>
-                    <div class="recent-post">
-                        <div class="media-img">
-                            <a href="blog-details.html"><img src="assets/img/blog/recent-post-1-2.jpg" alt="Blog Image"></a>
-                        </div>
-                        <div class="media-body">
-                            <div class="recent-post-meta">
-                                <a href="blog.html"><i class="far fa-calendar"></i>22 Jun , 2024</a>
-                            </div>
-                            <h4 class="post-title"><a class="text-inherit" href="blog-details.html">Raising the Bar in Construction.</a></h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="widget  ">
-                <h3 class="widget_title">Get In Touch</h3>
-                <div class="th-widget-contact">
-                    <div class="info-box_text">
-                        <div class="icon">
-                            <img src="assets/img/icon/phone.svg" alt="img">
-                        </div>
-                        <div class="details">
-                            <p><a href="tel:+01234567890" class="info-box_link">+01 234 567 890</a></p>
-                            <p><a href="tel:+09876543210" class="info-box_link">+09 876 543 210</a></p>
-                        </div>
-                    </div>
-                    <div class="info-box_text">
-                        <div class="icon">
-                            <img src="assets/img/icon/envelope.svg" alt="img">
-                        </div>
-                        <div class="details">
-                            <p><a href="mailto:mailinfo00@tourm.com" class="info-box_link">mailinfo00@tourm.com</a></p>
-                            <p><a href="mailto:support24@tourm.com" class="info-box_link">support24@tourm.com</a></p>
-                        </div>
-                    </div>
-                    <div class="info-box_text">
-                        <div class="icon"><img src="assets/img/icon/location-dot.svg" alt="img"></div>
-                        <div class="details">
-                            <p>789 Inner Lane, Holy park, California, USA</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="popup-search-box">
-        <button class="searchClose"><i class="fal fa-times"></i></button>
-        <form action="#">
-            <input type="text" placeholder="What are you looking for?">
-            <button type="submit"><i class="fal fa-search"></i></button>
-        </form>
-    </div>
 
+    <!--==============================
+    Header Area
+============================== -->
 
     <?php include 'header.php'; ?>
 
@@ -198,9 +100,7 @@
             </div>
         </div>
     </div>
-    <!--==============================
-Team Area  
-==============================-->
+
     <!--==============================
 Product Area
 ==============================-->
@@ -210,8 +110,19 @@ Product Area
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-4">
                         <div class="search-form-area">
-                            <form class="search-form">
-                                <input type="text" placeholder="Search">
+                            <form class="search-form" method="get" action="tours.php">
+                                <?php
+                                // Preserve params except search and page
+                                foreach ($_GET as $key => $value) {
+                                    if ($key === 'search' || $key === 'page') {
+                                        continue;
+                                    }
+                                    echo '<input type="hidden" name="' . htmlspecialchars($key) . '" value="' . htmlspecialchars($value) . '">';
+                                }
+                                echo '<input type="hidden" name="page" value="1">';
+                                $currentSearch = isset($_GET['search']) ? $_GET['search'] : '';
+                                ?>
+                                <input type="text" name="search" value="<?php echo htmlspecialchars($currentSearch); ?>" placeholder="Search by tour name">
                                 <button type="submit"><i class="fa-light fa-magnifying-glass"></i></button>
                             </form>
                         </div>
@@ -225,19 +136,28 @@ Product Area
                                 <a href="#" id="tab-destination-list" data-bs-toggle="tab" data-bs-target="#tab-list" role="tab" aria-controls="tab-list" aria-selected="false" class=""><i class="fa-solid fa-list"></i></a>
                             </div>
                             <form class="woocommerce-ordering" method="get">
-                                <select name="orderby" class="orderby" aria-label="destination order">
-                                    <option value="menu_order" selected="selected">Default Sorting</option>
-                                    <option value="popularity">Sort by popularity</option>
-                                    <option value="rating">Sort by average rating</option>
-                                    <option value="date">Sort by latest</option>
-                                    <option value="price">Sort by price: low to high</option>
-                                    <option value="price-desc">Sort by price: high to low</option>
+                                <?php
+                                // Preserve existing query params except orderby and page (we reset page on sort)
+                                foreach ($_GET as $key => $value) {
+                                    if ($key === 'orderby' || $key === 'page') {
+                                        continue;
+                                    }
+                                    echo '<input type="hidden" name="' . htmlspecialchars($key) . '" value="' . htmlspecialchars($value) . '">';
+                                }
+                                echo '<input type="hidden" name="page" value="1">';
+                                $currentOrder = isset($_GET['orderby']) ? $_GET['orderby'] : 'menu_order';
+                                ?>
+                                <select name="orderby" class="orderby" aria-label="destination order" onchange="this.form.submit()">
+                                    <option value="menu_order" <?php echo ($currentOrder === 'menu_order') ? 'selected' : ''; ?>>Default Sorting</option>
+                                    <option value="popularity" <?php echo ($currentOrder === 'popularity') ? 'selected' : ''; ?>>Sort by popularity</option>
+                                    <option value="rating" <?php echo ($currentOrder === 'rating') ? 'selected' : ''; ?>>Sort by average rating</option>
+                                    <option value="date" <?php echo ($currentOrder === 'date') ? 'selected' : ''; ?>>Sort by latest</option>
+                                    <option value="price" <?php echo ($currentOrder === 'price') ? 'selected' : ''; ?>>Sort by price: low to high</option>
+                                    <option value="price-desc" <?php echo ($currentOrder === 'price-desc') ? 'selected' : ''; ?>>Sort by price: high to low</option>
                                 </select>
                             </form>
                         </div>
                     </div>
-
-
 
                 </div>
             </div>
@@ -249,18 +169,98 @@ Product Area
                         <?php
                         require_once 'assets/process/connection.php';
 
+                        // Pagination setup
+                        $limit = 10;
+                        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                        if ($page < 1) {
+                            $page = 1;
+                        }
+                        $offset = ($page - 1) * $limit;
+
+                        // Base WHERE clause (extend later if filters are added)
+                        $whereClause = "WHERE t.status_id = 1";
+
+                        // Filter by category (tours_type)
+                        $typeFilter = null;
+                        if (isset($_GET['type']) && is_numeric($_GET['type'])) {
+                            $typeFilter = (int)$_GET['type'];
+                            if ($typeFilter > 0) {
+                                $whereClause .= " AND t.tours_type_id = $typeFilter";
+                            }
+                        }
+
+                        // Search by tour name
+                        $searchTerm = '';
+                        if (isset($_GET['search']) && $_GET['search'] !== '') {
+                            $searchTerm = Database::escape_string($_GET['search']);
+                            $whereClause .= " AND t.name LIKE '%$searchTerm%'";
+                        }
+
+                        // Sorting setup
+                        $orderby = isset($_GET['orderby']) ? $_GET['orderby'] : 'menu_order';
+                        switch ($orderby) {
+                            case 'price':
+                                $orderBySql = "ORDER BY t.adult_price ASC";
+                                break;
+                            case 'price-desc':
+                                $orderBySql = "ORDER BY t.adult_price DESC";
+                                break;
+                            case 'date':
+                                // Assuming higher id == newer; adjust to created_at if available
+                                $orderBySql = "ORDER BY t.id DESC";
+                                break;
+                            case 'rating':
+                            case 'popularity':
+                                // No explicit columns; fallback to name
+                                $orderBySql = "ORDER BY t.name ASC";
+                                break;
+                            case 'menu_order':
+                            default:
+                                $orderBySql = "ORDER BY t.id ASC";
+                        }
+
+                        // Count total tours
+                        $totalTours = 0;
+                        try {
+                            $countQuery = "SELECT COUNT(*) AS total FROM tour t $whereClause";
+                            $countResult = Database::search($countQuery);
+                            if ($countRow = $countResult->fetch_assoc()) {
+                                $totalTours = (int)$countRow['total'];
+                            }
+                        } catch (Exception $e) {
+                            $totalTours = 0;
+                        }
+
+                        $totalPages = ($totalTours > 0) ? (int)ceil($totalTours / $limit) : 1;
+                        if ($page > $totalPages) {
+                            $page = $totalPages;
+                            $offset = ($page - 1) * $limit;
+                        }
+
+                        // Fetch paginated tours
                         $tours = [];
                         try {
                             $query = "SELECT t.id, t.name, t.description, t.duration, t.adult_price, ti.main_image
               FROM tour t
               LEFT JOIN tour_image ti ON t.id = ti.tour_id
-              WHERE t.status_id = 1";
+              $whereClause
+              $orderBySql
+              LIMIT $limit OFFSET $offset";
                             $result = Database::search($query);
                             while ($row = $result->fetch_assoc()) {
                                 $tours[] = $row;
                             }
                         } catch (Exception $e) {
                             // Error handling
+                        }
+
+                        // Helper to build pagination URLs preserving existing query params
+                        function buildPageUrl($pageNumber)
+                        {
+                            $params = $_GET;
+                            $params['page'] = $pageNumber;
+                            $qs = http_build_query($params);
+                            return 'tours.php' . ($qs ? ('?' . $qs) : '');
                         }
                         ?>
 
@@ -352,11 +352,21 @@ Product Area
                         </div>
                         <div class="th-pagination text-center mt-60">
                             <ul>
-                                <li><a class="active" href="tours.php">1</a></li>
-                                <li><a href="tours.php">2</a></li>
-                                <li><a href="tours.php">3</a></li>
-                                <li><a href="tours.php">4</a></li>
-                                <li><a class="next-page" href="tours.php">Next <img src="assets/img/icon/arrow-right4.svg" alt=""></a></li>
+                                <?php if ($page > 1): ?>
+                                    <li><a href="<?php echo htmlspecialchars(buildPageUrl($page - 1)); ?>">Prev</a></li>
+                                <?php endif; ?>
+
+                                <?php
+                                // Simple numbered pagination
+                                for ($i = 1; $i <= $totalPages; $i++):
+                                    $isActive = ($i === $page) ? 'active' : '';
+                                ?>
+                                    <li><a class="<?php echo $isActive; ?>" href="<?php echo htmlspecialchars(buildPageUrl($i)); ?>"><?php echo $i; ?></a></li>
+                                <?php endfor; ?>
+
+                                <?php if ($page < $totalPages): ?>
+                                    <li><a class="next-page" href="<?php echo htmlspecialchars(buildPageUrl($page + 1)); ?>">Next <img src="assets/img/icon/arrow-right4.svg" alt=""></a></li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
@@ -366,6 +376,22 @@ Product Area
                         <div class="widget widget_categories  ">
                             <h3 class="widget_title">Categories</h3>
                             <ul>
+                                <!-- All -->
+                                <?php
+                                $allCurrentParams = $_GET;
+                                $currentTypeIdAll = isset($_GET['type']) ? (int)$_GET['type'] : 0;
+                                if (isset($allCurrentParams['type'])) { unset($allCurrentParams['type']); }
+                                $allCurrentParams['page'] = 1;
+                                $allQs = http_build_query($allCurrentParams);
+                                $allUrl = 'tours.php' . ($allQs ? ('?' . $allQs) : '');
+                                $isAllActive = ($currentTypeIdAll === 0);
+                                ?>
+                                <li>
+                                    <a href="<?php echo htmlspecialchars($allUrl); ?>" <?php echo $isAllActive ? ' style="color:#bd3838"' : ''; ?>>
+                                        <img src="assets/img/theme-img/map.svg" alt="">
+                                        All
+                                    </a>
+                                </li>
 
                                 <?php
                                 require_once 'assets/process/connection.php';
@@ -381,10 +407,19 @@ Product Area
                                     // Error handling
                                 }
                                 ?>
-                                <?php foreach ($tours as $tour): ?>
-
+                                <?php
+                                $currentParams = $_GET;
+                                $currentTypeId = isset($_GET['type']) ? (int)$_GET['type'] : 0;
+                                foreach ($tours as $tour):
+                                    $params = $currentParams;
+                                    $params['type'] = $tour['id'];
+                                    $params['page'] = 1; // reset pagination when changing category
+                                    $qs = http_build_query($params);
+                                    $url = 'tours.php' . ($qs ? ('?' . $qs) : '');
+                                    $isActiveType = ($currentTypeId === (int)$tour['id']);
+                                ?>
                                     <li>
-                                        <a href="tours.php?type=<?php echo $tour['id']; ?>">
+                                        <a href="<?php echo htmlspecialchars($url); ?>" <?php echo $isActiveType ? ' style="color:#bd3838"' : ''; ?>>
                                             <img src="assets/img/theme-img/map.svg" alt="">
                                             <?php echo htmlspecialchars($tour['name']); ?>
                                         </a>
@@ -431,10 +466,6 @@ Product Area
     <?php include 'footer.php'; ?>
 
 
-    <!--********************************
-			Code End  Here 
-	******************************** -->
-
     <!-- Scroll To Top -->
     <div class="scroll-top">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
@@ -442,10 +473,6 @@ Product Area
             </path>
         </svg>
     </div>
-    <!--==============================
-modal Area  
-==============================-->
-
 
     <!--==============================
     All Js File

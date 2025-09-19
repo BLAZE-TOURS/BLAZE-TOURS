@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>About Us | Blaze Tours (Pvt) Ltd - Colombo & Sri Lanka Travel Experts</title>
-<meta name="author" content="Blaze Tours (Pvt) Ltd">
-<meta name="description" content="Learn more about Blaze Tours (Pvt) Ltd, a trusted Colombo-based travel company offering city tours, cultural experiences, and scenic trips across Sri Lanka. Discover our story, mission, and passion for travel.">
-<meta name="keywords" content="About Blaze Tours, Colombo travel agency, Sri Lanka tour company, private limited tours, cultural trips Sri Lanka, Blaze Tours story, travel experts Colombo">
-<meta name="robots" content="INDEX,FOLLOW">
+    <title>About Us | Blaze Tours (Pvt) Ltd - Colombo & Sri Lanka Travel Experts</title>
+    <meta name="author" content="Blaze Tours (Pvt) Ltd">
+    <meta name="description" content="Learn more about Blaze Tours (Pvt) Ltd, a trusted Colombo-based travel company offering city tours, cultural experiences, and scenic trips across Sri Lanka. Discover our story, mission, and passion for travel.">
+    <meta name="keywords" content="About Blaze Tours, Colombo travel agency, Sri Lanka tour company, private limited tours, cultural trips Sri Lanka, Blaze Tours story, travel experts Colombo">
+    <meta name="robots" content="INDEX,FOLLOW">
 
 
     <!-- Mobile Specific Metas -->
@@ -46,17 +46,6 @@
 
 <body>
 
-    <!--[if lte IE 9]>
-    	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  	<![endif]-->
-
-
-    <!--********************************
-   		Code Start From Here 
-	******************************** -->
-
-
-
     <!-- <div id="preloader" class="preloader">
         <div class="preloader-inner">
             
@@ -73,93 +62,9 @@
             </div>
         </div>
     </div> -->
+
     <!--==============================
-    Sidemenu
-============================== -->
-    <div class="sidemenu-wrapper sidemenu-info ">
-        <div class="sidemenu-content">
-            <button class="closeButton sideMenuCls"><i class="far fa-times"></i></button>
-            <div class="widget  ">
-                <div class="th-widget-about">
-                    <div class="about-logo">
-                        <a href="home-travel.php"><img src="assets/img/logo2.svg" alt="Tourm"></a>
-                    </div>
-                    <p class="about-text">Rapidiously myocardinate cross-platform intellectual capital model. Appropriately create interactive infrastructures</p>
-                    <div class="th-social">
-                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="widget  ">
-                <h3 class="widget_title">Recent Posts</h3>
-                <div class="recent-post-wrap">
-                    <div class="recent-post">
-                        <div class="media-img">
-                            <a href="blog-details.php"><img src="assets/img/blog/recent-post-1-1.jpg" alt="Blog Image"></a>
-                        </div>
-                        <div class="media-body">
-                            <div class="recent-post-meta">
-                                <a href="blog.php"><i class="far fa-calendar"></i>24 Jun , 2024</a>
-                            </div>
-                            <h4 class="post-title"><a class="text-inherit" href="blog-details.php">Where Vision Meets Concrete
-                                    Reality</a></h4>
-                        </div>
-                    </div>
-                    <div class="recent-post">
-                        <div class="media-img">
-                            <a href="blog-details.php"><img src="assets/img/blog/recent-post-1-2.jpg" alt="Blog Image"></a>
-                        </div>
-                        <div class="media-body">
-                            <div class="recent-post-meta">
-                                <a href="blog.php"><i class="far fa-calendar"></i>22 Jun , 2024</a>
-                            </div>
-                            <h4 class="post-title"><a class="text-inherit" href="blog-details.php">Raising the Bar in Construction.</a></h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="widget  ">
-                <h3 class="widget_title">Get In Touch</h3>
-                <div class="th-widget-contact">
-                    <div class="info-box_text">
-                        <div class="icon">
-                            <img src="assets/img/icon/phone.svg" alt="img">
-                        </div>
-                        <div class="details">
-                            <p><a href="tel:+01234567890" class="info-box_link">+01 234 567 890</a></p>
-                            <p><a href="tel:+09876543210" class="info-box_link">+09 876 543 210</a></p>
-                        </div>
-                    </div>
-                    <div class="info-box_text">
-                        <div class="icon">
-                            <img src="assets/img/icon/envelope.svg" alt="img">
-                        </div>
-                        <div class="details">
-                            <p><a href="mailto:mailinfo00@tourm.com" class="info-box_link">mailinfo00@tourm.com</a></p>
-                            <p><a href="mailto:support24@tourm.com" class="info-box_link">support24@tourm.com</a></p>
-                        </div>
-                    </div>
-                    <div class="info-box_text">
-                        <div class="icon"><img src="assets/img/icon/location-dot.svg" alt="img"></div>
-                        <div class="details">
-                            <p>789 Inner Lane, Holy park, California, USA</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="popup-search-box">
-        <button class="searchClose"><i class="fal fa-times"></i></button>
-        <form action="#">
-            <input type="text" placeholder="What are you looking for?">
-            <button type="submit"><i class="fal fa-search"></i></button>
-        </form>
-    </div><!--==============================
-    Mobile Menu
+    Header Area
   ============================== -->
 
 
@@ -200,33 +105,31 @@ About Area
                 <div class="col-xl-5">
                     <div class="ps-xl-4">
                         <div class="title-area mb-20">
-                            <span class="sub-title style1 ">Welcome To Tourm</span>
-                            <h2 class="sec-title mb-20 pe-xl-5 me-xl-5 heading">We are world reputeted travel agency</h2>
+                            <span class="sub-title style1 ">Welcome To Blaze Tours</span>
+                            <h2 class="sec-title mb-20 pe-xl-5 me-xl-5 heading">Your trusted Sri Lankan travel partner, known worldwide</h2>
                         </div>
-                        <p class="pe-xl-5">Embark on an enchanting journey through Colombo, where history merges seamlessly with modernity! Join Vinoth Blaze on our comfortable Blaze cabrio Tuk Tuk. With over a decade of expertise, expect an extraordinary exploration of hidden gems.</p>
-                        <p class="mb-30 pe-xl-5">Glide through labyrinthine streets, conversing in English, Sinhala, or Tamil, unraveling the tales of Colombo's suburbs. Experience Pettah market's vibrant chaos, savoring centuries-old trade. Delve into Sri Lanka's cultural heritage, marveling at ancient temples. With insider insights and practical assistance, let us be your trusted companion on this unforgettable odyssey. Step aboard, fellow traveler, and unlock the treasures of Sri Lanka with us!</p>
+                        <p class="pe-xl-5">Experience the vibrant soul of Colombo on the BLAZE Tuk Tuk Safari. Glide through colorful streets, bustling markets, and historic landmarks while your local guide reveals hidden gems and fascinating stories. Comfortable, safe, and immersive, this tuk tuk tour captures Sri Lanka’s energy like no other.</p>
+                        <p class="mb-30 pe-xl-5">Hop aboard as your tuk tuk weaves through narrow lanes, past colonial architecture, modern skyscrapers, and fragrant spice shops. Witness serene temple courtyards, observe street food vendors preparing savory treats, and absorb the mix of tradition and progress. Ideal for photographers, culture lovers, or anyone curious to explore beyond the tourist map. Let BLAZE Tuk Tuk Safari transform your Colombo visit into a vivid, unforgettable journey.</p>
                         <div class="about-item-wrap">
                             <div class="about-item style2">
                                 <div class="about-item_img"><img src="assets/img/icon/about_1_1.svg" alt=""></div>
                                 <div class="about-item_centent">
                                     <h5 class="box-title">Exclusive Trip</h5>
-                                    <p class="about-item_text">There are many variations of passages of available but the
-                                        majority.</p>
+                                    <p class="about-item_text">Enjoy a private Colombo adventure with personalized tuk tuk service.</p>
                                 </div>
                             </div>
                             <div class="about-item style2">
                                 <div class="about-item_img"><img src="assets/img/icon/about_1_2.svg" alt=""></div>
                                 <div class="about-item_centent">
                                     <h5 class="box-title">Safety First Always</h5>
-                                    <p class="about-item_text">There are many variations of passages of available but the majority.</p>
+                                    <p class="about-item_text">Well-maintained tuk tuks, skilled drivers, and reliable safety standards.</p>
                                 </div>
                             </div>
                             <div class="about-item style2">
                                 <div class="about-item_img"><img src="assets/img/icon/about_1_3.svg" alt=""></div>
                                 <div class="about-item_centent">
                                     <h5 class="box-title">Professional Guide</h5>
-                                    <p class="about-item_text">There are many variations of passages of available but the
-                                        majority.</p>
+                                    <p class="about-item_text">Expert local guides share culture, history, and hidden gems.</p>
                                 </div>
                             </div>
                         </div>
@@ -247,124 +150,8 @@ About Area
         <div class="shape-mockup movixgX d-none d-xxl-block" data-bottom="18%" data-right="2%">
             <img src="assets/img/shape/shape_2_4.png" alt="shape">
         </div>
-    </div> <!--==============================
-Destination Area  
-==============================-->
-
-    <!-- <section class="position-relative overflow-hidden space-bottom" id="destination-sec">
-        <div class="container">
-            <div class="title-area text-center">
-                <span class="sub-title">Services We Offer</span>
-                <h2 class="sec-title">Our Amazing services</h2>
-            </div>
-            <div class="row gy-4 gx-4">
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="destination-item th-ani">
-                        <div class="destination-item_img global-img">
-                            <img src="assets/img/destination/destination_4_1.jpg" alt="image">
-                        </div>
-                        <div class="destination-content">
-                            <h3 class="box-title"><a href="service-details.php">Photo Shoot</a></h3>
-                            <p class="destination-text">20 Listing</p>
-                            <a href="contact.php" class="th-btn style4 th-icon">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="destination-item th-ani">
-                        <div class="destination-item_img global-img">
-                            <img src="assets/img/destination/destination_4_2.jpg" alt="image">
-                        </div>
-                        <div class="destination-content">
-                            <h3 class="box-title"><a href="service-details.php">Tour Guide</a></h3>
-                            <p class="destination-text">22 Listing</p>
-                            <a href="contact.php" class="th-btn style4 th-icon">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="destination-item th-ani">
-                        <div class="destination-item_img global-img">
-                            <img src="assets/img/destination/destination_4_3.jpg" alt="image">
-                        </div>
-                        <div class="destination-content">
-                            <h3 class="box-title"><a href="service-details.php">Cozy Event</a></h3>
-                            <p class="destination-text">23 Listing</p>
-                            <a href="contact.php" class="th-btn style4 th-icon">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="destination-item th-ani">
-                        <div class="destination-item_img global-img">
-                            <img src="assets/img/destination/destination_4_4.jpg" alt="image">
-                        </div>
-                        <div class="destination-content">
-                            <h3 class="box-title"><a href="service-details.php">Interesting Rest</a></h3>
-                            <p class="destination-text">24 Listing</p>
-                            <a href="contact.php" class="th-btn style4 th-icon">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="destination-item th-ani">
-                        <div class="destination-item_img global-img">
-                            <img src="assets/img/destination/destination_4_5.jpg" alt="image">
-                        </div>
-                        <div class="destination-content">
-                            <h3 class="box-title"><a href="service-details.php">Kayaking</a></h3>
-                            <p class="destination-text">25 Listing</p>
-                            <a href="contact.php" class="th-btn style4 th-icon">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="destination-item th-ani">
-                        <div class="destination-item_img global-img">
-                            <img src="assets/img/destination/destination_4_6.jpg" alt="image">
-                        </div>
-                        <div class="destination-content">
-                            <h3 class="box-title"><a href="service-details.php">Safe Flight</a></h3>
-                            <p class="destination-text">26 Listing</p>
-                            <a href="contact.php" class="th-btn style4 th-icon">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="destination-item th-ani">
-                        <div class="destination-item_img global-img">
-                            <img src="assets/img/destination/destination_4_7.jpg" alt="image">
-                        </div>
-                        <div class="destination-content">
-                            <h3 class="box-title"><a href="service-details.php">Entertainment</a></h3>
-                            <p class="destination-text">27 Listing</p>
-                            <a href="contact.php" class="th-btn style4 th-icon">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="destination-item th-ani">
-                        <div class="destination-item_img global-img">
-                            <img src="assets/img/destination/destination_4_8.jpg" alt="image">
-                        </div>
-                        <div class="destination-content">
-                            <h3 class="box-title"><a href="service-details.php">Delicisious Food</a></h3>
-                            <p class="destination-text">28 Listing</p>
-                            <a href="contact.php" class="th-btn style4 th-icon">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section> <!--============================== -
+    </div>
+    <!--============================== -
     elements Area
     ==============================-->
     <div class="elements-sec bg-white overflow-hidden">
@@ -415,7 +202,8 @@ Team Area
 
             </div>
         </div>
-    </section><!--==============================
+    </section>
+    <!--==============================
 Testimonial Area  
 ==============================-->
     <section class="testi-area overflow-hidden space-bottom" id="testi-sec">
@@ -671,16 +459,12 @@ Testimonial Area
             <img src="assets/img/shape/shape_7.png" alt="shape">
         </div>
     </section>
-    
-<!--============================== --
+
+    <!--============================== --
 	Footer Area
 ==============================-->
     <?php include 'footer.php'; ?>
 
-
-    <!--********************************
-			Code End  Here 
-	******************************** -->
 
     <!-- Scroll To Top -->
     <div class="scroll-top">
@@ -689,81 +473,7 @@ Testimonial Area
             </path>
         </svg>
     </div>
-    <!--==============================
-modal Area  
-==============================-->
-    <div id="login-form" class="popup-login-register mfp-hide">
-        <ul class="nav" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-menu" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="false">Login</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-menu active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="true">Register</button>
-            </li>
-        </ul>
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                <h3 class="box-title mb-30">Sign in to your account</h3>
-                <div class="th-login-form">
-                    <form action="mail.php" method="POST" class="login-form ajax-contact">
-                        <div class="row">
-                            <div class="form-group col-12">
-                                <label>Username or email</label>
-                                <input type="text" class="form-control" name="email" id="email" required="required">
-                            </div>
-                            <div class="form-group col-12">
-                                <label>Password</label>
-                                <input type="password" class="form-control" name="pasword" id="pasword" required="required">
-                            </div>
 
-                            <div class="form-btn mb-20 col-12">
-                                <button class="th-btn btn-fw th-radius2 ">Send Message</button>
-                            </div>
-                        </div>
-                        <div id="forgot_url">
-                            <a href="my-account.php">Forgot password?</a>
-                        </div>
-                        <p class="form-messages mb-0 mt-3"></p>
-                    </form>
-                </div>
-            </div>
-            <div class="tab-pane fade active show" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <h3 class="th-form-title mb-30">Sign in to your account</h3>
-                <form action="mail.php" method="POST" class="login-form ajax-contact">
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label>Username*</label>
-                            <input type="text" class="form-control" name="usename" id="usename" required="required">
-                        </div>
-                        <div class="form-group col-12">
-                            <label>First name*</label>
-                            <input type="text" class="form-control" name="firstname" id="firstname" required="required">
-                        </div>
-                        <div class="form-group col-12">
-                            <label>Last name*</label>
-                            <input type="text" class="form-control" name="lastname" id="lastname" required="required">
-                        </div>
-                        <div class="form-group col-12">
-                            <label for="new_email">Your email*</label>
-                            <input type="text" class="form-control" name="new_email" id="new_email" required="required">
-                        </div>
-                        <div class="form-group col-12">
-                            <label for="new_email_confirm">Confirm email*</label>
-                            <input type="text" class="form-control" name="new_email_confirm" id="new_email_confirm" required="required">
-                        </div>
-                        <div class="statement">
-                            <span class="register-notes">A password will be emailed to you.</span>
-                        </div>
-
-                        <div class="form-btn mt-20 col-12">
-                            <button class="th-btn btn-fw th-radius2 ">Sign up</button>
-                        </div>
-                    </div>
-                    <p class="form-messages mb-0 mt-3"></p>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <!--==============================
     All Js File
