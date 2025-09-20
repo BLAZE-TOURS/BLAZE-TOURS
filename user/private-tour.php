@@ -489,8 +489,8 @@ tour Area
 
                         <!-- Pickup Location -->
                         <div class="mb-3">
-                            <label for="pickupLocation" class="form-label">Pickup Location *</label>
-                            <input type="text" class="form-control" id="pickupLocation" name="pickupLocation" placeholder="Enter your pickup location" required>
+                            <label for="pickup" class="form-label">Pickup Location *</label>
+                            <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter your pickup location" required>
                             <small class="form-text text-muted">Start typing to see location suggestions</small>
                         </div>
 
@@ -691,29 +691,6 @@ tour Area
                 }
             });
         });
-
-        // Google Maps Autocomplete
-        let autocomplete;
-
-        function initAutocomplete() {
-            autocomplete = new google.maps.places.Autocomplete(
-                document.getElementById('pickupLocation'), {
-                    types: ['establishment', 'geocode'],
-                    componentRestrictions: {
-                        country: 'lk'
-                    } // Restrict to Sri Lanka
-                }
-            );
-
-            autocomplete.addListener('place_changed', function() {
-                const place = autocomplete.getPlace();
-                if (!place.geometry) {
-                    console.log("No details available for input: '" + place.name + "'");
-                    return;
-                }
-                console.log('Selected place:', place);
-            });
-        }
     </script>
 
 
