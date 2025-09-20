@@ -68,6 +68,15 @@ include 'assets/process/fetchTour.php';
             border-radius: 15px;
             border: none;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1056;
+        }
+
+        .modal {
+            z-index: 1055;
+        }
+
+        .modal-backdrop {
+            z-index: 1050;
         }
 
 
@@ -167,17 +176,195 @@ include 'assets/process/fetchTour.php';
             padding: 1.5rem 2rem;
         }
 
+        /* Mobile Responsive Styles */
         @media (max-width: 768px) {
             .modal-dialog {
-                margin: 1rem;
+                margin: 0.5rem;
+                max-width: calc(100% - 1rem);
+                z-index: 1055;
+            }
+
+            .modal-content {
+                border-radius: 10px;
+                margin: 0;
+                z-index: 1056;
+            }
+
+            .modal-backdrop {
+                z-index: 1050;
             }
 
             .modal-body {
-                padding: 1.5rem;
+                padding: 1rem;
+                max-height: 80vh;
+                overflow-y: auto;
             }
 
             .modal-footer {
-                padding: 1rem 1.5rem;
+                padding: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .modal-footer .btn {
+                width: 100%;
+                margin: 0;
+            }
+
+            .form-label {
+                font-size: 14px;
+                margin-bottom: 6px;
+            }
+
+            .form-control,
+            .form-select {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+
+            .input-group .btn {
+                width: 40px;
+                padding: 8px;
+            }
+
+            .form-check-label {
+                font-size: 14px;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .card-title {
+                font-size: 1rem;
+            }
+
+            .phone-input {
+                max-width: 100%;
+            }
+
+            .modal-title {
+                font-size: 1.25rem;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .modal-dialog {
+                margin: 0.25rem;
+                max-width: calc(100% - 0.5rem);
+            }
+
+            .modal-body {
+                padding: 0.75rem;
+                max-height: 85vh;
+            }
+
+            .modal-footer {
+                padding: 0.75rem;
+            }
+
+            .row {
+                margin: 0;
+            }
+
+            .col-md-6,
+            .col-md-4,
+            .col-6 {
+                padding: 0 0 1rem 0;
+            }
+
+            /* Time slot specific mobile styling */
+            .col-6 .form-check {
+                margin-bottom: 0.5rem;
+                padding: 8px;
+                border: 1px solid #e9ecef;
+                border-radius: 6px;
+                background: #f8f9fa;
+            }
+
+            .col-6 .form-check:hover {
+                background: #e9ecef;
+                border-color: #bd3838;
+            }
+
+            .col-6 .form-check-input:checked + .form-check-label {
+                color: #bd3838;
+                font-weight: 600;
+            }
+
+            .form-control,
+            .form-select {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+
+            .input-group .btn {
+                width: 35px;
+                padding: 6px;
+                font-size: 12px;
+            }
+
+            .form-check {
+                margin-bottom: 0.5rem;
+            }
+
+            .card {
+                margin-bottom: 1rem;
+            }
+
+            .card-body {
+                padding: 0.75rem;
+            }
+
+            .d-flex {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .d-flex.justify-content-between {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .modal-dialog {
+                margin: 0.1rem;
+                max-width: calc(100% - 0.2rem);
+            }
+
+            .modal-body {
+                padding: 0.5rem;
+            }
+
+            .modal-footer {
+                padding: 0.5rem;
+            }
+
+            .form-control,
+            .form-select {
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .modal-title {
+                font-size: 1.1rem;
+            }
+
+            .form-label {
+                font-size: 13px;
             }
         }
 
@@ -188,6 +375,81 @@ include 'assets/process/fetchTour.php';
 
         .iti {
             width: 100%;
+        }
+
+        /* Mobile Touch Improvements */
+        @media (max-width: 768px) {
+            .form-check-input {
+                transform: scale(1.2);
+                margin-right: 8px;
+            }
+
+            .btn {
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+
+            .input-group .btn {
+                min-height: 44px;
+            }
+
+            .form-control,
+            .form-select {
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+
+            .modal-dialog {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                margin-top: 20px;
+            }
+
+            .modal-content {
+                min-height: auto;
+                max-height: 90vh;
+                margin-top: 20px;
+            }
+
+            .modal-body {
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Ensure modal appears above fixed headers */
+            .modal.show {
+                z-index: 9999 !important;
+            }
+
+            .modal-dialog {
+                z-index: 10000 !important;
+            }
+
+            .modal-content {
+                z-index: 10001 !important;
+            }
+        }
+
+        /* Prevent zoom on input focus on iOS */
+        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+            select,
+            textarea,
+            input[type="text"],
+            input[type="password"],
+            input[type="datetime"],
+            input[type="datetime-local"],
+            input[type="date"],
+            input[type="month"],
+            input[type="time"],
+            input[type="week"],
+            input[type="number"],
+            input[type="email"],
+            input[type="url"],
+            input[type="search"],
+            input[type="tel"],
+            input[type="color"] {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -411,7 +673,7 @@ tour Area
 
     <!-- Booking Modal -->
     <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
 
                 <div class="modal-body">
@@ -454,7 +716,7 @@ tour Area
                             <label class="form-label">Select Time Slot *</label>
                             <div class="row">
                                 <?php foreach ($times as $index => $time): ?>
-                                    <div class="col-md-4 mb-2">
+                                    <div class="col-md-4 col-sm-6 col-6 mb-2">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="timeSlot" id="timeSlot<?php echo $index; ?>" value="<?php echo $time; ?>" required>
                                             <label class="form-check-label" for="timeSlot<?php echo $index; ?>">
@@ -482,7 +744,7 @@ tour Area
                         <div class="mb-3">
                             <label for="phoneNumber" class="form-label">Phone Number *</label>
                             <div class="phone-input">
-                                <input id="phone" type="tel" placeholder="Enter phone number" class="form-control" />
+                                <input name="number3" id="number3" type="tel" placeholder="Enter phone number" class="form-control" />
                             </div>
 
                         </div>
@@ -695,25 +957,12 @@ tour Area
 
 
     <script>
-        const input = document.querySelector("#phone");
-
+        const input = document.querySelector("#number3");
         const iti = window.intlTelInput(input, {
-            initialCountry: "auto",
-            geoIpLookup: function(success, failure) {
-                fetch("https://ipinfo.io/json?token=YOUR_TOKEN") // get user country by IP
-                    .then(resp => resp.json())
-                    .then(resp => success(resp.country))
-                    .catch(() => success("us"));
-            },
-            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+            initialCountry: "lk", // default Sri Lanka
+            separateDialCode: true, // show +94 separately
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"
         });
-
-        // Get full international number on submit
-        function getPhoneNumber() {
-            const phoneNumber = iti.getNumber();
-            console.log("Selected phone:", phoneNumber);
-            return phoneNumber;
-        }
     </script>
 
 </body>
