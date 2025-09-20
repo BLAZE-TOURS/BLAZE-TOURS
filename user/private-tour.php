@@ -57,6 +57,401 @@ include 'assets/process/fetchTour.php';
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+
+
+    <!-- Custom Booking Modal CSS -->
+    <style>
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1056;
+        }
+
+        .modal {
+            z-index: 1055;
+        }
+
+        .modal-backdrop {
+            z-index: 1050;
+        }
+
+
+        .modal-title {
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .btn-close {
+            filter: invert(1);
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #bd3838;
+            box-shadow: 0 0 0 0.2rem rgba(234, 113, 102, 0.25);
+        }
+
+        .input-group .btn {
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            font-weight: bold;
+            width: 45px;
+        }
+
+        .input-group .btn:hover {
+            background-color: #bd3838;
+            border-color: #bd3838;
+            color: white;
+        }
+
+        .form-check-input:checked {
+            background-color: #bd3838;
+            border-color: #bd3838;
+        }
+
+        .form-check-label {
+            font-weight: 500;
+            padding-left: 8px;
+        }
+
+        .card {
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #bd3838 0%, rgb(195, 37, 37) 100%);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(234, 109, 102, 0.4);
+        }
+
+        .btn-secondary {
+            border-radius: 8px;
+            padding: 12px 30px;
+            font-weight: 600;
+        }
+
+
+        .country-code-select {
+            background-image: none;
+        }
+
+        .country-code-select option {
+            padding: 10px;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #e9ecef;
+            padding: 1.5rem 2rem;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .modal-dialog {
+                margin: 0.5rem;
+                max-width: calc(100% - 1rem);
+                z-index: 1055;
+            }
+
+            .modal-content {
+                border-radius: 10px;
+                margin: 0;
+                z-index: 1056;
+            }
+
+            .modal-backdrop {
+                z-index: 1050;
+            }
+
+            .modal-body {
+                padding: 1rem;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+
+            .modal-footer {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .modal-footer .btn {
+                width: 100%;
+                margin: 0;
+            }
+
+            .form-label {
+                font-size: 14px;
+                margin-bottom: 6px;
+            }
+
+            .form-control,
+            .form-select {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+
+            .input-group .btn {
+                width: 40px;
+                padding: 8px;
+            }
+
+            .form-check-label {
+                font-size: 14px;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .card-title {
+                font-size: 1rem;
+            }
+
+            .phone-input {
+                max-width: 100%;
+            }
+
+            .modal-title {
+                font-size: 1.25rem;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .modal-dialog {
+                margin: 0.25rem;
+                max-width: calc(100% - 0.5rem);
+            }
+
+            .modal-body {
+                padding: 0.75rem;
+                max-height: 85vh;
+            }
+
+            .modal-footer {
+                padding: 0.75rem;
+            }
+
+            .row {
+                margin: 0;
+            }
+
+            .col-md-6,
+            .col-md-4,
+            .col-6 {
+                padding: 0 0 1rem 0;
+            }
+
+            /* Time slot specific mobile styling */
+            .col-6 .form-check {
+                margin-bottom: 0.5rem;
+                padding: 8px;
+                border: 1px solid #e9ecef;
+                border-radius: 6px;
+                background: #f8f9fa;
+            }
+
+            .col-6 .form-check:hover {
+                background: #e9ecef;
+                border-color: #bd3838;
+            }
+
+            .col-6 .form-check-input:checked + .form-check-label {
+                color: #bd3838;
+                font-weight: 600;
+            }
+
+            .form-control,
+            .form-select {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+
+            .input-group .btn {
+                width: 35px;
+                padding: 6px;
+                font-size: 12px;
+            }
+
+            .form-check {
+                margin-bottom: 0.5rem;
+            }
+
+            .card {
+                margin-bottom: 1rem;
+            }
+
+            .card-body {
+                padding: 0.75rem;
+            }
+
+            .d-flex {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+
+            .d-flex.justify-content-between {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .modal-dialog {
+                margin: 0.1rem;
+                max-width: calc(100% - 0.2rem);
+            }
+
+            .modal-body {
+                padding: 0.5rem;
+            }
+
+            .modal-footer {
+                padding: 0.5rem;
+            }
+
+            .form-control,
+            .form-select {
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .modal-title {
+                font-size: 1.1rem;
+            }
+
+            .form-label {
+                font-size: 13px;
+            }
+        }
+
+        .phone-input {
+            max-width: 350px;
+            margin: 10px 0;
+        }
+
+        .iti {
+            width: 100%;
+        }
+
+        /* Mobile Touch Improvements */
+        @media (max-width: 768px) {
+            .form-check-input {
+                transform: scale(1.2);
+                margin-right: 8px;
+            }
+
+            .btn {
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+
+            .input-group .btn {
+                min-height: 44px;
+            }
+
+            .form-control,
+            .form-select {
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+
+            .modal-dialog {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                margin-top: 20px;
+            }
+
+            .modal-content {
+                min-height: auto;
+                max-height: 90vh;
+                margin-top: 20px;
+            }
+
+            .modal-body {
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Ensure modal appears above fixed headers */
+            .modal.show {
+                z-index: 9999 !important;
+            }
+
+            .modal-dialog {
+                z-index: 10000 !important;
+            }
+
+            .modal-content {
+                z-index: 10001 !important;
+            }
+        }
+
+        /* Prevent zoom on input focus on iOS */
+        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+            select,
+            textarea,
+            input[type="text"],
+            input[type="password"],
+            input[type="datetime"],
+            input[type="datetime-local"],
+            input[type="date"],
+            input[type="month"],
+            input[type="time"],
+            input[type="week"],
+            input[type="number"],
+            input[type="email"],
+            input[type="url"],
+            input[type="search"],
+            input[type="tel"],
+            input[type="color"] {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -232,7 +627,7 @@ tour Area
                                     <?php endforeach; ?>
                                 </ul>
                             </div>
-                            <a href="contact.php" class="th-btn th-icon">Book Now</a>
+                            <button class="th-btn th-icon" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
                             <span class="review"><i class="fa-light fa-heart"></i> 88% of travelers recommend this experience</span>
                         </div>
                         <div class="widget tour-booking col-12 order-2 order-lg-3 ">
@@ -276,6 +671,122 @@ tour Area
     <?php include 'footer.php'; ?>
 
 
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <form id="bookingForm">
+                        <!-- Tour Name -->
+                        <div class="mb-4">
+                            <h4 class="fw-bold"><?php echo htmlspecialchars($tour['name'] ?? ''); ?></h4>
+                        </div>
+
+                        <!-- Date Selection -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="tourDate" class="form-label">Select Date *</label>
+                                <input type="date" class="form-control" id="tourDate" name="tourDate" required>
+                            </div>
+                        </div>
+
+                        <!-- People Count -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Adults *</label>
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-outline-secondary" id="adultMinus">-</button>
+                                    <input type="number" class="form-control text-center" id="adultCount" name="adultCount" value="1" min="1" readonly>
+                                    <button type="button" class="btn btn-outline-secondary" id="adultPlus">+</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Children</label>
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-outline-secondary" id="childMinus">-</button>
+                                    <input type="number" class="form-control text-center" id="childCount" name="childCount" value="0" min="0" readonly>
+                                    <button type="button" class="btn btn-outline-secondary" id="childPlus">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Time Slot Selection -->
+                        <div class="mb-3">
+                            <label class="form-label">Select Time Slot *</label>
+                            <div class="row">
+                                <?php foreach ($times as $index => $time): ?>
+                                    <div class="col-md-4 col-sm-6 col-6 mb-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="timeSlot" id="timeSlot<?php echo $index; ?>" value="<?php echo $time; ?>" required>
+                                            <label class="form-check-label" for="timeSlot<?php echo $index; ?>">
+                                                <?php echo date('g:i A', strtotime($time)); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="fullName" class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="fullName" name="fullName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                        </div>
+
+                        <!-- Phone Number with Country Code -->
+                        <div class="mb-3">
+                            <label for="phoneNumber" class="form-label">Phone Number *</label>
+                            <div class="phone-input">
+                                <input name="number3" id="number3" type="tel" placeholder="Enter phone number" class="form-control" />
+                            </div>
+
+                        </div>
+
+                        <!-- Pickup Location -->
+                        <div class="mb-3">
+                            <label for="pickup" class="form-label">Pickup Location *</label>
+                            <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter your pickup location" required>
+                            <small class="form-text text-muted">Start typing to see location suggestions</small>
+                        </div>
+
+                        <!-- Price Summary -->
+                        <div class="mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="card-title">Price Summary</h6>
+                                    <div class="d-flex justify-content-between">
+                                        <span>Adults (1 x $<?php echo number_format($tour['adult_price'] ?? 0, 2); ?>)</span>
+                                        <span id="adultPrice">$<?php echo number_format($tour['adult_price'] ?? 0, 2); ?></span>
+                                    </div>
+                                    <div class="d-flex justify-content-between" id="childPriceRow" style="display: none;">
+                                        <span>Children (0 x $<?php echo number_format(($tour['adult_price'] ?? 0) * 0.7, 2); ?>)</span>
+                                        <span id="childPrice">$0.00</span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <strong>Total Price</strong>
+                                        <strong id="totalPrice">$<?php echo number_format($tour['adult_price'] ?? 0, 2); ?></strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="goToCheckout">Go to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scroll To Top -->
     <div class="scroll-top">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
@@ -314,6 +825,9 @@ tour Area
     <script src="assets/js/matter.min.js"></script>
     <script src="assets/js/matterjs-custom.js"></script>
 
+    <!-- Intl-Tel-Input JS -->
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/intlTelInput.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"></script>
 
     <!-- nice select -->
     <script src="assets/js/nice-select.min.js"></script>
@@ -322,6 +836,9 @@ tour Area
     <script src="assets/js/main.js"></script>
     <script src="assets/js/review.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+    <!-- Google Maps API - Replace YOUR_API_KEY with your actual Google Maps API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete" async defer></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -337,8 +854,117 @@ tour Area
                     });
                 });
             });
+
+            // Booking modal functionality
+            const adultCount = document.getElementById('adultCount');
+            const childCount = document.getElementById('childCount');
+            const adultPlus = document.getElementById('adultPlus');
+            const adultMinus = document.getElementById('adultMinus');
+            const childPlus = document.getElementById('childPlus');
+            const childMinus = document.getElementById('childMinus');
+            const adultPrice = document.getElementById('adultPrice');
+            const childPrice = document.getElementById('childPrice');
+            const childPriceRow = document.getElementById('childPriceRow');
+            const totalPrice = document.getElementById('totalPrice');
+
+            const adultPricePerPerson = <?php echo $tour['adult_price'] ?? 0; ?>;
+            const childPricePerPerson = adultPricePerPerson * 0.7;
+
+            function updatePrices() {
+                const adults = parseInt(adultCount.value);
+                const children = parseInt(childCount.value);
+
+                const adultTotal = adults * adultPricePerPerson;
+                const childTotal = children * childPricePerPerson;
+                const total = adultTotal + childTotal;
+
+                adultPrice.textContent = '$' + adultTotal.toFixed(2);
+                childPrice.textContent = '$' + childTotal.toFixed(2);
+                totalPrice.textContent = '$' + total.toFixed(2);
+
+                // Show/hide child price row
+                if (children > 0) {
+                    childPriceRow.style.display = 'flex';
+                    childPriceRow.querySelector('span:first-child').textContent = `Children (${children} x $${childPricePerPerson.toFixed(2)})`;
+                } else {
+                    childPriceRow.style.display = 'none';
+                }
+
+                // Update adult price text
+                adultPrice.parentElement.querySelector('span:first-child').textContent = `Adults (${adults} x $${adultPricePerPerson.toFixed(2)})`;
+            }
+
+            adultPlus.addEventListener('click', function() {
+                adultCount.value = parseInt(adultCount.value) + 1;
+                updatePrices();
+            });
+
+            adultMinus.addEventListener('click', function() {
+                if (parseInt(adultCount.value) > 1) {
+                    adultCount.value = parseInt(adultCount.value) - 1;
+                    updatePrices();
+                }
+            });
+
+            childPlus.addEventListener('click', function() {
+                childCount.value = parseInt(childCount.value) + 1;
+                updatePrices();
+            });
+
+            childMinus.addEventListener('click', function() {
+                if (parseInt(childCount.value) > 0) {
+                    childCount.value = parseInt(childCount.value) - 1;
+                    updatePrices();
+                }
+            });
+
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('tourDate').setAttribute('min', today);
+
+            // Go to checkout button
+            document.getElementById('goToCheckout').addEventListener('click', function() {
+                const form = document.getElementById('bookingForm');
+                if (form.checkValidity()) {
+                    // Collect form data
+                    const formData = {
+                        tourId: <?php echo $tour_id; ?>,
+                        tourName: '<?php echo addslashes($tour['name'] ?? ''); ?>',
+                        date: document.getElementById('tourDate').value,
+                        adults: parseInt(adultCount.value),
+                        children: parseInt(childCount.value),
+                        timeSlot: document.querySelector('input[name="timeSlot"]:checked').value,
+                        fullName: document.getElementById('fullName').value,
+                        email: document.getElementById('email').value,
+                        countryCode: document.getElementById('countryCode').value,
+                        phoneNumber: document.getElementById('phoneNumber').value,
+                        pickupLocation: document.getElementById('pickupLocation').value,
+                        totalPrice: totalPrice.textContent
+                    };
+
+                    console.log('Booking Data:', formData);
+                    alert('Booking submitted! Check console for data. In a real application, this would be sent to the server.');
+
+                    // Close modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('bookingModal'));
+                    modal.hide();
+                } else {
+                    form.reportValidity();
+                }
+            });
         });
     </script>
+
+
+    <script>
+        const input = document.querySelector("#number3");
+        const iti = window.intlTelInput(input, {
+            initialCountry: "lk", // default Sri Lanka
+            separateDialCode: true, // show +94 separately
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"
+        });
+    </script>
+
 </body>
 
 </html>
