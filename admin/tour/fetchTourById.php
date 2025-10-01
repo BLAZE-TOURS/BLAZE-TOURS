@@ -12,7 +12,7 @@ require_once '../connection.php';
 Database::setUpConnection();
 
 // Use prepared statement for security
-$stmt = Database::$connection->prepare('SELECT id, name, description, duration, kids_price, adult_price, maximum_people_count, tours_type_id FROM tour WHERE id = ? LIMIT 1');
+$stmt = Database::$connection->prepare('SELECT id, name, description, duration, kids_price, adult_price, maximum_adult_count,maximum_kids_count, tours_type_id FROM tour WHERE id = ? LIMIT 1');
 $stmt->bind_param('i', $id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -25,4 +25,3 @@ if ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 Database::$connection->close();
-?>

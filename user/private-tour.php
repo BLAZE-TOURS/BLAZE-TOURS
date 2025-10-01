@@ -766,7 +766,7 @@ tour Area
                                         <span id="adultPrice">$<?php echo number_format($tour['adult_price'] ?? 0, 2); ?></span>
                                     </div>
                                     <div class="d-flex justify-content-between" id="childPriceRow" style="display: none;">
-                                        <span>Children (0 x $<?php echo number_format(($tour['adult_price'] ?? 0) * 0.7, 2); ?>)</span>
+                                        <span>Children (0 x $<?php echo number_format($tour['kids_price'] ?? 0, 2); ?>)</span>
                                         <span id="childPrice">$0.00</span>
                                     </div>
                                     <hr>
@@ -868,7 +868,9 @@ tour Area
             const totalPrice = document.getElementById('totalPrice');
 
             const adultPricePerPerson = <?php echo $tour['adult_price'] ?? 0; ?>;
-            const childPricePerPerson = adultPricePerPerson * 0.7;
+            const childPricePerPerson = <?php echo $tour['kids_price'] ?? 0; ?>;
+            const maximumAdultCount = <?php echo (int)($tour['maximum_adult_count'] ?? 0); ?>;
+            const maximumKidsCount = <?php echo (int)($tour['maximum_kids_count'] ?? 0); ?>;
 
             function updatePrices() {
                 const adults = parseInt(adultCount.value);
@@ -894,29 +896,66 @@ tour Area
                 adultPrice.parentElement.querySelector('span:first-child').textContent = `Adults (${adults} x $${adultPricePerPerson.toFixed(2)})`;
             }
 
+            function updateButtonsState() {
+                const currentAdults = parseInt(adultCount.value);
+                const currentKids = parseInt(childCount.value);
+
+                // Adults: min 1, max maximumAdultCount (if > 0)
+                adultMinus.disabled = currentAdults <= 1;
+                if (maximumAdultCount > 0) {
+                    adultPlus.disabled = currentAdults >= maximumAdultCount;
+                } else {
+                    adultPlus.disabled = false;
+                }
+
+                // Kids: min 0, max maximumKidsCount (if > 0)
+                childMinus.disabled = currentKids <= 0;
+                if (maximumKidsCount > 0) {
+                    childPlus.disabled = currentKids >= maximumKidsCount;
+                } else {
+                    childPlus.disabled = false;
+                }
+            }
+
             adultPlus.addEventListener('click', function() {
-                adultCount.value = parseInt(adultCount.value) + 1;
-                updatePrices();
+                const current = parseInt(adultCount.value);
+                if (maximumAdultCount === 0 || current < maximumAdultCount) {
+                    adultCount.value = current + 1;
+                    updatePrices();
+                    updateButtonsState();
+                }
             });
 
             adultMinus.addEventListener('click', function() {
-                if (parseInt(adultCount.value) > 1) {
-                    adultCount.value = parseInt(adultCount.value) - 1;
+                const current = parseInt(adultCount.value);
+                if (current > 1) {
+                    adultCount.value = current - 1;
                     updatePrices();
+                    updateButtonsState();
                 }
             });
 
             childPlus.addEventListener('click', function() {
-                childCount.value = parseInt(childCount.value) + 1;
-                updatePrices();
+                const current = parseInt(childCount.value);
+                if (maximumKidsCount === 0 || current < maximumKidsCount) {
+                    childCount.value = current + 1;
+                    updatePrices();
+                    updateButtonsState();
+                }
             });
 
             childMinus.addEventListener('click', function() {
-                if (parseInt(childCount.value) > 0) {
-                    childCount.value = parseInt(childCount.value) - 1;
+                const current = parseInt(childCount.value);
+                if (current > 0) {
+                    childCount.value = current - 1;
                     updatePrices();
+                    updateButtonsState();
                 }
             });
+
+            // Initialize states
+            updatePrices();
+            updateButtonsState();
 
             // Set minimum date to today
             const today = new Date().toISOString().split('T')[0];
@@ -926,28 +965,48 @@ tour Area
             document.getElementById('goToCheckout').addEventListener('click', function() {
                 const form = document.getElementById('bookingForm');
                 if (form.checkValidity()) {
-                    // Collect form data
-                    const formData = {
-                        tourId: <?php echo $tour_id; ?>,
-                        tourName: '<?php echo addslashes($tour['name'] ?? ''); ?>',
-                        date: document.getElementById('tourDate').value,
-                        adults: parseInt(adultCount.value),
-                        children: parseInt(childCount.value),
-                        timeSlot: document.querySelector('input[name="timeSlot"]:checked').value,
-                        fullName: document.getElementById('fullName').value,
-                        email: document.getElementById('email').value,
-                        countryCode: document.getElementById('countryCode').value,
-                        phoneNumber: document.getElementById('phoneNumber').value,
-                        pickupLocation: document.getElementById('pickupLocation').value,
-                        totalPrice: totalPrice.textContent
-                    };
+                    // Prepare POST submission to invoice
+                    // Ensure required hidden inputs exist
+                    function ensureHidden(name, value) {
+                        let input = form.querySelector(`input[name="${name}"]`);
+                        if (!input) {
+                            input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = name;
+                            form.appendChild(input);
+                        }
+                        input.value = value;
+                    }
 
-                    console.log('Booking Data:', formData);
-                    alert('Booking submitted! Check console for data. In a real application, this would be sent to the server.');
+                    ensureHidden('tourId', <?php echo $tour_id; ?>);
+                    ensureHidden('tourName', '<?php echo addslashes($tour['name'] ?? ''); ?>');
+                    ensureHidden('adults', parseInt(adultCount.value));
+                    ensureHidden('children', parseInt(childCount.value));
+                    const selectedTime = document.querySelector('input[name="timeSlot"]:checked');
+                    ensureHidden('timeSlot', selectedTime ? selectedTime.value : '');
+                    ensureHidden('totalPrice', totalPrice.textContent.replace('$',''));
+                    ensureHidden('adultPrice', adultPricePerPerson.toFixed(2));
+                    ensureHidden('childPrice', childPricePerPerson.toFixed(2));
 
-                    // Close modal
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('bookingModal'));
-                    modal.hide();
+                    // Phone with dial code via intl-tel-input if available
+                    try {
+                        const phoneRaw = document.querySelector('#number3');
+                        if (window.intlTelInputGlobals && phoneRaw) {
+                            const itiInst = window.intlTelInputGlobals.getInstance(phoneRaw);
+                            ensureHidden('phone', itiInst ? itiInst.getNumber() : phoneRaw.value);
+                        } else if (phoneRaw) {
+                            ensureHidden('phone', phoneRaw.value);
+                        }
+                    } catch (e) {
+                        // fallback
+                        const phoneRaw = document.querySelector('#number3');
+                        if (phoneRaw) ensureHidden('phone', phoneRaw.value);
+                    }
+
+                    form.action = 'invoice.php';
+                    form.method = 'POST';
+                    form.target = '_self';
+                    form.submit();
                 } else {
                     form.reportValidity();
                 }

@@ -8,7 +8,8 @@ $('#updateTourBtn').on('click', function () {
     formData.append('Duration', $('#updateTourFormContainer input[name="Duration"]').val());
     formData.append('subject', $('#updateTourFormContainer input[name="subject"]').val());
     formData.append('adult-price', $('#updateTourFormContainer input[name="adult-price"]').val());
-    formData.append('body-title', $('#updateTourFormContainer input[name="body-title"]').val());
+    formData.append('update-adult-count', $('#updateTourFormContainer input[name="update-adult-count"]').val());
+    formData.append('update-kids-count', $('#updateTourFormContainer input[name="update-kids-count"]').val());
 
     // 2. tour_id for update
     const selectedTourId = $('#SelectTourName').val();

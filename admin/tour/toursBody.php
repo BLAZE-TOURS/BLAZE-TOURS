@@ -18,7 +18,8 @@ include_once "fetchTours.php";
                                     <th>Duration</th>
                                     <th>Kids Price</th>
                                     <th>Adult Price</th>
-                                    <th>Maximum People Count</th>
+                                    <th>Maximum Adult Count</th>
+                                    <th>Maximum Kids Count</th>
                                     <th>Tours Type</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -45,16 +46,17 @@ include_once "fetchTours.php";
                                             <td><?php echo htmlspecialchars($row["duration"]); ?></td>
                                             <td><?php echo htmlspecialchars($row["kids_price"]); ?></td>
                                             <td><?php echo htmlspecialchars($row["adult_price"]); ?></td>
-                                            <td><?php echo htmlspecialchars($row["maximum_people_count"]); ?></td>
+                                            <td><?php echo htmlspecialchars($row["maximum_adult_count"]); ?></td>
+                                            <td><?php echo htmlspecialchars($row["maximum_kids_count"]); ?></td>
                                             <td><?php echo htmlspecialchars($row["tours_type_name"]); ?></td>
                                             <td><?php echo $status_badge; ?></td>
                                             <td>
                                                 <button class="btn btn-sm btn-primary edit-btn" onclick="changeStatusTours(<?php echo $row['id']; ?>);" <?php echo ($row['status_id'] == 3) ? 'disabled' : ''; ?>>
                                                     <i class="fas fa-eye"></i>
                                                 </button>
-                                                <button class="btn btn-sm btn-success edit-btn" onclick="window.open('../tourUpdate/updateToure.php?id=<?php echo $row['id']; ?>', '_blank');" <?php echo ($row['status_id'] == 3) ? 'disabled' : ''; ?>>
+                                                <!-- <button class="btn btn-sm btn-success edit-btn" onclick="window.open('../tourUpdate/updateToure.php?id=<?php echo $row['id']; ?>', '_blank');" <?php echo ($row['status_id'] == 3) ? 'disabled' : ''; ?>>
                                                     <i class="fas fa-edit"></i>
-                                                </button>
+                                                </button> -->
                                                 <!-- <button class="btn btn-sm btn-danger delete-btn" onclick="deleteTours(<?php echo $row['id']; ?>);">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button> -->
