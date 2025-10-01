@@ -16,7 +16,8 @@ if (isset($_SESSION["adminuser"])) {
                 t.duration, 
                 t.kids_price, 
                 t.adult_price, 
-                t.maximum_people_count, 
+                t.maximum_adult_count, 
+                 t.maximum_kids_count, 
                 tt.name AS tours_type_name, 
                 s.id AS status_id, 
                 s.name AS status_name
@@ -34,4 +35,3 @@ if (isset($_SESSION["adminuser"])) {
     header("Refresh: 2; URL=adminSignIn.php");
     exit();
 }
-?>

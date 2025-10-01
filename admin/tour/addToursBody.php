@@ -44,8 +44,12 @@
                                 <input type="number" class="form-control" id="adult-price" name="adult-price" required>
                             </div>
                             <div class="flex-fill">
-                                <label for="body-title" class="form-label">Maximum People Count</label>
-                                <input type="number" class="form-control" id="body-title" name="body-title" required>
+                                <label for="body-title" class="form-label">Adult Count</label>
+                                <input type="number" class="form-control" id="adult-count" name="adult-count" required>
+                            </div>
+                            <div class="flex-fill">
+                                <label for="body-title" class="form-label">Kids Count</label>
+                                <input type="number" class="form-control" id="kids-count" name="kids-count" required>
                             </div>
                         </div>
 
@@ -131,8 +135,12 @@
                                 <input type="number" class="form-control" id="adult-price" name="adult-price" required>
                             </div>
                             <div class="flex-fill">
-                                <label for="body-title" class="form-label">Maximum People Count</label>
-                                <input type="number" class="form-control" id="body-title" name="body-title" required>
+                                <label for="body-title" class="form-label">Adult Count</label>
+                                <input type="number" class="form-control" id="update-adult-count" name="update-adult-count" required>
+                            </div>
+                            <div class="flex-fill">
+                                <label for="body-title" class="form-label">Kids Count</label>
+                                <input type="number" class="form-control" id="update-kids-count" name="update-kids-count" required>
                             </div>
                         </div>
 
@@ -159,7 +167,7 @@
                         <!-- Section 3: Image Add -->
                         <div class="row mb-4">
                             <h5>Images</h5>
-                          
+
                             <div class="col-md-6 mb-2">
                                 <label for="main-image" class="form-label">Main Image</label>
                                 <input type="file" class="form-control" id="main-image" accept="image/*">
@@ -486,7 +494,10 @@
     function initMapAndAutocomplete() {
         // Initialize the map
         map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: 7.8731, lng: 80.7718 }, // Default: Sri Lanka center
+            center: {
+                lat: 7.8731,
+                lng: 80.7718
+            }, // Default: Sri Lanka center
             zoom: 7
         });
 
@@ -504,10 +515,11 @@
             document.getElementById('location-lng').value = pos.lng();
         });
 
-     // Initialize autocomplete for all places (not just geocode)
+        // Initialize autocomplete for all places (not just geocode)
         autocomplete = new google.maps.places.Autocomplete(
-            document.getElementById('searchInput'),
-            { types: [] } // Allow all place types for better suggestions
+            document.getElementById('searchInput'), {
+                types: []
+            } // Allow all place types for better suggestions
         );
         autocomplete.addListener('place_changed', fillInAddress);
     }
@@ -567,7 +579,8 @@
                         container.querySelector('input[name="Duration"]').value = data.duration || '';
                         container.querySelector('input[name="subject"]').value = data.kids_price || '';
                         container.querySelector('input[name="adult-price"]').value = data.adult_price || '';
-                        container.querySelector('input[name="body-title"]').value = data.maximum_people_count || '';
+                        container.querySelector('input[name="update-adult-count"]').value = data.maximum_adult_count || '';
+                        container.querySelector('input[name="update-kids-count"]').value = data.maximum_kids_count || '';
                     } else {
                         updateForm.style.display = 'none';
                         alert(data.error || 'Tour not found');
@@ -659,7 +672,9 @@
             $.ajax({
                 url: 'fetchTourById.php',
                 method: 'GET',
-                data: { id: selectedId },
+                data: {
+                    id: selectedId
+                },
                 dataType: 'json',
                 success: function(data) {
                     if (data) {
@@ -670,7 +685,8 @@
                         $('#updateTourFormContainer input[name="Duration"]').val(data.duration);
                         $('#updateTourFormContainer input[name="subject"]').val(data.kids_price);
                         $('#updateTourFormContainer input[name="adult-price"]').val(data.adult_price);
-                        $('#updateTourFormContainer input[name="body-title"]').val(data.maximum_people_count);
+                        $('#updateTourFormContainer input[name="update-adult-count"]').val(data.maximum_adult_count);
+                        $('#updateTourFormContainer input[name="update-kids-count"]').val(data.maximum_kids_count);
                     }
                 },
                 error: function() {

@@ -4,7 +4,14 @@ header('Content-Type: application/json');
 
 // --- Validate required fields ---
 $requiredFields = [
-    'name', 'tourType', 'message', 'Duration', 'subject', 'adult-price', 'body-title'
+    'name',
+    'tourType',
+    'message',
+    'Duration',
+    'subject',
+    'adult-price',
+    'update-adult-count',
+    'update-kids-count'
 ];
 foreach ($requiredFields as $field) {
     if (empty($_POST[$field])) {
@@ -20,7 +27,8 @@ $message = Database::escape_string(trim($_POST['message']));
 $duration = Database::escape_string(trim($_POST['Duration']));
 $kids_price = Database::escape_string(trim($_POST['subject']));
 $adult_price = Database::escape_string(trim($_POST['adult-price']));
-$max_people = Database::escape_string(trim($_POST['body-title']));
+$maxAdult = Database::escape_string(trim($_POST['update-adult-count']));
+$maxKids = Database::escape_string(trim($_POST['update-kids-count']));
 $status_id = 3; // Processing status
 
 $times = json_decode($_POST['times'] ?? '[]', true);
@@ -31,11 +39,11 @@ $locations = json_decode($_POST['locations'] ?? '[]', true);
 if ($tour_id) {
     $tour_id = Database::escape_string($tour_id);
     Database::iud(
-        "UPDATE `tour` SET `name`='$name', `tours_type_id`='$tourType', `description`='$message', `duration`='$duration', `kids_price`='$kids_price', `adult_price`='$adult_price', `maximum_people_count`='$max_people', `status_id`='$status_id' WHERE `id`='$tour_id'"
+        "UPDATE `tour` SET `name`='$name', `tours_type_id`='$tourType', `description`='$message', `duration`='$duration', `kids_price`='$kids_price', `adult_price`='$adult_price', `maximum_adult_count`='$maxAdult',`maximum_kids_count`='$maxKids', `status_id`='$status_id' WHERE `id`='$tour_id'"
     );
 } else {
     Database::iud(
-        "INSERT INTO `tour` (`name`, `tours_type_id`, `description`, `duration`, `kids_price`, `adult_price`, `maximum_people_count`, `status_id`) VALUES ('$name', '$tourType', '$message', '$duration', '$kids_price', '$adult_price', '$max_people', '$status_id')"
+        "INSERT INTO `tour` (`name`, `tours_type_id`, `description`, `duration`, `kids_price`, `adult_price`, `maximum_adult_count`,`maximum_kids_count`, `status_id`) VALUES ('$name', '$tourType', '$message', '$duration', '$kids_price', '$adult_price', '$maxAdult','$maxKids', '$status_id')"
     );
     $tour_id = Database::$connection->insert_id;
 }
@@ -126,43 +134,43 @@ foreach ($locations as $loc) {
         }
     }
     // Handle icon image (base64)
-$icon_url = null;
-if (!empty($loc['iconPreview'])) {
-    $icon_data = $loc['iconPreview'];
-    // Allow only .ico and .png files
-    if (preg_match('/^data:image\/([a-zA-Z0-9\-\+\.]+);base64,/', $icon_data, $type)) {
-        $icon_ext = strtolower($type[1]);
-        if (
-            $icon_ext !== 'x-icon' &&
-            $icon_ext !== 'ico' &&
-            $icon_ext !== 'vnd.microsoft.icon' &&
-            $icon_ext !== 'png'
-        ) {
-            echo json_encode(['success' => false, 'message' => "Only .ico or .png files are allowed for location icons."]);
+    $icon_url = null;
+    if (!empty($loc['iconPreview'])) {
+        $icon_data = $loc['iconPreview'];
+        // Allow only .ico and .png files
+        if (preg_match('/^data:image\/([a-zA-Z0-9\-\+\.]+);base64,/', $icon_data, $type)) {
+            $icon_ext = strtolower($type[1]);
+            if (
+                $icon_ext !== 'x-icon' &&
+                $icon_ext !== 'ico' &&
+                $icon_ext !== 'vnd.microsoft.icon' &&
+                $icon_ext !== 'png'
+            ) {
+                echo json_encode(['success' => false, 'message' => "Only .ico or .png files are allowed for location icons."]);
+                exit;
+            }
+
+            $icon_data = substr($icon_data, strpos($icon_data, ',') + 1);
+            $icon_data = base64_decode($icon_data);
+
+            // File extension handling
+            $ext = ($icon_ext === 'png') ? '.png' : '.ico';
+
+            $icon_filename = uniqid('icon_') . $ext;
+            $icon_full_path = $icon_upload_dir . $icon_filename;
+
+            if (file_put_contents($icon_full_path, $icon_data) === false) {
+                echo json_encode(['success' => false, 'message' => "Failed to save icon image."]);
+                exit;
+            }
+
+            // Save relative path for DB
+            $icon_url = Database::escape_string("images/marker/" . $icon_filename);
+        } else {
+            echo json_encode(['success' => false, 'message' => "Invalid icon image format."]);
             exit;
         }
-
-        $icon_data = substr($icon_data, strpos($icon_data, ',') + 1);
-        $icon_data = base64_decode($icon_data);
-
-        // File extension handling
-        $ext = ($icon_ext === 'png') ? '.png' : '.ico';
-
-        $icon_filename = uniqid('icon_') . $ext;
-        $icon_full_path = $icon_upload_dir . $icon_filename;
-
-        if (file_put_contents($icon_full_path, $icon_data) === false) {
-            echo json_encode(['success' => false, 'message' => "Failed to save icon image."]);
-            exit;
-        }
-
-        // Save relative path for DB
-        $icon_url = Database::escape_string("images/marker/" . $icon_filename);
-    } else {
-        echo json_encode(['success' => false, 'message' => "Invalid icon image format."]);
-        exit;
     }
-}
 
     $loc_name = Database::escape_string($loc['name']);
     $loc_address = Database::escape_string($loc['address']);
