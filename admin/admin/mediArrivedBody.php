@@ -61,8 +61,10 @@
                   <th>Mobile</th>
                   <th>Email</th>
                   <th>Date</th>
-                  <th>People of Count</th>
+                  <th>Adult Count</th>
+                  <th>Kids Count</th>
                   <th>Tour Name</th>
+                  <th>Total Price</th>
                   <th>Send Whatsapp Message</th>
                 </tr>
               </thead>
@@ -77,8 +79,10 @@
                       <td><?php echo $row["mobile"]; ?></td>
                       <td><?php echo $row["email"]; ?></td>
                       <td class="booking-date"><?php echo $row["date"]; ?></td>
-                      <td><?php echo $row["numberOfCount"]; ?></td>
+                      <td><?php echo $row["numberOfAdultCount"]; ?></td>
+                      <td><?php echo $row["numberOfKidsCount"]; ?></td>
                       <td><?php echo $row["tours_type_name"]; ?></td>
+                      <td>Rs. <?php echo $row["totalPrice"]; ?></td>
                       <td>
                         <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Namo%20Buddhaya%20<?php echo urlencode($row["name"]); ?>,Thank%20you%20for%20booking%20the%20Meditation%20program%20at%20Rakkittakanda%20Raja%20Maha%20Viharaya."
                           target="_blank"
@@ -138,5 +142,4 @@
   //     row.style.display = '';
   //   });
   // });
-
 </script>
