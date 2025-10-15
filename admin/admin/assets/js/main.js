@@ -23,6 +23,15 @@ function changeDashboardViewCompany() {
     companyFormContainer.style.display = 'block';
 }
 
+function changeDashboardViewCloseDays() {
+    history.pushState(null, '', 'adminindex.php?view=CloseDays');
+    sessionStorage.setItem('currentView', 'CloseDays');
+    hideAllContainers();
+    var companyFormContainer = document.getElementById('CloseDaysContainer');
+    companyFormContainer.classList.remove('d-none');
+    companyFormContainer.style.display = 'block';
+}
+
 function changeDashboardViewSubscribers() {
     history.pushState(null, '', 'adminindex.php?view=Subscribers');
     sessionStorage.setItem('currentView', 'Subscribers');
@@ -33,8 +42,8 @@ function changeDashboardViewSubscribers() {
 }
 
 function changeDashboardViewMedi() {
-    history.pushState(null, '', 'adminindex.php?view=Medi');
-    sessionStorage.setItem('currentView', 'Medi');
+    history.pushState(null, '', 'adminindex.php?view=Booking');
+    sessionStorage.setItem('currentView', 'Booking');
     hideAllContainers();
     var mediContainer = document.getElementById('mediContainer');
     mediContainer.classList.remove('d-none');
@@ -42,8 +51,8 @@ function changeDashboardViewMedi() {
 }
 
 function changeDashboardViewMedArrivedi() {
-    history.pushState(null, '', 'adminindex.php?view=MediArrived');
-    sessionStorage.setItem('currentView', 'MediArrived');
+    history.pushState(null, '', 'adminindex.php?view=BookingArrived');
+    sessionStorage.setItem('currentView', 'BookingArrived');
     hideAllContainers();
     var mediMediArrivedContainer = document.getElementById('mediMediArrivedContainer');
     mediMediArrivedContainer.classList.remove('d-none');
@@ -103,7 +112,7 @@ function changeDashboardViewStory() {
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer'];
+    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer', 'CloseDaysContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -133,13 +142,17 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'Gallary': // Ensured correct key match
                 changeDashboardViewGallary();
                 break;
+
+            case 'CloseDays': // Ensured correct key match
+                changeDashboardViewCloseDays();
+                break;
             case 'Shorts': // Ensured correct key match
                 changeDashboardViewShorts();
                 break;
-            case 'Medi': // Ensured correct key match
+            case 'Booking': // Ensured correct key match
                 changeDashboardViewMedi();
                 break;
-            case 'MediArrived': // Ensured correct key match
+            case 'BookingArrived': // Ensured correct key match
                 changeDashboardViewMedArrivedi();
                 break;
             case 'Messages': // Ensured correct key match

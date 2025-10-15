@@ -319,7 +319,13 @@ if (isset($_SESSION["adminuser"])) {
                                         <span>Tours</span>
                                     </a>
                                 </li>
-
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewCloseDays();">
+                                        <i data-feather="x-circle"></i>
+                                        <span>Close Days</span>
+                                        <!-- <span class="menu-arrow"></span> -->
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="#" onclick="changeDashboardViewCompany();">
                                         <i data-feather="briefcase"></i>
@@ -386,6 +392,8 @@ if (isset($_SESSION["adminuser"])) {
                 <div id="HomeBodyContainer"> <?php include "../admin/HomeBody.php"; ?> </div>
 
                 <div id="CompanyFormContainer" class="d-none"> <?php include 'fetchCompany.php'; ?> <?php include "../admin/companyBody.php"; ?> </div>
+
+                <div id="CloseDaysContainer" class="d-none"> <?php include 'fetchCloseDays.php'; ?> <?php include "../admin/closeDaysBody.php"; ?> </div>
 
                 <div id="emailFormContainer" class="d-none"> <?php include "../admin/SendEmailBody.php"; ?> </div>
 

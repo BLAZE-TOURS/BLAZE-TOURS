@@ -5,10 +5,6 @@ session_start();
 
 header('Content-Type: application/json');
 
-if (!isset($_SESSION["adminuser"])) {
-    echo json_encode(['success' => false, 'message' => 'Unauthorized']);
-    exit();
-}
 
 if (!isset($_POST['id'])) {
     echo json_encode(['success' => false, 'message' => 'Invalid request']);
