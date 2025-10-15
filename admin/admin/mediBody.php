@@ -60,11 +60,14 @@
                   <th>Full Name</th>
                   <th>Mobile</th>
                   <th>Email</th>
-                  <th>Date</th>
+                  <th>Tour Date</th>
+                  <th>Time Slot</th>
                   <th>Adult Count</th>
                   <th>Kids Count</th>
+                  <th>Pickup Location</th>
                   <th>Tour Name</th>
                   <th>Total Price</th>
+                  <th>Created At</th>
                   <th>Send Whatsapp Message</th>
                   <th>Confirmation</th>
                 </tr>
@@ -79,11 +82,14 @@
                       <td><?php echo $row["name"]; ?></td>
                       <td><?php echo $row["mobile"]; ?></td>
                       <td><?php echo $row["email"]; ?></td>
-                      <td class="booking-date"><?php echo $row["date"]; ?></td>
+                      <td class="booking-date"><?php echo $row["tourDate"]; ?></td>
+                      <td><?php echo $row["time_slot"]; ?></td>
                       <td><?php echo $row["numberOfAdultCount"]; ?></td>
                       <td><?php echo $row["numberOfKidsCount"]; ?></td>
+                      <td><?php echo $row["pickup_location"]; ?></td>
                       <td><?php echo $row["tours_type_name"]; ?></td>
-                      <td>Rs. <?php echo $row["totalPrice"]; ?></td>
+                      <td>$ <?php echo $row["total_price_usd"]; ?> (Rs. <?php echo $row["total_price_lkr"]; ?>)</td>
+                      <td><?php echo $row["created_at"]; ?></td>
                       <td>
                         <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Thank%20You%20<?php echo urlencode($row["name"]); ?>,Thank%20you%20for%20booking%20the%20Meditation%20program%20at%20Rakkittakanda%20Raja%20Maha%20Viharaya."
                           target="_blank"

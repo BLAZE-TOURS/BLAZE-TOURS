@@ -293,7 +293,7 @@ include 'assets/process/fetchTour.php';
                 border-color: #bd3838;
             }
 
-            .col-6 .form-check-input:checked + .form-check-label {
+            .col-6 .form-check-input:checked+.form-check-label {
                 color: #bd3838;
                 font-weight: 600;
             }
@@ -432,6 +432,7 @@ include 'assets/process/fetchTour.php';
 
         /* Prevent zoom on input focus on iOS */
         @media screen and (-webkit-min-device-pixel-ratio: 0) {
+
             select,
             textarea,
             input[type="text"],
@@ -774,6 +775,10 @@ tour Area
                                         <strong>Total Price</strong>
                                         <strong id="totalPrice">$<?php echo number_format($tour['adult_price'] ?? 0, 2); ?></strong>
                                     </div>
+                                    <div class="d-flex justify-content-between text-muted small">
+                                        <span>LKR Equivalent</span>
+                                        <span id="totalPriceLKR">Loading...</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -829,6 +834,9 @@ tour Area
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/intlTelInput.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"></script>
 
+    <!-- CryptoJS for MD5 hash generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
     <!-- nice select -->
     <script src="assets/js/nice-select.min.js"></script>
 
@@ -836,6 +844,9 @@ tour Area
     <script src="assets/js/main.js"></script>
     <script src="assets/js/review.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+    <!-- PayHere SDK -->
+    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 
     <!-- Google Maps API - Replace YOUR_API_KEY with your actual Google Maps API key -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete" async defer></script>
@@ -884,6 +895,9 @@ tour Area
                 childPrice.textContent = '$' + childTotal.toFixed(2);
                 totalPrice.textContent = '$' + total.toFixed(2);
 
+                // Update LKR equivalent
+                updateLKRPrice(total);
+
                 // Show/hide child price row
                 if (children > 0) {
                     childPriceRow.style.display = 'flex';
@@ -894,6 +908,32 @@ tour Area
 
                 // Update adult price text
                 adultPrice.parentElement.querySelector('span:first-child').textContent = `Adults (${adults} x $${adultPricePerPerson.toFixed(2)})`;
+            }
+
+            // Currency conversion function
+            let usdToLkrRate = 0;
+
+            async function fetchExchangeRate() {
+                try {
+                    const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+                    const data = await response.json();
+                    usdToLkrRate = data.rates.LKR;
+                    updateLKRPrice(parseFloat(totalPrice.textContent.replace('$', '')));
+                } catch (error) {
+                    console.error('Error fetching exchange rate:', error);
+                    // Fallback rate if API fails
+                    usdToLkrRate = 320;
+                    updateLKRPrice(parseFloat(totalPrice.textContent.replace('$', '')));
+                }
+            }
+
+            function updateLKRPrice(usdAmount) {
+                if (usdToLkrRate > 0) {
+                    const lkrAmount = usdAmount * usdToLkrRate;
+                    document.getElementById('totalPriceLKR').textContent = 'Rs. ' + lkrAmount.toFixed(2);
+                } else {
+                    document.getElementById('totalPriceLKR').textContent = 'Loading...';
+                }
             }
 
             function updateButtonsState() {
@@ -956,61 +996,14 @@ tour Area
             // Initialize states
             updatePrices();
             updateButtonsState();
+            fetchExchangeRate(); // Fetch exchange rate on page load
 
             // Set minimum date to today
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('tourDate').setAttribute('min', today);
 
-            // Go to checkout button
-            document.getElementById('goToCheckout').addEventListener('click', function() {
-                const form = document.getElementById('bookingForm');
-                if (form.checkValidity()) {
-                    // Prepare POST submission to invoice
-                    // Ensure required hidden inputs exist
-                    function ensureHidden(name, value) {
-                        let input = form.querySelector(`input[name="${name}"]`);
-                        if (!input) {
-                            input = document.createElement('input');
-                            input.type = 'hidden';
-                            input.name = name;
-                            form.appendChild(input);
-                        }
-                        input.value = value;
-                    }
+            // click handler is implemented in assets/js/booking.js
 
-                    ensureHidden('tourId', <?php echo $tour_id; ?>);
-                    ensureHidden('tourName', '<?php echo addslashes($tour['name'] ?? ''); ?>');
-                    ensureHidden('adults', parseInt(adultCount.value));
-                    ensureHidden('children', parseInt(childCount.value));
-                    const selectedTime = document.querySelector('input[name="timeSlot"]:checked');
-                    ensureHidden('timeSlot', selectedTime ? selectedTime.value : '');
-                    ensureHidden('totalPrice', totalPrice.textContent.replace('$',''));
-                    ensureHidden('adultPrice', adultPricePerPerson.toFixed(2));
-                    ensureHidden('childPrice', childPricePerPerson.toFixed(2));
-
-                    // Phone with dial code via intl-tel-input if available
-                    try {
-                        const phoneRaw = document.querySelector('#number3');
-                        if (window.intlTelInputGlobals && phoneRaw) {
-                            const itiInst = window.intlTelInputGlobals.getInstance(phoneRaw);
-                            ensureHidden('phone', itiInst ? itiInst.getNumber() : phoneRaw.value);
-                        } else if (phoneRaw) {
-                            ensureHidden('phone', phoneRaw.value);
-                        }
-                    } catch (e) {
-                        // fallback
-                        const phoneRaw = document.querySelector('#number3');
-                        if (phoneRaw) ensureHidden('phone', phoneRaw.value);
-                    }
-
-                    form.action = 'invoice.php';
-                    form.method = 'POST';
-                    form.target = '_self';
-                    form.submit();
-                } else {
-                    form.reportValidity();
-                }
-            });
         });
     </script>
 
@@ -1022,6 +1015,53 @@ tour Area
             separateDialCode: true, // show +94 separately
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"
         });
+    </script>
+
+    <script>
+        // Expose key tour variables globally for booking.js
+        window.tour_id = <?php echo (int)$tour_id; ?>;
+        window.tour_name = '<?php echo addslashes($tour['name'] ?? ''); ?>';
+        window.adultPricePerPerson = <?php echo (float)($tour['adult_price'] ?? 0); ?>;
+        window.childPricePerPerson = <?php echo (float)($tour['kids_price'] ?? 0); ?>;
+        // PayHere configuration (sandbox true for testing)
+        window.payhereSandbox = true; // set false on live
+        window.payhereMerchantId = '1232435'; // TODO: replace with your live merchant id
+        window.payhereReturnUrl = 'http://localhost/BLAZE-TOURS/user/payment_success.php';
+        window.payhereCancelUrl = 'http://localhost/BLAZE-TOURS/user/payment_cancel.php';
+        window.payhereNotifyUrl = 'http://localhost/BLAZE-TOURS/user/payment_notify.php';
+    </script>
+    <script src="assets/js/booking.js"></script>
+
+    <!-- PayHere Callback Functions -->
+    <script>
+        // PayHere callback functions - these handle what happens after payment
+        window.payhere.onCompleted = function onCompleted(orderId) {
+            console.log("Payment completed. OrderID:" + orderId);
+            
+            // Show success message
+            const notyf = new Notyf({ duration: 5000, position: { x: 'center', y: 'top' } });
+            notyf.success('Payment completed successfully! Redirecting to invoice...');
+            
+            // Extract booking ID from order ID (format: ORD-123)
+            const bookingId = orderId.replace('ORD-', '');
+            
+            // Redirect to invoice page after a short delay
+            setTimeout(() => {
+                window.location.href = 'invoice.php?order_id=' + bookingId;
+            }, 2000);
+        };
+
+        window.payhere.onDismissed = function onDismissed() {
+            console.log("Payment dismissed");
+            const notyf = new Notyf({ duration: 3000, position: { x: 'center', y: 'top' } });
+            notyf.error('Payment was cancelled');
+        };
+
+        window.payhere.onError = function onError(error) {
+            console.log("Error:" + error);
+            const notyf = new Notyf({ duration: 3000, position: { x: 'center', y: 'top' } });
+            notyf.error('Payment error: ' + error);
+        };
     </script>
 
 </body>

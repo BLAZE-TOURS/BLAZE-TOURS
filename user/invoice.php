@@ -1,27 +1,79 @@
 <?php
+require_once 'assets/process/connection.php';
+
 // Simple input helper
 function field($key, $default = '') {
     return isset($_POST[$key]) ? htmlspecialchars(trim((string)$_POST[$key])) : $default;
 }
 
-$tourId = field('tourId');
-$tourName = field('tourName', 'Tour');
-$date = field('tourDate'); // if not posted, also try 'date'
-if (!$date) { $date = field('date'); }
-$timeSlot = field('timeSlot');
-$fullName = field('fullName');
-$email = field('email');
-$phone = field('phone');
-$pickup = field('pickup'); // if not posted, also try 'pickupLocation'
-if (!$pickup) { $pickup = field('pickupLocation'); }
+// Check if this is a booking from database (via order_id)
+$order_id = $_GET['order_id'] ?? '';
+$bookingData = null;
 
-$adults = (int)($_POST['adults'] ?? 0);
-$children = (int)($_POST['children'] ?? 0);
-$adultPrice = (float)($_POST['adultPrice'] ?? 0);
-$childPrice = (float)($_POST['childPrice'] ?? 0);
-$totalPrice = (float)($_POST['totalPrice'] ?? 0);
+if ($order_id) {
+    // Fetch booking data from database by primary id
+    try {
+        $idEsc = (int)$order_id;
+        $query = "SELECT b.*, t.name AS tour_name FROM booking b LEFT JOIN tour t ON t.id = b.tour_id WHERE b.id = $idEsc";
+        $result = Database::search($query);
+        if ($result && $result->num_rows > 0) {
+            $booking = $result->fetch_assoc();
+            $bookingData = $booking;
+        }
+    } catch (Exception $e) {
+        error_log("Error fetching booking data: " . $e->getMessage());
+    }
+}
 
-$invoiceNo = 'INV-' . date('Ymd-His') . '-' . substr(md5(($tourId ?: '0').microtime()), 0, 6);
+if ($bookingData) {
+    // Use data from database
+    $tourId = $bookingData['tour_id'];
+    $tourName = $bookingData['tour_name'] ?? 'Tour';
+    $date = $bookingData['tourDate'];
+    $timeSlot = $bookingData['time_slot'] ?? '';
+    $fullName = $bookingData['name'];
+    $email = $bookingData['email'];
+    $phone = $bookingData['mobile'];
+    $pickup = $bookingData['pickup_location'] ?? '';
+    $adults = (int)$bookingData['numberOfAdultCount'];
+    $children = (int)$bookingData['numberOfKidsCount'];
+    $totalPrice = isset($bookingData['total_price_usd']) ? (float)$bookingData['total_price_usd'] : 0;
+    $totalPriceLKR = isset($bookingData['total_price_lkr']) ? (float)$bookingData['total_price_lkr'] : 0;
+    $effectiveRate = ($totalPrice > 0 && $totalPriceLKR > 0) ? ($totalPriceLKR / $totalPrice) : 320.0;
+    $invoiceNo = 'INV-' . $order_id;
+
+    // Price breakdown (if you have unit price fields in DB, use them)
+    $adultPrice = $adults > 0 ? $totalPrice / ($adults + $children) : 0;
+    $childPrice = $children > 0 ? $totalPrice / ($adults + $children) : 0;
+} else {
+    // Use POST data (fallback)
+    $tourId = field('tourId');
+    $tourName = field('tourName', 'Tour');
+    $date = field('tourDate');
+    if (!$date) { $date = field('date'); }
+    $timeSlot = field('timeSlot');
+    $fullName = field('fullName');
+    $email = field('email');
+    $phone = field('phone');
+    $pickup = field('pickup');
+    if (!$pickup) { $pickup = field('pickupLocation'); }
+
+    $adults = (int)($_POST['adults'] ?? 0);
+    $children = (int)($_POST['children'] ?? 0);
+    $adultPrice = (float)($_POST['adultPrice'] ?? 0);
+    $childPrice = (float)($_POST['childPrice'] ?? 0);
+    $totalPrice = (float)($_POST['totalPrice'] ?? 0);
+    $totalPriceLKR = 0;
+    $invoiceNo = 'INV-' . date('Ymd-His') . '-' . substr(md5(($tourId ?: '0').microtime()), 0, 6);
+}
+
+// Calculate prices if not available
+if ($adultPrice == 0 && $adults > 0) {
+    $adultPrice = $totalPrice / $adults;
+}
+if ($childPrice == 0 && $children > 0) {
+    $childPrice = $totalPrice / $children;
+}
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -102,40 +154,56 @@ $invoiceNo = 'INV-' . date('Ymd-His') . '-' . substr(md5(($tourId ?: '0').microt
                                         <th class="text-center">Qty</th>
                                         <th class="text-end">Unit Price (USD)</th>
                                         <th class="text-end">Amount (USD)</th>
+                                        <th class="text-end">Amount (LKR)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>Adults</td>
                                         <td class="text-center"><?php echo $adults; ?></td>
-                                        <td class="text-end"><?php echo number_format($adultPrice, 2); ?></td>
-                                        <td class="text-end"><?php echo number_format($adults * $adultPrice, 2); ?></td>
+                                        <td class="text-end">$<?php echo number_format($adultPrice, 2); ?></td>
+                                        <td class="text-end">$<?php echo number_format($adults * $adultPrice, 2); ?></td>
+                                        <td class="text-end">Rs. <?php echo number_format(($adults * $adultPrice) * $effectiveRate, 2); ?></td>
                                     </tr>
                                     <?php if ($children > 0) { ?>
                                     <tr>
                                         <td>Children</td>
                                         <td class="text-center"><?php echo $children; ?></td>
-                                        <td class="text-end"><?php echo number_format($childPrice, 2); ?></td>
-                                        <td class="text-end"><?php echo number_format($children * $childPrice, 2); ?></td>
+                                        <td class="text-end">$<?php echo number_format($childPrice, 2); ?></td>
+                                        <td class="text-end">$<?php echo number_format($children * $childPrice, 2); ?></td>
+                                        <td class="text-end">Rs. <?php echo number_format(($children * $childPrice) * $effectiveRate, 2); ?></td>
                                     </tr>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="3" class="text-end totals-row">Total</td>
-                                        <td class="text-end totals-row"><?php echo number_format($totalPrice, 2); ?></td>
+                                        <td colspan="3" class="text-end totals-row">Total (USD)</td>
+                                        <td class="text-end totals-row">$<?php echo number_format($totalPrice, 2); ?></td>
+                                        <td class="text-end"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-end totals-row">Total (LKR)</td>
+                                        <td class="text-end totals-row">Rs. <?php echo number_format($totalPriceLKR > 0 ? $totalPriceLKR : $totalPrice * $effectiveRate, 2); ?></td>
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
                     </div>
                     <div class="invoice-footer d-flex flex-column flex-sm-row gap-2 justify-content-between align-items-stretch align-items-sm-center">
-                        <div class="text-muted">Thank you for choosing Blaze Tours.</div>
+                        <div>
+                            <div class="text-muted">Thank you for choosing Blaze Tours.</div>
+                            <?php if ($bookingData && isset($bookingData['payment_id'])) { ?>
+                                <div class="text-success small mt-1">
+                                    <i class="fas fa-check-circle me-1"></i>
+                                    Payment Completed (ID: <?php echo htmlspecialchars($bookingData['payment_id']); ?>)
+                                </div>
+                            <?php } ?>
+                        </div>
                         <div class="d-flex gap-2 no-print">
                             <button class="th-btn" onclick="window.print()"><i class="fa fa-print me-2"></i>Print</button>
-                            <button id="payNowBtn" class="th-btn th-icon">
-                                Pay Now
-                            </button>
+                            <a href="index.php" class="th-btn th-icon">
+                                <i class="fas fa-home me-2"></i>Back to Home
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -156,13 +224,7 @@ $invoiceNo = 'INV-' . date('Ymd-His') . '-' . substr(md5(($tourId ?: '0').microt
 <?php include 'footer.php'; ?>
 
 <script src="assets/js/bootstrap.min.js"></script>
-<script>
-    document.getElementById('payNowBtn').addEventListener('click', function(e) {
-        e.preventDefault();
-        // Placeholder: integrate payment gateway here
-        alert('Payment processing is not configured yet.');
-    });
-</script>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 </body>
 </html>
 
