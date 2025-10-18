@@ -1040,7 +1040,7 @@ tour Area
             
             // Show success message
             const notyf = new Notyf({ duration: 5000, position: { x: 'center', y: 'top' } });
-            notyf.success('Payment completed successfully! Redirecting to invoice...');
+            notyf.success('Payment completed successfully!');
             
             // Extract booking ID from order ID (format: ORD-123)
             const bookingId = orderId.replace('ORD-', '');
