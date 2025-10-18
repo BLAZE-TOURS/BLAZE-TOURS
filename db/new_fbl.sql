@@ -31,8 +31,6 @@ CREATE TABLE IF NOT EXISTS `admin` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table blaze-tours_db.admin: ~0 rows (approximately)
-INSERT INTO `admin` (`id`, `email`, `password`, `status_id`) VALUES
-	(1, 'admin@blaze-tours.com', 'Blaze@2025', 1);
 
 -- Dumping structure for table blaze-tours_db.booking
 CREATE TABLE IF NOT EXISTS `booking` (
@@ -47,19 +45,19 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `pickup_location` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
   `total_price_lkr` double DEFAULT NULL,
   `total_price_usd` double DEFAULT NULL,
-  `status_id` int NOT NULL,
+  `status_id` int DEFAULT NULL,
   `tour_id` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_meditation_status1_idx` (`status_id`),
   KEY `fk_booking_tour1_idx` (`tour_id`),
-  CONSTRAINT `fk_booking_status` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE SET DEFAULT ON UPDATE CASCADE,
-  CONSTRAINT `fk_booking_tour` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_booking_tour1` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`),
-  CONSTRAINT `fk_meditation_status1` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb3;
+  CONSTRAINT `fk_booking_status` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_booking_tour` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.booking: ~3 rows (approximately)
+-- Dumping data for table blaze-tours_db.booking: ~0 rows (approximately)
+INSERT INTO `booking` (`id`, `name`, `mobile`, `email`, `tourDate`, `time_slot`, `numberOfAdultCount`, `numberOfKidsCount`, `pickup_location`, `total_price_lkr`, `total_price_usd`, `status_id`, `tour_id`, `created_at`) VALUES
+	(80, 'Lakshitha madumal', '0712654117', 'mandujayaweera2003@gmail.com', '2025-10-23', '6:38 AM', 1, 0, 'wellawaya', 605.72, 2, 3, 14, '2025-10-18 14:39:18');
 
 -- Dumping structure for table blaze-tours_db.closed_day
 CREATE TABLE IF NOT EXISTS `closed_day` (
@@ -99,16 +97,16 @@ CREATE TABLE IF NOT EXISTS `gallary` (
   CONSTRAINT `fk_gallary_tour1` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.gallary: ~0 rows (approximately)
+-- Dumping data for table blaze-tours_db.gallary: ~1 rows (approximately)
 
 -- Dumping structure for table blaze-tours_db.highlight
 CREATE TABLE IF NOT EXISTS `highlight` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.highlight: ~16 rows (approximately)
+-- Dumping data for table blaze-tours_db.highlight: ~15 rows (approximately)
 INSERT INTO `highlight` (`id`, `name`) VALUES
 	(10, 'Pickup included'),
 	(11, 'Reserve Now & Pay Later Eligible'),
@@ -125,7 +123,8 @@ INSERT INTO `highlight` (`id`, `name`) VALUES
 	(22, 'Entry/Admission - Colombo Lighthouse'),
 	(23, 'entrance fees or ticket not included'),
 	(24, 'Lunch or Dinner not included'),
-	(25, 'hrthrth');
+	(25, 'hrthrth'),
+	(26, 'aaaa');
 
 -- Dumping structure for table blaze-tours_db.idx_highlight
 CREATE TABLE IF NOT EXISTS `idx_highlight` (
@@ -137,9 +136,9 @@ CREATE TABLE IF NOT EXISTS `idx_highlight` (
   KEY `fk_idx_highlight_highlight1_idx` (`highlight_id`),
   CONSTRAINT `fk_idx_highlight_highlight1` FOREIGN KEY (`highlight_id`) REFERENCES `highlight` (`id`),
   CONSTRAINT `fk_idx_highlight_tour1` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.idx_highlight: ~17 rows (approximately)
+-- Dumping data for table blaze-tours_db.idx_highlight: ~16 rows (approximately)
 INSERT INTO `idx_highlight` (`id`, `tour_id`, `highlight_id`) VALUES
 	(19, 10, 10),
 	(20, 10, 11),
@@ -157,7 +156,8 @@ INSERT INTO `idx_highlight` (`id`, `tour_id`, `highlight_id`) VALUES
 	(35, 12, 22),
 	(36, 12, 23),
 	(37, 12, 24),
-	(38, 14, 25);
+	(38, 14, 25),
+	(39, 15, 26);
 
 -- Dumping structure for table blaze-tours_db.idx_time
 CREATE TABLE IF NOT EXISTS `idx_time` (
@@ -169,9 +169,9 @@ CREATE TABLE IF NOT EXISTS `idx_time` (
   KEY `fk_idx_time_time1_idx` (`time_id`),
   CONSTRAINT `fk_idx_time_time1` FOREIGN KEY (`time_id`) REFERENCES `time` (`id`),
   CONSTRAINT `fk_idx_time_tour1` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.idx_time: ~24 rows (approximately)
+-- Dumping data for table blaze-tours_db.idx_time: ~23 rows (approximately)
 INSERT INTO `idx_time` (`id`, `tour_id`, `time_id`) VALUES
 	(29, 10, 11),
 	(30, 10, 12),
@@ -196,7 +196,8 @@ INSERT INTO `idx_time` (`id`, `tour_id`, `time_id`) VALUES
 	(51, 12, 20),
 	(52, 12, 21),
 	(53, 12, 22),
-	(54, 14, 23);
+	(54, 14, 23),
+	(55, 15, 24);
 
 -- Dumping structure for table blaze-tours_db.location
 CREATE TABLE IF NOT EXISTS `location` (
@@ -212,9 +213,9 @@ CREATE TABLE IF NOT EXISTS `location` (
   PRIMARY KEY (`id`),
   KEY `fk_location_tour1_idx` (`tour_id`),
   CONSTRAINT `fk_location_tour1` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.location: ~32 rows (approximately)
+-- Dumping data for table blaze-tours_db.location: ~31 rows (approximately)
 INSERT INTO `location` (`id`, `name`, `address`, `lat`, `lng`, `icon_url`, `description`, `stop_duration_time`, `tour_id`) VALUES
 	(26, 'Independence Square', '7 Independence Ave, Colombo 00700, Sri Lanka', 6.90476, 79.8672, 'images/marker/icon_686817e11c36c.ico', 'abc', 20, 10),
 	(27, 'Gangaramaya Temple', '61 Sri Jinarathana Rd, Colombo 00200, Sri Lanka', 6.91671, 79.8566, 'images/marker/icon_686817e11d7d3.ico', 'abc', 20, 10),
@@ -247,7 +248,8 @@ INSERT INTO `location` (`id`, `name`, `address`, `lat`, `lng`, `icon_url`, `desc
 	(54, 'Christian Reformed Church of Sri Lanka', 'WVR5+RJP, Wolfendhal Ln, Colombo 01300, Sri Lanka', 6.94208, 79.8591, 'images/marker/icon_68be71dcdea71.png', 'Wolvendaal Church, located on Wolfendhal Street in Colombo, Sri Lanka, is one of the oldest and most significant Dutch Reformed churches in the country. Built in 1749, the church stands as a testament to Sri Lanka’s colonial history and the influence of the Dutch East India Company. The church\'s stunning architecture features a blend of European and local designs, with a large, imposing structure that includes a high roof, intricate wooden pews, and a beautifully decorated altar. The church is known for its historical importance, as it has been a place of worship for over two centuries. Inside, visitors can admire the old tombstones, some of which belong to Dutch settlers and their families, giving the church a deep sense of history. The peaceful surroundings and the church’s serene atmosphere make it a perfect spot for quiet reflection and exploration. Wolvendaal Church is an important heritage .offering a fascinating glimpse into the city’s colonial past and religious traditions.', 15, 12),
 	(55, 'Colombo Lighthouse', 'WRPR+G86, Chaithya Rd, Colombo 00100, Sri Lanka', 6.93628, 79.8408, 'images/marker/icon_68be71dcdff90.png', 'The Colombo Lighthouse, located in Colombo Fort, Sri Lanka, is a historic and iconic landmark that stands tall at the entrance to the Colombo harbor. Originally built in 1867, it was later replaced in 1913 with the current structure, which is still in operation today, guiding ships safely into the bustling port. The lighthouse stands at a height of 29 meters and is a symbol of Colombo’s maritime heritage. The design of the Colombo Lighthouse is simple yet striking, with a white and red striped tower that contrasts beautifully against the blue sky and surrounding landscape. The lighthouse is not only an essential part of Sri Lanka’s navigation system but also a popular spot for visitors seeking panoramic views of the harbor and the Indian Ocean. Although the lighthouse itself is not open to the public, it remains a significant piece of Colombo’s history, reflecting the city’s important . It is a must-see for anyone exploring Colombo’s coastal beauty and colonial past.', 10, 12),
 	(56, 'Laksala', '215 Bauddhaloka Mawatha, Colombo 00700, Sri Lanka', 6.89795, 79.8606, 'images/marker/icon_68be71dce1320.png', 'Laksala, located at 215 Bauddhaloka Mawatha in Colombo, Sri Lanka, is the country’s premier state-run handicrafts showroom, offering a wide array of authentic Sri Lankan crafts and souvenirs. Established to promote traditional Sri Lankan artistry, Laksala showcases a stunning collection of handmade goods, ranging from intricate wood carvings and vibrant batiks to stunning pottery, jewelry, and handwoven textiles. Each item reflects the island’s rich cultural heritage and craftsmanship, making it the perfect place to find unique, locally made treasures. The showroom is beautifully organized, with products from various regions of Sri Lanka, ensuring visitors experience a diverse range of artistic styles. It is a popular destination for both tourists and locals looking for highquality souvenirs and gifts that represent the island\'s heritage. A visit to Laksala offers a glimpse into Sri Lankas cultural history while providing an excellent opportunity to purchase timeless, authentic crafts', 30, 12),
-	(57, 'Ella', 'Ella, Sri Lanka', 6.87313, 81.0491, 'images/marker/icon_68dd19adaa57a.png', 'hrtht', 12, 14);
+	(57, 'Ella', 'Ella, Sri Lanka', 6.87313, 81.0491, 'images/marker/icon_68dd19adaa57a.png', 'hrtht', 12, 14),
+	(58, 'Ella', 'Ella, Sri Lanka', 6.87313, 81.0491, 'images/marker/icon_68f37fe716dfd.ico', '5rrgtfg5', 222, 15);
 
 -- Dumping structure for table blaze-tours_db.logo
 CREATE TABLE IF NOT EXISTS `logo` (
@@ -332,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `status` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.status: ~3 rows (approximately)
+-- Dumping data for table blaze-tours_db.status: ~4 rows (approximately)
 INSERT INTO `status` (`id`, `name`) VALUES
 	(1, 'Active'),
 	(2, 'De-Active'),
@@ -355,9 +357,9 @@ CREATE TABLE IF NOT EXISTS `time` (
   `id` int NOT NULL AUTO_INCREMENT,
   `timeslot` time DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.time: ~11 rows (approximately)
+-- Dumping data for table blaze-tours_db.time: ~10 rows (approximately)
 INSERT INTO `time` (`id`, `timeslot`) VALUES
 	(11, '07:00:00'),
 	(12, '08:00:00'),
@@ -371,7 +373,8 @@ INSERT INTO `time` (`id`, `timeslot`) VALUES
 	(20, '16:00:00'),
 	(21, '17:00:00'),
 	(22, '18:00:00'),
-	(23, '06:38:00');
+	(23, '06:38:00'),
+	(24, '06:24:00');
 
 -- Dumping structure for table blaze-tours_db.tour
 CREATE TABLE IF NOT EXISTS `tour` (
@@ -390,15 +393,16 @@ CREATE TABLE IF NOT EXISTS `tour` (
   KEY `fk_tour_status1_idx` (`status_id`),
   CONSTRAINT `fk_tour_status1` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`),
   CONSTRAINT `fk_tour_tours_type1` FOREIGN KEY (`tours_type_id`) REFERENCES `tours_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.tour: ~5 rows (approximately)
+-- Dumping data for table blaze-tours_db.tour: ~6 rows (approximately)
 INSERT INTO `tour` (`id`, `name`, `description`, `duration`, `kids_price`, `adult_price`, `maximum_adult_count`, `maximum_kids_count`, `tours_type_id`, `status_id`) VALUES
 	(10, 'Private Safari Tour Exploring Sri Lanka\'s', 'voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur\r\n\r\n‍Whether you work from home or commute to a nearby office, the energy-efficient features of your home contribute to a productive and eco-conscious workday. Smart home systems allow you to monitor and control energy usage, ensuring that your environmental impact remains minimal.', 4, 30.5, 45.6, 6, 4, 1, 1),
 	(11, '3 Hour Private Colombo Street Food Tour', 'This private tour delivers: pairing you with a driver-guide who knows great local food stops and fun transport in Convertible tuk-tuk. Sampling Colombo’s street foods can be tricky without a local foodie host to point out favorite local eats and what they consist of. On this private tour, you gain the insider knowledge you need. Let a guide introduce you to food spots such as Pettah Market, together with treats such as cassava chips and samosas, so you end up truly eating like a local. Colombo’s streets to sample specialities like crab curry, sambol, and ice-cream, and as you taste and talk, learn secrets and snippets about Sri Lanka’s roadside dishes that most tourists never hear.', 3, 35, 39, 2, 4, 1, 1),
 	(12, 'Explore Colombo in Style Exclusive Tuk Tuk Sightseeing Adventure', 'Embark on an exhilarating journey with Vinoth Blaze to uncover the rich tapestry of Sri Lanka\'s cultural heritage, nestled within the captivating Colombo suburbs. Experience the fusion of history and modernity in Colombo, where every corner tells a story. With over a decade of expertise, Blaze promises an immersive exploration beyond the tourist trail. Glide through the bustling streets aboard our comfortable Cabrio Tuk Tuk, soaking in the vibrant colors and tantalizing aromas of Pettah market, a centuries-old trading hub. Delve into the spiritual realm with visits to ancient temples, immersing yourself in the sacred traditions of Buddhism and Hinduism. Let Blaze be your trusted guide, offering insider tips and assistance for an unforgettable adventure in the heart of Sri Lanka. Join us and unlock the secrets of this enchanting island!', 4, 22, 34, 3, 2, 3, 1),
 	(13, 'Lakshitha madumal', 'vfdbfdb', 23, 43, 43, 54, 3, 1, 3),
-	(14, 'Test', 'aaaaaaaaaa', 15, 1, 2, 3, 2, 3, 1);
+	(14, 'Test', 'aaaaaaaaaa', 15, 1, 2, 3, 2, 3, 1),
+	(15, 'Lakshitha madumal', 'aaaaaaaaa', 22, 22, 1, 1, 1, 3, 1);
 
 -- Dumping structure for table blaze-tours_db.tours_type
 CREATE TABLE IF NOT EXISTS `tours_type` (
@@ -423,14 +427,15 @@ CREATE TABLE IF NOT EXISTS `tour_image` (
   PRIMARY KEY (`id`),
   KEY `fk_tour_image_tour1_idx` (`tour_id`),
   CONSTRAINT `fk_tour_image_tour1` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.tour_image: ~4 rows (approximately)
+-- Dumping data for table blaze-tours_db.tour_image: ~3 rows (approximately)
 INSERT INTO `tour_image` (`id`, `main_image`, `second_image`, `tour_id`) VALUES
 	(16, '../../assets/uploads/tour_images/main_686817e0e7bf1_private-tour.png', '../../assets/uploads/tour_images/second_686817e0e82dd_private-tour1.png', 10),
 	(18, '../../assets/uploads/tour_images/main_68be6aa046eec_97.jpg', '../../assets/uploads/tour_images/second_68be6aa04743b_10.jpg', 11),
 	(19, '../../assets/uploads/tour_images/main_68be71dca9502_8e.jpg', '../../assets/uploads/tour_images/second_68be71dca9a18_94.jpg', 12),
-	(20, '../../assets/uploads/tour_images/main_68dd19ad9e8f5_Whisk_b2f31e012c9bc729fe742b747e3e2d59dr.jpeg', '../../assets/uploads/tour_images/second_68dd19ad9ef7c_Whisk_b2f31e012c9bc729fe742b747e3e2d59dr.jpeg', 14);
+	(20, '../../assets/uploads/tour_images/main_68dd19ad9e8f5_Whisk_b2f31e012c9bc729fe742b747e3e2d59dr.jpeg', '../../assets/uploads/tour_images/second_68dd19ad9ef7c_Whisk_b2f31e012c9bc729fe742b747e3e2d59dr.jpeg', 14),
+	(21, '../../assets/uploads/tour_images/main_68f37fe702c38_1.png', '../../assets/uploads/tour_images/second_68f37fe7030d0_1.png', 15);
 
 -- Dumping structure for table blaze-tours_db.user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -447,7 +452,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   CONSTRAINT `fk_user_rating_star` FOREIGN KEY (`rating_star_id`) REFERENCES `rating_star` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.user: ~1 rows (approximately)
+-- Dumping data for table blaze-tours_db.user: ~0 rows (approximately)
 INSERT INTO `user` (`id`, `email`, `mobile`, `first_name`, `last_name`, `review`, `date`, `rating_star_id`) VALUES
 	(9, 'mandujayaweera2003@gmail.com', '0000000000', 'Unknown', 'Contributor', 'No review has been posted.', '2025-10-12 16:54:03', 5);
 
