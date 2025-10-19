@@ -59,6 +59,15 @@ function changeDashboardViewMedArrivedi() {
     mediMediArrivedContainer.style.display = 'block';
 }
 
+function changeDashboardViewBookingClosed() {
+    history.pushState(null, '', 'adminindex.php?view=BookingClosed');
+    sessionStorage.setItem('currentView', 'BookingClosed');
+    hideAllContainers();
+    var mediMediArrivedContainer = document.getElementById('BookingClosedContainer');
+    mediMediArrivedContainer.classList.remove('d-none');
+    mediMediArrivedContainer.style.display = 'block';
+}
+
 
 function changeDashboardViewGallary() {
     history.pushState(null, '', 'adminindex.php?view=Gallary');
@@ -112,7 +121,7 @@ function changeDashboardViewStory() {
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer', 'CloseDaysContainer'];
+    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer', 'CloseDaysContainer', 'BookingClosedContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -154,6 +163,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
             case 'BookingArrived': // Ensured correct key match
                 changeDashboardViewMedArrivedi();
+                break;
+            case 'BookingClosed': // Ensured correct key match
+                changeDashboardViewBookingClosed();
                 break;
             case 'Messages': // Ensured correct key match
                 changeDashboardViewMessages();
