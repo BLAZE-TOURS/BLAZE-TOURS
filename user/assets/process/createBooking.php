@@ -17,6 +17,7 @@ ini_set('error_log', __DIR__ . '/php_errors.log');
 header('Content-Type: application/json; charset=utf-8');
 
 require_once __DIR__ . '/connection.php';
+require_once __DIR__ . '/bookingIdGenerator.php';
 
 // Attempt to load email helpers
 $emailHelpersLoaded = false;
@@ -100,22 +101,25 @@ try {
         }
     }
 
-    // --- Insert booking as PENDING (status_id = 3)
+    // --- Generate unique booking ID
+    $customBookingId = BookingIdGenerator::generateUniqueBookingId(Database::$connection);
+    $bookingIdEsc = Database::escape_string($customBookingId);
+
+    // --- Insert booking as PENDING (status_id = 3) with custom ID
     $insert = "
         INSERT INTO booking 
-        (name, mobile, email, tourDate, time_slot, numberOfAdultCount, numberOfKidsCount, pickup_location, 
+        (id, name, mobile, email, tourDate, time_slot, numberOfAdultCount, numberOfKidsCount, pickup_location, 
         total_price_lkr, total_price_usd, status_id, tour_id, created_at)
         VALUES (
-            '$nameEsc', '$mobileEsc', '$emailEsc', '$tourDateEsc', $timeSlotEsc,
+            '$bookingIdEsc', '$nameEsc', '$mobileEsc', '$emailEsc', '$tourDateEsc', $timeSlotEsc,
             $numAdults, $numKids, $pickupEsc,
             $totalLKR, $totalUSD, 3, $tourId, NOW()
         )
     ";
     Database::iud($insert);
 
-    // --- Retrieve inserted ID
-    $idRes = Database::search("SELECT LAST_INSERT_ID() AS id");
-    $bookingId = ($idRes && $r = $idRes->fetch_assoc()) ? (int)$r['id'] : 0;
+    // --- Use the custom booking ID as the booking ID
+    $bookingId = $customBookingId;
 
     if (!$bookingId) {
         respond(false, ['message' => 'Booking saved but ID not found'], 500);
@@ -127,7 +131,7 @@ try {
     
     // Generate PayHere hash signature (required for authorization)
     $merchant_secret_hashed = strtoupper(md5($merchant_secret));
-    $order_id = 'ORD-' . $bookingId;
+    $order_id = $customBookingId; // Use custom booking ID as order ID
     $amount = number_format($totalLKR, 2, '.', '');
     $currency = 'LKR';
     
@@ -158,6 +162,7 @@ try {
 
     respond(true, [
         'booking_id' => $bookingId,
+        'custom_booking_id' => $customBookingId,
         'payment' => $payment
     ]);
 } catch (Throwable $e) {

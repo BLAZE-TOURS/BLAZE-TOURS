@@ -2,11 +2,15 @@
 $orderId = $_GET['order_id'] ?? '';
 // Optionally mark booking as cancelled (status_id = 2) if needed
 require_once __DIR__ . '/assets/process/connection.php';
-if (preg_match('/ORD-(\d+)/', $orderId, $m)) {
-    $bookingId = (int)$m[1];
+
+if (!empty($orderId)) {
     try {
-        Database::iud("UPDATE booking SET status_id = 2 WHERE id = $bookingId AND status_id = 3");
-    } catch (Throwable $e) {}
+        // Update booking status to cancelled using id (which is now the custom booking ID)
+        $orderIdEsc = Database::escape_string($orderId);
+        Database::iud("UPDATE booking SET status_id = 2 WHERE id = '$orderIdEsc' AND status_id = 3");
+    } catch (Throwable $e) {
+        error_log("Error updating booking status: " . $e->getMessage());
+    }
 }
 header('Location: index.php');
 exit;

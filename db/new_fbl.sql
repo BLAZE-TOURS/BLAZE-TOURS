@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 -- Dumping structure for table blaze-tours_db.booking
 CREATE TABLE IF NOT EXISTS `booking` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `name` varchar(255) NOT NULL,
   `mobile` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -53,11 +53,11 @@ CREATE TABLE IF NOT EXISTS `booking` (
   KEY `fk_booking_tour1_idx` (`tour_id`),
   CONSTRAINT `fk_booking_status` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk_booking_tour` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table blaze-tours_db.booking: ~0 rows (approximately)
 INSERT INTO `booking` (`id`, `name`, `mobile`, `email`, `tourDate`, `time_slot`, `numberOfAdultCount`, `numberOfKidsCount`, `pickup_location`, `total_price_lkr`, `total_price_usd`, `status_id`, `tour_id`, `created_at`) VALUES
-	(80, 'Lakshitha madumal', '0712654117', 'mandujayaweera2003@gmail.com', '2025-10-23', '6:38 AM', 1, 0, 'wellawaya', 605.72, 2, 3, 14, '2025-10-18 14:39:18');
+	('BLAZE251019573', 'Lakshitha madumal', '0712654117', 'mandujayaweera2003@gmail.com', '2025-10-21', '6:38 AM', 1, 0, 'wellawaya', 605.72, 2, 3, 14, '2025-10-19 13:28:32');
 
 -- Dumping structure for table blaze-tours_db.closed_day
 CREATE TABLE IF NOT EXISTS `closed_day` (

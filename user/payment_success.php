@@ -1,14 +1,10 @@
 <?php
-// After PayHere returns user here. We expect order_id in GET like ORD-<bookingId>
+// After PayHere returns user here. We expect order_id in GET (now using custom booking ID)
 $orderId = $_GET['order_id'] ?? '';
-// Extract numeric booking id
-$bookingId = 0;
-if (preg_match('/ORD-(\d+)/', $orderId, $m)) {
-    $bookingId = (int)$m[1];
-}
-// Redirect to invoice; notify handler is authoritative for DB/email
-if ($bookingId > 0) {
-    header('Location: invoice.php?order_id=' . $bookingId);
+
+// Redirect to invoice with the order_id (which is now the custom booking ID)
+if (!empty($orderId)) {
+    header('Location: invoice.php?order_id=' . urlencode($orderId));
     exit;
 }
 // Fallback

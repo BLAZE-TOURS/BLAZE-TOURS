@@ -11,11 +11,12 @@ $order_id = $_GET['order_id'] ?? '';
 $bookingData = null;
 
 if ($order_id) {
-    // Fetch booking data from database by primary id
+    // Fetch booking data from database by id (which is now the custom booking ID)
     try {
-        $idEsc = (int)$order_id;
-        $query = "SELECT b.*, t.name AS tour_name FROM booking b LEFT JOIN tour t ON t.id = b.tour_id WHERE b.id = $idEsc";
+        $orderIdEsc = Database::escape_string($order_id);
+        $query = "SELECT b.*, t.name AS tour_name FROM booking b LEFT JOIN tour t ON t.id = b.tour_id WHERE b.id = '$orderIdEsc'";
         $result = Database::search($query);
+        
         if ($result && $result->num_rows > 0) {
             $booking = $result->fetch_assoc();
             $bookingData = $booking;
@@ -40,7 +41,7 @@ if ($bookingData) {
     $totalPrice = isset($bookingData['total_price_usd']) ? (float)$bookingData['total_price_usd'] : 0;
     $totalPriceLKR = isset($bookingData['total_price_lkr']) ? (float)$bookingData['total_price_lkr'] : 0;
     $effectiveRate = ($totalPrice > 0 && $totalPriceLKR > 0) ? ($totalPriceLKR / $totalPrice) : 320.0;
-    $invoiceNo = 'INV-' . $order_id;
+    $invoiceNo = $bookingData['id']; // Use the id as invoice number
 
     // Price breakdown (if you have unit price fields in DB, use them)
     $adultPrice = $adults > 0 ? $totalPrice / ($adults + $children) : 0;

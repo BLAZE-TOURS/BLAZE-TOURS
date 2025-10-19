@@ -35,6 +35,10 @@ function sendBookingConfirmationEmail($bookingData)
                 <p>Thank you for your payment and booking with <strong>Blaze Tours!</strong> Your reservation is confirmed. Please find your invoice and booking details below.</p>
                 <table class="details-table">
                     <tr>
+                        <th>Booking ID</th>
+                        <td><strong>' . htmlspecialchars($bookingData['booking_id'] ?? 'N/A') . '</strong></td>
+                    </tr>
+                    <tr>
                         <th>Tour</th>
                         <td>' . htmlspecialchars($bookingData['tourName']) . '</td>
                     </tr>
@@ -131,6 +135,10 @@ function sendAdminNotificationEmail($bookingData)
             <div class="email-container">
                 <div class="header">New Booking Received</div>
                 <table class="details-table">
+                    <tr>
+                        <th>Booking ID</th>
+                        <td><strong>' . htmlspecialchars($bookingData['booking_id'] ?? 'N/A') . '</strong></td>
+                    </tr>
                     <tr>
                         <th>Tour</th>
                         <td>' . htmlspecialchars($bookingData['tourName']) . '</td>
