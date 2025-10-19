@@ -1034,36 +1034,12 @@ tour Area
 
     <!-- PayHere Callback Functions -->
     <script>
-        // PayHere callback functions - these handle what happens after payment
-        window.payhere.onCompleted = function onCompleted(orderId) {
-            console.log("Payment completed. OrderID:" + orderId);
-            
-            // Show success message
-            const notyf = new Notyf({ duration: 5000, position: { x: 'center', y: 'top' } });
-            notyf.success('Payment completed successfully!');
-            
-            // Extract booking ID from order ID (format: ORD-123)
-            const bookingId = orderId.replace('ORD-', '');
-            
-            // Redirect to invoice page after a short delay
-            setTimeout(() => {
-                window.location.href = 'invoice.php?order_id=' + bookingId;
-            }, 2000);
-        };
-
-        window.payhere.onDismissed = function onDismissed() {
-            console.log("Payment dismissed");
-            const notyf = new Notyf({ duration: 3000, position: { x: 'center', y: 'top' } });
-            notyf.error('Payment was cancelled');
-        };
-
-        window.payhere.onError = function onError(error) {
-            console.log("Error:" + error);
-            const notyf = new Notyf({ duration: 3000, position: { x: 'center', y: 'top' } });
-            notyf.error('Payment error: ' + error);
-        };
+        // Do not override PayHere callbacks here — booking.js installs callbacks that
+        // post to markPaid.php and perform the correct redirect. Keep a small log.
+        if (typeof window.payhere !== 'undefined') {
+            console.log('[payhere] callbacks handled by booking.js; no override from page.');
+        }
     </script>
-
 </body>
 
 </html>
