@@ -30,15 +30,28 @@ if ($local_md5sig !== $md5sig) {
     exit;
 }
 
-// Extract booking id
-$bookingId = 0;
-if (preg_match('/ORD-(\d+)/', $order_id, $m)) {
-    $bookingId = (int)$m[1];
-}
+// Extract booking id - now using custom booking ID format
+$customBookingId = $order_id; // order_id is now the custom booking ID
 
-if ($bookingId <= 0) {
+if (empty($customBookingId)) {
     http_response_code(400);
     echo 'Invalid order id';
+    exit;
+}
+
+// Validate that the booking exists
+try {
+    $orderIdEsc = Database::escape_string($customBookingId);
+    $res = Database::search("SELECT id FROM booking WHERE id = '$orderIdEsc' LIMIT 1");
+    if (!$res || $res->num_rows == 0) {
+        http_response_code(400);
+        echo 'Booking not found';
+        exit;
+    }
+} catch (Throwable $e) {
+    error_log("Error fetching booking ID: " . $e->getMessage());
+    http_response_code(400);
+    echo 'Database error';
     exit;
 }
 
@@ -48,10 +61,10 @@ if ((string)$status_code === '2') {
         // Mark as COMPLETE/PAID (status_id = 1) and save payment reference
         $paymentId = Database::escape_string($_POST['payment_id'] ?? '');
         $method = Database::escape_string($_POST['method'] ?? 'PayHere');
-        Database::iud("UPDATE booking SET status_id = 1, payment_id = '$paymentId', payment_method = '$method' WHERE id = $bookingId");
+        Database::iud("UPDATE booking SET status_id = 1, payment_id = '$paymentId', payment_method = '$method' WHERE id = '$orderIdEsc'");
 
         // Fetch booking for email
-        $res = Database::search("SELECT b.*, t.name AS tour_name FROM booking b LEFT JOIN tour t ON t.id = b.tour_id WHERE b.id = $bookingId LIMIT 1");
+        $res = Database::search("SELECT b.*, t.name AS tour_name FROM booking b LEFT JOIN tour t ON t.id = b.tour_id WHERE b.id = '$orderIdEsc' LIMIT 1");
         if ($res && $res->num_rows > 0) {
             $booking = $res->fetch_assoc();
             // Send emails
@@ -70,6 +83,7 @@ if ((string)$status_code === '2') {
                     'totalPriceUSD' => (float)$booking['total_price_usd'],
                     'totalPriceLKR' => (float)$booking['total_price_lkr'],
                     'phone' => $booking['mobile'],
+                    'booking_id' => $booking['id'], // Use the id as booking_id
                 ];
                 @sendBookingConfirmationEmail($bookingData);
                 @sendAdminNotificationEmail($bookingData);
@@ -88,7 +102,7 @@ if ((string)$status_code === '2') {
 
 // For non-success, optionally mark as failed (status_id = 2)
 try {
-    Database::iud("UPDATE booking SET status_id = 2 WHERE id = $bookingId AND status_id <> 1");
+    Database::iud("UPDATE booking SET status_id = 2 WHERE id = '$orderIdEsc' AND status_id <> 1");
 } catch (Throwable $e) {}
 echo 'IGNORED';
 exit;
