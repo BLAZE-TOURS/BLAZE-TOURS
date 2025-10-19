@@ -23,6 +23,26 @@ function respond($ok, $data = [], $code = 200) {
     exit;
 }
 
+// New: respond quickly to client but continue processing (send emails) afterwards
+function respondAndContinue($ok, $data = [], $code = 200) {
+    // Send response immediately
+    http_response_code($ok ? 200 : $code);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(array_merge(['success' => $ok], $data), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+    // Try to finish request so PHP can continue in background
+    if (function_exists('fastcgi_finish_request')) {
+        fastcgi_finish_request();
+    } else {
+        // For mod_php / other SAPIs: attempt to flush buffers and allow script to continue
+        ignore_user_abort(true);
+        @ob_end_flush();
+        @ob_flush();
+        @flush();
+    }
+    // do not exit here; caller will continue running to send emails
+}
+
 try {
     // Accept both form-encoded POST and JSON body (some integrations send JSON)
     $inputOrderId = null;
@@ -86,8 +106,14 @@ try {
     $affected = Database::$connection->affected_rows ?? null;
     BlazeLogger::info('markPaid: update attempted', ['order_id' => $inputOrderId, 'affected_rows' => $affected]);
 
-    // Fetch booking to prepare emails
+    // Build absolute invoice URL so client can redirect immediately
+    $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $base = $scheme . '://' . $_SERVER['HTTP_HOST'] . dirname(dirname($_SERVER['REQUEST_URI']));
+    $invoiceUrl = rtrim($base, '/') . '/invoice.php?order_id=' . urlencode($inputOrderId);
+
+    // Fetch booking to prepare emails (we will send emails AFTER responding)
     $res = Database::search("SELECT b.*, t.name AS tour_name FROM booking b LEFT JOIN tour t ON t.id = b.tour_id WHERE b.id = '$orderIdEsc' LIMIT 1");
+    $booking = null;
     if ($res && $res->num_rows > 0) {
         $booking = $res->fetch_assoc();
         $bookingData = [
@@ -104,23 +130,29 @@ try {
             'phone' => $booking['mobile'],
             'booking_id' => $booking['id'],
         ];
-
-        // Attempt emails only if email helper loaded
-        if ($emailHelpersLoaded) {
-            try {
-                $customerOk = @sendBookingConfirmationEmail($bookingData);
-                $adminOk = @sendAdminNotificationEmail($bookingData);
-                BlazeLogger::info('markPaid: emails attempted', ['customer_ok' => $customerOk, 'admin_ok' => $adminOk]);
-            } catch (Throwable $e) {
-                BlazeLogger::error('markPaid: send email exception', ['error' => $e->getMessage()]);
-            }
-        } else {
-            BlazeLogger::info('markPaid: email helper not loaded, skipping emails', ['order_id' => $inputOrderId]);
-        }
     }
 
-    respond(true, ['message' => 'Marked as PAID', 'affected_rows' => $affected]);
+    // Respond immediately with redirect so frontend can redirect at once
+    respondAndContinue(true, ['message' => 'Marked as PAID', 'affected_rows' => $affected, 'redirect' => $invoiceUrl]);
+
+    // --- Execution continues here after response sent: send emails (won't block client)
+    if (!empty($booking) && $emailHelpersLoaded) {
+        try {
+            @sendBookingConfirmationEmail($bookingData);
+            @sendAdminNotificationEmail($bookingData);
+            BlazeLogger::info('markPaid: emails attempted (background)');
+        } catch (Throwable $e) {
+            BlazeLogger::error('markPaid: background email exception', ['error' => $e->getMessage()]);
+        }
+    } else {
+        BlazeLogger::info('markPaid: no booking or email helper not loaded for background email', ['order_id' => $inputOrderId]);
+    }
+
+    // End of try block continues as before...
 } catch (Throwable $e) {
     BlazeLogger::error('markPaid: exception', ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
     respond(false, ['message' => 'Server error'], 500);
 }
+
+
+
