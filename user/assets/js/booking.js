@@ -7,21 +7,32 @@
 			return;
 		}
 
-		console.log('[payhere] attaching callbacks for order:', currentOrderId);
+		// Resolve markPaid URL relative to the current page to avoid context/path issues
+		const markPaidUrl = new URL('assets/process/markPaid.php', window.location.href).href;
+
+		console.log('[payhere] attaching callbacks for order:', currentOrderId, 'markPaidUrl:', markPaidUrl);
 		payhere.onCompleted = async function onCompleted(orderId) {
 			console.log('[payhere] onCompleted:', orderId);
 			try {
 				const effectiveOrderId = orderId || currentOrderId;
 				const form = new FormData();
 				form.append('order_id', effectiveOrderId);
-				const res = await fetch('assets/process/markPaid.php', { method: 'POST', body: form });
+
+				// Try to include optional payment fields if PayHere passes them (safe no-op if not present)
+				// (Some SDKs may provide payment_id / method in other callbacks; add if you have them)
+				const res = await fetch(markPaidUrl, { method: 'POST', body: form, credentials: 'same-origin' });
 				let json = {};
 				try { json = await res.json(); } catch (e) { console.warn('[payhere] markPaid parse warn:', e); }
-				console.log('[payhere] markPaid response:', json);
+				console.log('[payhere] markPaid response:', res.status, json);
+
+				if (!res.ok || !json.success) {
+					console.error('[payhere] markPaid failed', res.status, json);
+					// Continue to redirect to invoice anyway, but leave a console message for debugging.
+				}
 			} catch (e) {
 				console.error('[payhere] markPaid error:', e);
 			}
-			// Always redirect to invoice after completion
+			// Always redirect to invoice after completion (use the effective id)
 			const dest = 'invoice.php?order_id=' + encodeURIComponent(orderId || currentOrderId);
 			console.log('[payhere] redirecting to:', dest);
 			window.location.href = dest;
