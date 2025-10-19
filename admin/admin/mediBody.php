@@ -98,9 +98,11 @@
                         </a>
                       </td>
                       <td>
-                        <button class="btn btn-sm btn-primary edit-btn" onclick="confirmArrival(<?php echo $row['id']; ?>);">
-                          Conform
+                        <button type="button" class="btn btn-sm btn-primary edit-btn"
+                          onclick="confirmArrival('<?php echo $row['id']; ?>');">
+                          Confirm
                         </button>
+
                       </td>
                     </tr>
                 <?php
@@ -156,7 +158,10 @@
   //   });
   // });
 
+  // Replace the previous confirmArrival implementation with this
   function confirmArrival(id) {
+    console.log('confirmArrival called, id=' + id);
+
     Swal.fire({
       title: 'Are you sure?',
       text: "Has the guest arrived?",
@@ -177,13 +182,15 @@
           })
           .then(response => response.text())
           .then(data => {
-            Swal.fire(
-              'Updated!',
-              'Guest arrival has been confirmed.',
-              'success'
-            ).then(() => {
-              location.reload();
-            });
+            console.log('updateTourStatus response:', data);
+            Swal.fire('Updated!', 'Guest arrival has been confirmed.', 'success')
+              .then(() => {
+                location.reload();
+              });
+          })
+          .catch(err => {
+            console.error('updateTourStatus error:', err);
+            Swal.fire('Error', 'Request failed', 'error');
           });
       }
     });
