@@ -289,6 +289,11 @@ if (isset($_SESSION["adminuser"])) {
                                                     Arrived
                                                 </a>
                                             </li>
+                                            <li>
+                                                <a href="#" class="tp-link" onclick="changeDashboardViewBookingClosed();">
+                                                    Closed
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </li>
@@ -404,6 +409,8 @@ if (isset($_SESSION["adminuser"])) {
                 <div id="shortsContainer" class="d-none"><?php include 'fechShorts.php'; ?> <?php include "../admin/shortsBody.php"; ?> </div>
 
                 <div id="mediContainer" class="d-none"> <?php include 'fetchMedi.php'; ?> <?php include "../admin/mediBody.php"; ?> </div>
+
+                <div id="BookingClosedContainer" class="d-none"> <?php include 'fetchBookingClosed.php'; ?> <?php include "../admin/BookingClosedBody.php"; ?> </div>
 
                 <div id="mediMediArrivedContainer" class="d-none"> <?php include 'fetchMediArrived.php'; ?> <?php include "../admin/mediArrivedBody.php"; ?> </div>
 
