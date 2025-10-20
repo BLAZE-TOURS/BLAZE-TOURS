@@ -113,3 +113,27 @@
 2025-10-20 11:42:59 [INFO] markPaid: start | {"order_id":"BLAZE251020995","payment_id":null,"method":null}
 2025-10-20 11:42:59 [INFO] markPaid: update attempted | {"order_id":"BLAZE251020995","affected_rows":1}
 2025-10-20 11:44:28 [INFO] markPaid: emails attempted (background)
+2025-10-20 15:59:22 [INFO] createBooking: request received | {"post_keys":["tourId","tourName","adults","children","adultPrice","childPrice","totalPriceUSD","totalPriceLKR","date","timeSlot","fullName","email","pickup","phone"]}
+2025-10-20 15:59:22 [INFO] createBooking: parsed input | {"name":"Lakshitha madumal","email":"mandujayaweera2003@gmail.com","mobile":"+94712654117","tourId":15,"tourDate":"2025-10-20","timeSlot":"06:24:00","numAdults":1,"numKids":0,"totalUSD":1}
+2025-10-20 15:59:32 [INFO] createBooking: computed totals | {"rate":320,"totalLKR":320}
+2025-10-20 15:59:32 [INFO] createBooking: generated id | {"id":"BLAZE251020559"}
+2025-10-20 15:59:32 [INFO] createBooking: inserted booking | {"id":"BLAZE251020559"}
+2025-10-20 15:59:32 [INFO] createBooking: payhere payload | {"order_id":"BLAZE251020559","amount":"320.00","currency":"LKR"}
+2025-10-20 16:00:52 [INFO] markPaid: start | {"order_id":"BLAZE251020559","payment_id":null,"method":null}
+2025-10-20 16:00:52 [INFO] markPaid: update attempted | {"order_id":"BLAZE251020559","affected_rows":1}
+2025-10-20 16:01:08 [INFO] markPaid: emails attempted (background)
+2025-10-20 16:04:00 [INFO] createBooking: request received | {"post_keys":["tourId","tourName","adults","children","adultPrice","childPrice","totalPriceUSD","totalPriceLKR","date","timeSlot","fullName","email","pickup","phone"]}
+2025-10-20 16:04:00 [INFO] createBooking: parsed input | {"name":"Lakshitha madumal","email":"mandujayaweera2003@gmail.com","mobile":"+94712654117","tourId":15,"tourDate":"2025-10-22","timeSlot":"06:24:00","numAdults":1,"numKids":0,"totalUSD":1}
+2025-10-20 16:04:02 [INFO] createBooking: computed totals | {"rate":320,"totalLKR":320}
+2025-10-20 16:04:02 [INFO] createBooking: generated id | {"id":"BLAZE251020027"}
+2025-10-20 16:04:02 [INFO] createBooking: inserted booking | {"id":"BLAZE251020027"}
+2025-10-20 16:04:02 [INFO] createBooking: payhere payload | {"order_id":"BLAZE251020027","amount":"320.00","currency":"LKR"}
+2025-10-20 16:37:25 [INFO] createBooking: request received | {"post_keys":["tourId","tourName","adults","children","adultPrice","childPrice","totalPriceUSD","totalPriceLKR","date","timeSlot","fullName","email","pickup","phone"]}
+2025-10-20 16:37:25 [INFO] createBooking: parsed input | {"name":"Lakshitha madumal","email":"mandujayaweera2003@gmail.com","mobile":"+94712654117","tourId":15,"tourDate":"2025-10-20","timeSlot":"06:24:00","numAdults":1,"numKids":0,"totalUSD":1}
+2025-10-20 16:37:28 [INFO] createBooking: computed totals | {"rate":320,"totalLKR":320}
+2025-10-20 16:37:28 [INFO] createBooking: generated id | {"id":"BLAZE251020883"}
+2025-10-20 16:37:28 [INFO] createBooking: inserted booking | {"id":"BLAZE251020883"}
+2025-10-20 16:37:28 [INFO] createBooking: payhere payload | {"order_id":"BLAZE251020883","amount":"320.00","currency":"LKR"}
+2025-10-20 16:38:02 [INFO] markPaid: start | {"order_id":"BLAZE251020883","payment_id":null,"method":null}
+2025-10-20 16:38:02 [INFO] markPaid: update attempted | {"order_id":"BLAZE251020883","affected_rows":1}
+2025-10-20 16:38:16 [INFO] markPaid: emails attempted (background)
