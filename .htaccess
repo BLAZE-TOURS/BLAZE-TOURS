@@ -1,0 +1,6 @@
+# Enable Rewrite Engine (just in case)
+Options -Indexes
+RewriteEngine On
+
+# Default 404 redirect to index.php
+ErrorDocument 404 /BLAZE-TOURS/user/index.php
