@@ -14,36 +14,30 @@ $bookingData = null;
 if ($order_id) {
     try {
         $orderIdEsc = Database::escape_string($order_id);
-        $query = "SELECT b.*, t.name AS tour_name FROM booking b LEFT JOIN tour t ON t.id = b.tour_id WHERE b.id = '$orderIdEsc'";
+        $query = "SELECT b.*, t.name AS tour_name FROM booking b LEFT JOIN tour t ON t.id = b.tour_id WHERE b.id = '$orderIdEsc' LIMIT 1";
         $result = Database::search($query);
 
         if ($result && $result->num_rows > 0) {
             $bookingData = $result->fetch_assoc();
+        } else {
+            // Invalid order_id — do not allow invoice to render for non-existent booking
+            // Option A: redirect to home
+            header('Location: index.php');
+            exit;
+            // Option B (alternative): return 404
+            // header("HTTP/1.1 404 Not Found");
+            // echo "Invoice not found";
+            // exit;
         }
     } catch (Exception $e) {
         error_log("Error fetching booking data: " . $e->getMessage());
+        header('Location: index.php');
+        exit;
     }
 }
 
-if ($bookingData) {
-    $tourId = $bookingData['tour_id'];
-    $tourName = $bookingData['tour_name'] ?? 'Tour';
-    $date = $bookingData['tourDate'];
-    $timeSlot = $bookingData['time_slot'] ?? '';
-    $fullName = $bookingData['name'];
-    $email = $bookingData['email'];
-    $phone = $bookingData['mobile'];
-    $pickup = $bookingData['pickup_location'] ?? '';
-    $adults = (int)$bookingData['numberOfAdultCount'];
-    $children = (int)$bookingData['numberOfKidsCount'];
-    $totalPrice = isset($bookingData['total_price_usd']) ? (float)$bookingData['total_price_usd'] : 0;
-    $totalPriceLKR = isset($bookingData['total_price_lkr']) ? (float)$bookingData['total_price_lkr'] : 0;
-    $effectiveRate = ($totalPrice > 0 && $totalPriceLKR > 0) ? ($totalPriceLKR / $totalPrice) : 320.0;
-    $invoiceNo = $bookingData['id'];
-
-    $adultPrice = $adults > 0 ? $totalPrice / ($adults + $children) : 0;
-    $childPrice = $children > 0 ? $totalPrice / ($adults + $children) : 0;
-} else {
+// If no order_id was provided, continue with fallback (form-submitted invoice)
+if (!$order_id) {
     $tourId = field('tourId');
     $tourName = field('tourName', 'Tour');
     $date = field('tourDate') ?: field('date');
@@ -59,6 +53,26 @@ if ($bookingData) {
     $totalPrice = (float)($_POST['totalPrice'] ?? 0);
     $totalPriceLKR = 0;
     $invoiceNo = 'INV-' . date('Ymd-His') . '-' . substr(md5(($tourId ?: '0') . microtime()), 0, 6);
+} else {
+    if ($bookingData) {
+        $tourId = $bookingData['tour_id'];
+        $tourName = $bookingData['tour_name'] ?? 'Tour';
+        $date = $bookingData['tourDate'];
+        $timeSlot = $bookingData['time_slot'] ?? '';
+        $fullName = $bookingData['name'];
+        $email = $bookingData['email'];
+        $phone = $bookingData['mobile'];
+        $pickup = $bookingData['pickup_location'] ?? '';
+        $adults = (int)$bookingData['numberOfAdultCount'];
+        $children = (int)$bookingData['numberOfKidsCount'];
+        $totalPrice = isset($bookingData['total_price_usd']) ? (float)$bookingData['total_price_usd'] : 0;
+        $totalPriceLKR = isset($bookingData['total_price_lkr']) ? (float)$bookingData['total_price_lkr'] : 0;
+        $effectiveRate = ($totalPrice > 0 && $totalPriceLKR > 0) ? ($totalPriceLKR / $totalPrice) : 320.0;
+        $invoiceNo = $bookingData['id'];
+
+        $adultPrice = $adults > 0 ? $totalPrice / ($adults + $children) : 0;
+        $childPrice = $children > 0 ? $totalPrice / ($adults + $children) : 0;
+    }
 }
 
 if ($adultPrice == 0 && $adults > 0) $adultPrice = $totalPrice / $adults;
