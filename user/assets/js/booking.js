@@ -221,13 +221,23 @@
         }
 
         // 6. Phone number validation
-        const phoneRaw = document.querySelector('#number3');
-        const phoneValue = phoneRaw.value.trim();
-        if (!/^\d+$/.test(phoneValue)) {
-            notyf.error('Phone number must contain only numbers.');
-            return;
+        // Use intl-tel-input when available to get full E.164 number (includes country code)
+        let phoneNumber = '';
+        const itiInstance = window.iti;
+        if (itiInstance) {
+            if (!itiInstance.isValidNumber()) {
+                notyf.error('Please enter a valid phone number.');
+                return;
+            }
+            phoneNumber = itiInstance.getNumber(); // e.g. +9471xxxxxxx
+        } else {
+            const phoneRaw = document.querySelector('#number3');
+            phoneNumber = phoneRaw ? phoneRaw.value.trim() : '';
+            if (!/^\d+$/.test(phoneNumber)) {
+                notyf.error('Phone number must contain only numbers.');
+                return;
+            }
         }
-        const phoneNumber = phoneValue;
 
         // 7. Pickup Location validation
         const pickup = document.getElementById('pickup').value.trim();

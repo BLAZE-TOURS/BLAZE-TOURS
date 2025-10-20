@@ -1009,12 +1009,16 @@ tour Area
 
 
     <script>
-        const input = document.querySelector("#number3");
-        const iti = window.intlTelInput(input, {
-            initialCountry: "lk", // default Sri Lanka
-            separateDialCode: true, // show +94 separately
-            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"
-        });
+        // Make the intl-tel-input instance available globally as window.iti
+        (function() {
+          const input = document.querySelector("#number3");
+          if (!input) return;
+          window.iti = window.intlTelInput(input, {
+              initialCountry: "lk", // default Sri Lanka
+              separateDialCode: true, // show +94 separately
+              utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"
+          });
+        })();
     </script>
 
     <script>
