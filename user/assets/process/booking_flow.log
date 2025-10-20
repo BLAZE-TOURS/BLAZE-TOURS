@@ -112,3 +112,4 @@
 2025-10-20 11:42:31 [INFO] createBooking: payhere payload | {"order_id":"BLAZE251020995","amount":"302.72","currency":"LKR"}
 2025-10-20 11:42:59 [INFO] markPaid: start | {"order_id":"BLAZE251020995","payment_id":null,"method":null}
 2025-10-20 11:42:59 [INFO] markPaid: update attempted | {"order_id":"BLAZE251020995","affected_rows":1}
+2025-10-20 11:44:28 [INFO] markPaid: emails attempted (background)

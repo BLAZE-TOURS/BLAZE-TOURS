@@ -13,14 +13,14 @@
     <!-- meta -->
     <meta property="og:title" content="Blaze Tours (Pvt) Ltd | Colombo & Sri Lanka Tours">
     <meta property="og:description" content="Explore stunning Colombo city and Sri Lanka tours with Blaze Tours (Pvt) Ltd. Book your adventure today!">
-    <meta property="og:image" content="https://yourdomain.com/assets/img/preview.png">
+    <meta property="og:image" content="https://blaze-tours.com/user/assets/img/preview.png">
     <meta property="og:url" content="https://blaze-tours.com/">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Blaze Tours (Pvt) Ltd | Colombo & Sri Lanka Tours">
     <meta name="twitter:description" content="Explore stunning Colombo city and Sri Lanka tours with Blaze Tours (Pvt) Ltd. Book your adventure today!">
-    <meta name="twitter:image" content="https://blaze-tours.com/assets/img/preview.png">
+    <meta name="twitter:image" content="https://blaze-tours.com/user/assets/img/preview.png">
 
 
 
