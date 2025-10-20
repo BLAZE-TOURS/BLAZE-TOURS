@@ -14,23 +14,26 @@ $bookingData = null;
 if ($order_id) {
     try {
         $orderIdEsc = Database::escape_string($order_id);
-        $query = "SELECT b.*, t.name AS tour_name FROM booking b LEFT JOIN tour t ON t.id = b.tour_id WHERE b.id = '$orderIdEsc' LIMIT 1";
+
+        // Only load booking when it's present and status_id = 1 (PAID)
+        $query = "
+            SELECT b.*, t.name AS tour_name
+            FROM booking b
+            LEFT JOIN tour t ON t.id = b.tour_id
+            WHERE b.id = '{$orderIdEsc}' AND b.status_id = 1
+            LIMIT 1
+        ";
         $result = Database::search($query);
 
         if ($result && $result->num_rows > 0) {
             $bookingData = $result->fetch_assoc();
         } else {
-            // Invalid order_id — do not allow invoice to render for non-existent booking
-            // Option A: redirect to home
+            // Not found or not paid → redirect to home
             header('Location: index.php');
             exit;
-            // Option B (alternative): return 404
-            // header("HTTP/1.1 404 Not Found");
-            // echo "Invoice not found";
-            // exit;
         }
-    } catch (Exception $e) {
-        error_log("Error fetching booking data: " . $e->getMessage());
+    } catch (Throwable $e) {
+        error_log("invoice.php: error fetching booking: " . $e->getMessage());
         header('Location: index.php');
         exit;
     }
