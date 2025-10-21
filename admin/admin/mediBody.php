@@ -30,6 +30,31 @@
     z-index: 1;
     /* Ensure the button stays above the text */
   }
+
+  /* ---- NEW: responsive table without horizontal scrollbar ---- */
+  /* Allow wrapping of cell content and reduce padding to fit more columns */
+  .table-responsive { overflow-x: visible !important; }
+  #datatable-Medi { table-layout: auto !important; width:100% !important; }
+  #datatable-Medi th, #datatable-Medi td {
+    white-space: normal !important;
+    word-break: break-word !important;
+    vertical-align: middle;
+    padding: 6px 8px;
+    font-size: 0.92rem;
+  }
+
+  /* Optional: reduce font slightly on smaller screens */
+  @media (max-width: 1280px) {
+    #datatable-Medi th, #datatable-Medi td { font-size: 0.86rem; padding: 5px 6px; }
+  }
+
+  /* If you want specific columns to be narrower, set max-widths */
+  #datatable-Medi td:nth-child(1), #datatable-Medi th:nth-child(1) { max-width: 120px; }
+  #datatable-Medi td:nth-child(5), #datatable-Medi th:nth-child(5) { max-width: 110px; } /* tourDate */
+  #datatable-Medi td:nth-child(11), #datatable-Medi th:nth-child(11) { max-width: 140px; } /* total price */
+
+  /* Ensure badges / buttons wrap nicely */
+  #datatable-Medi .btn, #datatable-Medi .badge { white-space: normal; display: inline-block; }
 </style>
 
 
@@ -48,12 +73,12 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h5 class="card-title mb-0">Booking List</h5>
+          <h5 class="card-title mb-0">Received Booking List</h5>
         </div><!-- end card header -->
 
         <div class="card-body">
           <div class="table-responsive">
-            <table id="datatable-Medi" class="table table-striped table-bordered dt-responsive nowrap">
+            <table id="datatable-Medi" class="table table-striped table-bordered table-sm">
               <thead>
                 <tr class="Table-header">
                   <th>#ID</th>

@@ -43,7 +43,7 @@
 
         <div class="card-body">
           <div class="table-responsive">
-            <table id="datatableMedi" class="table table-striped table-bordered dt-responsive nowrap">
+            <table id="datatableMedi" class="table table-striped table-bordered table-sm">
               <thead>
                 <tr class="Table-header">
                   <th>#ID</th>
