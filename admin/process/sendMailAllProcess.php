@@ -47,7 +47,7 @@ if (empty($subject)) {
                 text-align: center;
             }
             .header {
-                background:rgb(90, 5, 8);
+                background:#bd3838;
                 color: white;
                 padding: 15px;
                 font-size: 24px;
@@ -67,7 +67,7 @@ if (empty($subject)) {
                 border-radius: 0 0 8px 8px;
             }
             .button {
-                background:rgb(90, 5, 8);
+                background:#bd3838;
                 color: #ffffff;
                 text-decoration: none;
                 padding: 10px 20px;
@@ -83,7 +83,7 @@ if (empty($subject)) {
             <div class="header">' . $subject . '</div>
             <div class="content">
                 <p>' . $message . '</p>
-                <a href="https://rakkithtakandatemple.com/" target="_blank">
+                <a href="https://blaze-tours.com/" target="_blank">
                     <button class="button">Visit Our Website</button>
                 </a>
             </div>
@@ -108,14 +108,14 @@ if (empty($subject)) {
 
             try {
                 $mail->IsSMTP();
-                $mail->Host = 'mail.rakkithtakandatemple.com';
+                $mail->Host = 'mail.blaze-tours.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'booking@rakkithtakandatemple.com';
-                $mail->Password = '07NeYMcm-:a43R';
+                $mail->Username = 'contact@blaze-tours.com';
+                $mail->Password = 'UU68On8u.8;Yfl';
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                 $mail->Port = 465;
-                $mail->setFrom('booking@rakkithtakandatemple.com', 'BLAZE TOURS (PVT) LTD');
-                $mail->addReplyTo('booking@rakkithtakandatemple.com', 'BLAZE TOURS (PVT) LTD');
+                $mail->setFrom('contact@blaze-tours.com', 'BLAZE TOURS (PVT) LTD');
+                $mail->addReplyTo('contact@blaze-tours.com', 'BLAZE TOURS (PVT) LTD');
                 $mail->addAddress($to);
                 $mail->isHTML(true);
                 $mail->Subject = $subject;
@@ -125,17 +125,14 @@ if (empty($subject)) {
                     $successCount++;
                 } else {
                     $failureCount++;
-                    error_log("Failed to send email to $to", 3, "/Applications/XAMPP/xamppfiles/htdocs/Rakkithtakanda_backend/logs/email_errors.log");
                 }
             } catch (PHPMailerException $e) {
                 $failureCount++;
-                error_log("Email sending failed to $to: " . $e->getMessage(), 3, "/Applications/XAMPP/xamppfiles/htdocs/Rakkithtakanda_backend/logs/email_errors.log");
             }
         }
         echo "Emails sent successfully to $successCount recipients. Failed to send to $failureCount recipients.";
     } else {
         echo "Failed to fetch subscribers.";
-        error_log("Failed to fetch subscribers: " . Database::$connection->error, 3, "/Applications/XAMPP/xamppfiles/htdocs/Rakkithtakanda_backend/logs/email_errors.log");
         http_response_code(500);
     }
 }

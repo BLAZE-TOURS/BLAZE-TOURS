@@ -75,7 +75,7 @@ if (empty($email)) {
                 text-align: center;
             }
             .header {
-                background:rgb(90, 5, 8);
+                background:#bd3838;
                 color: white;
                 padding: 15px;
                 font-size: 24px;
@@ -95,7 +95,7 @@ if (empty($email)) {
                 border-radius: 0 0 8px 8px;
             }
             .button {
-                background:rgb(90, 5, 8);
+                background:#bd3838;
                 color: #ffffff;
                 text-decoration: none;
                 padding: 10px 20px;
@@ -111,7 +111,7 @@ if (empty($email)) {
             <div class="header">' . $bodyTitle . '</div>
             <div class="content">
                 <p>' . $message . '</p>
-                <a href="https://rakkithtakandatemple.com/" target="_blank">
+                <a href="https://blaze-tours.com/" target="_blank">
                     <button class="button">Visit Our Website</button>
                 </a>
             </div>
@@ -126,14 +126,14 @@ if (empty($email)) {
 
     try {
         $mail->IsSMTP();
-        $mail->Host = 'mail.rakkithtakandatemple.com';
+        $mail->Host = 'mail.blaze-tours.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'booking@rakkithtakandatemple.com';
-        $mail->Password = '07NeYMcm-:a43R';
+        $mail->Username = 'contact@blaze-tours.com';
+        $mail->Password = 'UU68On8u.8;Yfl';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
-        $mail->setFrom('booking@rakkithtakandatemple.com', 'BLAZE TOURS (PVT) LTD');
-        $mail->addReplyTo('booking@rakkithtakandatemple.com', 'BLAZE TOURS (PVT) LTD');
+        $mail->setFrom('contact@blaze-tours.com', 'BLAZE TOURS (PVT) LTD');
+        $mail->addReplyTo('contact@blaze-tours.com', 'BLAZE TOURS (PVT) LTD');
         $mail->addAddress($email);
 
         if (!empty($ccEmail)) {
@@ -152,11 +152,9 @@ if (empty($email)) {
             echo "Email sent successfully.";
         } else {
             echo "Failed to send email.";
-            error_log("Failed to send email to $email", 3, "/Applications/XAMPP/xamppfiles/htdocs/Rakkithtakanda_backend/logs/email_errors.log");
         }
     } catch (PHPMailerException $e) {
         echo "Email sending failed: " . $e->getMessage();
-        error_log("Email sending failed to $email: " . $e->getMessage(), 3, "/Applications/XAMPP/xamppfiles/htdocs/Rakkithtakanda_backend/logs/email_errors.log");
     }
 }
 ?>
