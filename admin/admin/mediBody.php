@@ -33,9 +33,17 @@
 
   /* ---- NEW: responsive table without horizontal scrollbar ---- */
   /* Allow wrapping of cell content and reduce padding to fit more columns */
-  .table-responsive { overflow-x: visible !important; }
-  #datatable-Medi { table-layout: auto !important; width:100% !important; }
-  #datatable-Medi th, #datatable-Medi td {
+  .table-responsive {
+    overflow-x: visible !important;
+  }
+
+  #datatable-Medi {
+    table-layout: auto !important;
+    width: 100% !important;
+  }
+
+  #datatable-Medi th,
+  #datatable-Medi td {
     white-space: normal !important;
     word-break: break-word !important;
     vertical-align: middle;
@@ -45,16 +53,39 @@
 
   /* Optional: reduce font slightly on smaller screens */
   @media (max-width: 1280px) {
-    #datatable-Medi th, #datatable-Medi td { font-size: 0.86rem; padding: 5px 6px; }
+
+    #datatable-Medi th,
+    #datatable-Medi td {
+      font-size: 0.86rem;
+      padding: 5px 6px;
+    }
   }
 
   /* If you want specific columns to be narrower, set max-widths */
-  #datatable-Medi td:nth-child(1), #datatable-Medi th:nth-child(1) { max-width: 120px; }
-  #datatable-Medi td:nth-child(5), #datatable-Medi th:nth-child(5) { max-width: 110px; } /* tourDate */
-  #datatable-Medi td:nth-child(11), #datatable-Medi th:nth-child(11) { max-width: 140px; } /* total price */
+  #datatable-Medi td:nth-child(1),
+  #datatable-Medi th:nth-child(1) {
+    max-width: 120px;
+  }
+
+  #datatable-Medi td:nth-child(5),
+  #datatable-Medi th:nth-child(5) {
+    max-width: 110px;
+  }
+
+  /* tourDate */
+  #datatable-Medi td:nth-child(11),
+  #datatable-Medi th:nth-child(11) {
+    max-width: 140px;
+  }
+
+  /* total price */
 
   /* Ensure badges / buttons wrap nicely */
-  #datatable-Medi .btn, #datatable-Medi .badge { white-space: normal; display: inline-block; }
+  #datatable-Medi .btn,
+  #datatable-Medi .badge {
+    white-space: normal;
+    display: inline-block;
+  }
 </style>
 
 
@@ -116,7 +147,7 @@
                       <td>$ <?php echo $row["total_price_usd"]; ?> (Rs. <?php echo $row["total_price_lkr"]; ?>)</td>
                       <td><?php echo $row["created_at"]; ?></td>
                       <td>
-                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Thank%20You%20<?php echo urlencode($row["name"]); ?>,Thank%20you%20for%20booking%20the%20Meditation%20program%20at%20Rakkittakanda%20Raja%20Maha%20Viharaya."
+                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Thank%20You%20<?php echo urlencode($row["name"]); ?>,Thank%20you%20for%20booking%20your%20tour%20experience%20with%20Blaze%20Tours%20%28Pvt%29%20Ltd%21"
                           target="_blank"
                           class="btn btn-success btn-sm">
                           Send Message
