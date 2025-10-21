@@ -94,7 +94,7 @@
                         ?>
                       </td>
                       <td>
-                        <a href="https://wa.me/<?php echo urlencode($row["mobile"]); ?>?text=Namo%20Buddhaya%20<?php echo urlencode($row["name"]); ?>,Thank%20you%20for%20booking%20the%20Meditation%20program%20at%20Rakkittakanda%20Raja%20Maha%20Viharaya."
+                        <a href="https://wa.me/<?php echo urlencode($row["mobile"]); ?>?text=Hello"
                           target="_blank"
                           class="btn btn-success btn-sm">
                           Send Message
