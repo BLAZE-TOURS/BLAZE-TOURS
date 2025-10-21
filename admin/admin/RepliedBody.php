@@ -102,7 +102,11 @@
                         </div>
                       </td>
                       <td>
-                        <a href="https://wa.me/<?php echo htmlspecialchars($row["mobile"]); ?>?text=Namo%20Buddhaya%20<?php echo urlencode($row["fullName"]); ?>,We%20appreciate%20your%20message%20to%20Rakkithtakanda%20Rajamaha%20Viharaya%21"
+                        <?php
+                          // build and encode the WhatsApp message text safely
+                          $waText = urlencode("Hello " . $row["fullName"] . ", Your inquiry has been resolved by Blaze Tours (Pvt) Ltd! Thank you for reaching out to us.");
+                        ?>
+                        <a href="https://wa.me/<?php echo htmlspecialchars($row["mobile"]); ?>?text=<?php echo $waText; ?>"
                           target="_blank"
                           class="btn btn-success btn-sm">
                           Send Message
