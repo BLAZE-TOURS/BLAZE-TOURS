@@ -90,7 +90,7 @@
                       <td>$ <?php echo $row["total_price_usd"]; ?> (Rs. <?php echo $row["total_price_lkr"]; ?>)</td>
                       <td><?php echo $row["created_at"]; ?></td>
                       <td>
-                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=We%20hope%20you%20enjoyed%20your%20tour%21%20Please%20share%20your%20experience%20on%20our%20website%20%E2%80%94%20https%3A%2F%2Fblaze-tours.com%2Fuser%2Ftours.php"
+                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=We%20hope%20you%20enjoyed%20your%20tour%21%20Please%20share%20your%20experience%20on%20our%20website%20%E2%80%94%20https%3A%2F%2Fblaze-tours.com%2Fuser%2Ftours"
                           target="_blank"
                           class="btn btn-success btn-sm">
                           Send Message
