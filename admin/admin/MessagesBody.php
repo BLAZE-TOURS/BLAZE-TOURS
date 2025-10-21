@@ -106,7 +106,7 @@
                         </div>
                       </td>
                       <td>
-                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Namo%20Buddhaya%20<?php echo urlencode($row["fullName"]); ?>,We%20appreciate%20your%20message%20to%20Rakkithtakanda%20Rajamaha%20Viharaya%21"
+                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Hello%20<?php echo urlencode($row["fullName"]); ?>,%0A%0AThank%20you%20for%20reaching%20out.%20We%20have%20received%20your%20message%20and%20will%20get%20back%20to%20you%20shortly.%0A%0ABest%20regards,%0ABlaze Tours (Pvt) Ltd."
                           target="_blank"
                           class="btn btn-success btn-sm">
                           Send Message
