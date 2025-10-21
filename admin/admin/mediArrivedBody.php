@@ -90,7 +90,7 @@
                       <td>$ <?php echo $row["total_price_usd"]; ?> (Rs. <?php echo $row["total_price_lkr"]; ?>)</td>
                       <td><?php echo $row["created_at"]; ?></td>
                       <td>
-                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Namo%20Buddhaya%20<?php echo urlencode($row["name"]); ?>,Thank%20you%20for%20booking%20the%20Meditation%20program%20at%20Rakkittakanda%20Raja%20Maha%20Viharaya."
+                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=We%20hope%20you%20enjoyed%20your%20tour%21%20Please%20share%20your%20experience%20on%20our%20website%20%E2%80%94%20https%3A%2F%2Fblaze-tours.com%2Fuser%2Ftours"
                           target="_blank"
                           class="btn btn-success btn-sm">
                           Send Message

@@ -111,7 +111,7 @@
                       <td><?php echo $row["rating_star_id"]; ?></td>
                       <td><?php echo $row["date"]; ?></td>
                       <td>
-                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Namo%20Buddhaya%20<?php echo urlencode($row["first_name"]); ?>,%20Thank%20you%20for%20joining%20with%20Rakkithtakanda%20Rajamaha%20Viharaya!"
+                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Thank%20you%20for%20subscribing%20to%20Blaze%20Tours%20%28Pvt%29%20Ltd%21%20You%20will%20now%20receive%20updates%20and%20special%20offers%20from%20us."
                           target="_blank"
                           class="btn btn-success btn-sm">
                           Send Message

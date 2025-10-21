@@ -6,22 +6,48 @@
   }
   .review-text {
     display: block;
-    transition: height 0.3s ease;
+    transition: max-height 0.28s ease;
     white-space: normal;
-    height: 50px;
+    max-height: 50px;      /* collapsed */
     overflow: hidden;
-    margin-right: 30px;
+    margin-right: 40px;
+    word-break: break-word;
+    line-height: 1.35;
+  }
+  .review-text.expanded { /* when expanded we remove the clamp via inline style or class */
+    /* no fixed max-height here; JS will set exact px value to allow smooth animation */
   }
   .toggle-review-btn {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 6px;
+    right: 6px;
     background: transparent;
     border: none;
     font-size: 1rem;
     color: #007bff;
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
+  }
+
+  /* Table cell adjustments so long text fits and rows grow vertically */
+  .table-responsive { overflow-x: hidden !important; }
+  #datatable-Message th, #datatable-Message td {
+    white-space: normal !important;
+    vertical-align: top !important; /* align to top so long messages don't center vertically */
+    word-break: break-word !important;
+    padding: 8px 10px;
+  }
+  /* Make message column wider where possible (6th column) */
+  #datatable-Message td:nth-child(6), #datatable-Message th:nth-child(6) {
+    max-width: 540px;
+    min-width: 220px;
+  }
+
+  @media (max-width: 992px) {
+    #datatable-Message td:nth-child(6), #datatable-Message th:nth-child(6) {
+      max-width: 300px;
+    }
+    .review-text { max-height: 80px; }
   }
 </style>
 
@@ -44,7 +70,7 @@
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table id="datatable-Message" class="table table-striped table-bordered dt-responsive nowrap">
+            <table id="datatable-Message" class="table table-striped table-bordered table-sm">
               <thead>
                 <tr class="Table-header">
                   <th>#ID</th>
@@ -80,7 +106,7 @@
                         </div>
                       </td>
                       <td>
-                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Namo%20Buddhaya%20<?php echo urlencode($row["fullName"]); ?>,We%20appreciate%20your%20message%20to%20Rakkithtakanda%20Rajamaha%20Viharaya%21"
+                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Hello%20<?php echo urlencode($row["fullName"]); ?>,%0A%0AThank%20you%20for%20reaching%20out.%20We%20have%20received%20your%20message%20and%20will%20get%20back%20to%20you%20shortly.%0A%0ABest%20regards,%0ABlaze Tours (Pvt) Ltd."
                           target="_blank"
                           class="btn btn-success btn-sm">
                           Send Message
@@ -108,14 +134,37 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   function toggleReview(id) {
-    const reviewText = document.getElementById('review-text-' + id);
-    const button = document.querySelector('[data-id="' + id + '"]');
-    if (reviewText.style.height === "auto") {
-      reviewText.style.height = "50px";
-      button.innerHTML = '<i class="fas fa-plus"></i>';
-    } else {
-      reviewText.style.height = "auto";
-      button.innerHTML = '<i class="fas fa-minus"></i>';
+    try {
+      const reviewText = document.getElementById('review-text-' + id);
+      const button = document.querySelector('[data-id="' + id + '"]');
+      if (!reviewText || !button) return;
+
+      const isExpanded = reviewText.classList.contains('expanded');
+
+      if (isExpanded) {
+        // collapse
+        reviewText.style.maxHeight = '50px';
+        reviewText.classList.remove('expanded');
+        button.innerHTML = '<i class="fas fa-plus"></i>';
+      } else {
+        // expand to full content height (smooth animation)
+        // set maxHeight to scrollHeight px then mark expanded
+        const fullHeight = reviewText.scrollHeight;
+        reviewText.style.maxHeight = fullHeight + 'px';
+        reviewText.classList.add('expanded');
+        button.innerHTML = '<i class="fas fa-minus"></i>';
+
+        // After animation ends, remove inline maxHeight to allow printing / responsive reflow
+        reviewText.addEventListener('transitionend', function cleanup() {
+          // Only remove if still expanded (prevents shrinking removal)
+          if (reviewText.classList.contains('expanded')) {
+            reviewText.style.maxHeight = 'none';
+          }
+          reviewText.removeEventListener('transitionend', cleanup);
+        });
+      }
+    } catch (e) {
+      console.error('toggleReview error', e);
     }
   }
 

@@ -269,55 +269,42 @@ if (isset($_SESSION["adminuser"])) {
                                 </li>
 
 
-                                <li class="menu-title">Pages</li>
+                                <li class="menu-title mt-2">Reservation</li>
 
                                 <li>
-                                    <a href="javascript:void(0);" id="sidebarReservationBtn" onclick="toggleSidebarMenu('sidebarReservation', 'sidebarReservationBtn')">
-                                        <i data-feather="calendar"></i>
-                                        <span>Reservation</span>
-                                        <span class="menu-arrow"></span>
+                                    <a href="#" onclick="changeDashboardViewMedi();">
+                                        <i data-feather="inbox"></i>
+                                        <span>Received Booking</span>
                                     </a>
-                                    <div class="sidebar-collapse" id="sidebarReservation">
-                                        <ul class="nav-second-level">
-                                            <li>
-                                                <a href="#" class="tp-link" onclick="changeDashboardViewMedi();">
-                                                    Received
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="tp-link" onclick="changeDashboardViewMedArrivedi();">
-                                                    Arrived
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="tp-link" onclick="changeDashboardViewBookingClosed();">
-                                                    Closed
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);" id="sidebarInquiryBtn" onclick="toggleSidebarMenu('sidebarInquiry', 'sidebarInquiryBtn')">
-                                        <i data-feather="help-circle"></i>
-                                        <span>Inquiry</span>
-                                        <span class="menu-arrow"></span>
+                                    <a href="#" onclick="changeDashboardViewMedArrivedi();">
+                                        <i data-feather="user-check"></i>
+                                        <span>Arrived Booking</span>
                                     </a>
-                                    <div class="sidebar-collapse" id="sidebarInquiry">
-                                        <ul class="nav-second-level">
-                                            <li>
-                                                <a href="#" class="tp-link" onclick="changeDashboardViewMessages();">
-                                                    Messages
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="tp-link" onclick="changeDashboardViewReplied();">
-                                                    Replied
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </li>
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewBookingClosed();">
+                                        <i data-feather="check-circle"></i>
+                                        <span>Closed Booking</span>
+                                    </a>
+                                </li>
+                                <li class="menu-title mt-2">Inquiry</li>
+
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewMessages();">
+                                        <i data-feather="mail"></i>
+                                        <span>New Messages</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewReplied();">
+                                        <i data-feather="send"></i>
+                                        <span>Replied Messages</span>
+                                    </a>
+                                </li>
+                                <li class="menu-title mt-2">Tours Customization</li>
                                 <li>
                                     <a href="../tour/adminindex.php?view=Tours">
                                         <i data-feather="map-pin"></i>
@@ -331,6 +318,8 @@ if (isset($_SESSION["adminuser"])) {
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
+                                <li class="menu-title mt-2">Others</li>
+
                                 <li>
                                     <a href="#" onclick="changeDashboardViewCompany();">
                                         <i data-feather="briefcase"></i>
