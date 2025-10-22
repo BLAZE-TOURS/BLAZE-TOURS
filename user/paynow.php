@@ -1,3 +1,13 @@
+<?php
+require_once 'assets/process/connection.php';
+
+// Load currencies for the selector
+$currency_rs = Database::search("SELECT id, currency, country, LKR FROM currency ORDER BY id ASC");
+$currencies = [];
+while ($c = $currency_rs->fetch_assoc()) {
+    $currencies[] = $c;
+}
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -99,32 +109,37 @@ Gallery Area
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8 col-sm-10">
                     <div class="card shadow-lg border-0 rounded-3 p-4">
+                        <!-- updated form -->
                         <form id="paymentForm" method="POST" action="processPayment.php">
-                            <div class="mb-3">
-                                <label for="fullName" class="form-label">Full Name</label>
-                                <input type="text" name="fullName" id="fullName" class="form-control" placeholder="Enter your full name" required>
-                            </div>
 
                             <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea name="description" id="description" class="form-control" placeholder="Enter description" rows="3" required></textarea>
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Enter email" required>
                             </div>
 
                             <div class="mb-4">
                                 <label for="currency" class="form-label">Currency</label>
-                                <select name="currency" id="currency" class="form-select" required>
-                                    <option value="" disabled selected>Select your currency</option>
-                                    <option value="LKR">🇱🇰 LKR - Sri Lankan Rupee</option>
-                                    <option value="USD">💵 USD - US Dollar</option>
-                                    <option value="EUR">💶 EUR - Euro</option>
-                                    <option value="GBP">💷 GBP - British Pound</option>
-                                    <option value="INR">🇮🇳 INR - Indian Rupee</option>
+                                <select name="currency_id" id="currency" class="form-select" required>
+                                    <!-- Add LKR as the top option (rate = 1) -->
+                                    <option value="LKR" data-code="LKR" data-rate="1" selected>LKR - Sri Lanka</option>
+                                    <?php foreach ($currencies as $c) : ?>
+                                        <option value="<?php echo htmlspecialchars($c['id']); ?>"
+                                                data-code="<?php echo htmlspecialchars($c['currency']); ?>"
+                                                data-rate="<?php echo htmlspecialchars($c['LKR']); ?>">
+                                            <?php echo htmlspecialchars($c['currency'] . ' - ' . $c['country']); ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
 
                             <div class="mb-3">
-                                <label for="amount" class="form-label">Amount</label>
-                                <input type="number" name="amount" id="amount" class="form-control" placeholder="Enter amount" required min="1" step="any">
+                                <label for="amount" class="form-label">Amount (in selected currency)</label>
+                                <input type="number" name="amount" id="amount" class="form-control" placeholder="Enter amount" required min="0.01" step="any">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="finalAmount" class="form-label">Final Amount (LKR)</label>
+                                <input type="text" id="finalAmount" class="form-control" readonly value="0.00" aria-readonly="true">
                             </div>
 
                             <div class="text-center">
@@ -133,11 +148,41 @@ Gallery Area
                                 </button>
                             </div>
                         </form>
+                        <!-- end updated form -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const currencySelect = document.getElementById('currency');
+            const amountInput = document.getElementById('amount');
+            const finalInput = document.getElementById('finalAmount');
+
+            function parseRate(option) {
+                if (!option) return 0;
+                const r = parseFloat(option.getAttribute('data-rate'));
+                return isFinite(r) ? r : 0;
+            }
+
+            function updateFinalAmount() {
+                const opt = currencySelect.options[currencySelect.selectedIndex];
+                const rate = parseRate(opt); // LKR per 1 unit of selected currency
+                const amt = parseFloat(amountInput.value) || 0;
+                const final = amt * rate;
+                // show with currency label
+                finalInput.value = 'LKR ' + (final ? final.toFixed(2) : '0.00');
+            }
+
+            if (currencySelect) currencySelect.addEventListener('change', updateFinalAmount);
+            if (amountInput) amountInput.addEventListener('input', updateFinalAmount);
+
+            // initialize
+            updateFinalAmount();
+        });
+    </script>
 
     <!--==============================
 	Footer Area
