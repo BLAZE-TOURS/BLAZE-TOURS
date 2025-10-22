@@ -142,7 +142,7 @@
                 <div class="col-md-6 text-end d-none d-md-block">
                     <div class="footer-card">
                         <span class="title">We Accept</span>
-                        <a href="https://www.payhere.lk" target="_blank"><img src="https://www.payhere.lk/downloads/images/payhere_long_banner_dark.png" alt="PayHere" width="400" /></a>
+                        <a href="https://www.payhere.lk" target="_blank"><img src="assets/img/payhere.png" alt="PayHere" width="400" /></a>
                     </div>
                 </div>
             </div>
