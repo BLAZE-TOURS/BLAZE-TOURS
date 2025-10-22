@@ -118,10 +118,27 @@ function changeDashboardViewStory() {
 }
 
 
+function changeDashboardViewCurrency() {
+    history.pushState(null, '', 'adminindex.php?view=Currency');
+    sessionStorage.setItem('currentView', 'Currency'); // Ensure key matches retrieval
+    hideAllContainers();
+    var gallaryContainer = document.getElementById('CurrencyContainer');
+    gallaryContainer.classList.remove('d-none');
+    gallaryContainer.style.display = 'block';
+}
+
+function changeDashboardViewPayout() {
+    history.pushState(null, '', 'adminindex.php?view=Payout');
+    sessionStorage.setItem('currentView', 'Payout'); // Ensure key matches retrieval
+    hideAllContainers();
+    var gallaryContainer = document.getElementById('PayoutContainer');
+    gallaryContainer.classList.remove('d-none');
+    gallaryContainer.style.display = 'block';
+}
 
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer', 'CloseDaysContainer', 'BookingClosedContainer'];
+    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer', 'CloseDaysContainer', 'BookingClosedContainer', 'CurrencyContainer' ,'PayoutContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -175,6 +192,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
             case 'Story': // Ensured correct key match
                 changeDashboardViewStory();
+                break;
+            case 'Currency': // Ensured correct key match
+                changeDashboardViewCurrency();
+                break;
+            case 'Payout': // Ensured correct key match
+                changeDashboardViewPayout();
                 break;
             default:
                 changeDashboardView();

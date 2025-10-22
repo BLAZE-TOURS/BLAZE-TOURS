@@ -289,6 +289,12 @@ if (isset($_SESSION["adminuser"])) {
                                         <span>Closed Booking</span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewPayout();">
+                                        <i data-feather="arrow-down-circle"></i>
+                                        <span>Payout</span>
+                                    </a>
+                                </li>
                                 <li class="menu-title mt-2">Inquiry</li>
 
                                 <li>
@@ -318,8 +324,14 @@ if (isset($_SESSION["adminuser"])) {
                                         <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewCurrency();">
+                                        <i data-feather="dollar-sign"></i>
+                                        <span>Currency</span>
+                                        <!-- <span class="menu-arrow"></span> -->
+                                    </a>
+                                </li>
                                 <li class="menu-title mt-2">Others</li>
-
                                 <li>
                                     <a href="#" onclick="changeDashboardViewCompany();">
                                         <i data-feather="briefcase"></i>
@@ -408,6 +420,10 @@ if (isset($_SESSION["adminuser"])) {
                 <div id="RepliedContainer" class="d-none"> <?php include 'fetchReplied.php'; ?> <?php include "../admin/RepliedBody.php"; ?> </div>
 
                 <div id="StoryContainer" class="d-none"> <?php include 'fetchStory.php'; ?> <?php include "../admin/storyBody.php"; ?> </div>
+
+                <div id="CurrencyContainer" class="d-none"> <?php include 'fetchCurrency.php'; ?> <?php include "../admin/currencyBody.php"; ?> </div>
+
+                <div id="PayoutContainer" class="d-none"> <?php include 'fetchPayout.php'; ?> <?php include "../admin/payoutBody.php"; ?> </div>
 
 
 
