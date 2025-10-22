@@ -915,9 +915,13 @@ tour Area
 
             async function fetchExchangeRate() {
                 try {
-                    const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+                    const response = await fetch('assets/process/getCurrencyRate.php');
                     const data = await response.json();
-                    usdToLkrRate = data.rates.LKR;
+                    if (data.success) {
+                        usdToLkrRate = data.rate;
+                    } else {
+                        usdToLkrRate = 320; // Fallback rate
+                    }
                     updateLKRPrice(parseFloat(totalPrice.textContent.replace('$', '')));
                 } catch (error) {
                     console.error('Error fetching exchange rate:', error);

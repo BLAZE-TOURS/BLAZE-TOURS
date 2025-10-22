@@ -49,4 +49,16 @@ class Database
         }
         return $resultset;
     }
+
+    // Function to get LKR rate from currency table
+    public static function getLKRRate()
+    {
+        Database::setUpConnection();
+        $result = Database::search("SELECT LKR FROM currency WHERE id = 1 LIMIT 1");
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return floatval($row['LKR']);
+        }
+        return 320.0; // Fallback rate if not found
+    }
 }
