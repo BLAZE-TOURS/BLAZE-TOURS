@@ -17,7 +17,7 @@ if ($order_id) {
 
         // Only load booking when it's present and status_id = 1 (PAID)
         $query = "
-            SELECT b.*, t.name AS tour_name
+            SELECT b.*, t.name AS tour_name, t.adult_price, t.kids_price
             FROM booking b
             LEFT JOIN tour t ON t.id = b.tour_id
             WHERE b.id = '{$orderIdEsc}' AND b.status_id = 1
@@ -70,16 +70,23 @@ if (!$order_id) {
         $children = (int)$bookingData['numberOfKidsCount'];
         $totalPrice = isset($bookingData['total_price_usd']) ? (float)$bookingData['total_price_usd'] : 0;
         $totalPriceLKR = isset($bookingData['total_price_lkr']) ? (float)$bookingData['total_price_lkr'] : 0;
-        $effectiveRate = ($totalPrice > 0 && $totalPriceLKR > 0) ? ($totalPriceLKR / $totalPrice) : 320.0;
+        $effectiveRate = ($totalPrice > 0 && $totalPriceLKR > 0) ? ($totalPriceLKR / $totalPrice) : Database::getLKRRate();
         $invoiceNo = $bookingData['id'];
 
-        $adultPrice = $adults > 0 ? $totalPrice / ($adults + $children) : 0;
-        $childPrice = $children > 0 ? $totalPrice / ($adults + $children) : 0;
+        // Use actual tour prices from database
+        $adultPrice = isset($bookingData['adult_price']) ? (float)$bookingData['adult_price'] : 0;
+        $childPrice = isset($bookingData['kids_price']) ? (float)$bookingData['kids_price'] : 0;
     }
 }
 
-if ($adultPrice == 0 && $adults > 0) $adultPrice = $totalPrice / $adults;
-if ($childPrice == 0 && $children > 0) $childPrice = $totalPrice / $children;
+// Fallback calculations for form-submitted invoices (if prices not provided)
+if ($adultPrice == 0 && $childPrice == 0 && $totalPrice > 0) {
+    $totalPeople = $adults + $children;
+    if ($totalPeople > 0) {
+        $adultPrice = $totalPrice / $totalPeople;
+        $childPrice = $totalPrice / $totalPeople;
+    }
+}
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -253,8 +260,8 @@ if ($childPrice == 0 && $children > 0) $childPrice = $totalPrice / $children;
                                         <thead class="table-light">
                                             <tr>
                                                 <th>Item</th>
-                                                <th class="text-center">Qty</th>
-                                                <th class="text-end">Unit Price (USD)</th>
+                                                <th class="text-center">People</th>
+                                                <th class="text-end">One Preson Price (USD)</th>
                                                 <th class="text-end">Amount (USD)</th>
                                                 <th class="text-end">Amount (LKR)</th>
                                             </tr>

@@ -69,23 +69,8 @@ try {
 		'totalUSD' => $totalUSD
 	]);
 
-	// Compute LKR server-side using a single consistent rate
-	$rate = 320.0;
-	try {
-		$ctx = stream_context_create(['http' => ['timeout' => 2]]);
-		$json = @file_get_contents('https://api.exchangerate-api.com/v4/latest/USD', false, $ctx);
-		if ($json !== false) {
-			$data = json_decode($json, true);
-			if (isset($data['rates']['LKR']) && is_numeric($data['rates']['LKR'])) {
-				$rateVal = floatval($data['rates']['LKR']);
-				if ($rateVal > 0) {
-					$rate = $rateVal;
-				}
-			}
-		}
-	} catch (Throwable $e) {
-		BlazeLogger::error('createBooking: rate fetch failed', ['error' => $e->getMessage()]);
-	}
+	// Compute LKR server-side using database rate
+	$rate = Database::getLKRRate();
 	$totalLKR = $totalUSD > 0 ? round($totalUSD * $rate, 2) : 0.0;
 	BlazeLogger::info('createBooking: computed totals', ['rate' => $rate, 'totalLKR' => $totalLKR]);
 
