@@ -130,15 +130,6 @@
       </div>
       <div class="modal-body">
         <div class="row g-3">
-          <div class="col-md-6">
-            <p><strong>Message ID:</strong> <span id="msg-id"></span></p>
-            <p><strong>Full Name:</strong> <span id="msg-name"></span></p>
-            <p><strong>Mobile:</strong> <span id="msg-mobile"></span></p>
-            <p><strong>Email:</strong> <span id="msg-email"></span></p>
-          </div>
-          <div class="col-md-6">
-            <p><strong>Date & Time:</strong> <span id="msg-datetime"></span></p>
-          </div>
           <div class="col-12">
             <p><strong>Message:</strong></p>
             <div class="border rounded p-3 bg-light">
