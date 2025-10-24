@@ -1,5 +1,31 @@
 <?php
-$tour_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+require_once 'assets/process/connection.php';
+
+// Get tour ID from URL
+$tour_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+// Validate tour exists and is active (status_id = 1)
+$valid_tour = false;
+if ($tour_id > 0) {
+    $tour_id_safe = Database::escape_string($tour_id);
+    $check_query = "SELECT status_id FROM tour WHERE id = '$tour_id_safe' LIMIT 1";
+    $result = Database::search($check_query);
+    
+    if ($result && $result->num_rows > 0) {
+        $tour = $result->fetch_assoc();
+        if ($tour['status_id'] == 1) {
+            $valid_tour = true;
+        }
+    }
+}
+
+// Redirect to tours page if tour is invalid or inactive
+if (!$valid_tour) {
+    header('Location: tours.php?error=' . urlencode('Tour not available'));
+    exit;
+}
+
+// Continue with rest of the file only if tour is valid
 include 'assets/process/fetchTour.php';
 ?>
 <!doctype html>
