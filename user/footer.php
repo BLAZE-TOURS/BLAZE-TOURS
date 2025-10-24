@@ -49,6 +49,7 @@
                                 <li><a href="about.php">About us</a></li>
                                 <li><a href="gallery.php">Gallery</a></li>
                                 <li><a href="contact.php">Contact Us</a></li>
+                                <li><a href="privacy.php">Privacy Policy</a></li>
                             </ul>
                         </div>
                     </div>
@@ -62,7 +63,6 @@
                                     <img src="assets/img/icon/phone.svg" alt="img">
                                 </div>
                                 <div class="details">
-                                    <p><a href="tel:+94713344399" class="info-box_link">+94713344399</a></p>
                                     <p><a href="tel:+94713344399" class="info-box_link">+94713344399</a></p>
                                 </div>
                             </div>
