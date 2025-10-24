@@ -1,0 +1,19 @@
+2025-10-24 06:12:28 [INFO] processPayment: started | {"post_data":{"email":"mandujayaweera2003@gmail.com","currency_id":"1","amount":"1"}}
+2025-10-24 06:12:28 [INFO] processPayment: payment record created | {"payment_id":"BLAZE98709","lkr_amount":100}
+2025-10-24 06:12:28 [INFO] processPayment: payhere hash generated | {"order_id":"BLAZE98709","amount":"100.00","currency":"LKR"}
+2025-10-24 08:33:58 [INFO] createBooking: request received | {"post_keys":["tourId","tourName","adults","children","adultPrice","childPrice","totalPriceUSD","totalPriceLKR","date","timeSlot","fullName","email","pickup","phone"]}
+2025-10-24 08:33:58 [INFO] createBooking: parsed input | {"name":"M. VinodKumar","email":"toursblaze@gmail.com","mobile":"+94714649447","tourId":12,"tourDate":"2025-10-27","timeSlot":"07:00:00","numAdults":3,"numKids":2,"totalUSD":7}
+2025-10-24 08:33:58 [INFO] createBooking: computed totals | {"rate":399,"totalLKR":2793}
+2025-10-24 08:33:58 [INFO] createBooking: generated id | {"id":"BLAZE251024608"}
+2025-10-24 08:33:58 [INFO] createBooking: inserted booking | {"id":"BLAZE251024608"}
+2025-10-24 08:33:58 [INFO] createBooking: payhere payload | {"order_id":"BLAZE251024608","amount":"2793.00","currency":"LKR"}
+2025-10-24 08:34:41 [INFO] markPaid: start | {"order_id":"BLAZE251024608","payment_id":null,"method":null}
+2025-10-24 08:34:41 [INFO] markPaid: update attempted | {"order_id":"BLAZE251024608","affected_rows":1}
+2025-10-24 12:41:46 [INFO] createBooking: request received | {"post_keys":["tourId","tourName","adults","children","adultPrice","childPrice","totalPriceUSD","totalPriceLKR","date","timeSlot","fullName","email","pickup","phone"]}
+2025-10-24 12:41:46 [INFO] createBooking: parsed input | {"name":"Lakshitha madumal","email":"mandujayaweera2003@gmail.com","mobile":"+94712654117","tourId":12,"tourDate":"2025-10-25","timeSlot":"07:00:00","numAdults":1,"numKids":0,"totalUSD":1}
+2025-10-24 12:41:46 [INFO] createBooking: computed totals | {"rate":399,"totalLKR":399}
+2025-10-24 12:41:46 [INFO] createBooking: generated id | {"id":"BLAZE251024093"}
+2025-10-24 12:41:46 [INFO] createBooking: inserted booking | {"id":"BLAZE251024093"}
+2025-10-24 12:41:46 [INFO] createBooking: payhere payload | {"order_id":"BLAZE251024093","amount":"399.00","currency":"LKR"}
+2025-10-24 12:42:35 [INFO] markPaid: start | {"order_id":"BLAZE251024093","payment_id":null,"method":null}
+2025-10-24 12:42:35 [INFO] markPaid: update attempted | {"order_id":"BLAZE251024093","affected_rows":1}
