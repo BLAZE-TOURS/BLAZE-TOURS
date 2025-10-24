@@ -4,17 +4,23 @@
     overflow: hidden;
     height: auto;
   }
+
   .review-text {
     display: block;
     transition: max-height 0.28s ease;
     white-space: normal;
-    max-height: 50px;      /* collapsed */
+    max-height: 50px;
+    /* collapsed */
     overflow: hidden;
     margin-right: 40px;
     word-break: break-word;
     line-height: 1.35;
   }
-  .review-text.expanded { /* expanded state; JS will manage max-height */ }
+
+  .review-text.expanded {
+    /* expanded state; JS will manage max-height */
+  }
+
   .toggle-review-btn {
     position: absolute;
     top: 6px;
@@ -28,9 +34,17 @@
   }
 
   /* Table: allow wrapping and remove horizontal scrollbar */
-  .table-responsive { overflow-x: hidden !important; }
-  #datatable-reply { table-layout: auto !important; width:100% !important; }
-  #datatable-reply th, #datatable-reply td {
+  .table-responsive {
+    overflow-x: hidden !important;
+  }
+
+  #datatable-reply {
+    table-layout: auto !important;
+    width: 100% !important;
+  }
+
+  #datatable-reply th,
+  #datatable-reply td {
     white-space: normal !important;
     vertical-align: top !important;
     word-break: break-word !important;
@@ -39,16 +53,22 @@
   }
 
   /* Make message column wider where possible (6th column) */
-  #datatable-reply td:nth-child(6), #datatable-reply th:nth-child(6) {
+  #datatable-reply td:nth-child(6),
+  #datatable-reply th:nth-child(6) {
     max-width: 540px;
     min-width: 220px;
   }
 
   @media (max-width: 992px) {
-    #datatable-reply td:nth-child(6), #datatable-reply th:nth-child(6) {
+
+    #datatable-reply td:nth-child(6),
+    #datatable-reply th:nth-child(6) {
       max-width: 300px;
     }
-    .review-text { max-height: 80px; }
+
+    .review-text {
+      max-height: 80px;
+    }
   }
 </style>
 
@@ -56,7 +76,7 @@
   <div class="row">
     <div class="col-12">
       <!-- Date Selector -->
-      
+
     </div>
   </div>
   <div class="row">
@@ -75,7 +95,6 @@
                   <th>Mobile</th>
                   <th>Email</th>
                   <th>Date & Time</th>
-                  <th>Message</th>
                   <th>Send Messages</th>
                 </tr>
               </thead>
@@ -91,26 +110,23 @@
                       <td><?php echo htmlspecialchars($row["mobile"]); ?></td>
                       <td><?php echo htmlspecialchars($row["email"]); ?></td>
                       <td class="message-date"><?php echo $row["dateTime"]; ?></td>
-                      <td>
-                        <div class="review-wrapper">
-                          <span class="review-text" id="review-text-<?php echo $row["id"]; ?>">
-                            <?php echo nl2br(htmlspecialchars($row["massage"])); ?>
-                          </span>
-                          <button class="toggle-review-btn" type="button" data-id="<?php echo $row["id"]; ?>" onclick="toggleReview(<?php echo $row['id']; ?>)">
-                            <i class="fas fa-plus"></i>
-                          </button>
-                        </div>
-                      </td>
+
                       <td>
                         <?php
-                          // build and encode the WhatsApp message text safely
-                          $waText = urlencode("Hello " . $row["fullName"] . ", Your inquiry has been resolved by Blaze Tours (Pvt) Ltd! Thank you for reaching out to us.");
+                        $waText = urlencode("Hello " . $row["fullName"] . ", Your inquiry has been resolved by Blaze Tours (Pvt) Ltd! Thank you for reaching out to us.");
                         ?>
-                        <a href="https://wa.me/<?php echo htmlspecialchars($row["mobile"]); ?>?text=<?php echo $waText; ?>"
-                          target="_blank"
-                          class="btn btn-success btn-sm">
-                          Send Message
-                        </a>
+
+                        <div class="btn-group" role="group" style="gap: 8px;">
+                          <button type="button" class="btn btn-info btn-sm" onclick='showMessageDetails(<?php echo json_encode($row); ?>)'>
+                            <i class="fas fa-eye"></i> View
+                          </button>
+
+                          <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=<?php echo $waText; ?>"
+                            target="_blank"
+                            class="btn btn-success btn-sm">
+                            <i class="fab fa-whatsapp"></i> Send
+                          </a>
+                        </div>
                       </td>
                     </tr>
                 <?php
@@ -126,58 +142,38 @@
   </div>
 </div>
 
+<!-- Message Only Modal -->
+<div class="modal fade" id="messageModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content border-0 shadow-sm">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title"><i class="fas fa-envelope-open-text me-2"></i>Message</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="review-wrapper position-relative">
+          <div id="msg-text" class="review-text bg-light rounded p-3" style="max-height: 200px; overflow-y: auto;">
+            <!-- message content goes here -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          <i class="fas fa-times"></i> Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-  // Smooth expand/collapse for long messages
-  function toggleReview(id) {
-    try {
-      const reviewText = document.getElementById('review-text-' + id);
-      const button = document.querySelector('[data-id="' + id + '"]');
-      if (!reviewText || !button) return;
+  function showMessageDetails(data) {
+    // Display only the message
+    document.getElementById('msg-text').innerHTML = data.massage ?
+      data.massage.replace(/\n/g, '<br>') :
+      '<em>No message content</em>';
 
-      const isExpanded = reviewText.classList.contains('expanded');
-
-      if (isExpanded) {
-        // collapse
-        reviewText.style.maxHeight = '50px';
-        reviewText.classList.remove('expanded');
-        button.innerHTML = '<i class="fas fa-plus"></i>';
-      } else {
-        // expand to full content height smoothly
-        // set maxHeight to scrollHeight px then mark expanded
-        const fullHeight = reviewText.scrollHeight;
-        reviewText.style.maxHeight = fullHeight + 'px';
-        reviewText.classList.add('expanded');
-        button.innerHTML = '<i class="fas fa-minus"></i>';
-
-        // after animation, remove inline maxHeight to allow reflow/responsive
-        reviewText.addEventListener('transitionend', function cleanup() {
-          if (reviewText.classList.contains('expanded')) {
-            reviewText.style.maxHeight = 'none';
-          }
-          reviewText.removeEventListener('transitionend', cleanup);
-        });
-      }
-    } catch (e) {
-      console.error('toggleReview error', e);
-    }
+    const modal = new bootstrap.Modal(document.getElementById('messageModal'));
+    modal.show();
   }
-
-  // Safe DataTables init (if DataTables is available)
-  document.addEventListener('DOMContentLoaded', function () {
-    try {
-      if (window.jQuery && $.fn.dataTable) {
-        if ($('#datatable-reply').length) {
-          $('#datatable-reply').DataTable({
-            responsive: true,
-            scrollX: false,
-            autoWidth: false,
-            lengthChange: false,
-            pageLength: 25
-          });
-        }
-      }
-    } catch (e) {
-      console.warn('DataTable init skipped or failed:', e);
-    }
-  });
 </script>

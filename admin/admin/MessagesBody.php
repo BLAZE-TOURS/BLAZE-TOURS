@@ -73,14 +73,11 @@
             <table id="datatable-Message" class="table table-striped table-bordered table-sm">
               <thead>
                 <tr class="Table-header">
-                  <th>#ID</th>
                   <th>Full Name</th>
                   <th>Mobile</th>
                   <th>Email</th>
                   <th>Date & Time</th>
-                  <th>Message</th>
-                  <th>Send Messages</th>
-                  <th>Mark as Read</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -90,32 +87,24 @@
                   while ($row = $msg_rs->fetch_assoc()) {
                 ?>
                     <tr class="text-center">
-                      <td><?php echo $row["id"]; ?></td>
                       <td><?php echo htmlspecialchars($row["fullName"]); ?></td>
                       <td><?php echo htmlspecialchars($row["mobile"]); ?></td>
                       <td><?php echo htmlspecialchars($row["email"]); ?></td>
                       <td class="message-date"><?php echo $row["dateTime"]; ?></td>
                       <td>
-                        <div class="review-wrapper">
-                          <span class="review-text" id="review-text-<?php echo $row["id"]; ?>">
-                            <?php echo nl2br(htmlspecialchars($row["massage"])); ?>
-                          </span>
-                          <button class="toggle-review-btn" type="button" data-id="<?php echo $row["id"]; ?>" onclick="toggleReview(<?php echo $row['id']; ?>)">
-                            <i class="fas fa-plus"></i>
+                        <div class="btn-group" role="group" style="gap: 8px;">
+                          <button type="button" class="btn btn-info btn-sm" onclick='showMessageDetails(<?php echo json_encode($row); ?>)'>
+                            <i class="fas fa-eye"></i> View
+                          </button>
+                          <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Hello%20<?php echo urlencode($row["fullName"]); ?>,%0A%0AThank%20you%20for%20reaching%20out.%20We%20have%20received%20your%20message%20and%20will%20get%20back%20to%20you%20shortly.%0A%0ABest%20regards,%0ABlaze Tours (Pvt) Ltd."
+                            target="_blank"
+                            class="btn btn-success btn-sm">
+                            <i class="fab fa-whatsapp"></i> Send
+                          </a>
+                          <button class="btn btn-sm btn-primary" onclick="markAsRead(<?php echo $row['id']; ?>);">
+                            <i class="fas fa-check"></i> Mark as Read
                           </button>
                         </div>
-                      </td>
-                      <td>
-                        <a href="https://wa.me/<?php echo $row["mobile"]; ?>?text=Hello%20<?php echo urlencode($row["fullName"]); ?>,%0A%0AThank%20you%20for%20reaching%20out.%20We%20have%20received%20your%20message%20and%20will%20get%20back%20to%20you%20shortly.%0A%0ABest%20regards,%0ABlaze Tours (Pvt) Ltd."
-                          target="_blank"
-                          class="btn btn-success btn-sm">
-                          Send Message
-                        </a>
-                      </td>
-                      <td>
-                        <button class="btn btn-sm btn-primary" onclick="markAsRead(<?php echo $row['id']; ?>);">
-                          Mark as Read
-                        </button>
                       </td>
                     </tr>
                 <?php
@@ -126,6 +115,40 @@
             </table>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Message Details Modal -->
+<div class="modal fade" id="messageModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Message Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <p><strong>Message ID:</strong> <span id="msg-id"></span></p>
+            <p><strong>Full Name:</strong> <span id="msg-name"></span></p>
+            <p><strong>Mobile:</strong> <span id="msg-mobile"></span></p>
+            <p><strong>Email:</strong> <span id="msg-email"></span></p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Date & Time:</strong> <span id="msg-datetime"></span></p>
+          </div>
+          <div class="col-12">
+            <p><strong>Message:</strong></p>
+            <div class="border rounded p-3 bg-light">
+              <span id="msg-text"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -220,5 +243,17 @@
         });
       }
     });
+  }
+
+  function showMessageDetails(data) {
+    document.getElementById('msg-id').textContent = data.id;
+    document.getElementById('msg-name').textContent = data.fullName;
+    document.getElementById('msg-mobile').textContent = data.mobile;
+    document.getElementById('msg-email').textContent = data.email;
+    document.getElementById('msg-datetime').textContent = data.dateTime;
+    document.getElementById('msg-text').innerHTML = data.massage ? data.massage.replace(/\n/g, '<br>') : '';
+
+    const modal = new bootstrap.Modal(document.getElementById('messageModal'));
+    modal.show();
   }
 </script>
