@@ -295,6 +295,33 @@ if (isset($_SESSION["adminuser"])) {
                                         <span>Payout</span>
                                     </a>
                                 </li>
+
+                                <li class="menu-title mt-2">Tours Customization</li>
+                                <li>
+                                    <a href="../tour/adminindex.php?view=Tours">
+                                        <i data-feather="map-pin"></i>
+                                        <span>Tours</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewCloseDays();">
+                                        <i data-feather="x-circle"></i>
+                                        <span>Close Days</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewCurrency();">
+                                        <i data-feather="dollar-sign"></i>
+                                        <span>Currency</span>
+                                    </a>
+                                </li>
+                                <li class="menu-title mt-2">Tools</li>
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewCreateInvoice();">
+                                        <i data-feather="file-text"></i>
+                                        <span>Create Invoice</span>
+                                    </a>
+                                </li>
                                 <li class="menu-title mt-2">Inquiry</li>
 
                                 <li>
@@ -310,40 +337,23 @@ if (isset($_SESSION["adminuser"])) {
                                         <span>Replied Messages</span>
                                     </a>
                                 </li>
-                                <li class="menu-title mt-2">Tours Customization</li>
-                                <li>
-                                    <a href="../tour/adminindex.php?view=Tours">
-                                        <i data-feather="map-pin"></i>
-                                        <span>Tours</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewCloseDays();">
-                                        <i data-feather="x-circle"></i>
-                                        <span>Close Days</span>
-                                        <!-- <span class="menu-arrow"></span> -->
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewCurrency();">
-                                        <i data-feather="dollar-sign"></i>
-                                        <span>Currency</span>
-                                        <!-- <span class="menu-arrow"></span> -->
-                                    </a>
-                                </li>
                                 <li class="menu-title mt-2">Others</li>
                                 <li>
+                                    <a href="#" onclick="changeDashboardViewGallary();">
+                                        <i data-feather="image"></i>
+                                        <span>Gallary</span>
+                                    </a>
+                                </li>
+                                <!-- <li>
                                     <a href="#" onclick="changeDashboardViewCompany();">
                                         <i data-feather="briefcase"></i>
                                         <span>Company</span>
-                                        <!-- <span class="menu-arrow"></span> -->
                                     </a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <a href="#" onclick="changeDashboardViewEmail();">
                                         <i data-feather="send"></i>
                                         <span>Send-Emails</span>
-                                        <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
 
@@ -351,23 +361,15 @@ if (isset($_SESSION["adminuser"])) {
                                     <a href="#" onclick="changeDashboardViewSubscribers();">
                                         <i data-feather="users"></i>
                                         <span>Subscribers</span>
-                                        <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
 
-                                <li>
-                                    <a href="#" onclick="changeDashboardViewGallary();">
-                                        <i data-feather="image"></i>
-                                        <span>Gallary</span>
-                                        <!-- <span class="menu-arrow"></span> -->
-                                    </a>
-                                </li>
 
-                                <li>
+
+                                <!-- <li>
                                     <a href="#" onclick="changeDashboardViewShorts();">
                                         <i data-feather="video"></i>
                                         <span>Shorts</span>
-                                        <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
 
@@ -375,15 +377,13 @@ if (isset($_SESSION["adminuser"])) {
                                     <a href="#" onclick="changeDashboardViewStory();">
                                         <i data-feather="book-open"></i>
                                         <span>Story</span>
-                                        <!-- <span class="menu-arrow"></span> -->
                                     </a>
-                                </li>
+                                </li> -->
 
                                 <li>
                                     <a style="color: red;" class="fw-bold" href="#" onclick="changeDashboardViewDonation();">
                                         <i data-feather="log-out"></i>
                                         <span onclick="signout();">Logout</span>
-                                        <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
                             </ul>
@@ -424,6 +424,8 @@ if (isset($_SESSION["adminuser"])) {
                 <div id="CurrencyContainer" class="d-none"> <?php include 'fetchCurrency.php'; ?> <?php include "../admin/currencyBody.php"; ?> </div>
 
                 <div id="PayoutContainer" class="d-none"> <?php include 'fetchPayout.php'; ?> <?php include "../admin/payoutBody.php"; ?> </div>
+
+                <div id="CreateInvoiceContainer" class="d-none"> <?php include "../admin/CreateInvoice.php"; ?> </div>
 
 
 
