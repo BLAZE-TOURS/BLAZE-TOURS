@@ -52,6 +52,9 @@ while ($c = $currency_rs->fetch_assoc()) {
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <!-- PayHere SDK -->
+    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+
     <!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
     <div class="elfsight-app-105fdd11-2a94-4811-b9aa-24f273aafc7e" data-elfsight-app-lazy></div>
@@ -59,46 +62,15 @@ while ($c = $currency_rs->fetch_assoc()) {
 </head>
 
 <body>
-
-
-    <!--==============================
-     Preloader
-  ==============================-->
-
-    <!-- <div id="preloader" class="preloader">
-        <div class="preloader-inner">
-        
-            <img src="assets/img/logo.svg" alt="Logo">
-            
-        
-            <div class="txt-loading">
-                <span preloader-text="W" class="characters">W</span>
-                <span preloader-text="A" class="characters">A</span>
-                <span preloader-text="I" class="characters">I</span>
-                <span preloader-text="T" class="characters">T</span>
-                <span preloader-text="." class="characters">.</span>
-                <span preloader-text="." class="characters">.</span>
-            </div>
-        </div>
-    </div>  -->
-
-    <div class="popup-search-box">
-        <button class="searchClose"><i class="fal fa-times"></i></button>
-        <form action="#">
-            <input type="text" placeholder="What are you looking for?">
-            <button type="submit"><i class="fal fa-search"></i></button>
-        </form>
-    </div><!--==============================
-   Header Area
-  ============================== -->
+    <?php
+    if (isset($_GET['status'])) {
+        echo "<script>
+            alert('" . htmlspecialchars($_GET['message'], ENT_QUOTES) . "');
+        </script>";
+    }
+    ?>
     <?php include 'header.php'; ?>
 
-    <!--==============================
-    Breadcumb
-============================== -->
-    <!--==============================
-Gallery Area  
-==============================-->
     <div class="overflow-hidden space" id="payment-sec">
         <div class="container">
             <div class="title-area mb-30 text-center">
@@ -110,22 +82,26 @@ Gallery Area
                 <div class="col-lg-6 col-md-8 col-sm-10">
                     <div class="card shadow-lg border-0 rounded-3 p-4">
                         <!-- updated form -->
-                        <form id="paymentForm" method="POST" action="processPayment.php">
+                        <form id="paymentForm" method="POST">
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email *</label>
                                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter email" required>
                             </div>
 
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description *</label>
+                                <textarea name="description" id="description" class="form-control" placeholder="Enter description" required rows="3"></textarea>
+                            </div>
+
                             <div class="mb-4">
                                 <label for="currency" class="form-label">Currency</label>
                                 <select name="currency_id" id="currency" class="form-select" required>
-                                    <!-- Add LKR as the top option (rate = 1) -->
-                                    <option value="LKR" data-code="LKR" data-rate="1" selected>LKR - Sri Lanka</option>
                                     <?php foreach ($currencies as $c) : ?>
                                         <option value="<?php echo htmlspecialchars($c['id']); ?>"
-                                                data-code="<?php echo htmlspecialchars($c['currency']); ?>"
-                                                data-rate="<?php echo htmlspecialchars($c['LKR']); ?>">
+                                            data-code="<?php echo htmlspecialchars($c['currency']); ?>"
+                                            data-rate="<?php echo htmlspecialchars($c['LKR']); ?>"
+                                            <?php echo ($c['currency'] === 'LKR') ? 'selected' : ''; ?>> <!-- Set LKR as selected -->
                                             <?php echo htmlspecialchars($c['currency'] . ' - ' . $c['country']); ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -142,10 +118,12 @@ Gallery Area
                                 <input type="text" id="finalAmount" class="form-control" readonly value="0.00" aria-readonly="true">
                             </div>
 
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary btn-lg w-100" style="border-radius: 10px;">
-                                    <i class="fas fa-lock me-2"></i>Pay Now
-                                </button>
+                            <div class="mb-3">
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-credit-card me-2"></i>Pay Now
+                                    </button>
+                                </div>
                             </div>
                         </form>
                         <!-- end updated form -->
@@ -156,7 +134,7 @@ Gallery Area
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const currencySelect = document.getElementById('currency');
             const amountInput = document.getElementById('amount');
             const finalInput = document.getElementById('finalAmount');
@@ -234,6 +212,9 @@ Gallery Area
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+
+    <!-- PayNow Payment Integration -->
+    <script src="paynow/paynow.js"></script>
 </body>
 
 </html>
