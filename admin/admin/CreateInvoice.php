@@ -471,7 +471,12 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                     subtotal_usd: subtotalUSD.textContent,
                                     subtotal_lkr: 'Rs. ' + lkrTotal.toFixed(2),
                                     discount_lkr: discount.toFixed(2),
-                                    final_total_lkr: finalTotal.toFixed(2)
+                                    final_total_lkr: finalTotal.toFixed(2),
+
+                                   // per-unit prices + rate so invoice can show per-line USD and LKR
+                                   adult_unit_price: (opt ? parseFloat(opt.getAttribute('data-adult') || 0) : 0),
+                                   kids_unit_price: (opt ? parseFloat(opt.getAttribute('data-kids') || 0) : 0),
+                                   usd_rate: usdToLkrRate
                                 };
 
                                 Swal.fire({
