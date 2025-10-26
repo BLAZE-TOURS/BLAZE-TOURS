@@ -235,9 +235,29 @@
             } else {
                 $subtotal_usd_num = $adult_amount_usd + $kids_amount_usd;
             }
-            $subtotal_lkr_num = isset($_POST['subtotal_lkr']) ? (float) preg_replace('/[^0-9.\-]/', '', $_POST['subtotal_lkr']) : ($adult_amount_lkr + $kids_amount_lkr);
-            $discount_lkr_num = (float)$discount_lkr;
-            $final_total_lkr_num = (float)$final_total_lkr;
+
+            // Fix for LKR amount parsing
+            $subtotal_lkr_num = 0.0;
+            if (isset($_POST['subtotal_lkr'])) {
+                // Remove "Rs. " prefix and any commas, then convert to float
+                $lkr_str = $_POST['subtotal_lkr'];
+                $lkr_str = str_replace('Rs. ', '', $lkr_str);
+                $lkr_str = str_replace(',', '', $lkr_str);
+                $subtotal_lkr_num = (float)$lkr_str;
+            } else {
+                $subtotal_lkr_num = $adult_amount_lkr + $kids_amount_lkr;
+            }
+
+            // Calculate direct LKR amounts
+            $adult_amount_lkr = $adult_amount_usd * $usd_rate_post;
+            $kids_amount_lkr = $kids_amount_usd * $usd_rate_post;
+
+            // Ensure proper decimal handling for all amounts
+            $adult_amount_lkr = round($adult_amount_lkr, 2);
+            $kids_amount_lkr = round($kids_amount_lkr, 2);
+            $subtotal_lkr_num = round($subtotal_lkr_num, 2);
+            $discount_lkr_num = round((float)$discount_lkr, 2);
+            $final_total_lkr_num = round((float)$final_total_lkr, 2);
             ?>
             <tbody>
                 <?php if ($adults > 0): ?>
