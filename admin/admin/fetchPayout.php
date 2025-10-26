@@ -6,6 +6,7 @@ $query = "
     SELECT 
         p.id,
         p.email,
+        p.description,
         p.amount,
         p.lkr_amount,
         p.createdAt,
@@ -27,4 +28,3 @@ while ($row = $result->fetch_assoc()) {
 }
 
 echo json_encode($paynow_list);
-?>

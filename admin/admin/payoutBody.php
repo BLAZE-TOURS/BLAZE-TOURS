@@ -13,9 +13,7 @@ while ($c = $currency_rs->fetch_assoc()) {
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h3 class="card-title text-center">Payment Payout List</h3>
-
-
+                    <h4 class="card-title text-center">All Payouts List</h4>
                     <!-- Add PayNow Section -->
                     <div class="mb-4">
                         <h4>Manual Payment</h4>
@@ -38,6 +36,11 @@ while ($c = $currency_rs->fetch_assoc()) {
                                     <div class="mb-3">
                                         <label for="pn_email" class="form-label">Email</label>
                                         <input type="email" id="pn_email" name="email" class="form-control" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="pn_description" class="form-label">Description</label>
++                                       <textarea id="pn_description" name="description" class="form-control" rows="2" placeholder="Description (required)" required></textarea>
                                     </div>
 
                                     <div class="mb-3">
@@ -73,26 +76,67 @@ while ($c = $currency_rs->fetch_assoc()) {
                         </div>
                     </div>
 
-                    <!-- Table Section -->
-                    <div class="table-responsive col-12 mx-auto mt-4">
-                        <table id="dataTablePayout" class="table table-striped table-bordered dt-responsive nowrap">
+                    <div class="table-responsive mt-3">
+                        <table class="table table-striped">
                             <thead>
-                                <tr class="Table-header">
-                                    <th>#ID</th>
+                                <tr>
+                                    <th>ID</th>
                                     <th>Email</th>
-                                    <th>Currency</th>
-                                    <th>Amount</th>
-                                    <th>LKR Amount</th>
+                                    <th>Amount (LKR)</th>
                                     <th>Status</th>
                                     <th>Created At</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody id="payoutTableBody">
-                                <!-- Data will be loaded by JS -->
+                                <!-- rows injected by assets/js/Payout.js -->
                             </tbody>
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Details modal (Bootstrap 5) -->
+<div class="modal fade" id="payoutDetailsModal" tabindex="-1" aria-labelledby="payoutDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="payoutDetailsModalLabel">Payout Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <dl class="row">
+                    <dt class="col-sm-4">ID</dt>
+                    <dd class="col-sm-8" id="pd_id">-</dd>
+
+                    <dt class="col-sm-4">Email</dt>
+                    <dd class="col-sm-8" id="pd_email">-</dd>
+
+                    <dt class="col-sm-4">Description</dt>
+                    <dd class="col-sm-8" id="pd_description">-</dd>
+
+                    <dt class="col-sm-4">Currency</dt>
+                    <dd class="col-sm-8" id="pd_currency">-</dd>
+
+                    <dt class="col-sm-4">Amount</dt>
+                    <dd class="col-sm-8" id="pd_amount">-</dd>
+
+                    <dt class="col-sm-4">Amount (LKR)</dt>
+                    <dd class="col-sm-8" id="pd_lkr_amount">-</dd>
+
+                    <dt class="col-sm-4">Status</dt>
+                    <dd class="col-sm-8" id="pd_status">-</dd>
+
+                    <dt class="col-sm-4">Created At</dt>
+                    <dd class="col-sm-8" id="pd_createdAt">-</dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <!-- optional: actions like mark-paid can be added here -->
             </div>
         </div>
     </div>
