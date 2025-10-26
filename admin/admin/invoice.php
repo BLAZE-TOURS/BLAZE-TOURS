@@ -61,6 +61,20 @@
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
+
+            /* Remove URL from bottom of printed page */
+            @page {
+                margin: 0;
+                size: auto;
+            }
+            
+            @page :footer {
+                display: none;
+            }
+            
+            @page :header {
+                display: none;
+            }
         }
 
         .invoice-header,
