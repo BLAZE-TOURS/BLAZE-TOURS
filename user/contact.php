@@ -123,7 +123,6 @@ Contact Area
                         <div class="about-contact-details">
                             <h6 class="box-title">Phone Number</h6>
                             <p class="about-contact-details-text"><a href="tel:01234567890">+94 71 334 4399</a></p>
-                            <p class="about-contact-details-text"><a href="tel:01234567890">+94 71 334 4399</a></p>
                         </div>
                     </div>
                 </div>

@@ -57,10 +57,9 @@ CREATE TABLE IF NOT EXISTS `booking` (
   CONSTRAINT `fk_booking_tour` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.booking: ~2 rows (approximately)
+-- Dumping data for table blaze-tours_db.booking: ~1 rows (approximately)
 INSERT INTO `booking` (`id`, `name`, `mobile`, `email`, `tourDate`, `time_slot`, `numberOfAdultCount`, `numberOfKidsCount`, `pickup_location`, `total_price_lkr`, `total_price_usd`, `status_id`, `tour_id`, `created_at`) VALUES
-	('BLAZE251020027', 'Lakshitha madumal', '+94712654117', 'mandujayaweera2003@gmail.com', '2025-10-22', '6:24 AM', 1, 0, 'wellawaya', 320, 1, 1, 15, '2025-10-20 14:04:02'),
-	('BLAZE251020883', 'Lakshitha madumal', '+94712654117', 'mandujayaweera2003@gmail.com', '2025-10-20', '6:24 AM', 1, 0, 'wellawaya', 320, 1, 4, 15, '2025-10-20 14:37:28');
+	('BLAZE251023912', 'Lakshitha madumal', '+94712654117', 'mandujayaweera2003@gmail.com', '2025-10-24', '6:24 AM', 1, 0, 'wellawaya', 100, 1, 1, 15, '2025-10-23 06:04:00');
 
 -- Dumping structure for table blaze-tours_db.closed_day
 CREATE TABLE IF NOT EXISTS `closed_day` (
@@ -70,8 +69,6 @@ CREATE TABLE IF NOT EXISTS `closed_day` (
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table blaze-tours_db.closed_day: ~0 rows (approximately)
-INSERT INTO `closed_day` (`id`, `date`) VALUES
-	(14, '2025-10-23');
 
 -- Dumping structure for table blaze-tours_db.company
 CREATE TABLE IF NOT EXISTS `company` (
@@ -103,11 +100,11 @@ CREATE TABLE IF NOT EXISTS `currency` (
 
 -- Dumping data for table blaze-tours_db.currency: ~6 rows (approximately)
 INSERT INTO `currency` (`id`, `currency`, `country`, `LKR`, `updatedAt`) VALUES
-	(1, 'USD', 'United States Dollar', 300, '2025-10-22'),
+	(1, 'USD', 'United States Dollar', 399, '2025-10-24'),
 	(2, 'EUR', 'Euro', 400, '2025-10-22'),
-	(3, 'GBP', 'British Pound', 0, '2025-10-22'),
-	(4, 'JPY', 'Japanese Yen', 0, '2025-10-22'),
-	(5, 'AUD', 'Australian Dollar', 0, '2025-10-22'),
+	(3, 'GBP', 'British Pound', 500, '2025-10-22'),
+	(4, 'JPY', 'Japanese Yen', 200, '2025-10-22'),
+	(5, 'AUD', 'Australian Dollar', 1111, '2025-10-22'),
 	(6, 'INR', 'Indian Rupee', 0, '2025-10-22');
 
 -- Dumping structure for table blaze-tours_db.gallary
@@ -130,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `highlight` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.highlight: ~16 rows (approximately)
+-- Dumping data for table blaze-tours_db.highlight: ~15 rows (approximately)
 INSERT INTO `highlight` (`id`, `name`) VALUES
 	(10, 'Pickup included'),
 	(11, 'Reserve Now & Pay Later Eligible'),
@@ -164,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `idx_highlight` (
   CONSTRAINT `fk_idx_highlight_tour1` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.idx_highlight: ~17 rows (approximately)
+-- Dumping data for table blaze-tours_db.idx_highlight: ~16 rows (approximately)
 INSERT INTO `idx_highlight` (`id`, `tour_id`, `highlight_id`) VALUES
 	(19, 10, 10),
 	(20, 10, 11),
@@ -199,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `idx_time` (
   CONSTRAINT `fk_idx_time_tour1` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.idx_time: ~24 rows (approximately)
+-- Dumping data for table blaze-tours_db.idx_time: ~23 rows (approximately)
 INSERT INTO `idx_time` (`id`, `tour_id`, `time_id`) VALUES
 	(29, 10, 11),
 	(30, 10, 12),
@@ -245,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   CONSTRAINT `fk_location_tour1` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.location: ~32 rows (approximately)
+-- Dumping data for table blaze-tours_db.location: ~31 rows (approximately)
 INSERT INTO `location` (`id`, `name`, `address`, `lat`, `lng`, `icon_url`, `description`, `stop_duration_time`, `tour_id`) VALUES
 	(26, 'Independence Square', '7 Independence Ave, Colombo 00700, Sri Lanka', 6.90476, 79.8672, 'images/marker/icon_686817e11c36c.ico', 'abc', 20, 10),
 	(27, 'Gangaramaya Temple', '61 Sri Jinarathana Rd, Colombo 00200, Sri Lanka', 6.91671, 79.8566, 'images/marker/icon_686817e11d7d3.ico', 'abc', 20, 10),
@@ -330,7 +327,9 @@ CREATE TABLE IF NOT EXISTS `paynow` (
   CONSTRAINT `fk_paynow_status1` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.paynow: ~0 rows (approximately)
+-- Dumping data for table blaze-tours_db.paynow: ~1 rows (approximately)
+INSERT INTO `paynow` (`id`, `email`, `currency_id`, `amount`, `lkr_amount`, `status_id`, `createdAt`) VALUES
+	('BLAZE98709', 'mandujayaweera2003@gmail.com', 1, 1, 100, 3, '2025-10-24 06:12:28');
 
 -- Dumping structure for table blaze-tours_db.rating_star
 CREATE TABLE IF NOT EXISTS `rating_star` (
@@ -411,7 +410,7 @@ CREATE TABLE IF NOT EXISTS `time` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.time: ~11 rows (approximately)
+-- Dumping data for table blaze-tours_db.time: ~10 rows (approximately)
 INSERT INTO `time` (`id`, `timeslot`) VALUES
 	(11, '07:00:00'),
 	(12, '08:00:00'),
@@ -449,7 +448,7 @@ CREATE TABLE IF NOT EXISTS `tour` (
   CONSTRAINT `fk_tour_tours_type1` FOREIGN KEY (`tours_type_id`) REFERENCES `tours_type` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.tour: ~7 rows (approximately)
+-- Dumping data for table blaze-tours_db.tour: ~8 rows (approximately)
 INSERT INTO `tour` (`id`, `name`, `description`, `duration`, `kids_price`, `adult_price`, `maximum_adult_count`, `maximum_kids_count`, `tours_type_id`, `status_id`) VALUES
 	(10, 'Private Safari Tour Exploring Sri Lanka\'s', 'voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur\r\n\r\n‍Whether you work from home or commute to a nearby office, the energy-efficient features of your home contribute to a productive and eco-conscious workday. Smart home systems allow you to monitor and control energy usage, ensuring that your environmental impact remains minimal.', 4, 30.5, 45.6, 6, 4, 1, 1),
 	(11, '3 Hour Private Colombo Street Food Tour', 'This private tour delivers: pairing you with a driver-guide who knows great local food stops and fun transport in Convertible tuk-tuk. Sampling Colombo’s street foods can be tricky without a local foodie host to point out favorite local eats and what they consist of. On this private tour, you gain the insider knowledge you need. Let a guide introduce you to food spots such as Pettah Market, together with treats such as cassava chips and samosas, so you end up truly eating like a local. Colombo’s streets to sample specialities like crab curry, sambol, and ice-cream, and as you taste and talk, learn secrets and snippets about Sri Lanka’s roadside dishes that most tourists never hear.', 3, 35, 39, 2, 4, 1, 1),
@@ -485,7 +484,7 @@ CREATE TABLE IF NOT EXISTS `tour_image` (
   CONSTRAINT `fk_tour_image_tour1` FOREIGN KEY (`tour_id`) REFERENCES `tour` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.tour_image: ~4 rows (approximately)
+-- Dumping data for table blaze-tours_db.tour_image: ~7 rows (approximately)
 INSERT INTO `tour_image` (`id`, `main_image`, `second_image`, `tour_id`) VALUES
 	(16, '../../assets/uploads/tour_images/main_686817e0e7bf1_private-tour.png', '../../assets/uploads/tour_images/second_686817e0e82dd_private-tour1.png', 10),
 	(18, '../../assets/uploads/tour_images/main_68be6aa046eec_97.jpg', '../../assets/uploads/tour_images/second_68be6aa04743b_10.jpg', 11),
@@ -510,7 +509,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   CONSTRAINT `fk_user_rating_star` FOREIGN KEY (`rating_star_id`) REFERENCES `rating_star` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table blaze-tours_db.user: ~2 rows (approximately)
+-- Dumping data for table blaze-tours_db.user: ~1 rows (approximately)
 INSERT INTO `user` (`id`, `email`, `mobile`, `first_name`, `last_name`, `review`, `date`, `rating_star_id`) VALUES
 	(10, 'mandujayaweera2003@gmail.com', '0000000000', 'Unknown', 'Contributor', 'No review has been posted.', '2025-10-21 15:37:37', 5),
 	(11, 'yafif99788@foxroids.com', '0000000000', 'Unknown', 'Contributor', 'No review has been posted.', '2025-10-21 15:51:32', 5);

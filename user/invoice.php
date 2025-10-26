@@ -106,36 +106,32 @@ if ($adultPrice == 0 && $childPrice == 0 && $totalPrice > 0) {
             border: 1px solid #e9ecef;
             border-radius: 12px;
             background: #fff;
+            position: relative; /* required for absolute seal/image */
         }
-
-        .invoice-header {
-            border-bottom: 1px solid #e9ecef;
-            padding: 20px;
+        /* Paid stamp image (low opacity on screen, stronger on print) */
+        .paid-seal-img {
+            position: absolute;
+            left: 50%;
+            top: 40px;
+            transform: translateX(-50%) rotate(-18deg);
+            width: 220px;
+            height: auto;
+            opacity: 0.15; /* reduced opacity for screen */
+            pointer-events: none;
+            z-index: 50;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
         }
-
-        .invoice-body {
-            padding: 20px;
+        @media print {
+            /* shift the stamp slightly to the right and make it more visible on print */
+            .paid-seal-img {
+                left: 78%;                      /* move origin to the right */
+                top: 36px;                      /* small vertical tweak for print */
+                transform: translateX(-40%) rotate(-18deg); /* smaller negative translate -> moves right */
+                opacity: 0.40;                  /* stronger on paper */
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
         }
-
-        .invoice-footer {
-            border-top: 1px solid #e9ecef;
-            padding: 20px;
-        }
-
-        .inv-title {
-            font-weight: 700;
-        }
-
-        .company-name {
-            font-weight: 800;
-            font-size: 1.1rem;
-        }
-
-        .totals-row {
-            font-weight: 700;
-            font-size: 1.05rem;
-        }
-
         @media print {
             .no-print {
                 display: none !important;
@@ -215,6 +211,14 @@ if ($adultPrice == 0 && $childPrice == 0 && $totalPrice > 0) {
 
                     <div id="invoiceArea">
                         <div class="invoice-card shadow-sm">
+                            <?php
+                                // Show paid stamp image for paid bookings
+                                $isPaid = ($bookingData && ( !empty($bookingData['payment_id']) || (isset($bookingData['status_id']) && (int)$bookingData['status_id'] === 1) ));
+                                if ($isPaid) {
+                                    // place your stamp image at assets/img/paid-stamp.png (add file if missing)
+                                    echo '<img src="./assets/img/paid.png" alt="PAID" class="paid-seal-img" />';
+                                }
+                            ?>
                             <div class="invoice-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
                                 <div class="text-start">
                                     <div class="company-name">BLAZE TOURS (PVT) LTD</div>

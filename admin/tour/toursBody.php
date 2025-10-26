@@ -3,18 +3,32 @@ include_once "fetchTours.php";
 ?>
 <style>
   /* Prevent horizontal scrollbar by allowing wrapping and tighter spacing */
-  .table-responsive { overflow-x: visible !important; }
-  #datatable-tourType { table-layout: auto !important; width: 100% !important; }
-  #datatable-tourType th, #datatable-tourType td {
+  .table-responsive {
+    overflow-x: visible !important;
+  }
+
+  #datatable-tourType {
+    table-layout: auto !important;
+    width: 100% !important;
+  }
+
+  #datatable-tourType th,
+  #datatable-tourType td {
     white-space: normal !important;
     word-break: break-word !important;
     vertical-align: middle;
     padding: 6px 8px;
     font-size: 0.92rem;
   }
+
   /* Smaller font / padding on smaller screens */
   @media (max-width: 1280px) {
-    #datatable-tourType th, #datatable-tourType td { font-size: 0.84rem; padding: 5px 6px; }
+
+    #datatable-tourType th,
+    #datatable-tourType td {
+      font-size: 0.84rem;
+      padding: 5px 6px;
+    }
   }
 
   /* Description expand/collapse styles */
@@ -22,18 +36,24 @@ include_once "fetchTours.php";
     position: relative;
     overflow: hidden;
   }
+
   .review-text {
     display: block;
     transition: max-height 0.28s ease;
     white-space: normal;
-    max-height: 48px; /* collapsed height */
+    max-height: 48px;
+    /* collapsed height */
     overflow: hidden;
     line-height: 1.35;
     word-break: break-word;
-    padding-right: 36px; /* space for button */
+    padding-right: 36px;
+    /* space for button */
     text-align: left;
   }
-  .review-text.expanded { /* expanded state handled by JS */ }
+
+  .review-text.expanded {
+    /* expanded state handled by JS */
+  }
 
   .toggle-review-btn {
     position: absolute;
@@ -49,129 +69,234 @@ include_once "fetchTours.php";
   }
 
   /* Column width hints (adjust indices as needed) */
-  #datatable-tourType td:nth-child(1), #datatable-tourType th:nth-child(1) { max-width: 90px; }
-  /* Make Tours Name (2nd column) narrower */
-  #datatable-tourType td:nth-child(2), #datatable-tourType th:nth-child(2) {
-    max-width: 140px;
-    min-width: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  /* Make Description (3rd column) wider */
-  #datatable-tourType td:nth-child(3), #datatable-tourType th:nth-child(3) {
-    max-width: 620px;
-    min-width: 320px;
+  /* Remove the tour name width restrictions and allow it to expand */
+  #datatable-tourType td:nth-child(2),
+  #datatable-tourType th:nth-child(2) {
+    min-width: 200px;
+    /* minimum width */
     white-space: normal;
+    /* allow text wrapping */
     word-break: break-word;
+    text-overflow: initial;
   }
-  #datatable-tourType td:nth-child(6), #datatable-tourType th:nth-child(6) { max-width: 120px; } /* adult price */
-  #datatable-tourType .btn, #datatable-tourType .badge { white-space: normal; display: inline-block; }
+
+  /* Adjust other column widths */
+  #datatable-tourType td:nth-child(1),
+  #datatable-tourType th:nth-child(1) {
+    width: 80px;
+  }
+
+  /* ID column */
+  #datatable-tourType td:nth-child(3),
+  #datatable-tourType th:nth-child(3) {
+    width: 100px;
+  }
+
+  /* Status column */
+  #datatable-tourType td:nth-child(4),
+  #datatable-tourType th:nth-child(4) {
+    width: 180px;
+  }
+
+  /* Action column */
+
+  #datatable-tourType td:nth-child(6),
+  #datatable-tourType th:nth-child(6) {
+    max-width: 120px;
+  }
+
+  /* adult price */
+  #datatable-tourType .btn,
+  #datatable-tourType .badge {
+    white-space: normal;
+    display: inline-block;
+  }
 </style>
 
 <div class="content-page mt-5 fade-in">
 
-    <div class="row justify-content-center mt-2">
-        <div class="col-md-12">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h3 class="card-title text-center">Tour List</h3>
-                    <div class="table-responsive col-12 mx-auto mb-5">
-                        <table id="datatable-tourType" class="table table-striped table-bordered table-sm">
-                            <thead>
-                                <tr class="Table-header">
-                                    <th>#ID</th>
-                                    <th>Tours Name</th>
-                                    <th>Description</th>
-                                    <th>Duration</th>
-                                    <th>Kids Price</th>
-                                    <th>Adult Price</th>
-                                    <th>Maximum Adult Count</th>
-                                    <th>Maximum Kids Count</th>
-                                    <th>Tours Type</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                if ($tours_n > 0) {
-                                    while ($row = $tours_rs->fetch_assoc()) {
-                                        // Status badge color
-                                        $status_badge = '';
-                                        if ($row['status_id'] == 1) {
-                                            $status_badge = '<span class="badge bg-success">Active</span>';
-                                        } else if ($row['status_id'] == 2) {
-                                            $status_badge = '<span class="badge bg-danger">Inactive</span>';
-                                        } else if ($row['status_id'] == 3) {
-                                            $status_badge = '<span class="badge bg-warning">Processing</span>';
-                                        }
-                                ?>
-                                        <tr class="text-center">
-                                            <td><?php echo $row["id"]; ?></td>
-                                            <td><?php echo htmlspecialchars($row["name"]); ?></td>
-                                            <td class="text-start">
-                                              <div class="review-wrapper">
-                                                <span class="review-text" id="desc-text-<?php echo $row['id']; ?>">
-                                                  <?php echo nl2br(htmlspecialchars($row["description"])); ?>
-                                                </span>
-                                                <button class="toggle-review-btn" type="button" data-id="<?php echo $row['id']; ?>" onclick="toggleDescription(<?php echo $row['id']; ?>)">
-                                                  <i class="fas fa-plus"></i>
-                                                </button>
-                                              </div>
-                                            </td>
-                                            <td><?php echo htmlspecialchars($row["duration"]); ?></td>
-                                            <td><?php echo htmlspecialchars($row["kids_price"]); ?></td>
-                                            <td><?php echo htmlspecialchars($row["adult_price"]); ?></td>
-                                            <td><?php echo htmlspecialchars($row["maximum_adult_count"]); ?></td>
-                                            <td><?php echo htmlspecialchars($row["maximum_kids_count"]); ?></td>
-                                            <td><?php echo htmlspecialchars($row["tours_type_name"]); ?></td>
-                                            <td><?php echo $status_badge; ?></td>
-                                            <td>
-                                                <button class="btn btn-sm btn-primary edit-btn" onclick="changeStatusTours(<?php echo $row['id']; ?>);" <?php echo ($row['status_id'] == 3) ? 'disabled' : ''; ?>>
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                <?php
-                                    }
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+  <div class="row justify-content-center mt-2">
+    <div class="col-md-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title text-center">Tour List</h3>
+          <div class="table-responsive col-12 mx-auto mb-5">
+            <table id="datatable-tourType" class="table table-striped table-bordered table-sm">
+              <thead>
+                <tr class="Table-header">
+                  <th>#ID</th>
+                  <th>Tours Name</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                if ($tours_n > 0) {
+                  while ($row = $tours_rs->fetch_assoc()) {
+                    $status_badge = '';
+                    if ($row['status_id'] == 1) {
+                      $status_badge = '<span class="badge bg-success">Active</span>';
+                    } else if ($row['status_id'] == 2) {
+                      $status_badge = '<span class="badge bg-danger">Inactive</span>';
+                    } else if ($row['status_id'] == 3) {
+                      $status_badge = '<span class="badge bg-warning">Processing</span>';
+                    }
+                ?>
+                    <tr class="text-center">
+                      <td><?php echo $row["id"]; ?></td>
+                      <td><?php echo htmlspecialchars($row["name"]); ?></td>
+                      <td><?php echo $status_badge; ?></td>
+                      <td>
+                        <div class="btn-group" role="group" style="gap: 8px;">
+                          <button type="button" class="btn btn-info btn-sm"
+                            onclick='showTourDetails(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)'>
+                            <i class="fas fa-eye"></i> View
+                          </button>
+                          <button class="btn btn-sm btn-primary"
+                            onclick="changeStatusTours(<?php echo $row['id']; ?>);"
+                            <?php echo ($row['status_id'] == 3) ? 'disabled' : ''; ?>>
+                            <i class="fas fa-sync-alt"></i> Change Status
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                <?php
+                  }
+                }
+                ?>
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- Safe DataTables init: enable responsive behavior, disable horizontal scrolling -->
+<!-- Tour Details Modal -->
+<div class="modal fade" id="tourDetailsModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tour Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <p><strong>Tour ID:</strong> <span id="tour-id"></span></p>
+            <p><strong>Name:</strong> <span id="tour-name"></span></p>
+            <p><strong>Type:</strong> <span id="tour-type"></span></p>
+            <p><strong>Duration:</strong> <span id="tour-duration"></span> Hours</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Adult Price:</strong> $<span id="tour-adult-price"></span></p>
+            <p><strong>Kids Price:</strong> $<span id="tour-kids-price"></span></p>
+            <p><strong>Max Adults:</strong> <span id="tour-max-adults"></span></p>
+            <p><strong>Max Kids:</strong> <span id="tour-max-kids"></span></p>
+          </div>
+          <div class="col-12">
+            <p><strong>Description:</strong></p>
+            <div class="border rounded p-3 bg-light mb-3">
+              <span id="tour-description"></span>
+            </div>
+          </div>
+
+          <!-- Time Slots Section -->
+          <div class="col-12">
+            <p><strong>Time Slots:</strong></p>
+            <div id="tour-timeslots" class="d-flex flex-wrap gap-2"></div>
+          </div>
+
+          <!-- Highlights Section -->
+          <div class="col-12">
+            <p><strong>Highlights:</strong></p>
+            <div id="tour-highlights" class="d-flex flex-wrap gap-2"></div>
+          </div>
+
+          <!-- Locations Section -->
+          <div class="col-12">
+            <p><strong>Locations & Duration:</strong></p>
+            <div id="tour-locations" class="list-group list-group-flush border rounded"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Consolidated script block for Tour Details and DataTable initialization -->
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    try {
-      if (window.jQuery && $.fn.dataTable) {
-        if ($('#datatable-tourType').length) {
-          $('#datatable-tourType').DataTable({
-            responsive: true,
-            scrollX: false,
-            autoWidth: false,
-            lengthChange: false,
-            pageLength: 20,
-            columnDefs: [
-              { orderable: false, targets: -1 }, // disable ordering on Action column
-              { targets: 1, width: '140px' },     // Tours Name (2nd col) narrower
-              { targets: 2, width: '420px' }      // Description (3rd col) wider
-            ]
-          });
-        }
-      }
-    } catch (e) {
-      console.warn('DataTable init skipped or failed:', e);
+  // Tour details modal handler
+  function showTourDetails(data) {
+    // Initialize modal if needed
+    const modal = new bootstrap.Modal(document.getElementById('tourDetailsModal'));
+
+    // Populate basic fields
+    document.getElementById('tour-id').textContent = data.id;
+    document.getElementById('tour-name').textContent = data.name;
+    document.getElementById('tour-type').textContent = data.tours_type_name;
+    document.getElementById('tour-duration').textContent = data.duration;
+    document.getElementById('tour-adult-price').textContent = data.adult_price;
+    document.getElementById('tour-kids-price').textContent = data.kids_price;
+    document.getElementById('tour-max-adults').textContent = data.maximum_adult_count;
+    document.getElementById('tour-max-kids').textContent = data.maximum_kids_count;
+    document.getElementById('tour-description').innerHTML = data.description ? data.description.replace(/\n/g, '<br>') : '';
+
+    // Populate Time Slots
+    const timeSlotsDiv = document.getElementById('tour-timeslots');
+    timeSlotsDiv.innerHTML = '';
+    if (data.time_slots) {
+      data.time_slots.split(',').forEach(time => {
+        const badge = document.createElement('span');
+        badge.className = 'badge bg-info';
+        badge.textContent = time;
+        timeSlotsDiv.appendChild(badge);
+      });
+    } else {
+      timeSlotsDiv.innerHTML = '<em>No time slots available</em>';
     }
-  });
-</script>
-<script>
+
+    // Populate Highlights
+    const highlightsDiv = document.getElementById('tour-highlights');
+    highlightsDiv.innerHTML = '';
+    if (data.highlights) {
+      data.highlights.split(',').forEach(highlight => {
+        const badge = document.createElement('span');
+        badge.className = 'badge bg-success';
+        badge.textContent = highlight;
+        highlightsDiv.appendChild(badge);
+      });
+    } else {
+      highlightsDiv.innerHTML = '<em>No highlights available</em>';
+    }
+
+    // Populate Locations
+    const locationsDiv = document.getElementById('tour-locations');
+    locationsDiv.innerHTML = '';
+    if (data.locations) {
+      data.locations.split(',').forEach(loc => {
+        const [name, duration] = loc.split('|');
+        const item = document.createElement('div');
+        item.className = 'list-group-item d-flex justify-content-between align-items-center';
+        item.innerHTML = `
+          <span>${name}</span>
+          <span class="badge bg-info">${duration} mins</span>
+        `;
+        locationsDiv.appendChild(item);
+      });
+    } else {
+      locationsDiv.innerHTML = '<em>No locations available</em>';
+    }
+
+    // Show modal
+    modal.show();
+  }
+
   // Expand / collapse Description text smoothly
   function toggleDescription(id) {
     try {
@@ -200,4 +325,36 @@ include_once "fetchTours.php";
       console.error('toggleDescription error', e);
     }
   }
+
+  // Single DataTable initialization
+  document.addEventListener('DOMContentLoaded', function() {
+    try {
+      if (window.jQuery && $.fn.dataTable) {
+        if ($('#datatable-tourType').length) {
+          $('#datatable-tourType').DataTable({
+            responsive: true,
+            scrollX: false,
+            autoWidth: true, // changed to true
+            lengthChange: false,
+            pageLength: 20,
+            columnDefs: [{
+                orderable: false,
+                targets: -1
+              }, // disable ordering on Action column
+              {
+                targets: 1,
+                width: null
+              }, // removed fixed width for Tours Name
+              {
+                targets: 2,
+                width: '100px'
+              } // Status column width
+            ]
+          });
+        }
+      }
+    } catch (e) {
+      console.warn('DataTable init failed:', e);
+    }
+  });
 </script>

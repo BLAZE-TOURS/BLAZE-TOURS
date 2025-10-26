@@ -42,8 +42,8 @@
                     <div class="header-right">
                         <div class="header-links">
                             <ul>
-                                <li class="d-none d-md-inline-block"><a href="#">FAQ</a></li>
-                                <li class="d-none d-md-inline-block"><a href="#">Support</a></li>
+                                <li class="d-none d-md-inline-block"><a href="privacy.php">Privacy Policy</a></li>
+                                <li class="d-none d-md-inline-block"><a href="contact.php">Support</a></li>
                                 </li>
                             </ul>
                         </div>

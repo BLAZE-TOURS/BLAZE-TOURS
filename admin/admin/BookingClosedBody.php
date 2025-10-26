@@ -43,68 +43,41 @@
 
         <div class="card-body">
           <div class="table-responsive">
-            <table id="datatableMedi" class="table table-striped table-bordered table-sm">
+            <table id="datatableMediClosed" class="table table-striped table-bordered table-sm">
               <thead>
                 <tr class="Table-header">
-                  <th>#ID</th>
                   <th>Full Name</th>
                   <th>Mobile</th>
-                  <th>Email</th>
-                  <th>Tour Date</th>
-                  <th>Time Slot</th>
-                  <th>Adult Count</th>
-                  <th>Kids Count</th>
-                  <th>Pickup Location</th>
                   <th>Tour Name</th>
+                  <th>Tour Date</th>
                   <th>Total Price</th>
-                  <th>Created At</th>
-                  <th>Status</th>
-                  <th>Send Whatsapp Message</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <?php
-                // use variables from fetchBookingClosed.php
-                if (isset($booking_n) && $booking_n > 0) {
-                  while ($row = $booking_rs->fetch_assoc()) {
-                ?>
+                <?php if (isset($booking_n) && $booking_n > 0) {
+                  while ($row = $booking_rs->fetch_assoc()) { ?>
                     <tr class="text-center">
-                      <td><?php echo htmlspecialchars($row["id"]); ?></td>
-                      <td><?php echo htmlspecialchars($row["name"]); ?></td>
+                      <td class="text-start"><?php echo htmlspecialchars($row["name"]); ?></td>
                       <td><?php echo htmlspecialchars($row["mobile"]); ?></td>
-                      <td><?php echo htmlspecialchars($row["email"]); ?></td>
+                      <td class="text-start"><?php echo htmlspecialchars($row["tours_type_name"]); ?></td>
                       <td class="booking-date"><?php echo htmlspecialchars($row["tourDate"]); ?></td>
-                      <td><?php echo htmlspecialchars($row["time_slot"]); ?></td>
-                      <td><?php echo (int)$row["numberOfAdultCount"]; ?></td>
-                      <td><?php echo (int)$row["numberOfKidsCount"]; ?></td>
-                      <td><?php echo htmlspecialchars($row["pickup_location"]); ?></td>
-                      <td><?php echo htmlspecialchars($row["tours_type_name"]); ?></td>
                       <td>$ <?php echo htmlspecialchars($row["total_price_usd"]); ?> (Rs. <?php echo htmlspecialchars($row["total_price_lkr"]); ?>)</td>
-                      <td><?php echo htmlspecialchars($row["created_at"]); ?></td>
                       <td>
-                        <?php
-                          $s = (int)$row['status_id'];
-                          if ($s === 2) {
-                              echo '<span class="badge bg-danger">Closed</span>';
-                          } elseif ($s === 3) {
-                              echo '<span class="badge bg-warning">Processing</span>';
-                          } else {
-                              echo '<span class="badge bg-light text-dark">#' . $s . '</span>';
-                          }
-                        ?>
-                      </td>
-                      <td>
-                        <a href="https://wa.me/<?php echo urlencode($row["mobile"]); ?>?text=Hello"
-                          target="_blank"
-                          class="btn btn-success btn-sm">
-                          Send Message
-                        </a>
+                        <div class="btn-group" role="group" style="gap:8px;">
+                          <button type="button" class="btn btn-info btn-sm"
+                            onclick='showDetailsClosed(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)'>
+                            <i class="fas fa-info-circle"></i> More
+                          </button>
+                          <a href="https://wa.me/<?php echo urlencode($row["mobile"]); ?>?text=<?php echo urlencode("Hello ".$row["name"]); ?>"
+                            target="_blank" class="btn btn-success btn-sm">
+                            <i class="fab fa-whatsapp"></i> Send
+                          </a>
+                        </div>
                       </td>
                     </tr>
-                <?php
-                  }
-                }
-                ?>
+                <?php }
+                } ?>
               </tbody>
             </table>
           </div>
@@ -113,6 +86,40 @@
     </div>
   </div>
 </div>
+</div>
+
+<!-- Details Modal (Closed) -->
+<div class="modal fade" id="detailsModalClosed" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Booking Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <p><strong>Booking ID:</strong> <span id="cl-id"></span></p>
+            <p><strong>Name:</strong> <span id="cl-name"></span></p>
+            <p><strong>Mobile:</strong> <span id="cl-mobile"></span></p>
+            <p><strong>Email:</strong> <span id="cl-email"></span></p>
+            <p><strong>Tour Date:</strong> <span id="cl-tourDate"></span></p>
+            <p><strong>Time Slot:</strong> <span id="cl-timeSlot"></span></p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>Adults:</strong> <span id="cl-adults"></span></p>
+            <p><strong>Kids:</strong> <span id="cl-kids"></span></p>
+            <p><strong>Pickup:</strong> <span id="cl-pickup"></span></p>
+            <p><strong>Tour:</strong> <span id="cl-tourName"></span></p>
+            <p><strong>Total Price:</strong> <span id="cl-price"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -128,6 +135,23 @@
       reviewText.style.height = "auto"; // Expand to show full review
       button.innerHTML = '<i class="fas fa-minus"></i>'; // Change to "-" icon
     }
+  }
+
+  function showDetailsClosed(data) {
+    document.getElementById('cl-id').textContent = data.id || '-';
+    document.getElementById('cl-name').textContent = data.name || '-';
+    document.getElementById('cl-mobile').textContent = data.mobile || '-';
+    document.getElementById('cl-email').textContent = data.email || '-';
+    document.getElementById('cl-tourDate').textContent = data.tourDate || '-';
+    document.getElementById('cl-timeSlot').textContent = data.time_slot || '-';
+    document.getElementById('cl-adults').textContent = data.numberOfAdultCount ?? '-';
+    document.getElementById('cl-kids').textContent = data.numberOfKidsCount ?? '-';
+    document.getElementById('cl-pickup').textContent = data.pickup_location || '-';
+    document.getElementById('cl-tourName').textContent = data.tours_type_name || '-';
+    document.getElementById('cl-price').textContent = ('$ ' + (data.total_price_usd ?? '-') + ' (Rs. ' + (data.total_price_lkr ?? '-') + ')');
+
+    const modal = new bootstrap.Modal(document.getElementById('detailsModalClosed'));
+    modal.show();
   }
 
   // // Date filter for the booking table

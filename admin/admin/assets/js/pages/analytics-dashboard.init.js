@@ -1,1 +1,125 @@
-"use strict";var options={chart:{type:"area",fontFamily:"inherit",height:45,sparkline:{enabled:!0},animations:{enabled:!1}},dataLabels:{enabled:!1},fill:{opacity:.16,type:"solid"},stroke:{width:2,lineCap:"round",curve:"smooth"},series:[{name:"Profits",data:[63,16,8,22,20,7,26,10,63,5,25,19,16,11,16,1,37,23,31,1,24,15,2,17,5,25,19,16,11,28]}],tooltip:{theme:"light"},grid:{strokeDashArray:4},xaxis:{labels:{padding:0},tooltip:{enabled:!1},axisBorder:{show:!1},type:"datetime"},yaxis:{labels:{padding:4}},labels:["2020-06-21","2020-06-22","2020-06-23","2020-06-24","2020-06-25","2020-06-26","2020-06-27","2020-06-28","2020-06-29","2020-06-30","2020-07-01","2020-07-02","2020-07-03","2020-07-04","2020-07-05","2020-07-06","2020-07-07","2020-07-08","2020-07-09","2020-07-10","2020-07-11","2020-07-12","2020-07-13","2020-07-14","2020-07-15","2020-07-16","2020-07-17","2020-07-18","2020-07-19","2020-07-20"],colors:["#537AEF"],legend:{show:!1}},chart=new ApexCharts(document.querySelector("#website-visitors"),options);chart.render();options={chart:{type:"area",fontFamily:"inherit",height:45,sparkline:{enabled:!0},animations:{enabled:!1}},dataLabels:{enabled:!1},fill:{opacity:.16,type:"solid"},stroke:{width:2,lineCap:"round",curve:"smooth"},series:[{name:"Profits",data:[27,21,18,24,29,19,23,3,20,26,12,28,25,37,12,18,21,18,24,29,19,17,10,34,9,22,8,31,18,27]}],tooltip:{theme:"light"},grid:{strokeDashArray:4},xaxis:{labels:{padding:0},tooltip:{enabled:!1},axisBorder:{show:!1},type:"datetime"},yaxis:{labels:{padding:4}},labels:["2020-06-21","2020-06-22","2020-06-23","2020-06-24","2020-06-25","2020-06-26","2020-06-27","2020-06-28","2020-06-29","2020-06-30","2020-07-01","2020-07-02","2020-07-03","2020-07-04","2020-07-05","2020-07-06","2020-07-07","2020-07-08","2020-07-09","2020-07-10","2020-07-11","2020-07-12","2020-07-13","2020-07-14","2020-07-15","2020-07-16","2020-07-17","2020-07-18","2020-07-19","2020-07-20"],colors:["#ec8290"],legend:{show:!1}};(chart=new ApexCharts(document.querySelector("#conversion-visitors"),options)).render();options={chart:{type:"line",height:45,sparkline:{enabled:!0},animations:{enabled:!1}},fill:{opacity:1},stroke:{width:[2],dashArray:[0,3],lineCap:"round",curve:"smooth"},series:[{name:"May",data:[40,51,62,70,65,53,51,46,62,93,62,61,51,62,51,66,70,53,62,44,53,46,40,65,55,62,70,75,78,80]}],tooltip:{theme:"light"},grid:{strokeDashArray:4},xaxis:{labels:{padding:0},tooltip:{enabled:!1},type:"datetime"},yaxis:{labels:{padding:4}},labels:["2020-06-21","2020-06-22","2020-06-23","2020-06-24","2020-06-25","2020-06-26","2020-06-27","2020-06-28","2020-06-29","2020-06-30","2020-07-01","2020-07-02","2020-07-03","2020-07-04","2020-07-05","2020-07-06","2020-07-07","2020-07-08","2020-07-09","2020-07-10","2020-07-11","2020-07-12","2020-07-13","2020-07-14","2020-07-15","2020-07-16","2020-07-17","2020-07-18","2020-07-19","2020-07-20"],colors:["#537AEF","#343a40"],legend:{show:!1}};(chart=new ApexCharts(document.querySelector("#session-visitors"),options)).render();var options={series:[{data:[40,30,38,47,42,36,47,75,65,42,35,48,46,55,24]}],chart:{height:45,type:"bar",sparkline:{enabled:!0},animations:{enabled:!1}},colors:["#537AEF"],plotOptions:{bar:{columnWidth:"35%",borderRadius:3}},dataLabels:{enabled:!1},fill:{opacity:1},grid:{strokeDashArray:4},labels:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],xaxis:{crosshairs:{width:1}},yaxis:{labels:{padding:4}},tooltip:{theme:"light"},legend:{show:!1}},chartOne=new ApexCharts(document.querySelector("#active-users"),options);chartOne.render();options={chart:{type:"bar",height:307,parentHeightOffset:0,toolbar:{show:!1}},colors:["#537AEF"],series:[{name:"Sales",data:[145,96,108,140,130,150,170,138,114,128,138]}],fill:{opacity:1},plotOptions:{bar:{columnWidth:"50%",borderRadius:4,borderRadiusApplication:"end",borderRadiusWhenStacked:"last",dataLabels:{position:"top",orientation:"vertical"}}},grid:{strokeDashArray:4,padding:{top:-20,right:0,bottom:-4},xaxis:{lines:{show:!0}}},xaxis:{type:"datetime",categories:["01/01/2024","02/01/2024","03/01/2024","04/01/2024","05/01/2024","06/01/2024","07/01/2024","08/01/2024","09/01/2024","10/01/2024","11/01/2024"],axisTicks:{color:"#f0f4f7"}},yaxis:{title:{text:"Number of Sales",style:{fontSize:"12px",fontWeight:600}}},tooltip:{theme:"light"},legend:{position:"top",show:!0,horizontalAlign:"center"},stroke:{width:0},dataLabels:{enabled:!1},theme:{mode:"light"}};(chartOne=new ApexCharts(document.querySelector("#monthly-sales"),options)).render();options={series:[{name:"Fri",data:[{y:18,x:"12 AM"},{y:6,x:"3 AM"},{y:12,x:"6 AM"},{y:8,x:"9 AM"},{y:15,x:"12 PM"},{y:15,x:"3 PM"},{y:10,x:"6 PM"},{y:6,x:"9 PM"}]},{name:"Thu",data:[{y:6,x:"12 AM"},{y:12,x:"3 AM"},{y:15,x:"6 AM"},{y:18,x:"9 AM"},{y:15,x:"12 PM"},{y:6,x:"3 PM"},{y:9,x:"6 PM"},{y:6,x:"9 PM"}]},{name:"Wed",data:[{y:6,x:"12 AM"},{y:14,x:"3 AM"},{y:8,x:"6 AM"},{y:17,x:"9 AM"},{y:6,x:"12 PM"},{y:9,x:"3 PM"},{y:12,x:"6 PM"},{y:16,x:"9 PM"}]},{name:"Tue",data:[{y:12,x:"9 AM"},{y:6,x:"3 AM"},{y:14,x:"6 AM"},{y:9,x:"9 AM"},{y:6,x:"12 PM"},{y:18,x:"3 PM"},{y:12,x:"6 PM"},{y:6,x:"9 PM"}]},{name:"Mon",data:[{y:6,x:"12 AM"},{y:12,x:"3 AM"},{y:12,x:"6 AM"},{y:10,x:"9 AM"},{y:15,x:"12 PM"},{y:9,x:"3 PM"},{y:6,x:"6 PM"},{y:9,x:"9 PM"}]},{name:"Sun",data:[{y:8,x:"12 AM"},{y:11,x:"3 AM"},{y:11,x:"6 AM"},{y:6,x:"9 AM"},{y:10,x:"12 PM"},{y:15,x:"3 PM"},{y:10,x:"6 PM"},{y:9,x:"9 PM"}]},{name:"Sat",data:[{y:8,x:"12 AM"},{y:8,x:"3 AM"},{y:10,x:"6 AM"},{y:7,x:"9 AM"},{y:18,x:"12 PM"},{y:8,x:"3 PM"},{y:15,x:"6 PM"},{y:8,x:"9 PM"}]}],chart:{height:345,type:"heatmap",parentHeightOffset:0,toolbar:{show:!1}},plotOptions:{heatmap:{radius:10,enableShades:!0,shadeIntensity:2}},grid:{show:!1},dataLabels:{enabled:!1},colors:["#537AEF"],legend:{show:!0,position:"top",horizontalAlign:"center"}};(chart=new ApexCharts(document.querySelector("#audiences-daily"),options)).render();options={chart:{type:"line",height:24,parentHeightOffset:0,toolbar:{show:!1},animations:{enabled:!1},sparkline:{enabled:!0}},series:[{data:[5,17,1,24,4,10,18,20,13]}],colors:["#537AEF"],tooltip:{enabled:!1},stroke:{width:2,lineCap:"round"}};(chartOne=new ApexCharts(document.querySelector("#sparkline-bounce-1"),options)).render();options={chart:{type:"line",height:24,parentHeightOffset:0,toolbar:{show:!1},animations:{enabled:!1},sparkline:{enabled:!0}},series:[{data:[27,8,33,41,16,13,30,4,37]}],colors:["#537AEF"],tooltip:{enabled:!1},stroke:{width:2,lineCap:"round"}};(chartOne=new ApexCharts(document.querySelector("#sparkline-bounce-2"),options)).render();options={chart:{type:"line",height:24,parentHeightOffset:0,toolbar:{show:!1},animations:{enabled:!1},sparkline:{enabled:!0}},series:[{data:[10,13,10,4,17,3,23,22,19]}],colors:["#537AEF"],tooltip:{enabled:!1},stroke:{width:2,lineCap:"round"}};(chartOne=new ApexCharts(document.querySelector("#sparkline-bounce-3"),options)).render();options={chart:{type:"line",height:24,parentHeightOffset:0,toolbar:{show:!1},animations:{enabled:!1},sparkline:{enabled:!0}},series:[{data:[26,9,26,6,18,5,31,30,27]}],colors:["#537AEF"],tooltip:{enabled:!1},stroke:{width:2,lineCap:"round"}};(chartOne=new ApexCharts(document.querySelector("#sparkline-bounce-4"),options)).render();options={chart:{type:"line",height:24,parentHeightOffset:0,toolbar:{show:!1},animations:{enabled:!1},sparkline:{enabled:!0}},series:[{data:[29,6,19,16,25,24,10,31,26,16]}],colors:["#537AEF"],tooltip:{enabled:!1},stroke:{width:2,lineCap:"round"}};(chartOne=new ApexCharts(document.querySelector("#sparkline-bounce-5"),options)).render();options={chart:{type:"line",height:24,parentHeightOffset:0,toolbar:{show:!1},animations:{enabled:!1},sparkline:{enabled:!0}},series:[{data:[17,9,4,11,2,20,5,22,15,11]}],colors:["#537AEF"],tooltip:{enabled:!1},stroke:{width:2,lineCap:"round"}};(chartOne=new ApexCharts(document.querySelector("#sparkline-bounce-6"),options)).render();options={chart:{type:"line",height:24,parentHeightOffset:0,toolbar:{show:!1},animations:{enabled:!1},sparkline:{enabled:!0}},series:[{data:[29,18,10,22,6,26,17,28,22,17]}],colors:["#537AEF"],tooltip:{enabled:!1},stroke:{width:2,lineCap:"round"}};(chartOne=new ApexCharts(document.querySelector("#sparkline-bounce-7"),options)).render();
+"use strict";
+
+// Wait until DOM+dashboard data available
+document.addEventListener('DOMContentLoaded', function () {
+    var data = window.DASHBOARD || null;
+    if (!data) {
+        console.error('No DASHBOARD data found on window.DASHBOARD');
+        return;
+    }
+
+    console.info('analytics-dashboard.init.js loaded. DASHBOARD keys:', Object.keys(data));
+
+    // helper to safely render a chart once per container
+    function renderOnce(containerSelector, createChartFn) {
+        var el = document.querySelector(containerSelector);
+        if (!el) {
+            console.warn('Container not found for', containerSelector);
+            return;
+        }
+        if (el.dataset.apexRendered === "1") {
+            console.info('Chart already rendered for', containerSelector);
+            return;
+        }
+        try {
+            var chart = createChartFn(el);
+            if (chart && typeof chart.render === 'function') {
+                chart.render().then(function() {
+                    el.dataset.apexRendered = "1";
+                }).catch(function(err){
+                    console.error('ApexCharts render error for', containerSelector, err);
+                });
+            } else {
+                console.warn('createChartFn did not return an ApexCharts instance for', containerSelector);
+            }
+        } catch (err) {
+            console.error('Error creating chart for', containerSelector, err);
+        }
+    }
+
+    // Monthly Sales chart (last 12 months) - show earnings per month (LKR)
+    (function() {
+        var categories = Array.isArray(data.categories) ? data.categories.slice() : [];
+        // Use monthlyTotals (earnings) here
+        var seriesData = Array.isArray(data.monthlyTotals) ? data.monthlyTotals.map(function(v){ return Number(v) || 0; }) : [];
+        console.info('Monthly Sales categories length:', categories.length, 'series length:', seriesData.length);
+
+        // guard lengths
+        if (categories.length !== seriesData.length) {
+            var minLen = Math.min(categories.length, seriesData.length);
+            categories = categories.slice(0, minLen);
+            seriesData = seriesData.slice(0, minLen);
+            console.warn('Adjusted categories/series to same length:', minLen);
+        }
+        if (!categories.length) {
+            console.warn('No data to show for Monthly Sales');
+            return;
+        }
+
+        var today = String(data.today || '');
+        // color per month, highlight current month
+        var colorsArr = categories.map(function(cat){
+            var catYM = cat.slice(0,7);
+            var todayYM = today.slice(0,7);
+            return (catYM === todayYM) ? "#FF6B6B" : "#537AEF";
+        });
+
+        renderOnce('#monthly-sales', function(el) {
+            var options = {
+                chart: { type: "bar", height: 320, toolbar: { show: false } },
+                series: [{ name: "Earnings (LKR)", data: seriesData }],
+                colors: colorsArr,
+                plotOptions: { bar: { columnWidth: "55%", borderRadius: 6, distributed: true } },
+                xaxis: { type: "datetime", categories: categories },
+                yaxis: { labels: { formatter: function (val) { return Math.round(val).toLocaleString(); } }, title: { text: "LKR" } },
+                tooltip: { y: { formatter: function (val) { return 'LKR ' + Number(val).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}); } } },
+                dataLabels: { enabled: false }
+            };
+            return new ApexCharts(el, options);
+        });
+    })();
+
+    // Monthly Booking Overview (area) - show booking counts per month
+    (function() {
+        var categories = Array.isArray(data.categories) ? data.categories.slice() : [];
+        // Use monthlyBookingCounts here
+        var seriesData = Array.isArray(data.monthlyBookingCounts) ? data.monthlyBookingCounts.map(function(v){ return Number(v) || 0; })
+                          : (Array.isArray(data.monthlyTotals) ? data.monthlyTotals.map(function(v){ return Number(v) || 0; }) : []);
+
+        if (categories.length !== seriesData.length) {
+            var minLen = Math.min(categories.length, seriesData.length);
+            categories = categories.slice(0, minLen);
+            seriesData = seriesData.slice(0, minLen);
+        }
+        if (!categories.length) {
+            console.warn('No data to show for Monthly Booking Overview');
+            return;
+        }
+
+        renderOnce('#audiences-daily', function(el) {
+            var opts = {
+                chart: { type: "area", height: 160, toolbar: { show: false }, zoom: { enabled: false } },
+                series: [{ name: "Bookings", data: seriesData }],
+                stroke: { curve: "smooth" },
+                xaxis: { type: "datetime", categories: categories },
+                tooltip: { y: { formatter: function (val) { return Number(val).toLocaleString(); } } },
+                dataLabels: { enabled: false },
+                colors: ["#537AEF"]
+            };
+            return new ApexCharts(el, opts);
+        });
+    })();
+
+    // update widgets (values already printed server-side; keep JS sync)
+    var tbEl = document.getElementById('totalBookingsValue');
+    if (tbEl) tbEl.textContent = data.totalBookings;
+
+    var beEl = document.getElementById('bookingEarningsValue');
+    if (beEl) beEl.textContent = 'LKR ' + Number(data.bookingEarnings).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2});
+
+    var pyEl = document.getElementById('paynowEarningsValue');
+    if (pyEl) pyEl.textContent = 'LKR ' + Number(data.paynowEarnings).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2});
+
+    var teEl = document.getElementById('totalEarningsValue');
+    if (teEl) teEl.textContent = 'LKR ' + Number(data.totalEarnings).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2});
+});

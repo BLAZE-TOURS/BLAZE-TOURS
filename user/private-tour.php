@@ -1,5 +1,31 @@
 <?php
-$tour_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+require_once 'assets/process/connection.php';
+
+// Get tour ID from URL
+$tour_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+// Validate tour exists and is active (status_id = 1)
+$valid_tour = false;
+if ($tour_id > 0) {
+    $tour_id_safe = Database::escape_string($tour_id);
+    $check_query = "SELECT status_id FROM tour WHERE id = '$tour_id_safe' LIMIT 1";
+    $result = Database::search($check_query);
+
+    if ($result && $result->num_rows > 0) {
+        $tour = $result->fetch_assoc();
+        if ($tour['status_id'] == 1) {
+            $valid_tour = true;
+        }
+    }
+}
+
+// Redirect to tours page if tour is invalid or inactive
+if (!$valid_tour) {
+    header('Location: tours.php?error=' . urlencode('Tour not available'));
+    exit;
+}
+
+// Continue with rest of the file only if tour is valid
 include 'assets/process/fetchTour.php';
 ?>
 <!doctype html>
@@ -172,8 +198,15 @@ include 'assets/process/fetchTour.php';
         }
 
         .modal-footer {
-            border-top: 1px solid #e9ecef;
-            padding: 1.5rem 2rem;
+            border-top: none;
+            background-color: #f8f9fa;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .modal-body.border-top {
+            background-color: #fff;
+            border-top: 1px solid #dee2e6;
+            margin-top: 1rem;
         }
 
         /* Mobile Responsive Styles */
@@ -451,6 +484,30 @@ include 'assets/process/fetchTour.php';
             input[type="color"] {
                 font-size: 16px;
             }
+        }
+
+        /* Add this to your existing style section */
+        .form-check {
+            margin-bottom: 1rem;
+        }
+
+        .form-check-input:checked {
+            background-color: #bd3838;
+            border-color: #bd3838;
+        }
+
+        .form-check-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .form-check-label a:hover {
+            color: #bd3838;
+        }
+
+        #goToCheckout:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
         }
     </style>
 </head>
@@ -783,10 +840,22 @@ tour Area
                             </div>
                         </div>
                     </form>
+                    <!-- Add this just before the modal-footer div -->
+                    <div class="modal-body border-top pt-3">
+                        <div class="small text-muted mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="privacyPolicyCheck" required>
+                                <label class="form-check-label" for="privacyPolicyCheck">
+                                    I agree to the <a href="privacy.php" target="_blank" class="text-decoration-underline">Privacy Policy</a>
+                                    & payment terms
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="goToCheckout">Go to Checkout</button>
+                    <button type="button" class="btn btn-primary" id="goToCheckout" disabled>Go to Checkout</button>
                 </div>
             </div>
         </div>
@@ -1008,6 +1077,24 @@ tour Area
 
             // click handler is implemented in assets/js/booking.js
 
+            // Get the checkbox and checkout button
+            const privacyCheckbox = document.getElementById('privacyPolicyCheck');
+            const checkoutButton = document.getElementById('goToCheckout');
+
+            // Add event listener to checkbox
+            privacyCheckbox.addEventListener('change', function() {
+                // Enable/disable checkout button based on checkbox state
+                checkoutButton.disabled = !this.checked;
+
+                // Optional: Add visual feedback
+                if (this.checked) {
+                    checkoutButton.classList.remove('btn-secondary');
+                    checkoutButton.classList.add('btn-primary');
+                } else {
+                    checkoutButton.classList.remove('btn-primary');
+                    checkoutButton.classList.add('btn-secondary');
+                }
+            });
         });
     </script>
 
@@ -1015,13 +1102,13 @@ tour Area
     <script>
         // Make the intl-tel-input instance available globally as window.iti
         (function() {
-          const input = document.querySelector("#number3");
-          if (!input) return;
-          window.iti = window.intlTelInput(input, {
-              initialCountry: "lk", // default Sri Lanka
-              separateDialCode: true, // show +94 separately
-              utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"
-          });
+            const input = document.querySelector("#number3");
+            if (!input) return;
+            window.iti = window.intlTelInput(input, {
+                initialCountry: "lk", // default Sri Lanka
+                separateDialCode: true, // show +94 separately
+                utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"
+            });
         })();
     </script>
 

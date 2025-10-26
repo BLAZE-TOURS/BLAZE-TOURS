@@ -136,9 +136,18 @@ function changeDashboardViewPayout() {
     gallaryContainer.style.display = 'block';
 }
 
+function changeDashboardViewCreateInvoice() {
+    history.pushState(null, '', 'adminindex.php?view=CreateInvoice');
+    sessionStorage.setItem('currentView', 'CreateInvoice'); // Ensure key matches retrieval
+    hideAllContainers();
+    var gallaryContainer = document.getElementById('CreateInvoiceContainer');
+    gallaryContainer.classList.remove('d-none');
+    gallaryContainer.style.display = 'block';
+}
+
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer', 'CloseDaysContainer', 'BookingClosedContainer', 'CurrencyContainer' ,'PayoutContainer'];
+    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer', 'CloseDaysContainer', 'BookingClosedContainer', 'CurrencyContainer', 'PayoutContainer', 'CreateInvoiceContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -198,6 +207,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
             case 'Payout': // Ensured correct key match
                 changeDashboardViewPayout();
+                break;
+            case 'CreateInvoice': // Ensured correct key match
+                changeDashboardViewCreateInvoice();
                 break;
             default:
                 changeDashboardView();
