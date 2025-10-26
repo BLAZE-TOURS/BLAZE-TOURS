@@ -24,7 +24,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_times' && isset($_GET['to
 
 // Fetch active tours (status_id = 1)
 $tours = [];
-$t_rs = Database::search("SELECT id, name, duration, kids_price, adult_price, maximum_adult_count, maximum_kids_count FROM tour WHERE status_id = 1 ORDER BY id DESC");
+$t_rs = Database::search("SELECT id, name, duration, kids_price, adult_price, maximum_adult_count, maximum_kids_count FROM tour  ORDER BY id DESC");
 if ($t_rs) {
     while ($t = $t_rs->fetch_assoc()) $tours[] = $t;
 }
