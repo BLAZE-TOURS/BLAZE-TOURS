@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Invoice | Blaze Tours</title>
+    <title>Document | Blaze Tours</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="../../user/assets/img/logo.png">
     <link rel="stylesheet" href="../../user/assets/bootstrap.min.css">
@@ -67,11 +67,11 @@
                 margin: 0;
                 size: auto;
             }
-            
+
             @page :footer {
                 display: none;
             }
-            
+
             @page :header {
                 display: none;
             }
@@ -147,6 +147,7 @@
             $date = $_POST['date'] ?? date('Y-m-d');
             $time = $_POST['time_text'] ?? '-';
             $payment_status = isset($_POST['payment_status']) ? (int)$_POST['payment_status'] : 0;
+            $document_type = isset($_POST['document_type']) ? (int)$_POST['document_type'] : 0;
 
             // Customer details
             $full_name = $_POST['full_name'] ?? '-';
@@ -163,6 +164,8 @@
 
             // Generate invoice number (you may want to get this from your database)
             $invoice_number = 'BLAZE' . date('ymd') . sprintf('%03d', rand(1, 999));
+            $cotention_number = 'BLAZE-CTN-' . rand(10000, 99999);
+
             ?>
             <?php if ($payment_status == 1): ?>
                 <img src="images/paid.png" alt="PAID" class="paid-seal-img">
@@ -179,8 +182,24 @@
                     <div>+94 71 334 4399</div>
                 </div>
                 <div class="text-end">
-                    <div class="inv-title">Invoice</div>
-                    <div><strong>No:</strong> <?= htmlspecialchars($invoice_number) ?></div>
+                    <div class="inv-title">
+
+                        <?php if ($document_type == 1): ?>
+                            Cotention
+                        <?php else: ?>
+                            Invoice
+                        <?php endif; ?>
+
+                    </div>
+                    <div><strong>No:</strong>
+
+                        <?php if ($document_type == 1): ?>
+                            <?= htmlspecialchars($cotention_number) ?>
+                        <?php else: ?>
+                            <?= htmlspecialchars($invoice_number) ?>
+                        <?php endif; ?>
+
+                    </div>
                     <div><strong>Date:</strong> <?= date('Y-m-d') ?></div>
                 </div>
             </div>
@@ -221,93 +240,93 @@
                         </tr>
                     </thead>
                     <?php
-            // additional posted unit prices / rate (fallbacks)
-            $adult_unit = isset($_POST['adult_unit_price']) ? (float)$_POST['adult_unit_price'] : (float)($_POST['adult_price_unit'] ?? 0);
-            $kids_unit = isset($_POST['kids_unit_price']) ? (float)$_POST['kids_unit_price'] : (float)($_POST['kids_price_unit'] ?? 0);
-            $usd_rate_post = isset($_POST['usd_rate']) ? (float)$_POST['usd_rate'] : 0.0;
-            // fallback: if no rate posted, try to read from DB
-            if ($usd_rate_post <= 0) {
-                $r = Database::search("SELECT LKR FROM currency WHERE id = 1 AND currency = 'USD' LIMIT 1");
-                if ($r && $r->num_rows > 0) {
-                    $usd_rate_post = (float)$r->fetch_assoc()['LKR'];
-                } else {
-                    $usd_rate_post = 320.0;
-                }
-            }
+                    // additional posted unit prices / rate (fallbacks)
+                    $adult_unit = isset($_POST['adult_unit_price']) ? (float)$_POST['adult_unit_price'] : (float)($_POST['adult_price_unit'] ?? 0);
+                    $kids_unit = isset($_POST['kids_unit_price']) ? (float)$_POST['kids_unit_price'] : (float)($_POST['kids_price_unit'] ?? 0);
+                    $usd_rate_post = isset($_POST['usd_rate']) ? (float)$_POST['usd_rate'] : 0.0;
+                    // fallback: if no rate posted, try to read from DB
+                    if ($usd_rate_post <= 0) {
+                        $r = Database::search("SELECT LKR FROM currency WHERE id = 1 AND currency = 'USD' LIMIT 1");
+                        if ($r && $r->num_rows > 0) {
+                            $usd_rate_post = (float)$r->fetch_assoc()['LKR'];
+                        } else {
+                            $usd_rate_post = 320.0;
+                        }
+                    }
 
-            // per-line calculations
-            $adult_amount_usd = $adults * $adult_unit;
-            $adult_amount_lkr = $adult_amount_usd * $usd_rate_post;
-            $kids_amount_usd = $kids * $kids_unit;
-            $kids_amount_lkr = $kids_amount_usd * $usd_rate_post;
+                    // per-line calculations
+                    $adult_amount_usd = $adults * $adult_unit;
+                    $adult_amount_lkr = $adult_amount_usd * $usd_rate_post;
+                    $kids_amount_usd = $kids * $kids_unit;
+                    $kids_amount_lkr = $kids_amount_usd * $usd_rate_post;
 
-            // ensure numeric totals from POST (fall back to computed)
-            $subtotal_usd_num = 0.0;
-            if (isset($_POST['subtotal_usd'])) {
-                // subtotal_usd posted like "$95.00" -> extract numeric
-                $subtotal_usd_num = (float) preg_replace('/[^0-9.\-]/', '', $_POST['subtotal_usd']);
-            } else {
-                $subtotal_usd_num = $adult_amount_usd + $kids_amount_usd;
-            }
+                    // ensure numeric totals from POST (fall back to computed)
+                    $subtotal_usd_num = 0.0;
+                    if (isset($_POST['subtotal_usd'])) {
+                        // subtotal_usd posted like "$95.00" -> extract numeric
+                        $subtotal_usd_num = (float) preg_replace('/[^0-9.\-]/', '', $_POST['subtotal_usd']);
+                    } else {
+                        $subtotal_usd_num = $adult_amount_usd + $kids_amount_usd;
+                    }
 
-            // Fix for LKR amount parsing
-            $subtotal_lkr_num = 0.0;
-            if (isset($_POST['subtotal_lkr'])) {
-                // Remove "Rs. " prefix and any commas, then convert to float
-                $lkr_str = $_POST['subtotal_lkr'];
-                $lkr_str = str_replace('Rs. ', '', $lkr_str);
-                $lkr_str = str_replace(',', '', $lkr_str);
-                $subtotal_lkr_num = (float)$lkr_str;
-            } else {
-                $subtotal_lkr_num = $adult_amount_lkr + $kids_amount_lkr;
-            }
+                    // Fix for LKR amount parsing
+                    $subtotal_lkr_num = 0.0;
+                    if (isset($_POST['subtotal_lkr'])) {
+                        // Remove "Rs. " prefix and any commas, then convert to float
+                        $lkr_str = $_POST['subtotal_lkr'];
+                        $lkr_str = str_replace('Rs. ', '', $lkr_str);
+                        $lkr_str = str_replace(',', '', $lkr_str);
+                        $subtotal_lkr_num = (float)$lkr_str;
+                    } else {
+                        $subtotal_lkr_num = $adult_amount_lkr + $kids_amount_lkr;
+                    }
 
-            // Calculate direct LKR amounts
-            $adult_amount_lkr = $adult_amount_usd * $usd_rate_post;
-            $kids_amount_lkr = $kids_amount_usd * $usd_rate_post;
+                    // Calculate direct LKR amounts
+                    $adult_amount_lkr = $adult_amount_usd * $usd_rate_post;
+                    $kids_amount_lkr = $kids_amount_usd * $usd_rate_post;
 
-            // Ensure proper decimal handling for all amounts
-            $adult_amount_lkr = round($adult_amount_lkr, 2);
-            $kids_amount_lkr = round($kids_amount_lkr, 2);
-            $subtotal_lkr_num = round($subtotal_lkr_num, 2);
-            $discount_lkr_num = round((float)$discount_lkr, 2);
-            $final_total_lkr_num = round((float)$final_total_lkr, 2);
-            ?>
-            <tbody>
-                <?php if ($adults > 0): ?>
-                    <tr>
-                        <td>Adults</td>
-                        <td class="text-center"><?= $adults ?></td>
-                        <td class="text-end"><?= '$' . number_format($adult_unit, 2) ?></td>
-                        <td class="text-end"><?= 'Rs. ' . number_format($adult_amount_lkr, 2) ?></td>
-                    </tr>
-                <?php endif; ?>
-                <?php if ($kids > 0): ?>
-                    <tr>
-                        <td>Children</td>
-                        <td class="text-center"><?= $kids ?></td>
-                        <td class="text-end"><?= '$' . number_format($kids_unit, 2) ?></td>
-                        <td class="text-end"><?= 'Rs. ' . number_format($kids_amount_lkr, 2) ?></td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2" class="text-end totals-row">Subtotal</td>
-                    <td class="text-end totals-row"><?= '$' . number_format($subtotal_usd_num, 2) ?></td>
-                    <td class="text-end totals-row"><?= 'Rs. ' . number_format($subtotal_lkr_num, 2) ?></td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="text-end">Discount (LKR)</td>
-                    <td class="text-end">Rs. <?= number_format($discount_lkr_num, 2) ?></td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="text-end totals-row fw-bold">Final Total (LKR)</td>
-                    <td class="text-end totals-row fw-bold" style="font-size: 1.1rem; color: #0d6efd;">
-                        Rs. <?= number_format($final_total_lkr_num, 2) ?>
-                    </td>
-                </tr>
-            </tfoot>
+                    // Ensure proper decimal handling for all amounts
+                    $adult_amount_lkr = round($adult_amount_lkr, 2);
+                    $kids_amount_lkr = round($kids_amount_lkr, 2);
+                    $subtotal_lkr_num = round($subtotal_lkr_num, 2);
+                    $discount_lkr_num = round((float)$discount_lkr, 2);
+                    $final_total_lkr_num = round((float)$final_total_lkr, 2);
+                    ?>
+                    <tbody>
+                        <?php if ($adults > 0): ?>
+                            <tr>
+                                <td>Adults</td>
+                                <td class="text-center"><?= $adults ?></td>
+                                <td class="text-end"><?= '$' . number_format($adult_unit, 2) ?></td>
+                                <td class="text-end"><?= 'Rs. ' . number_format($adult_amount_lkr, 2) ?></td>
+                            </tr>
+                        <?php endif; ?>
+                        <?php if ($kids > 0): ?>
+                            <tr>
+                                <td>Children</td>
+                                <td class="text-center"><?= $kids ?></td>
+                                <td class="text-end"><?= '$' . number_format($kids_unit, 2) ?></td>
+                                <td class="text-end"><?= 'Rs. ' . number_format($kids_amount_lkr, 2) ?></td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2" class="text-end totals-row">Subtotal</td>
+                            <td class="text-end totals-row"><?= '$' . number_format($subtotal_usd_num, 2) ?></td>
+                            <td class="text-end totals-row"><?= 'Rs. ' . number_format($subtotal_lkr_num, 2) ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-end">Discount (LKR)</td>
+                            <td class="text-end">Rs. <?= number_format($discount_lkr_num, 2) ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-end totals-row fw-bold">Final Total (LKR)</td>
+                            <td class="text-end totals-row fw-bold" style="font-size: 1.1rem; color: #0d6efd;">
+                                Rs. <?= number_format($final_total_lkr_num, 2) ?>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
 

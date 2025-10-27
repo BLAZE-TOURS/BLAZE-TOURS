@@ -67,9 +67,28 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                     </style>
 
                     <div class="card-inner">
-                        <h4 class="mb-3">Create Invoice</h4>
+                        <h4 class="mb-3">Create Document</h4>
 
                         <form id="invoiceForm" onsubmit="return false;" novalidate>
+                            <!-- Document Type -->
+                            <div class="mb-3">
+                                <label class="form-label">Document Type *</label>
+                                <div class="d-flex gap-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="documentType" id="documentInvoice" value="0" checked>
+                                        <label class="form-check-label" for="documentInvoice">
+                                            Invoice
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="documentType" id="documentCotention" value="1">
+                                        <label class="form-check-label" for="documentCotention">
+                                            Cotention Note
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Tour selector -->
                             <div class="mb-3">
                                 <label class="form-label">Select Tour</label>
@@ -207,7 +226,7 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                 </div>
 
                                 <div class="d-grid">
-                                    <button id="createInvoiceBtn" class="btn btn-primary">Create Invoice</button>
+                                    <button id="createInvoiceBtn" class="btn btn-primary">Create Document</button>
                                 </div>
                             </div>
                         </form>
@@ -263,8 +282,9 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                 const kidsPrice = opt ? parseFloat(opt.getAttribute('data-kids') || 0) : 0;
                                 const tourName = opt ? opt.text : '-';
                                 const dateVal = tourDate.value || '-';
-                                const timeRadio = document.querySelector('input[name="timeSlot"]:checked');
-                                const timeText = timeRadio ? timeRadio.dataset.timeslot : '-';
+                                // works with checkbox: pick first checked timeslot if any
+                                const timeEl = document.querySelector('input[name="timeSlot"]:checked');
+                                const timeText = timeEl ? timeEl.dataset.timeslot : '-';
                                 const usdTotal = (adult * adultPrice) + (kids * kidsPrice);
                                 const lkrTotal = usdTotal * usdToLkrRate;
 
@@ -318,10 +338,11 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                             var col = document.createElement('div');
                                             col.className = 'col-6';
                                             var id = 'ts_' + t.time_id;
+                                            // Changed to checkbox (works if zero times too). No required attribute.
                                             col.innerHTML = `
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="timeSlot" id="${id}" 
-                                value="${t.time_id}" data-timeslot="${t.timeslot}" ${(idx===0?'checked':'')} required>
+                            <input class="form-check-input" type="checkbox" name="timeSlot" id="${id}" 
+                                value="${t.time_id}" data-timeslot="${t.timeslot}" ${(idx===0?'checked':'')}>
                             <label class="form-check-label" for="${id}">${t.timeslot}</label>
                         </div>`;
                                             timeSlots.appendChild(col);
@@ -403,13 +424,10 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                         title: 'Required',
                                         text: 'Please select a date'
                                     });
-                                const timeRadio = document.querySelector('input[name="timeSlot"]:checked');
-                                if (!timeRadio)
-                                    return Swal.fire({
-                                        icon: 'warning',
-                                        title: 'Required',
-                                        text: 'Please select a time slot'
-                                    });
+
+                                // get first checked timeslot if present (works when none too)
+                                const timeChecked = document.querySelector('input[name="timeSlot"]:checked');
+
                                 if (!fullName)
                                     return Swal.fire({
                                         icon: 'warning',
@@ -461,8 +479,9 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                     tour_id: tourSelect.value,
                                     tour_name: tourSelect.options[tourSelect.selectedIndex].text,
                                     date: tourDate.value,
-                                    time_id: timeRadio.value,
-                                    time_text: timeRadio.dataset.timeslot,
+                                    // if no timeslot checked, send empty values (document should still be created)
+                                    time_id: timeChecked ? timeChecked.value : '',
+                                    time_text: timeChecked ? timeChecked.dataset.timeslot : '-',
                                     adults: adultCount.value,
                                     kids: childCount.value,
                                     full_name: fullName,
@@ -473,14 +492,14 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                     discount_lkr: discount.toFixed(2),
                                     final_total_lkr: finalTotal.toFixed(2),
 
-                                   // per-unit prices + rate so invoice can show per-line USD and LKR
-                                   adult_unit_price: (opt ? parseFloat(opt.getAttribute('data-adult') || 0) : 0),
-                                   kids_unit_price: (opt ? parseFloat(opt.getAttribute('data-kids') || 0) : 0),
-                                   usd_rate: usdToLkrRate
+                                    // per-unit prices + rate so invoice can show per-line USD and LKR
+                                    adult_unit_price: (opt ? parseFloat(opt.getAttribute('data-adult') || 0) : 0),
+                                    kids_unit_price: (opt ? parseFloat(opt.getAttribute('data-kids') || 0) : 0),
+                                    usd_rate: usdToLkrRate
                                 };
 
                                 Swal.fire({
-                                    title: 'Create Invoice?',
+                                    title: 'Create Document?',
                                     html: `<div class="text-start">
                 <p><strong>Tour:</strong> ${payload.tour_name}</p>
                 <p><strong>Date:</strong> ${payload.date}</p>
@@ -498,11 +517,12 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                     if (result.isConfirmed) {
                                         // Add payment status to payload
                                         payload.payment_status = document.querySelector('input[name="paymentStatus"]:checked').value;
+                                        payload.document_type = document.querySelector('input[name="documentType"]:checked').value;
 
                                         // Create form and submit to invoice.php
                                         const form = document.createElement('form');
                                         form.method = 'POST';
-                                        form.action = 'invoice.php';
+                                        form.action = 'document.php';
                                         form.target = '_blank'; // Open in new window
 
                                         // Add hidden fields with data
@@ -522,14 +542,14 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                         if (window.Swal) {
                                             Swal.fire({
                                                 icon: 'success',
-                                                title: 'Invoice Created',
-                                                text: 'Invoice opened in a new window.',
+                                                title: 'Document Created',
+                                                text: 'Document opened in a new window.',
                                                 confirmButtonText: 'OK'
                                             }).then(function() {
                                                 location.reload();
                                             });
                                         } else {
-                                            alert('Invoice created');
+                                            alert('Document created');
                                             location.reload();
                                         }
 
