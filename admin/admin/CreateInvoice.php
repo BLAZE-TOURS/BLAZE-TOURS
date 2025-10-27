@@ -219,6 +219,10 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                             <div id="summaryTime">-</div>
                                         </div>
                                         <div class="summary-row">
+                                            <div>Duration</div>
+                                            <div id="summaryDuration">-</div>
+                                        </div>
+                                        <div class="summary-row">
                                             <div>Guests</div>
                                             <div id="summaryGuests">1 adult, 0 children</div>
                                         </div>
@@ -254,6 +258,7 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                             const summaryTour = document.getElementById('summaryTour');
                             const summaryDate = document.getElementById('summaryDate');
                             const summaryTime = document.getElementById('summaryTime');
+                            const summaryDuration = document.getElementById('summaryDuration'); // added
                             const summaryGuests = document.getElementById('summaryGuests');
                             const createInvoiceBtn = document.getElementById('createInvoiceBtn');
                             const phoneInput = document.getElementById('phoneInput');
@@ -285,6 +290,8 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                 // works with checkbox: pick first checked timeslot if any
                                 const timeEl = document.querySelector('input[name="timeSlot"]:checked');
                                 const timeText = timeEl ? timeEl.dataset.timeslot : '-';
+                                const durationVal = opt ? opt.getAttribute('data-duration') : '';
+                                const durationText = durationVal ? (durationVal + ' h') : '-';
                                 const usdTotal = (adult * adultPrice) + (kids * kidsPrice);
                                 const lkrTotal = usdTotal * usdToLkrRate;
 
@@ -302,6 +309,7 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                 summaryTour.textContent = tourName;
                                 summaryDate.textContent = dateVal;
                                 summaryTime.textContent = timeText;
+                                summaryDuration.textContent = durationText; // update duration in summary
                                 summaryGuests.textContent = adult + ' adult(s), ' + kids + ' child(ren)';
                             }
 
@@ -478,6 +486,7 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                 const payload = {
                                     tour_id: tourSelect.value,
                                     tour_name: tourSelect.options[tourSelect.selectedIndex].text,
+                                    duration: (tourSelect.options[tourSelect.selectedIndex].getAttribute('data-duration') || ''),
                                     date: tourDate.value,
                                     // if no timeslot checked, send empty values (document should still be created)
                                     time_id: timeChecked ? timeChecked.value : '',

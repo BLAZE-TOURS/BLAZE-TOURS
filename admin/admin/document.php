@@ -153,6 +153,8 @@
             $full_name = $_POST['full_name'] ?? '-';
             $email = $_POST['email'] ?? '-';
             $phone = $_POST['phone'] ?? '-';
+            // Duration (minutes) from POST (optional)
+            $duration_post = isset($_POST['duration']) && $_POST['duration'] !== '' ? htmlspecialchars($_POST['duration']) : '-';
 
             // Pricing details
             $adults = (int)($_POST['adults'] ?? 0);
@@ -213,6 +215,7 @@
                             <div><strong>Tour:</strong> <?= htmlspecialchars($tour_name) ?> (#<?= htmlspecialchars($tour_id) ?>)</div>
                             <div><strong>Date:</strong> <?= htmlspecialchars($date) ?></div>
                             <div><strong>Time:</strong> <?= htmlspecialchars($time) ?></div>
+                            <div><strong>Duration:</strong> <?= $duration_post === '-' ? '-' : ($duration_post . ' h') ?></div>
                         </div>
                     </div>
                 </div>
