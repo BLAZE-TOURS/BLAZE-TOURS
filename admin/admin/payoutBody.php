@@ -34,8 +34,8 @@ while ($c = $currency_rs->fetch_assoc()) {
                                     <div id="paynow-form-errors" class="alert alert-danger d-none"></div>
 
                                     <div class="mb-3">
-                                        <label for="pn_email" class="form-label">Email</label>
-                                        <input type="email" id="pn_email" name="email" class="form-control" required>
+                                        <label for="pn_email" class="form-label">Email (optional)</label>
+                                        <input type="email" id="pn_email" name="email" class="form-control">
                                     </div>
 
                                     <div class="mb-3">

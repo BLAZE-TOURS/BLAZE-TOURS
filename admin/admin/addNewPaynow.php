@@ -9,7 +9,10 @@ $currency_id = intval($_POST['currency_id'] ?? 0);
 $amount = floatval($_POST['amount'] ?? 0);
 $lkr_amount = floatval($_POST['lkr_amount'] ?? 0);
 
-if (empty($email) || empty($description) || $currency_id <= 0 || $amount <= 0 || $lkr_amount <= 0) {
+// Set default 'NO EMAIL' if email is empty
+$email = empty($email) ? 'NO EMAIL' : $email;
+
+if (empty($description) || $currency_id <= 0 || $amount <= 0 || $lkr_amount <= 0) {
     echo json_encode(['success' => false, 'message' => 'Invalid input — description is required and amounts must be > 0']);
     exit;
 }

@@ -292,7 +292,7 @@ if (isset($_SESSION["adminuser"])) {
                                 <li>
                                     <a href="#" onclick="changeDashboardViewPayout();">
                                         <i data-feather="arrow-down-circle"></i>
-                                        <span>Payout</span>
+                                        <span>Payment</span>
                                     </a>
                                 </li>
 
