@@ -319,7 +319,7 @@ if (isset($_SESSION["adminuser"])) {
                                 <li>
                                     <a href="#" onclick="changeDashboardViewCreateInvoice();">
                                         <i data-feather="file-text"></i>
-                                        <span>Create Invoice</span>
+                                        <span>Create Document</span>
                                     </a>
                                 </li>
                                 <li class="menu-title mt-2">Inquiry</li>
