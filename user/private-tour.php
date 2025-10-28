@@ -90,6 +90,21 @@ include 'assets/process/fetchTour.php';
 
     <!-- Custom Booking Modal CSS -->
     <style>
+        .card {
+            background: #f9fafc;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        input.form-control {
+            border-radius: 10px;
+            padding: 10px 14px;
+        }
+
         .modal-content {
             border-radius: 15px;
             border: none;
@@ -811,34 +826,73 @@ tour Area
                         <div class="mb-3">
                             <label for="pickup" class="form-label">Pickup Location *</label>
                             <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter your pickup location" required>
-                            <small class="form-text text-muted">Start typing to see location suggestions</small>
                         </div>
 
                         <!-- Price Summary -->
-                        <div class="mb-3">
-                            <div class="card bg-light">
+                        <div class="mb-4">
+                            <div class="card shadow-sm border-0 rounded-3">
                                 <div class="card-body">
-                                    <h6 class="card-title">Price Summary</h6>
-                                    <div class="d-flex justify-content-between">
-                                        <span>Adults (1 x $<?php echo number_format($tour['adult_price'] ?? 0, 2); ?>)</span>
-                                        <span id="adultPrice">$<?php echo number_format($tour['adult_price'] ?? 0, 2); ?></span>
+                                    <h5 class="card-title text-center fw-bold text-primary mb-3">
+                                        Price Summary
+                                    </h5>
+
+                                    <!-- Adults -->
+                                    <div class="d-flex justify-content-between align-items-center py-2">
+                                        <span class="fw-medium">Adults (1 × $<?php echo number_format($tour['adult_price'] ?? 0, 2); ?>)</span>
+                                        <span id="adultPrice" class="fw-semibold text-dark">
+                                            $<?php echo number_format($tour['adult_price'] ?? 0, 2); ?>
+                                        </span>
                                     </div>
-                                    <div class="d-flex justify-content-between" id="childPriceRow" style="display: none;">
-                                        <span>Children (0 x $<?php echo number_format($tour['kids_price'] ?? 0, 2); ?>)</span>
-                                        <span id="childPrice">$0.00</span>
+
+                                    <!-- Children -->
+                                    <div class="d-flex justify-content-between align-items-center py-2 border-top" id="childPriceRow" style="display: none;">
+                                        <span class="fw-medium">Children (0 × $<?php echo number_format($tour['kids_price'] ?? 0, 2); ?>)</span>
+                                        <span id="childPrice" class="fw-semibold text-dark">$0.00</span>
                                     </div>
-                                    <hr>
-                                    <div class="d-flex justify-content-between">
-                                        <strong>Total Price</strong>
-                                        <strong id="totalPrice">$<?php echo number_format($tour['adult_price'] ?? 0, 2); ?></strong>
+
+                                    <hr class="my-3">
+
+                                    <!-- Total -->
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <strong class="text-success">Total Price</strong>
+                                        <strong id="totalPrice" class="text-success fs-5">
+                                            $<?php echo number_format($tour['adult_price'] ?? 0, 2); ?>
+                                        </strong>
                                     </div>
-                                    <div class="d-flex justify-content-between text-muted small">
+
+                                    <!-- LKR Equivalent -->
+                                    <div class="d-flex justify-content-between text-muted small mt-1">
                                         <span>LKR Equivalent</span>
                                         <span id="totalPriceLKR">Loading...</span>
+                                    </div>
+
+                                    <hr class="my-3">
+
+                                    <!-- Paid Amount Section -->
+                                    <div class="form-group">
+                                        <label for="paidAmount" class="form-label fw-semibold">Paid Amount (USD)</label>
+                                        <input type="number" class="form-control border-0 shadow-sm" id="paidAmount"
+                                            step="0.01" min="0" placeholder="Min $15" required>
+
+                                        <small  class="fw-medium d-block mt-2">
+                                            Min. Advance <span class="text-danger" >$15 (30% of total)</ස්>
+                                        </small>
+
+                                        <div class="mt-3 border-top pt-2">
+                                            <div class="d-flex justify-content-between">
+                                                <span>Paid Amount (LKR)</span>
+                                                <span id="paidLKR" class="fw-semibold">Rs. 0</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mt-2">
+                                                <span>Balance Due (LKR)</span>
+                                                <span id="balanceLKR" class="fw-semibold text-danger">Rs. 0</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </form>
                     <!-- Add this just before the modal-footer div -->
                     <div class="modal-body border-top pt-3">
