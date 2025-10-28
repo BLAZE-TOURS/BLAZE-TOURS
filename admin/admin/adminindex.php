@@ -440,6 +440,10 @@ if (isset($_SESSION["adminuser"])) {
 
                 <div id="PayoutContainer" class="d-none"> <?php include 'fetchPayout.php'; ?> <?php include "../admin/payoutBody.php"; ?> </div>
 
+                <div id="EarningContainer" class="d-none"> <?php include 'fetchEarning.php'; ?> <?php include "../admin/earningBody.php"; ?> </div>
+
+                <div id="AdvanceRateContainer" class="d-none"> <?php include 'fetchAdvanceRate.php'; ?> <?php include "../admin/AdvanceRateBody.php"; ?> </div>
+
                 <div id="CreateInvoiceContainer" class="d-none"> <?php include "../admin/CreateInvoice.php"; ?> </div>
 
 
