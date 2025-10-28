@@ -137,7 +137,7 @@ try {
 	// Generate PayHere hash signature (required for authorization)
 	$merchant_secret_hashed = strtoupper(md5($merchant_secret));
 	$order_id = $customBookingId; // Use custom booking ID as order ID
-	$amount = number_format($totalLKR, 2, '.', '');
+	$amount = number_format($paidLKR, 2, '.', '');
 	$currency = 'LKR';
 	$hash = strtoupper(md5($merchant_id . $order_id . $amount . $currency . $merchant_secret_hashed));
 	BlazeLogger::info('createBooking: payhere payload', [
