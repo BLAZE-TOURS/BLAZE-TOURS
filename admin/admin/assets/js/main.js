@@ -145,9 +145,27 @@ function changeDashboardViewCreateInvoice() {
     gallaryContainer.style.display = 'block';
 }
 
+function changeDashboardViewAdvanceRate() {
+    history.pushState(null, '', 'adminindex.php?view=AdvanceRate');
+    sessionStorage.setItem('currentView', 'AdvanceRate'); // Ensure key matches retrieval
+    hideAllContainers();
+    var gallaryContainer = document.getElementById('AdvanceRateContainer');
+    gallaryContainer.classList.remove('d-none');
+    gallaryContainer.style.display = 'block';
+}
+
+function changeDashboardViewEarning() {
+    history.pushState(null, '', 'adminindex.php?view=Earning');
+    sessionStorage.setItem('currentView', 'Earning'); // Ensure key matches retrieval
+    hideAllContainers();
+    var gallaryContainer = document.getElementById('EarningContainer');
+    gallaryContainer.classList.remove('d-none');
+    gallaryContainer.style.display = 'block';
+}
+
 function hideAllContainers() {
     document.querySelector('.content-page').style.display = 'none';
-    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer', 'CloseDaysContainer', 'BookingClosedContainer', 'CurrencyContainer', 'PayoutContainer', 'CreateInvoiceContainer'];
+    var containers = ['emailFormContainer', 'CompanyFormContainer', 'SubscriberContainer', 'gallaryContainer', 'shortsContainer', '', 'mediContainer', 'mediMediArrivedContainer', 'MessagesContainer', 'RepliedContainer', 'StoryContainer', 'CloseDaysContainer', 'BookingClosedContainer', 'CurrencyContainer', 'PayoutContainer', 'CreateInvoiceContainer', 'EarningContainer', 'AdvanceRateContainer'];
     // Add any other container IDs you want to hide here
     containers.forEach(function (id) {
         var element = document.getElementById(id);
@@ -210,6 +228,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
             case 'CreateInvoice': // Ensured correct key match
                 changeDashboardViewCreateInvoice();
+                break;
+            case 'Earning': // Ensured correct key match
+                changeDashboardViewEarning();
+                break;
+            case 'AdvanceRate': // Ensured correct key match
+                changeDashboardViewAdvanceRate();
                 break;
             default:
                 changeDashboardView();
