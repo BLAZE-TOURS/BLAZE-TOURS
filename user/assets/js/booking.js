@@ -254,26 +254,29 @@
             return;
         }
 
-        // 9.  paidAmount Validation 
-        updatePaidDisplays();
+             // 9. paidAmount Validation 
+        if (!validatePaidAmount()) {
+            return; // Stop if validation fails
+        }
 
-        function updatePaidDisplays() {
+        function validatePaidAmount() {
             const paidInput = document.getElementById('paidAmount');
             const paidUSD = parseFloat(paidInput.value || 0);
             const totalPriceEl = document.getElementById('totalPrice');
             const totalUSD = parseFloat((totalPriceEl ? totalPriceEl.textContent : '0').replace('$', '')) || 0;
             const minAdvance = totalUSD * (advancePercentage / 100);
+            
             // expose balance to outer scope so bookingData can use it
             window.balanceUSD = totalUSD - paidUSD;
             balanceUSD = window.balanceUSD;
 
-
             // Validate paid amount: must be at least the minimum advance and not exceed the total
             if (paidUSD < minAdvance || paidUSD > totalUSD) {
                 notyf.error('Please enter a valid paid amount.');
-                return;
+                return false;
             }
-            return;
+            
+            return true; // Validation passed
         }
 
 

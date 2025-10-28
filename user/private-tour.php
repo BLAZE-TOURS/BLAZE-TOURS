@@ -872,10 +872,10 @@ tour Area
                                     <div class="form-group">
                                         <label for="paidAmount" class="form-label fw-semibold">Paid Amount (USD)</label>
                                         <input type="number" class="form-control border-0 shadow-sm" id="paidAmount"
-                                            step="0.01" min="0" placeholder="Min $15" required>
+                                            step="any" min="0" placeholder="Min $00" required>
 
                                         <small  class="fw-medium d-block mt-2">
-                                            Min. Advance <span class="text-danger" >$15 (30% of total)</span>
+                                            Min. Advance <span class="text-danger" >$00 (00% of total)</span>
                                         </small>
 
                                         <div class="mt-3 border-top pt-2">
