@@ -95,7 +95,7 @@ try {
 	// --- Check duplicate bookings
 	if ($timeAmPm) {
 		$timeEsc = "'" . Database::escape_string($timeAmPm) . "'";
-		$dup = Database::search("SELECT COUNT(*) AS c FROM booking WHERE tour_id = $tourId AND tourDate = '$tourDateEsc' AND time_slot = $timeEsc AND status_id IN (1,2)");
+		$dup = Database::search("SELECT COUNT(*) AS c FROM booking WHERE tour_id = $tourId AND tourDate = '$tourDateEsc' AND time_slot = $timeEsc AND status_id IN (1)");
 		if ($dup && ($row = $dup->fetch_assoc()) && $row['c'] > 0) {
 			BlazeLogger::info('createBooking: duplicate found', ['tourId' => $tourId, 'tourDate' => $tourDate, 'time' => $timeAmPm]);
 			respond(false, ['message' => 'Selected date and time slot already booked.'], 409);
