@@ -54,8 +54,38 @@ if (!$order_id) {
     $adultPrice = (float)($_POST['adultPrice'] ?? 0);
     $childPrice = (float)($_POST['childPrice'] ?? 0);
     $totalPrice = (float)($_POST['totalPrice'] ?? 0);
-    $totalPriceLKR = 0;
+    $totalPriceLKR = (float)($_POST['totalPriceLKR'] ?? 0);
+    // Add fallback values for paid amounts and balances
+    $advancePaidUSD = (float)($_POST['paidAmountUSD'] ?? 0);
+    $advancePaidLKR = (float)($_POST['paidAmountLKR'] ?? 0);
+    $balanceDueUSD = (float)($_POST['balanceAmountUSD'] ?? 0);
+    $balanceDueLKR = (float)($_POST['balanceAmountLKR'] ?? 0);
     $invoiceNo = 'INV-' . date('Ymd-His') . '-' . substr(md5(($tourId ?: '0') . microtime()), 0, 6);
+
+    // Create bookingData array for consistency
+    $bookingData = [
+        'id' => $invoiceNo,
+        'tour_id' => $tourId,
+        'tour_name' => $tourName,
+        'tourDate' => $date,
+        'time_slot' => $timeSlot,
+        'name' => $fullName,
+        'email' => $email,
+        'mobile' => $phone,
+        'pickup_location' => $pickup,
+        'numberOfAdultCount' => $adults,
+        'numberOfKidsCount' => $children,
+        'total_price_usd' => $totalPrice,
+        'total_price_lkr' => $totalPriceLKR,
+        'advance_paid_usd' => $advancePaidUSD,
+        'advance_paid_lkr' => $advancePaidLKR,
+        'balance_due_usd' => $balanceDueUSD,
+        'balance_due_lkr' => $balanceDueLKR,
+        'adult_price' => $adultPrice,
+        'kids_price' => $childPrice,
+        'status_id' => 1, // Default to paid for direct form submissions
+        'payment_id' => null
+    ];
 } else {
     if ($bookingData) {
         $tourId = $bookingData['tour_id'];
@@ -198,6 +228,66 @@ if ($adultPrice == 0 && $childPrice == 0 && $totalPrice > 0) {
                    දැනට අපි 'table-responsive' මත විශ්වාසය තබා LKR තීරුව පමණක් සැඟවීම ප්‍රමාණවත් යැයි සලකමු. */
             }
         }
+
+        /* Print-specific styles */
+        @media print {
+            @page {
+                margin: 0;
+                size: auto;
+            }
+
+            body {
+                margin: 0;
+                padding: 20px;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Hide browser-generated headers/footers */
+            html {
+                height: 100%;
+            }
+
+            /* Remove default headers and footers */
+            @page :first {
+                margin-top: 0;
+            }
+
+            @page {
+                margin: 0;
+            }
+
+            /* Ensure invoice fits on one page */
+            .invoice-card {
+                page-break-inside: avoid;
+                break-inside: avoid;
+                box-shadow: none !important;
+                border: none;
+            }
+
+            /* Hide unnecessary elements */
+            .no-print, 
+            header, 
+            footer, 
+            .header-area, 
+            .footer-area {
+                display: none !important;
+            }
+
+            /* Logo styles for print */
+            .company-logo {
+                width: 120px;
+                height: auto;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Logo styles for screen */
+        .company-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 
@@ -221,6 +311,7 @@ if ($adultPrice == 0 && $childPrice == 0 && $totalPrice > 0) {
                             ?>
                             <div class="invoice-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
                                 <div class="text-start">
+                                    <img src="assets/img/logo-main.png" alt="Blaze Tours Logo" class="company-logo">
                                     <div class="company-name">BLAZE TOURS (PVT) LTD</div>
                                     <div>68/29, Sri Sidhartha road, Kirulapane, Colombo-6</div>
                                     <div>+94 71 334 4399</div>
@@ -297,6 +388,25 @@ if ($adultPrice == 0 && $childPrice == 0 && $totalPrice > 0) {
                                             <tr>
                                                 <td colspan="4" class="text-end totals-row">Total (LKR)</td>
                                                 <td class="text-end totals-row">Rs. <?php echo number_format($totalPriceLKR > 0 ? $totalPriceLKR : $totalPrice * $effectiveRate, 2); ?></td>
+                                            </tr>
+                                            <!-- Add new rows for paid amount and balance -->
+                                            <tr>
+                                                <td colspan="3" class="text-end">Paid Amount (USD)</td>
+                                                <td class="text-end">$<?php echo number_format($bookingData['advance_paid_usd'] ?? 0, 2); ?></td>
+                                                <td class="text-end"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="text-end">Paid Amount (LKR)</td>
+                                                <td class="text-end">Rs. <?php echo number_format($bookingData['advance_paid_lkr'] ?? 0, 2); ?></td>
+                                            </tr>
+                                            <tr class="table-light">
+                                                <td colspan="3" class="text-end"><strong>Balance Due (USD)</strong></td>
+                                                <td class="text-end"><strong>$<?php echo number_format($bookingData['balance_due_usd'] ?? 0, 2); ?></strong></td>
+                                                <td class="text-end"></td>
+                                            </tr>
+                                            <tr class="table-light">
+                                                <td colspan="4" class="text-end"><strong>Balance Due (LKR)</strong></td>
+                                                <td class="text-end"><strong>Rs. <?php echo number_format($bookingData['balance_due_lkr'] ?? 0, 2); ?></strong></td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -388,6 +498,122 @@ if ($adultPrice == 0 && $childPrice == 0 && $totalPrice > 0) {
         });
       })();
     </script>
+    <script>
+(function () {
+    function gatherStyles() {
+        const styles = [];
+        
+        // Get all stylesheet links
+        document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+            styles.push(link.outerHTML);
+        });
+        
+        // Get all style tags
+        document.querySelectorAll('style').forEach(style => {
+            styles.push(style.outerHTML);
+        });
+        
+        // Add critical print styles
+        styles.push(`
+            <style>
+                @page { margin: 0; size: auto; }
+                html { height: 100%; }
+                body { 
+                    margin: 0;
+                    padding: 20px;
+                    background: #fff;
+                    -webkit-print-color-adjust: exact !important;
+                    print-color-adjust: exact !important;
+                }
+                .invoice-card {
+                    page-break-inside: avoid;
+                    break-inside: avoid;
+                    border: none;
+                    box-shadow: none !important;
+                    max-width: 100%;
+                }
+                .company-logo {
+                    width: 120px;
+                    height: auto;
+                    margin-bottom: 10px;
+                }
+                @media print {
+                    html, body {
+                        width: 210mm;
+                        height: 297mm;
+                    }
+                }
+            </style>
+        `);
+        
+        return styles.join('\n');
+    }
+
+    function printInvoiceArea() {
+        const area = document.getElementById('invoiceArea');
+        if (!area) {
+            window.print();
+            return;
+        }
+
+        // For mobile devices, use direct printing
+        if (window.innerWidth < 768) {
+            // Hide everything except invoice
+            document.querySelectorAll('body > *:not(#invoiceArea)').forEach(el => {
+                el.style.display = 'none';
+            });
+            window.print();
+            // Restore visibility
+            document.querySelectorAll('body > *:not(#invoiceArea)').forEach(el => {
+                el.style.display = '';
+            });
+            return;
+        }
+
+        // For desktop, use popup window
+        const clone = area.cloneNode(true);
+        // Remove unnecessary elements
+        clone.querySelectorAll('.no-print').forEach(n => n.remove());
+
+        const w = window.open('', '_blank', 'width=900,height=700');
+        if (!w) {
+            alert('Please allow popups for printing');
+            return;
+        }
+
+        const html = `<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <title>Invoice - Blaze Tours</title>
+                ${gatherStyles()}
+            </head>
+            <body>
+                <div style="max-width: 900px; margin: 0 auto;">
+                    ${clone.outerHTML}
+                </div>
+            </body>
+            </html>`;
+
+        w.document.write(html);
+        w.document.close();
+        w.focus();
+
+        // Wait for images and styles to load
+        setTimeout(() => {
+            w.print();
+        }, 750);
+    }
+
+    // Attach print handler
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('printBtn');
+        if (btn) btn.addEventListener('click', printInvoiceArea);
+        window.printInvoice = printInvoiceArea; // Global access
+    });
+})();
+</script>
 </body>
 
 </html>
