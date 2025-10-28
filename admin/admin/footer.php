@@ -8,7 +8,7 @@
                         </script> -BLAZE TOURS (PVT) LTD
                         <span class="text-danger"></span>
                         Design and Developed By
-                        <a href="#!" class="text-reset fw-semibold">Malindu Prabod W.M.</a> <br>
+                        <a href="" class="text-reset fw-semibold">Tecxone</a> <br>
                     </div>
                 </div>
             </div>
