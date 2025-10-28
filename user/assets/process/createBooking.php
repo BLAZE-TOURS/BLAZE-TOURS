@@ -74,6 +74,16 @@ try {
 	$totalLKR = $totalUSD > 0 ? round($totalUSD * $rate, 2) : 0.0;
 	BlazeLogger::info('createBooking: computed totals', ['rate' => $rate, 'totalLKR' => $totalLKR]);
 
+	// --- NEW: capture advance / balance posted from frontend (USD) and convert to LKR
+	$paidUSD = floatval($_POST['paidAmountUSD'] ?? 0.0);
+	$balanceUSD = floatval($_POST['balanceAmountUSD'] ?? max(0.0, $totalUSD - $paidUSD));
+	$paidLKR = round($paidUSD * $rate, 2);
+	$balanceLKR = round($balanceUSD * $rate, 2);
+	BlazeLogger::info('createBooking: advance/balance', [
+		'paidUSD' => $paidUSD, 'balanceUSD' => $balanceUSD,
+		'paidLKR' => $paidLKR, 'balanceLKR' => $balanceLKR
+	]);
+
 	// Escape safely
 	$nameEsc = Database::escape_string($name);
 	$emailEsc = Database::escape_string($email);
@@ -110,11 +120,11 @@ try {
 	$insert = "
 		INSERT INTO booking 
 		(id, name, mobile, email, tourDate, time_slot, numberOfAdultCount, numberOfKidsCount, pickup_location, 
-		total_price_lkr, total_price_usd, status_id, tour_id, created_at)
+		total_price_lkr, total_price_usd, advance_paid_usd, advance_paid_lkr, balance_due_usd, balance_due_lkr, status_id, tour_id, created_at)
 		VALUES (
 			'$bookingIdEsc', '$nameEsc', '$mobileEsc', '$emailEsc', '$tourDateEsc', $timeSlotEsc,
 			$numAdults, $numKids, $pickupEsc,
-			$totalLKR, $totalUSD, 3, $tourId, NOW()
+			$totalLKR, $totalUSD, $paidUSD, $paidLKR, $balanceUSD, $balanceLKR, 3, $tourId, NOW()
 		)
 	";
 	Database::iud($insert);

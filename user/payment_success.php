@@ -24,6 +24,18 @@ if (!empty($orderId)) {
 			$booking = $res->fetch_assoc();
 			BlazeLogger::info('payment_success: booking fetched', ['id' => $orderId, 'email' => $booking['email']]);
 
+			// If advance/balance not set, assume full payment on return and set values
+			$needsAmounts = (empty($booking['advance_paid_lkr']) && !empty($booking['total_price_lkr']));
+			if ($needsAmounts) {
+				$totalLKR = floatval($booking['total_price_lkr']);
+				$totalUSD = floatval($booking['total_price_usd']);
+				Database::iud("UPDATE booking SET 
+					advance_paid_lkr = $totalLKR, balance_due_lkr = 0, 
+					advance_paid_usd = $totalUSD, balance_due_usd = 0
+					WHERE id = '$orderIdEsc'");
+				BlazeLogger::info('payment_success: set advance as full payment', ['order_id' => $orderId, 'totalLKR' => $totalLKR]);
+			}
+
 			// Prepare email data
 			$bookingData = [
 				'email' => $booking['email'],

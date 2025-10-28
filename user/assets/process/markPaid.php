@@ -99,6 +99,22 @@ try {
         $setParts[] = "payment_method = '$methodEsc'";
     }
 
+    // Optional: accept paid/balance amounts (either USD or LKR) to store
+    $paidUSD = isset($_POST['paidAmountUSD']) ? floatval($_POST['paidAmountUSD']) : null;
+    $balanceUSD = isset($_POST['balanceAmountUSD']) ? floatval($_POST['balanceAmountUSD']) : null;
+    $paidLKR = isset($_POST['paidAmountLKR']) ? floatval($_POST['paidAmountLKR']) : null;
+    $balanceLKR = isset($_POST['balanceAmountLKR']) ? floatval($_POST['balanceAmountLKR']) : null;
+
+    // If only USD provided convert to LKR using DB rate
+    $rate = Database::getLKRRate();
+    if ($paidUSD !== null && $paidLKR === null) $paidLKR = round($paidUSD * $rate, 2);
+    if ($balanceUSD !== null && $balanceLKR === null) $balanceLKR = round($balanceUSD * $rate, 2);
+
+    if ($paidUSD !== null) $setParts[] = "advance_paid_usd = " . floatval($paidUSD);
+    if ($paidLKR !== null) $setParts[] = "advance_paid_lkr = " . floatval($paidLKR);
+    if ($balanceUSD !== null) $setParts[] = "balance_due_usd = " . floatval($balanceUSD);
+    if ($balanceLKR !== null) $setParts[] = "balance_due_lkr = " . floatval($balanceLKR);
+
     $setSql = implode(', ', $setParts);
 
     // Only update if not already paid
