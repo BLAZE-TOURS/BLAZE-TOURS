@@ -98,7 +98,7 @@
     <!-- Footer -->
     <footer class="text-center mt-4 fixed-bottom">
         <p class="text-light">&copy; 2025 BLAZE TOURS (PVT) LTD | All Rights Reserved</p>
-        <p class="text-light">Developed by Malindu Prabod W.M</p>
+        <p class="text-light">Developed by Tecxone</p>
     </footer>
 
     <!--===============================================================================================-->

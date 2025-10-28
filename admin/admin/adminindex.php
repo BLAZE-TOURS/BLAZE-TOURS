@@ -14,7 +14,7 @@ if (isset($_SESSION["adminuser"])) {
         <title>Admin Dashboard | BLAZE TOURS (PVT) LTD </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin Panel" />
-        <meta name="author" content="Malindu Prabod wm" />
+        <meta name="author" content="Tecxone" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
@@ -259,12 +259,11 @@ if (isset($_SESSION["adminuser"])) {
 
                             <ul id="side-menu" style="margin-top: 30px;">
 
-                                <li class="menu-title">Menu</li>
+                                <li class="menu-title">Overview</li>
                                 <li>
                                     <a href="#" onclick="changeDashboardView();">
                                         <i data-feather="home"></i>
                                         <span> Dashboard </span>
-                                        <!-- <span class="menu-arrow"></span> -->
                                     </a>
                                 </li>
 
@@ -274,33 +273,42 @@ if (isset($_SESSION["adminuser"])) {
                                 <li>
                                     <a href="#" onclick="changeDashboardViewMedi();">
                                         <i data-feather="inbox"></i>
-                                        <span>Received Booking</span>
+                                        <span>Pending Bookings</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" onclick="changeDashboardViewMedArrivedi();">
-                                        <i data-feather="user-check"></i>
-                                        <span>Arrived Booking</span>
+                                        <i data-feather="check-circle"></i>
+                                        <span>Completed Bookings</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" onclick="changeDashboardViewBookingClosed();">
-                                        <i data-feather="check-circle"></i>
-                                        <span>Closed Booking</span>
+                                        <i data-feather="alert-triangle"></i>
+                                        <span>Cancelled by User</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-title mt-2">Finance</li>
+
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewEarning();">
+                                        <i data-feather="trending-up"></i>
+                                        <span> Earning Overview</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" onclick="changeDashboardViewPayout();">
-                                        <i data-feather="arrow-down-circle"></i>
-                                        <span>Payment</span>
+                                        <i data-feather="credit-card"></i>
+                                        <span>Payouts</span>
                                     </a>
                                 </li>
 
-                                <li class="menu-title mt-2">Tours Customization</li>
+                                <li class="menu-title mt-2">Tours Management</li>
                                 <li>
                                     <a href="../tour/adminindex.php?view=Tours">
                                         <i data-feather="map-pin"></i>
-                                        <span>Tours</span>
+                                        <span>All Tours</span>
                                     </a>
                                 </li>
                                 <li>
@@ -312,7 +320,13 @@ if (isset($_SESSION["adminuser"])) {
                                 <li>
                                     <a href="#" onclick="changeDashboardViewCurrency();">
                                         <i data-feather="dollar-sign"></i>
-                                        <span>Currency</span>
+                                        <span>Currency Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="changeDashboardViewAdvanceRate();">
+                                        <i data-feather="percent"></i>
+                                        <span>Advance Rate</span>
                                     </a>
                                 </li>
                                 <li class="menu-title mt-2">Tools</li>
@@ -379,6 +393,7 @@ if (isset($_SESSION["adminuser"])) {
                                         <span>Story</span>
                                     </a>
                                 </li> -->
+                                <li class="menu-title mt-2">Logout</li>
 
                                 <li>
                                     <a style="color: red;" class="fw-bold" href="#" onclick="changeDashboardViewDonation();">
