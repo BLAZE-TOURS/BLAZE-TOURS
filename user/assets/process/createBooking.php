@@ -74,6 +74,16 @@ try {
 	$totalLKR = $totalUSD > 0 ? round($totalUSD * $rate, 2) : 0.0;
 	BlazeLogger::info('createBooking: computed totals', ['rate' => $rate, 'totalLKR' => $totalLKR]);
 
+	// --- NEW: capture advance / balance posted from frontend (USD) and convert to LKR
+	$paidUSD = floatval($_POST['paidAmountUSD'] ?? 0.0);
+	$balanceUSD = floatval($_POST['balanceAmountUSD'] ?? max(0.0, $totalUSD - $paidUSD));
+	$paidLKR = round($paidUSD * $rate, 2);
+	$balanceLKR = round($balanceUSD * $rate, 2);
+	BlazeLogger::info('createBooking: advance/balance', [
+		'paidUSD' => $paidUSD, 'balanceUSD' => $balanceUSD,
+		'paidLKR' => $paidLKR, 'balanceLKR' => $balanceLKR
+	]);
+
 	// Escape safely
 	$nameEsc = Database::escape_string($name);
 	$emailEsc = Database::escape_string($email);
@@ -95,7 +105,7 @@ try {
 	// --- Check duplicate bookings
 	if ($timeAmPm) {
 		$timeEsc = "'" . Database::escape_string($timeAmPm) . "'";
-		$dup = Database::search("SELECT COUNT(*) AS c FROM booking WHERE tour_id = $tourId AND tourDate = '$tourDateEsc' AND time_slot = $timeEsc AND status_id IN (1,2)");
+		$dup = Database::search("SELECT COUNT(*) AS c FROM booking WHERE tour_id = $tourId AND tourDate = '$tourDateEsc' AND time_slot = $timeEsc AND status_id IN (1)");
 		if ($dup && ($row = $dup->fetch_assoc()) && $row['c'] > 0) {
 			BlazeLogger::info('createBooking: duplicate found', ['tourId' => $tourId, 'tourDate' => $tourDate, 'time' => $timeAmPm]);
 			respond(false, ['message' => 'Selected date and time slot already booked.'], 409);
@@ -110,11 +120,11 @@ try {
 	$insert = "
 		INSERT INTO booking 
 		(id, name, mobile, email, tourDate, time_slot, numberOfAdultCount, numberOfKidsCount, pickup_location, 
-		total_price_lkr, total_price_usd, status_id, tour_id, created_at)
+		total_price_lkr, total_price_usd, advance_paid_usd, advance_paid_lkr, balance_due_usd, balance_due_lkr, status_id, tour_id, created_at)
 		VALUES (
 			'$bookingIdEsc', '$nameEsc', '$mobileEsc', '$emailEsc', '$tourDateEsc', $timeSlotEsc,
 			$numAdults, $numKids, $pickupEsc,
-			$totalLKR, $totalUSD, 3, $tourId, NOW()
+			$totalLKR, $totalUSD, $paidUSD, $paidLKR, $balanceUSD, $balanceLKR, 3, $tourId, NOW()
 		)
 	";
 	Database::iud($insert);
@@ -127,7 +137,7 @@ try {
 	// Generate PayHere hash signature (required for authorization)
 	$merchant_secret_hashed = strtoupper(md5($merchant_secret));
 	$order_id = $customBookingId; // Use custom booking ID as order ID
-	$amount = number_format($totalLKR, 2, '.', '');
+	$amount = number_format($paidLKR, 2, '.', '');
 	$currency = 'LKR';
 	$hash = strtoupper(md5($merchant_id . $order_id . $amount . $currency . $merchant_secret_hashed));
 	BlazeLogger::info('createBooking: payhere payload', [

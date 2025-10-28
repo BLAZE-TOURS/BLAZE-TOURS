@@ -872,10 +872,10 @@ tour Area
                                     <div class="form-group">
                                         <label for="paidAmount" class="form-label fw-semibold">Paid Amount (USD)</label>
                                         <input type="number" class="form-control border-0 shadow-sm" id="paidAmount"
-                                            step="0.01" min="0" placeholder="Min $15" required>
+                                            step="any" min="0" placeholder="Min $00" required>
 
                                         <small  class="fw-medium d-block mt-2">
-                                            Min. Advance <span class="text-danger" >$15 (30% of total)</ස්>
+                                            Min. Advance <span class="text-danger" >$00 (00% of total)</span>
                                         </small>
 
                                         <div class="mt-3 border-top pt-2">
@@ -1120,10 +1120,125 @@ tour Area
                 }
             });
 
-            // Initialize states
+            usdToLkrRate = 320; // Default rate
+            let advancePercentage = 100; // Default percentage
+            window.usdToLkrRate = usdToLkrRate;
+            window.advancePercentage = advancePercentage;
+
+            // Add these functions
+            function formatUSD(amount) {
+                return '$' + Number(amount).toFixed(2);
+            }
+
+            function formatLKR(amount) {
+                return 'Rs. ' + Number(amount).toFixed(2);
+            }
+
+            async function fetchAdvancePercentage() {
+                try {
+                    const response = await fetch('assets/process/getAdvancePercentage.php');
+                    const data = await response.json();
+                    if (data.success) {
+                        advancePercentage = parseInt(data.value) || 30;
+                        window.advancePercentage = advancePercentage;
+                        updatePaidAmountPlaceholder();
+                    }
+                } catch (error) {
+                    console.error('Error fetching advance percentage:', error);
+                }
+            }
+
+            function updatePaidAmountPlaceholder() {
+                const totalUSD = parseFloat(totalPrice.textContent.replace('$', ''));
+                const minAdvance = (totalUSD * (advancePercentage / 100));
+                const paidInput = document.getElementById('paidAmount');
+                
+                // Update placeholder and min attribute
+                paidInput.placeholder = `Min ${formatUSD(minAdvance)} (${advancePercentage}% of total)`;
+                paidInput.min = minAdvance;
+                
+                // Update the minimum advance text
+                const advanceText = document.querySelector('small.fw-medium span.text-danger');
+                if (advanceText) {
+                    advanceText.textContent = `${formatUSD(minAdvance)} (${advancePercentage}% of total)`;
+                }
+
+                // If no user input yet, set the default value
+                if (!paidInput.dataset.userEdited) {
+                    paidInput.value = minAdvance.toFixed(2);
+                    updatePaidDisplays();
+                }
+            }
+
+            function updatePaidDisplays() {
+                const paidInput = document.getElementById('paidAmount');
+                const paidUSD = parseFloat(paidInput.value || 0);
+                const totalUSD = parseFloat(totalPrice.textContent.replace('$', ''));
+                const minAdvance = totalUSD * (advancePercentage / 100);
+
+                // Validate input
+                if (paidUSD < minAdvance) {
+                    paidInput.setCustomValidity(`Minimum payment is ${formatUSD(minAdvance)}`);
+                } else if (paidUSD > totalUSD) {
+                    paidInput.setCustomValidity(`Maximum payment is ${formatUSD(totalUSD)}`);
+                    paidInput.value = totalUSD.toFixed(2);
+                } else {
+                    paidInput.setCustomValidity('');
+                }
+
+                // Calculate and display LKR amounts
+                const paidLKR = paidUSD * usdToLkrRate;
+                const totalLKR = totalUSD * usdToLkrRate;
+                const balanceLKR = Math.max(0, totalLKR - paidLKR);
+
+                document.getElementById('paidLKR').textContent = formatLKR(paidLKR);
+                document.getElementById('balanceLKR').textContent = formatLKR(balanceLKR);
+                document.getElementById('totalPriceLKR').textContent = formatLKR(totalLKR);
+            }
+
+            // Modify updatePrices() to call updatePaidAmountPlaceholder
+            function updatePrices() {
+                const adults = parseInt(adultCount.value);
+                const children = parseInt(childCount.value);
+
+                const adultTotal = adults * adultPricePerPerson;
+                const childTotal = children * childPricePerPerson;
+                const total = adultTotal + childTotal;
+
+                adultPrice.textContent = '$' + adultTotal.toFixed(2);
+                childPrice.textContent = '$' + childTotal.toFixed(2);
+                totalPrice.textContent = '$' + total.toFixed(2);
+
+                // Update LKR equivalent
+                updateLKRPrice(total);
+
+                // Show/hide child price row
+                if (children > 0) {
+                    childPriceRow.style.display = 'flex';
+                    childPriceRow.querySelector('span:first-child').textContent = `Children (${children} x $${childPricePerPerson.toFixed(2)})`;
+                } else {
+                    childPriceRow.style.display = 'none';
+                }
+
+                // Update adult price text
+                adultPrice.parentElement.querySelector('span:first-child').textContent = `Adults (${adults} x $${adultPricePerPerson.toFixed(2)})`;
+
+                updatePaidAmountPlaceholder();
+                updatePaidDisplays();
+            }
+
+            // Add paid amount input handler
+            const paidAmountInput = document.getElementById('paidAmount');
+            paidAmountInput.addEventListener('input', function() {
+                this.dataset.userEdited = '1';
+                updatePaidDisplays();
+            });
+
+            // Initialize everything
             updatePrices();
             updateButtonsState();
-            fetchExchangeRate(); // Fetch exchange rate on page load
+            fetchExchangeRate();
+            fetchAdvancePercentage();
 
             // Set minimum date to today
             const today = new Date().toISOString().split('T')[0];

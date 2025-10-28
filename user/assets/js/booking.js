@@ -1,4 +1,4 @@
-(function() {
+(function () {
     const notyf = new Notyf({ duration: 3000, position: { x: 'center', y: 'top' } });
 
     // Listen for cross-window messages (popup -> parent) and redirect parent when needed
@@ -59,7 +59,7 @@
                 try {
                     if (window.opener && !window.opener.closed) {
                         window.opener.location.href = dest;
-                        setTimeout(() => { try { window.close(); } catch (e) {} }, 300);
+                        setTimeout(() => { try { window.close(); } catch (e) { } }, 300);
                         return;
                     }
                 } catch (e) { console.warn('[payhere] opener redirect failed', e); }
@@ -119,13 +119,13 @@
             });
             console.log('[booking] response status:', res.status);
             let json;
-            try { 
-                json = await res.json(); 
-                console.log('[booking] response json:', json); 
-            } catch (e) { 
+            try {
+                json = await res.json();
+                console.log('[booking] response json:', json);
+            } catch (e) {
                 console.error('[booking] json parse error:', e);
-                notyf.error('Unexpected server response: ' + e); 
-                json = { success: false, message: 'Unexpected server response' }; 
+                notyf.error('Unexpected server response: ' + e);
+                json = { success: false, message: 'Unexpected server response' };
             }
             if (!json.success) {
                 console.warn('[booking] backend failed', json);
@@ -180,7 +180,8 @@
         }
     }
 
-    document.getElementById('goToCheckout').addEventListener('click', function() {
+    // Add this to your goToCheckout click handler validation section
+    document.getElementById('goToCheckout').addEventListener('click', function () {
         const notyf = new Notyf({ duration: 3000, position: { x: 'center', y: 'top' } });
         const form = document.getElementById('bookingForm');
         console.log('[booking] goToCheckout clicked');
@@ -246,6 +247,40 @@
             return;
         }
 
+        // 8. empty paidAmount 
+        const paidInput = document.getElementById('paidAmount').value.trim();
+        if (!paidInput) {
+            notyf.error('Please enter your paid amount.');
+            return;
+        }
+
+             // 9. paidAmount Validation 
+        if (!validatePaidAmount()) {
+            return; // Stop if validation fails
+        }
+
+        function validatePaidAmount() {
+            const paidInput = document.getElementById('paidAmount');
+            const paidUSD = parseFloat(paidInput.value || 0);
+            const totalPriceEl = document.getElementById('totalPrice');
+            const totalUSD = parseFloat((totalPriceEl ? totalPriceEl.textContent : '0').replace('$', '')) || 0;
+            const minAdvance = totalUSD * (advancePercentage / 100);
+            
+            // expose balance to outer scope so bookingData can use it
+            window.balanceUSD = totalUSD - paidUSD;
+            balanceUSD = window.balanceUSD;
+
+            // Validate paid amount: must be at least the minimum advance and not exceed the total
+            if (paidUSD < minAdvance || paidUSD > totalUSD) {
+                notyf.error('Please enter a valid paid amount.');
+                return false;
+            }
+            
+            return true; // Validation passed
+        }
+
+
+
         const bookingData = {
             tourId: window.tour_id || 0,
             tourName: window.tour_name || '',
@@ -255,6 +290,8 @@
             childPrice: window.childPricePerPerson || 0,
             totalPriceUSD: parseFloat(document.getElementById('totalPrice').textContent.replace('$', '')),
             totalPriceLKR: window.usdToLkrRate > 0 ? parseFloat(document.getElementById('totalPrice').textContent.replace('$', '')) * window.usdToLkrRate : 0,
+            paidAmountUSD: parseFloat(document.getElementById('paidAmount').value),
+            balanceAmountUSD: balanceUSD.toFixed(2),
             date: tourDate,
             timeSlot: timeSlotInput.value,
             fullName: fullName,

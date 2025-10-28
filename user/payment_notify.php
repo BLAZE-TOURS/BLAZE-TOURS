@@ -68,16 +68,39 @@ try {
 
 // Status code 2 = success
 if ((string)$status_code === '2') {
-	try {
-		// Mark as COMPLETE/PAID (status_id = 1) and save payment reference
-		$paymentId = Database::escape_string($_POST['payment_id'] ?? '');
-		$method = Database::escape_string($_POST['method'] ?? 'PayHere');
-		Database::iud("UPDATE booking SET status_id = 1, payment_id = '$paymentId', payment_method = '$method' WHERE id = '$orderIdEsc' AND status_id = 3");
-		BlazeLogger::info('notify: status set to PAID', ['order_id' => $customBookingId, 'payment_id' => $paymentId]);
+    try {
+        // payhere_amount is in LKR (per integration)
+        $paidLKR = floatval($payhere_amount);
+        // fetch booking total to compute balance
+        $resTotal = Database::search("SELECT total_price_lkr, total_price_usd FROM booking WHERE id = '$orderIdEsc' LIMIT 1");
+        $totalLKR = 0;
+        $totalUSD = 0;
+        if ($resTotal && $resTotal->num_rows > 0) {
+            $rowT = $resTotal->fetch_assoc();
+            $totalLKR = floatval($rowT['total_price_lkr'] ?? 0);
+            $totalUSD = floatval($rowT['total_price_usd'] ?? 0);
+        }
+        $balanceLKR = max(0, $totalLKR - $paidLKR);
 
-		echo 'OK';
-		exit;
-	} catch (Throwable $e) {
+        // compute USD equivalents using DB rate
+        $rate = Database::getLKRRate();
+        $paidUSD = $rate > 0 ? round($paidLKR / $rate, 2) : 0;
+        $balanceUSD = $rate > 0 ? round($balanceLKR / $rate, 2) : 0;
+
+        // Mark as COMPLETE/PAID (status_id = 1) and save payment reference + advance/balance
+        $paymentId = Database::escape_string($_POST['payment_id'] ?? '');
+        $method = Database::escape_string($_POST['method'] ?? 'PayHere');
+
+        Database::iud("UPDATE booking 
+            SET status_id = 1, payment_id = '$paymentId', payment_method = '$method',
+                advance_paid_lkr = $paidLKR, balance_due_lkr = $balanceLKR,
+                advance_paid_usd = $paidUSD, balance_due_usd = $balanceUSD
+            WHERE id = '$orderIdEsc' AND status_id = 3");
+        BlazeLogger::info('notify: status set to PAID', ['order_id' => $customBookingId, 'payment_id' => $paymentId, 'paidLKR' => $paidLKR]);
+
+        echo 'OK';
+        exit;
+    } catch (Throwable $e) {
 		BlazeLogger::error('notify: exception', ['error' => $e->getMessage()]);
 		http_response_code(500);
 		echo 'Server error';
