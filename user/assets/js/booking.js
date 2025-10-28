@@ -298,7 +298,6 @@
         };
 
         console.log('[booking] prepared bookingData:', bookingData);
-        alert('Proceeding to checkout with booking data:\n' + JSON.stringify(bookingData, null, 2));
         window.createBooking && window.createBooking(bookingData);
     });
 
