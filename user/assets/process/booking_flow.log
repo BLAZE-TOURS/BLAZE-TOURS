@@ -114,3 +114,29 @@
 2025-10-28 18:36:39 [INFO] createBooking: parsed input | {"name":"Lakshitha madumal","email":"mandujayaweera2003@gmail.com","mobile":"+94712654117","tourId":12,"tourDate":"2025-10-30","timeSlot":"07:00:00","numAdults":1,"numKids":0,"totalUSD":2}
 2025-10-28 18:36:39 [INFO] createBooking: computed totals | {"rate":100,"totalLKR":200}
 2025-10-28 18:36:39 [INFO] createBooking: duplicate found | {"tourId":12,"tourDate":"2025-10-30","time":"7:00 AM"}
+2025-10-28 19:50:11 [INFO] createBooking: request received | {"post_keys":["tourId","tourName","adults","children","adultPrice","childPrice","totalPriceUSD","totalPriceLKR","date","timeSlot","fullName","email","pickup","phone"]}
+2025-10-28 19:50:11 [INFO] createBooking: parsed input | {"name":"Lakshitha madumal","email":"mandujayaweera2003@gmail.com","mobile":"+94712654117","tourId":12,"tourDate":"2025-10-30","timeSlot":"08:00:00","numAdults":1,"numKids":0,"totalUSD":2}
+2025-10-28 19:50:11 [INFO] createBooking: computed totals | {"rate":100,"totalLKR":200}
+2025-10-28 19:50:11 [INFO] createBooking: generated id | {"id":"BLAZE251028420"}
+2025-10-28 19:50:11 [INFO] createBooking: inserted booking | {"id":"BLAZE251028420"}
+2025-10-28 19:50:11 [INFO] createBooking: payhere payload | {"order_id":"BLAZE251028420","amount":"200.00","currency":"LKR"}
+2025-10-28 20:12:53 [INFO] createBooking: request received | {"post_keys":["tourId","tourName","adults","children","adultPrice","childPrice","totalPriceUSD","totalPriceLKR","date","timeSlot","fullName","email","pickup","phone"]}
+2025-10-28 20:12:53 [INFO] createBooking: parsed input | {"name":"Lakshitha madumal","email":"mandujayaweera2003@gmail.com","mobile":"+94712654117","tourId":12,"tourDate":"2025-10-30","timeSlot":"08:00:00","numAdults":1,"numKids":0,"totalUSD":2}
+2025-10-28 20:12:53 [INFO] createBooking: computed totals | {"rate":100,"totalLKR":200}
+2025-10-28 20:12:53 [INFO] createBooking: generated id | {"id":"BLAZE251028015"}
+2025-10-28 20:12:54 [INFO] createBooking: inserted booking | {"id":"BLAZE251028015"}
+2025-10-28 20:12:54 [INFO] createBooking: payhere payload | {"order_id":"BLAZE251028015","amount":"200.00","currency":"LKR"}
+2025-10-28 20:15:16 [INFO] createBooking: request received | {"post_keys":["tourId","tourName","adults","children","adultPrice","childPrice","totalPriceUSD","totalPriceLKR","date","timeSlot","fullName","email","pickup","phone"]}
+2025-10-28 20:15:16 [INFO] createBooking: parsed input | {"name":"Lakshitha madumal","email":"mandujayaweera2003@gmail.com","mobile":"+94712654117","tourId":12,"tourDate":"2025-10-30","timeSlot":"07:00:00","numAdults":1,"numKids":0,"totalUSD":2}
+2025-10-28 20:15:16 [INFO] createBooking: computed totals | {"rate":100,"totalLKR":200}
+2025-10-28 20:15:16 [INFO] createBooking: duplicate found | {"tourId":12,"tourDate":"2025-10-30","time":"7:00 AM"}
+2025-10-28 20:16:56 [INFO] createBooking: request received | {"post_keys":["tourId","tourName","adults","children","adultPrice","childPrice","totalPriceUSD","totalPriceLKR","paidAmountUSD","paidAmountLKR","date","timeSlot","fullName","email","pickup","phone"]}
+2025-10-28 20:16:56 [INFO] createBooking: parsed input | {"name":"Lakshitha madumal","email":"mandujayaweera2003@gmail.com","mobile":"+94712654117","tourId":12,"tourDate":"2025-10-30","timeSlot":"07:00:00","numAdults":1,"numKids":0,"totalUSD":2}
+2025-10-28 20:16:56 [INFO] createBooking: computed totals | {"rate":100,"totalLKR":200}
+2025-10-28 20:16:56 [INFO] createBooking: duplicate found | {"tourId":12,"tourDate":"2025-10-30","time":"7:00 AM"}
+2025-10-28 20:24:47 [INFO] createBooking: request received | {"post_keys":["tourId","tourName","adults","children","adultPrice","childPrice","totalPriceUSD","totalPriceLKR","paidAmountUSD","balanceAmountUSD","date","timeSlot","fullName","email","pickup","phone"]}
+2025-10-28 20:24:47 [INFO] createBooking: parsed input | {"name":"Lakshitha madumal","email":"mandujayaweera2003@gmail.com","mobile":"+94712654117","tourId":12,"tourDate":"2025-10-30","timeSlot":"08:00:00","numAdults":1,"numKids":0,"totalUSD":2}
+2025-10-28 20:24:47 [INFO] createBooking: computed totals | {"rate":100,"totalLKR":200}
+2025-10-28 20:24:47 [INFO] createBooking: generated id | {"id":"BLAZE251028608"}
+2025-10-28 20:24:47 [INFO] createBooking: inserted booking | {"id":"BLAZE251028608"}
+2025-10-28 20:24:47 [INFO] createBooking: payhere payload | {"order_id":"BLAZE251028608","amount":"200.00","currency":"LKR"}

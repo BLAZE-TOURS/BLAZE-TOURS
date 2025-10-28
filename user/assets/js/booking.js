@@ -263,6 +263,10 @@
             const totalPriceEl = document.getElementById('totalPrice');
             const totalUSD = parseFloat((totalPriceEl ? totalPriceEl.textContent : '0').replace('$', '')) || 0;
             const minAdvance = totalUSD * (advancePercentage / 100);
+            // expose balance to outer scope so bookingData can use it
+            window.balanceUSD = totalUSD - paidUSD;
+            balanceUSD = window.balanceUSD;
+
 
             // Validate paid amount: must be at least the minimum advance and not exceed the total
             if (paidUSD < minAdvance || paidUSD > totalUSD) {
@@ -283,6 +287,8 @@
             childPrice: window.childPricePerPerson || 0,
             totalPriceUSD: parseFloat(document.getElementById('totalPrice').textContent.replace('$', '')),
             totalPriceLKR: window.usdToLkrRate > 0 ? parseFloat(document.getElementById('totalPrice').textContent.replace('$', '')) * window.usdToLkrRate : 0,
+            paidAmountUSD: parseFloat(document.getElementById('paidAmount').value),
+            balanceAmountUSD: balanceUSD.toFixed(2),
             date: tourDate,
             timeSlot: timeSlotInput.value,
             fullName: fullName,
@@ -292,6 +298,7 @@
         };
 
         console.log('[booking] prepared bookingData:', bookingData);
+        alert('Proceeding to checkout with booking data:\n' + JSON.stringify(bookingData, null, 2));
         window.createBooking && window.createBooking(bookingData);
     });
 
