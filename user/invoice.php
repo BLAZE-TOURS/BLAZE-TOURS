@@ -298,6 +298,25 @@ if ($adultPrice == 0 && $childPrice == 0 && $totalPrice > 0) {
                                                 <td colspan="4" class="text-end totals-row">Total (LKR)</td>
                                                 <td class="text-end totals-row">Rs. <?php echo number_format($totalPriceLKR > 0 ? $totalPriceLKR : $totalPrice * $effectiveRate, 2); ?></td>
                                             </tr>
+                                            <!-- Add new rows for paid amount and balance -->
+                                            <tr>
+                                                <td colspan="3" class="text-end">Paid Amount (USD)</td>
+                                                <td class="text-end">$<?php echo number_format($bookingData['advance_paid_usd'] ?? 0, 2); ?></td>
+                                                <td class="text-end"></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="text-end">Paid Amount (LKR)</td>
+                                                <td class="text-end">Rs. <?php echo number_format($bookingData['advance_paid_lkr'] ?? 0, 2); ?></td>
+                                            </tr>
+                                            <tr class="table-light">
+                                                <td colspan="3" class="text-end"><strong>Balance Due (USD)</strong></td>
+                                                <td class="text-end"><strong>$<?php echo number_format($bookingData['balance_due_usd'] ?? 0, 2); ?></strong></td>
+                                                <td class="text-end"></td>
+                                            </tr>
+                                            <tr class="table-light">
+                                                <td colspan="4" class="text-end"><strong>Balance Due (LKR)</strong></td>
+                                                <td class="text-end"><strong>Rs. <?php echo number_format($bookingData['balance_due_lkr'] ?? 0, 2); ?></strong></td>
+                                            </tr>
                                         </tfoot>
                                     </table>
                                 </div>

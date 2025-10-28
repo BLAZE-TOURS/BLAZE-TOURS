@@ -162,12 +162,28 @@ function sendBookingConfirmationEmail($bookingData)
                     <td>' . htmlspecialchars($bookingData['email']) . '</td>
                 </tr>
                 <tr>
+                    <th>Total (USD)</th>
+                    <td class="price">$' . number_format($bookingData['totalPriceUSD'], 2) . '</td>
+                </tr>
+                <tr>
                     <th>Total (LKR)</th>
                     <td class="price">Rs. ' . number_format($bookingData['totalPriceLKR'], 2) . '</td>
                 </tr>
                 <tr>
-                    <th>Total (USD)</th>
-                    <td class="price">$' . number_format($bookingData['totalPriceUSD'], 2) . '</td>
+                    <th>Paid Amount (USD)</th>
+                    <td>$' . number_format($bookingData['advance_paid_usd'] ?? 0, 2) . '</td>
+                </tr>
+                <tr>
+                    <th>Paid Amount (LKR)</th>
+                    <td>Rs. ' . number_format($bookingData['advance_paid_lkr'] ?? 0, 2) . '</td>
+                </tr>
+                <tr>
+                    <th>Balance Due (USD)</th>
+                    <td class="price">$' . number_format($bookingData['balance_due_usd'] ?? 0, 2) . '</td>
+                </tr>
+                <tr>
+                    <th>Balance Due (LKR)</th>
+                    <td class="price">Rs. ' . number_format($bookingData['balance_due_lkr'] ?? 0, 2) . '</td>
                 </tr>
             </table>
 
@@ -273,12 +289,28 @@ function sendAdminNotificationEmail($bookingData)
                         <td>' . htmlspecialchars($bookingData['email']) . '</td>
                     </tr>
                     <tr class="price-row">
+                        <th>Total (USD)</th>
+                        <td>$' . number_format($bookingData['totalPriceUSD'], 2) . '</td>
+                    </tr>
+                    <tr>
                         <th>Total (LKR)</th>
                         <td>Rs. ' . number_format($bookingData['totalPriceLKR'], 2) . '</td>
                     </tr>
                     <tr>
-                        <th>Total (USD)</th>
-                        <td>$' . number_format($bookingData['totalPriceUSD'], 2) . '</td>
+                        <th>Paid Amount (USD)</th>
+                        <td>$' . number_format($bookingData['advance_paid_usd'] ?? 0, 2) . '</td>
+                    </tr>
+                    <tr>
+                        <th>Paid Amount (LKR)</th>
+                        <td>Rs. ' . number_format($bookingData['advance_paid_lkr'] ?? 0, 2) . '</td>
+                    </tr>
+                    <tr>
+                        <th>Balance Due (USD)</th>
+                        <td>$' . number_format($bookingData['balance_due_usd'] ?? 0, 2) . '</td>
+                    </tr>
+                    <tr>
+                        <th>Balance Due (LKR)</th>
+                        <td>Rs. ' . number_format($bookingData['balance_due_lkr'] ?? 0, 2) . '</td>
                     </tr>
                 </table>
                 <div class="footer">&copy; ' . date("Y") . ' Blaze Tours (Pvt) Ltd | New booking notification</div>

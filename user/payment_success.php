@@ -50,6 +50,10 @@ if (!empty($orderId)) {
 				'totalPriceLKR' => (float)$booking['total_price_lkr'],
 				'phone' => $booking['mobile'],
 				'booking_id' => $booking['id'],
+				'advance_paid_usd' => (float)$booking['advance_paid_usd'],
+				'advance_paid_lkr' => (float)$booking['advance_paid_lkr'],
+				'balance_due_usd' => (float)$booking['balance_due_usd'],
+				'balance_due_lkr' => (float)$booking['balance_due_lkr']
 			];
 
 			// Send emails
