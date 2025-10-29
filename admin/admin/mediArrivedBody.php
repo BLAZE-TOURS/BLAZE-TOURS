@@ -115,13 +115,16 @@
             <p><strong>Email:</strong> <span id="arr-email"></span></p>
             <p><strong>Tour Date:</strong> <span id="arr-tourDate"></span></p>
             <p><strong>Time Slot:</strong> <span id="arr-timeSlot"></span></p>
+            <p><strong>Pickup:</strong> <span id="arr-pickup"></span></p>
           </div>
           <div class="col-md-6">
             <p><strong>Adults:</strong> <span id="arr-adults"></span></p>
             <p><strong>Kids:</strong> <span id="arr-kids"></span></p>
-            <p><strong>Pickup:</strong> <span id="arr-pickup"></span></p>
             <p><strong>Tour:</strong> <span id="arr-tourName"></span></p>
             <p><strong>Total Price:</strong> <span id="arr-price"></span></p>
+            <p><strong>Advance Paid:</strong> <span id="arr-advance"></span></p>
+            <p><strong>Balance Due:</strong> <span id="arr-balance"></span></p>
+            <p><strong>Payment Status:</strong> <span id="arr-paymentStatus"></span></p>
           </div>
         </div>
       </div>
@@ -160,6 +163,14 @@
     document.getElementById('arr-pickup').textContent = data.pickup_location || '-';
     document.getElementById('arr-tourName').textContent = data.tours_type_name || '-';
     document.getElementById('arr-price').textContent = ('$ ' + (data.total_price_usd ?? '-') + ' (Rs. ' + (data.total_price_lkr ?? '-') + ')');
+    document.getElementById('arr-advance').textContent = `$ ${data.advance_paid_usd} (Rs. ${data.advance_paid_lkr})`;
+    document.getElementById('arr-balance').textContent = `$ ${data.balance_due_usd} (Rs. ${data.balance_due_lkr})`;
+
+    let paymentStatus = (data.balance_due_lkr == 0 || data.balance_due_usd == 0) ?
+      "Fully Paid" :
+      "Partial Payment";
+
+    document.getElementById('arr-paymentStatus').textContent = paymentStatus;
 
     const modal = new bootstrap.Modal(document.getElementById('detailsModalArrived'));
     modal.show();

@@ -69,7 +69,7 @@
                             onclick='showDetailsClosed(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)'>
                             <i class="fas fa-info-circle"></i> More
                           </button>
-                          <a href="https://wa.me/<?php echo urlencode($row["mobile"]); ?>?text=<?php echo urlencode("Hello ".$row["name"]); ?>"
+                          <a href="https://wa.me/<?php echo urlencode($row["mobile"]); ?>?text=<?php echo urlencode("Hello " . $row["name"]); ?>"
                             target="_blank" class="btn btn-success btn-sm">
                             <i class="fab fa-whatsapp"></i> Send
                           </a>
@@ -105,13 +105,17 @@
             <p><strong>Email:</strong> <span id="cl-email"></span></p>
             <p><strong>Tour Date:</strong> <span id="cl-tourDate"></span></p>
             <p><strong>Time Slot:</strong> <span id="cl-timeSlot"></span></p>
+            <p><strong>Pickup:</strong> <span id="cl-pickup"></span></p>
+
           </div>
           <div class="col-md-6">
             <p><strong>Adults:</strong> <span id="cl-adults"></span></p>
             <p><strong>Kids:</strong> <span id="cl-kids"></span></p>
-            <p><strong>Pickup:</strong> <span id="cl-pickup"></span></p>
             <p><strong>Tour:</strong> <span id="cl-tourName"></span></p>
             <p><strong>Total Price:</strong> <span id="cl-price"></span></p>
+            <p><strong>Advance Paid:</strong> <span id="cl-advance"></span></p>
+            <p><strong>Balance Due:</strong> <span id="cl-balance"></span></p>
+            <p><strong>Payment Status:</strong> <span id="cl-paymentStatus"></span></p>
           </div>
         </div>
       </div>
@@ -149,6 +153,16 @@
     document.getElementById('cl-pickup').textContent = data.pickup_location || '-';
     document.getElementById('cl-tourName').textContent = data.tours_type_name || '-';
     document.getElementById('cl-price').textContent = ('$ ' + (data.total_price_usd ?? '-') + ' (Rs. ' + (data.total_price_lkr ?? '-') + ')');
+
+
+    document.getElementById('cl-advance').textContent = `$ ${data.advance_paid_usd} (Rs. ${data.advance_paid_lkr})`;
+    document.getElementById('cl-balance').textContent = `$ ${data.balance_due_usd} (Rs. ${data.balance_due_lkr})`;
+
+    let paymentStatus = (data.balance_due_lkr == 0 || data.balance_due_usd == 0) ?
+      "Fully Paid" :
+      "Partial Payment";
+
+    document.getElementById('cl-paymentStatus').textContent = paymentStatus;
 
     const modal = new bootstrap.Modal(document.getElementById('detailsModalClosed'));
     modal.show();

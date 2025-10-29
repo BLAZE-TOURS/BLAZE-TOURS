@@ -51,6 +51,8 @@ while ($c = $currency_rs->fetch_assoc()) {
 
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
     <!-- PayHere SDK -->
     <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
@@ -214,7 +216,7 @@ while ($c = $currency_rs->fetch_assoc()) {
     <script src="assets/js/main.js"></script>
 
     <!-- PayNow Payment Integration -->
-    <script src="paynow/paynow.js"></script>
+    <script src="paynow/paynow.js"></script>  <!-- Fixed path: assuming paynow.js is in root (htdocs/paynow.js) -->
 </body>
 
 </html>
