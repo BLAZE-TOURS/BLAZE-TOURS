@@ -80,48 +80,77 @@ foreach ($monthKeys as $k) {
     $monthlyBookingCounts[] = $bookingCountMap[$k] ?? 0;
 }
 
-// Totals for widgets (current month used elsewhere)
-// Total Bookings (status 1 and 4) - overall count
-$tb_rs = Database::search("SELECT COUNT(*) AS c FROM booking WHERE status_id IN (1,4)");
-$tb_row = $tb_rs->fetch_assoc();
-$totalBookings = (int)($tb_row['c'] ?? 0);
+// Get today's date in Y-m-d format
+$today = date('Y-m-d');
 
-// Booking Earnings (this month) - sum total_price_lkr for status 1 and 4 (current month)
-$month = (int)date('n');
-$year = (int)date('Y');
-$be_rs = Database::search(
-    "SELECT IFNULL(SUM(total_price_lkr),0) AS s 
-     FROM booking 
-     WHERE status_id IN (1,4) 
-       AND MONTH(created_at) = $month 
-       AND YEAR(created_at) = $year"
-);
-$be_row = $be_rs->fetch_assoc();
-$bookingEarnings = (float)($be_row['s'] ?? 0);
+// Today's Bookings (status 1 and 4)
+$today_booking_rs = Database::search("
+    SELECT COUNT(*) AS c 
+    FROM booking 
+    WHERE status_id IN (1,4) 
+    AND DATE(created_at) = '$today'
+");
+$today_booking_row = $today_booking_rs->fetch_assoc();
+$todayBookings = (int)($today_booking_row['c'] ?? 0);
 
-// PayNow Earnings (this month) - status 1
-$py_rs = Database::search(
-    "SELECT IFNULL(SUM(lkr_amount),0) AS s 
-     FROM paynow 
-     WHERE status_id = 1 
-       AND MONTH(STR_TO_DATE(createdAt, '%Y-%m-%d %H:%i:%s')) = $month 
-       AND YEAR(STR_TO_DATE(createdAt, '%Y-%m-%d %H:%i:%s')) = $year"
-);
-$py_row = $py_rs->fetch_assoc();
-$paynowEarnings = (float)($py_row['s'] ?? 0);
+// Total Bookings (status 1 and 4)
+$total_booking_rs = Database::search("
+    SELECT COUNT(*) AS c 
+    FROM booking 
+    WHERE status_id IN (1,4)
+");
+$total_booking_row = $total_booking_rs->fetch_assoc();
+$totalBookings = (int)($total_booking_row['c'] ?? 0);
 
-// Total Earnings (booking + paynow) (current month)
-$totalEarnings = $bookingEarnings + $paynowEarnings;
+// Today's Earnings
+// From bookings (advance_paid_lkr where status 1,4)
+$today_booking_earn_rs = Database::search("
+    SELECT IFNULL(SUM(advance_paid_lkr), 0) AS s 
+    FROM booking 
+    WHERE status_id IN (1,4) 
+    AND DATE(created_at) = '$today'
+");
+$today_booking_earn = (float)($today_booking_earn_rs->fetch_assoc()['s'] ?? 0);
 
-// Expose data to JS
+// From paynow (lkr_amount where status 1)
+$today_paynow_earn_rs = Database::search("
+    SELECT IFNULL(SUM(lkr_amount), 0) AS s 
+    FROM paynow 
+    WHERE status_id = 1 
+    AND DATE(STR_TO_DATE(createdAt, '%Y-%m-%d %H:%i:%s')) = '$today'
+");
+$today_paynow_earn = (float)($today_paynow_earn_rs->fetch_assoc()['s'] ?? 0);
+
+$todayEarnings = $today_booking_earn + $today_paynow_earn;
+
+// Total Earnings
+// From bookings (advance_paid_lkr where status 1,4)
+$total_booking_earn_rs = Database::search("
+    SELECT IFNULL(SUM(advance_paid_lkr), 0) AS s 
+    FROM booking 
+    WHERE status_id IN (1,4)
+");
+$total_booking_earn = (float)($total_booking_earn_rs->fetch_assoc()['s'] ?? 0);
+
+// From paynow (lkr_amount where status 1)
+$total_paynow_earn_rs = Database::search("
+    SELECT IFNULL(SUM(lkr_amount), 0) AS s 
+    FROM paynow 
+    WHERE status_id = 1
+");
+$total_paynow_earn = (float)($total_paynow_earn_rs->fetch_assoc()['s'] ?? 0);
+
+$totalEarnings = $total_booking_earn + $total_paynow_earn;
+
+// Update the dashboard data array
 $dashboard_json = json_encode([
+    'todayBookings' => $todayBookings,
     'totalBookings' => $totalBookings,
-    'bookingEarnings' => round($bookingEarnings, 2),
-    'paynowEarnings' => round($paynowEarnings, 2),
+    'todayEarnings' => round($todayEarnings, 2),
     'totalEarnings' => round($totalEarnings, 2),
-    'categories' => $months,                 // YYYY-MM-01 strings for 12 months
-    'monthlyTotals' => $monthlyTotals,       // earnings per month
-    'monthlyBookingCounts' => $monthlyBookingCounts, // booking counts per month
+    'categories' => $months,
+    'monthlyTotals' => $monthlyTotals,
+    'monthlyBookingCounts' => $monthlyBookingCounts,
     'today' => date('Y-m-d')
 ]);
 ?>
@@ -156,22 +185,33 @@ $dashboard_json = json_encode([
             <div class="row">
                 <div class="col-md-12 col-xl-12">
                     <div class="row g-3">
+                        <!-- Today's Bookings -->
+                        <div class="col-md-6 col-xl-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="fs-14 mb-1">Today's Bookings</div>
+                                    </div>
+                                    <div class="d-flex align-items-baseline mb-2">
+                                        <div class="fs-22 mb-0 me-2 fw-semibold text-black" id="todayBookingsValue">
+                                            <?= $todayBookings ?>
+                                        </div>
+                                    </div>
+                                    <div id="today-bookings-chart" class="apex-charts"></div>
+                                </div>
+                            </div>
+                        </div>
 
-                        <!-- 🧾 Total Bookings -->
+                        <!-- Total Bookings -->
                         <div class="col-md-6 col-xl-3">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="fs-14 mb-1">Total Bookings</div>
                                     </div>
-
                                     <div class="d-flex align-items-baseline mb-2">
-                                        <div class="fs-22 mb-0 me-2 fw-semibold text-black" id="totalBookingsValue"><?= $totalBookings ?></div>
-                                        <div class="me-auto">
-                                            <span class="text-primary d-inline-flex align-items-center">
-                                                15%
-                                                <i data-feather="trending-up" class="ms-1" style="height: 22px; width: 22px;"></i>
-                                            </span>
+                                        <div class="fs-22 mb-0 me-2 fw-semibold text-black" id="totalBookingsValue">
+                                            <?= $totalBookings ?>
                                         </div>
                                     </div>
                                     <div id="total-bookings-chart" class="apex-charts"></div>
@@ -179,72 +219,39 @@ $dashboard_json = json_encode([
                             </div>
                         </div>
 
-                        <!-- 💰 Booking Earnings (This Month) -->
+                        <!-- Today's Earnings -->
                         <div class="col-md-6 col-xl-3">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
-                                        <div class="fs-14 mb-1">Booking Earnings (This Month)</div>
+                                        <div class="fs-14 mb-1">Today's Earnings</div>
                                     </div>
-
                                     <div class="d-flex align-items-baseline mb-2">
-                                        <div class="fs-22 mb-0 me-2 fw-semibold text-black" id="bookingEarningsValue">LKR <?= number_format($bookingEarnings, 2) ?></div>
-                                        <div class="me-auto">
-                                            <span class="text-success d-inline-flex align-items-center">
-                                                8%
-                                                <i data-feather="trending-up" class="ms-1" style="height: 22px; width: 22px;"></i>
-                                            </span>
+                                        <div class="fs-22 mb-0 me-2 fw-semibold text-black" id="todayEarningsValue">
+                                            LKR <?= number_format($todayEarnings, 2) ?>
                                         </div>
                                     </div>
-                                    <div id="booking-earn-chart" class="apex-charts"></div>
+                                    <div id="today-earnings-chart" class="apex-charts"></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- 💳 PayNow Earnings (This Month) -->
-                        <div class="col-md-6 col-xl-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="fs-14 mb-1">PayNow Earnings (This Month)</div>
-                                    </div>
-
-                                    <div class="d-flex align-items-baseline mb-2">
-                                        <div class="fs-22 mb-0 me-2 fw-semibold text-black" id="paynowEarningsValue">LKR <?= number_format($paynowEarnings, 2) ?></div>
-                                        <div class="me-auto">
-                                            <span class="text-purple d-inline-flex align-items-center">
-                                                12%
-                                                <i data-feather="trending-up" class="ms-1" style="height: 22px; width: 22px;"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div id="paynow-earn-chart" class="apex-charts"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 📈 Total Earnings -->
+                        <!-- Total Earnings -->
                         <div class="col-md-6 col-xl-3">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="fs-14 mb-1">Total Earnings</div>
                                     </div>
-
                                     <div class="d-flex align-items-baseline mb-2">
-                                        <div class="fs-22 mb-0 me-2 fw-semibold text-black" id="totalEarningsValue">LKR <?= number_format($totalEarnings, 2) ?></div>
-                                        <div class="me-auto">
-                                            <span class="text-warning d-inline-flex align-items-center">
-                                                10%
-                                                <i data-feather="trending-up" class="ms-1" style="height: 22px; width: 22px;"></i>
-                                            </span>
+                                        <div class="fs-22 mb-0 me-2 fw-semibold text-black" id="totalEarningsValue">
+                                            LKR <?= number_format($totalEarnings, 2) ?>
                                         </div>
                                     </div>
-                                    <div id="total-earn-chart" class="apex-charts"></div>
+                                    <div id="total-earnings-chart" class="apex-charts"></div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                 </div> <!-- end sales -->
