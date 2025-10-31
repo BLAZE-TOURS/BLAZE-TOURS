@@ -900,8 +900,8 @@ tour Area
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="privacyPolicyCheck" required>
                                 <label class="form-check-label" for="privacyPolicyCheck">
-                                    I agree to the <a href="privacy.php" target="_blank" class="text-decoration-underline">Privacy Policy</a>
-                                    & payment terms
+                                    I agree to the <a href="privacy-policy.php" target="_blank" class="text-decoration-underline">Privacy Policy</a>
+                                    & <a href="refund-policy.php" target="_blank" class="text-decoration-underline">Refund Policy</a>
                                 </label>
                             </div>
                         </div>
