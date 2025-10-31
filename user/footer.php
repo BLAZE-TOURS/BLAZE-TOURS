@@ -49,7 +49,9 @@
                                 <li><a href="about.php">About us</a></li>
                                 <li><a href="gallery.php">Gallery</a></li>
                                 <li><a href="contact.php">Contact Us</a></li>
-                                <li><a href="privacy.php">Privacy Policy</a></li>
+                                <li><a href="privacy-policy.php">Privacy Policy</a></li>
+                                <li><a href="refund-policy.php">Return & Refund Policy</a></li>
+                                <li><a href="terms-conditions.php">Terms & Conditions</a></li>
                             </ul>
                         </div>
                     </div>
