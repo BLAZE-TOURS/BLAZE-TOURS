@@ -15,13 +15,15 @@ try {
     
     // Fetch paynow entries with status 1
     $paynow_query = "SELECT 
-        id,
-        lkr_amount AS amount,
-        'Payout' AS locate,
-        DATE(STR_TO_DATE(createdAt, '%Y-%m-%d %H:%i:%s')) AS created_date
-        FROM paynow 
-        WHERE status_id = 1 
-        AND lkr_amount > 0";
+            id,
+            lkr_amount AS amount,
+            'Payout' AS locate,
+            DATE(createdAt) AS created_date
+        FROM paynow
+        WHERE status = 'Success'
+        AND lkr_amount > 0
+    ";
+
 
     // Combine both queries with UNION and order by date
     $final_query = "
