@@ -214,9 +214,6 @@ while ($c = $currency_rs->fetch_assoc()) {
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
-
-    <!-- PayNow Payment Integration -->
-    <script src="paynow/paynow.js"></script>  <!-- Fixed path: assuming paynow.js is in root (htdocs/paynow.js) -->
 </body>
 
 </html>
