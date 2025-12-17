@@ -1,3 +1,22 @@
+<?php
+require_once '../assets/process/connection.php'; // Path එක නිවැරදිව දාන්න
+
+// 1. Order ID එක ලබා ගැනීම
+$order_id = isset($_GET['order_id']) ? $_GET['order_id'] : '';
+
+// පොඩි ආරක්ෂිත පියවරක්: Order ID එක නැත්නම් මුල් පිටුවට යවමු
+if (empty($order_id)) {
+    header("Location: index.php");
+    exit();
+}
+
+// 2. Database එකෙන් විස්තර ගන්න (Optional - බිලක් පෙන්නනවා නම් විතරයි)
+$result = Database::search("SELECT * FROM paynow WHERE order_id = '$order_id'");
+$order_data = $result->fetch_assoc();
+
+?>
+
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 

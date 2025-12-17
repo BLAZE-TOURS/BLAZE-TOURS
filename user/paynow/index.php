@@ -1,7 +1,79 @@
 <?php
 require_once '../assets/process/connection.php';
+require_once 'includes/config.php'; // Config ෆයිල් එක link කරන්න
 
-// Load currencies for the selector
+// 1. PAYMENT PROCESSING LOGIC (Form එක Submit කළාම වැඩ කරන කොටස)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pay_submit'])) {
+
+    $email = Database::escape_string($_POST['email']);
+    $description = Database::escape_string($_POST['description']);
+    $currency_id = intval($_POST['currency_id']);
+    $amount = floatval($_POST['amount']); // Foreign Currency Amount
+
+    // Currency Rate එක DB එකෙන් ගැනීම
+    $curr_res = Database::search("SELECT * FROM currency WHERE id = '$currency_id'");
+
+    if ($curr_res->num_rows > 0) {
+        $curr_row = $curr_res->fetch_assoc();
+        $rate = floatval($curr_row['LKR']);
+        $currency_code = $curr_row['currency']; // USD, EUR etc.
+
+        // LKR අගය ගණනය කිරීම (Database එකට සහ Payment එකට යවන්න)
+        $lkr_amount = $amount * $rate;
+        $order_id = uniqid('ORD-'); // Unique Order ID
+
+        // Database එකට Insert කිරීම (Pending Status)
+        $sql = "INSERT INTO paynow (order_id, email, description, currency_id, amount, lkr_amount, status, status_code, createdAt) 
+                VALUES ('$order_id', '$email', '$description', '$currency_id', '$amount', '$lkr_amount', 'Pending', 0, NOW())";
+
+        Database::iud($sql);
+
+        // --- PAYHERE Redirect Form සැකසීම ---
+        // PayHere එකට යවන්නේ LKR ගාන. ඒ නිසා currency = LKR ලෙස යවමු.
+
+        $pay_currency = 'LKR';
+        $pay_amount = number_format($lkr_amount, 2, '.', ''); // දශම ස්ථාන 2කට හදාගන්න
+
+        // Hash Generation
+        $hash_str = MERCHANT_ID . $order_id . $pay_amount . $pay_currency . strtoupper(md5(MERCHANT_SECRET));
+        $hash = strtoupper(md5($hash_str));
+
+        // Auto Submit Form එක Output කිරීම
+        echo '<!DOCTYPE html>
+        <html>
+        <head><title>Redirecting...</title></head>
+        <body>
+            <p style="text-align:center; margin-top:20%;">Redirecting to PayHere Secure Gateway...</p>
+            <form id="payhere_auto" method="post" action="' . PayHere_URL . '">
+                <input type="hidden" name="merchant_id" value="' . MERCHANT_ID . '">
+                <input type="hidden" name="return_url" value="' . RETURN_URL . '">
+                <input type="hidden" name="cancel_url" value="' . CANCEL_URL . '">
+                <input type="hidden" name="notify_url" value="' . NOTIFY_URL . '">
+                
+                <input type="hidden" name="order_id" value="' . $order_id . '">
+                <input type="hidden" name="items" value="' . htmlspecialchars($description) . '">
+                <input type="hidden" name="currency" value="' . $pay_currency . '">
+                <input type="hidden" name="amount" value="' . $pay_amount . '">
+                
+                <input type="hidden" name="first_name" value="Customer">
+                <input type="hidden" name="last_name" value="">
+                <input type="hidden" name="email" value="' . $email . '">
+                <input type="hidden" name="address" value="Sri Lanka">
+                <input type="hidden" name="city" value="Colombo">
+                <input type="hidden" name="country" value="Sri Lanka">
+                
+                <input type="hidden" name="hash" value="' . $hash . '">
+            </form>
+            <script>document.getElementById("payhere_auto").submit();</script>
+        </body>
+        </html>';
+        exit(); // Code එක මෙතනින් නවත්වනවා (Redirect වෙන නිසා)
+    } else {
+        echo "<script>alert('Invalid Currency Selected');</script>";
+    }
+}
+
+// Load currencies for the selector (Existing Logic)
 $currency_rs = Database::search("SELECT id, currency, country, LKR FROM currency ORDER BY id ASC");
 $currencies = [];
 while ($c = $currency_rs->fetch_assoc()) {
@@ -175,8 +247,10 @@ while ($c = $currency_rs->fetch_assoc()) {
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8 col-sm-10">
                     <div class="card shadow-lg border-0 rounded-3 p-4">
-                        <!-- updated form -->
+
                         <form id="paymentForm" method="POST">
+
+                            <input type="hidden" name="pay_submit" value="1">
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email *</label>
@@ -195,7 +269,7 @@ while ($c = $currency_rs->fetch_assoc()) {
                                         <option value="<?php echo htmlspecialchars($c['id']); ?>"
                                             data-code="<?php echo htmlspecialchars($c['currency']); ?>"
                                             data-rate="<?php echo htmlspecialchars($c['LKR']); ?>"
-                                            <?php echo ($c['currency'] === 'LKR') ? 'selected' : ''; ?>> <!-- Set LKR as selected -->
+                                            <?php echo ($c['currency'] === 'LKR') ? 'selected' : ''; ?>>
                                             <?php echo htmlspecialchars($c['currency'] . ' - ' . $c['country']); ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -208,8 +282,8 @@ while ($c = $currency_rs->fetch_assoc()) {
                             </div>
 
                             <div class="mb-3">
-                                <label for="finalAmount" class="form-label">Final Amount (LKR)</label>
-                                <input type="text" id="finalAmount" class="form-control" readonly value="0.00" aria-readonly="true">
+                                <label for="finalAmount" class="form-label">Final Amount to Pay (LKR)</label>
+                                <input type="text" id="finalAmount" class="form-control" readonly value="0.00" style="font-weight:bold; color:#007bff;">
                             </div>
 
                             <div class="mb-3">
@@ -220,7 +294,6 @@ while ($c = $currency_rs->fetch_assoc()) {
                                 </div>
                             </div>
                         </form>
-                        <!-- end updated form -->
                     </div>
                 </div>
             </div>
@@ -241,17 +314,15 @@ while ($c = $currency_rs->fetch_assoc()) {
 
             function updateFinalAmount() {
                 const opt = currencySelect.options[currencySelect.selectedIndex];
-                const rate = parseRate(opt); // LKR per 1 unit of selected currency
+                const rate = parseRate(opt);
                 const amt = parseFloat(amountInput.value) || 0;
                 const final = amt * rate;
-                // show with currency label
+                // Display LKR value
                 finalInput.value = 'LKR ' + (final ? final.toFixed(2) : '0.00');
             }
 
             if (currencySelect) currencySelect.addEventListener('change', updateFinalAmount);
             if (amountInput) amountInput.addEventListener('input', updateFinalAmount);
-
-            // initialize
             updateFinalAmount();
         });
     </script>
