@@ -1,3 +1,12 @@
+<?php
+// cancel.php
+require_once '../assets/process/connection.php';
+
+// Order ID එක ලබා ගැනීම (PayHere එවන්නේ order_id එක විතරයි cancel වුනාම)
+$order_id = isset($_GET['order_id']) ? $_GET['order_id'] : '';
+
+?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
