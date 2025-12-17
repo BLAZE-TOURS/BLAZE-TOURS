@@ -5,20 +5,23 @@ require_once "../connection.php";
 $query = "
     SELECT 
         p.id,
+        p.order_id,
         p.email,
         p.description,
         p.amount,
         p.lkr_amount,
         p.createdAt,
-        p.status_id,
+        p.status,
+        p.status_code,
+        p.status_message,
+        p.transaction_id,
         c.currency AS currency_code,
-        c.country AS currency_name,
-        s.name AS status_name
+        c.country AS currency_name
     FROM paynow p
     INNER JOIN currency c ON p.currency_id = c.id
-    INNER JOIN status s ON p.status_id = s.id
     ORDER BY p.createdAt DESC
 ";
+
 
 $result = Database::search($query);
 

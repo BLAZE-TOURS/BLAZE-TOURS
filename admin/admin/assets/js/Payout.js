@@ -5,19 +5,23 @@ document.addEventListener("DOMContentLoaded", function () {
 window.payoutData = []; // store fetched data for modal lookup
 
 function statusBadge(item) {
-    const sid = Number(item.status_id ?? item.status ?? 0);
+    const status = (item.status || '').toString().toLowerCase();
 
-    if (sid === 1) return '<span class="badge bg-success">Success</span>';
-    if (sid === 2) return '<span class="badge bg-danger">Canceled</span>';
-    if (sid === 3) return '<span class="badge bg-warning">Pending</span>';
+    if (status === 'success') {
+        return '<span class="badge bg-success">Success</span>';
+    }
 
-    const sname = (item.status_name || '').toString().toLowerCase();
-    if (sname.includes('active')) return '<span class="badge bg-success">Success</span>';
-    if (sname.includes('de') || sname.includes('cancel')) return '<span class="badge bg-danger">Canceled</span>';
-    if (sname.includes('process') || sname.includes('pending')) return '<span class="badge bg-warning">Pending</span>';
+    if (status === 'failed' || status === 'canceled' || status === 'cancelled') {
+        return '<span class="badge bg-danger">Failed</span>';
+    }
 
-    return `<span class="badge bg-secondary">${item.status_name ?? 'Unknown'}</span>`;
+    if (status === 'pending' || status === 'processing') {
+        return '<span class="badge bg-warning">Pending</span>';
+    }
+
+    return `<span class="badge bg-secondary">${item.status || 'Unknown'}</span>`;
 }
+
 
 function loadPayouts() {
     fetch("fetchPayout.php")

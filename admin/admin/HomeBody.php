@@ -33,23 +33,28 @@ if ($booking_rs) {
     }
 }
 
-// paynow totals grouped by year/month (status 1) — createdAt stored as string, convert
+// paynow totals grouped by year/month (Success only)
 $paynow_rs = Database::search(
-    "SELECT YEAR(STR_TO_DATE(createdAt, '%Y-%m-%d %H:%i:%s')) AS y,
-            MONTH(STR_TO_DATE(createdAt, '%Y-%m-%d %H:%i:%s')) AS m,
-            IFNULL(SUM(lkr_amount),0) AS s
+    "SELECT 
+        YEAR(createdAt) AS y,
+        MONTH(createdAt) AS m,
+        IFNULL(SUM(lkr_amount), 0) AS s
      FROM paynow
-     WHERE status_id = 1
-       AND STR_TO_DATE(createdAt, '%Y-%m-%d %H:%i:%s') >= '$startDate'
-     GROUP BY y, m"
+     WHERE status = 'Success'
+       AND createdAt >= '$startDate'
+     GROUP BY y, m
+     ORDER BY y, m"
 );
+
 $paynowMap = [];
+
 if ($paynow_rs) {
     while ($r = $paynow_rs->fetch_assoc()) {
-        $key = sprintf('%04d-%02d', intval($r['y']), intval($r['m']));
+        $key = sprintf('%04d-%02d', (int)$r['y'], (int)$r['m']);
         $paynowMap[$key] = (float)$r['s'];
     }
 }
+
 
 // Add after building $bookingMap / $paynowMap and before $monthlyTotals build
 
@@ -114,10 +119,10 @@ $today_booking_earn = (float)($today_booking_earn_rs->fetch_assoc()['s'] ?? 0);
 
 // From paynow (lkr_amount where status 1)
 $today_paynow_earn_rs = Database::search("
-    SELECT IFNULL(SUM(lkr_amount), 0) AS s 
-    FROM paynow 
-    WHERE status_id = 1 
-    AND DATE(STR_TO_DATE(createdAt, '%Y-%m-%d %H:%i:%s')) = '$today'
+    SELECT IFNULL(SUM(lkr_amount), 0) AS s
+    FROM paynow
+    WHERE status = 'Success'
+      AND DATE(createdAt) = '$today'
 ");
 $today_paynow_earn = (float)($today_paynow_earn_rs->fetch_assoc()['s'] ?? 0);
 
@@ -134,9 +139,9 @@ $total_booking_earn = (float)($total_booking_earn_rs->fetch_assoc()['s'] ?? 0);
 
 // From paynow (lkr_amount where status 1)
 $total_paynow_earn_rs = Database::search("
-    SELECT IFNULL(SUM(lkr_amount), 0) AS s 
-    FROM paynow 
-    WHERE status_id = 1
+    SELECT IFNULL(SUM(lkr_amount), 0) AS s
+    FROM paynow
+    WHERE status = 'Success'
 ");
 $total_paynow_earn = (float)($total_paynow_earn_rs->fetch_assoc()['s'] ?? 0);
 
