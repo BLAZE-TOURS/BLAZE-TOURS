@@ -13,7 +13,6 @@
                 <li><a href="tours.php">Tours</a></a></li>
                 <li><a href="about.php">About Us</a></li>
                 <li><a href="gallery.php">Gallery</a></li>
-                <li><a href="paynow.php">Paynow</a></li>
                 <li><a href="contact.php">Contact us</a></li>
             </ul>
         </div>
@@ -69,7 +68,6 @@
                                 <li><a href="tours.php">Tours</a></a></li>
                                 <li><a href="about.php">About Us</a></li>
                                 <li><a href="gallery.php">Gallery</a></li>
-                                <li><a href="paynow.php">Paynow</a></li>
                                 <li><a href="contact.php">Contact us</a></li>
                             </ul>
                         </nav>
