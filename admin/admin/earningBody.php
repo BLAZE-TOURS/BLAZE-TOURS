@@ -82,24 +82,6 @@
                                 </tr>
                             </thead>
                             <tbody id="earningsTable">
-                                <tr>
-                                    <td>1001</td>
-                                    <td>2500</td>
-                                    <td><span class="badge bg-success">Booking</span></td>
-                                    <td>2025-10-27</td>
-                                </tr>
-                                <tr>
-                                    <td>1002</td>
-                                    <td>1200</td>
-                                    <td><span class="badge bg-primary">Payout</span></td>
-                                    <td>2025-10-28</td>
-                                </tr>
-                                <tr>
-                                    <td>1003</td>
-                                    <td>3200</td>
-                                    <td><span class="badge bg-success">Booking</span></td>
-                                    <td>2025-10-29</td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -120,10 +102,10 @@ function updateTotal() {
     let total = 0;
     tableBody.querySelectorAll('tr').forEach(row => {
         if (row.style.display !== 'none') {
-            total += parseFloat(row.cells[1]?.textContent || 0);
+            total += parseFloat(row.cells[1]?.dataset.amount || 0);
         }
     });
-    totalEarnings.textContent = total.toLocaleString() + " LKR";
+    totalEarnings.textContent = total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " LKR";
 }
 
 // Function: Apply filters
@@ -132,13 +114,15 @@ function applyFilters() {
     const fromDate = document.getElementById('fromDate').value;
     const toDate = document.getElementById('toDate').value;
     const singleDate = document.getElementById('singleDate').value;
-    const minAmount = parseFloat(document.getElementById('minAmount').value) || 0;
-    const maxAmount = parseFloat(document.getElementById('maxAmount').value) || Infinity;
+    const minAmountInput = document.getElementById('minAmount').value;
+    const maxAmountInput = document.getElementById('maxAmount').value;
+    const minAmount = minAmountInput === '' ? 0 : parseFloat(minAmountInput);
+    const maxAmount = maxAmountInput === '' ? Infinity : parseFloat(maxAmountInput);
 
     tableBody.querySelectorAll('tr').forEach(row => {
         const locate = row.querySelector('.badge')?.textContent.trim();
         const date = row.cells[3]?.textContent.trim();
-        const amount = parseFloat(row.cells[1]?.textContent || 0);
+        const amount = parseFloat(row.cells[1]?.dataset.amount || 0);
 
         let visible = true;
 
@@ -160,8 +144,8 @@ function sortTable(option) {
     rows.sort((a, b) => {
         const dateA = a.cells[3].textContent;
         const dateB = b.cells[3].textContent;
-        const amountA = parseFloat(a.cells[1].textContent);
-        const amountB = parseFloat(b.cells[1].textContent);
+        const amountA = parseFloat(a.cells[1].dataset.amount || 0);
+        const amountB = parseFloat(b.cells[1].dataset.amount || 0);
 
         switch (option) {
             case 'newest': return dateB.localeCompare(dateA);
@@ -205,9 +189,10 @@ async function loadTransactions() {
             
             data.data.forEach(item => {
                 const row = document.createElement('tr');
+                const formatted = Number(item.amount).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
                 row.innerHTML = `
                     <td>${item.id}</td>
-                    <td>${item.amount}</td>
+                    <td data-amount="${item.amount}">${formatted}</td>
                     <td><span class="badge ${item.locate === 'Booking' ? 'bg-success' : 'bg-primary'}">${item.locate}</span></td>
                     <td>${item.created_date}</td>
                 `;
