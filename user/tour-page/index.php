@@ -1,5 +1,5 @@
 <?php
-require_once 'assets/process/connection.php';
+require_once '../assets/process/connection.php';
 
 // Get tour ID from URL
 $tour_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -21,12 +21,12 @@ if ($tour_id > 0) {
 
 // Redirect to tours page if tour is invalid or inactive
 if (!$valid_tour) {
-    header('Location: tours.php?error=' . urlencode('Tour not available'));
+    header('Location: ../tours.php?error=' . urlencode('Tour not available'));
     exit;
 }
 
 // Continue with rest of the file only if tour is valid
-include 'assets/process/fetchTour.php';
+include '../assets/process/fetchTour.php';
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -43,7 +43,7 @@ include 'assets/process/fetchTour.php';
     <!-- meta -->
     <meta property="og:title" content="Blaze Tours (Pvt) Ltd | Colombo & Sri Lanka Tours">
     <meta property="og:description" content="Explore stunning Colombo city and Sri Lanka tours with Blaze Tours (Pvt) Ltd. Book your adventure today!">
-    <meta property="og:image" content="https://yourdomain.com/assets/img/preview.png">
+    <meta property="og:image" content="https://blaze-tours.com/assets/img/preview.png">
     <meta property="og:url" content="https://blaze-tours.com/">
     <meta property="og:type" content="website">
 
@@ -56,7 +56,7 @@ include 'assets/process/fetchTour.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Favicons - Place favicon.ico in the root directory -->
-    <link rel="icon" type="image/png" href="assets/img/logo.png">
+    <link rel="icon" type="image/png" href="../assets/img/logo.png">
 
     <!--==============================
 	  Google Fonts
@@ -71,17 +71,16 @@ include 'assets/process/fetchTour.php';
 	    All CSS File
 	============================== -->
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <!-- Fontawesome Icon -->
-    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
     <!-- Magnific Popup -->
-    <link rel="stylesheet" href="assets/css/magnific-popup.min.css">
-
+    <link rel="stylesheet" href="../assets/css/magnific-popup.min.css">
     <!-- Swiper css -->
-    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
 
     <!-- Theme Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
@@ -528,33 +527,101 @@ include 'assets/process/fetchTour.php';
 </head>
 
 <body>
-    <!--==============================
-     Preloader
-  ==============================-->
-    <!-- 
-    <div id="preloader" class="preloader">
-        <div class="preloader-inner">
-            <img src="assets/img/logo.svg" alt="Logo">
 
-            <div class="txt-loading">
-                <span preloader-text="W" class="characters">W</span>
-                <span preloader-text="A" class="characters">A</span>
-                <span preloader-text="I" class="characters">I</span>
-                <span preloader-text="T" class="characters">T</span>
-                <span preloader-text="." class="characters">.</span>
-                <span preloader-text="." class="characters">.</span>
+    <!-- Header -->
+    <!-- Mobile View -->
+    <div class="th-menu-wrapper onepage-nav">
+        <div class="th-menu-area text-center">
+            <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
+            <div class="mobile-logo">
+                <a href="../index.php"><img src="../assets/img/logo-main.png" alt="Tour"></a>
+            </div>
+            <div class="th-mobile-menu">
+                <ul>
+                    <li class="mega-menu-wrap">
+                        <a class="active" href="../index.php">Home</a>
+                    </li>
+                    <li><a href="../tours.php">Tours</a></a></li>
+                    <li><a href="../about.php">About Us</a></li>
+                    <li><a href="../gallery.php">Gallery</a></li>
+                    <li><a href="../paynow/">Paynow</a></li>
+                    <li><a href="../contact.php">Contact us</a></li>
+                </ul>
             </div>
         </div>
-    </div> -->
-    <!--==============================
-   Header Area
-  ============================== -->
-    <?php include 'header.php'; ?>
+    </div>
 
-    <!--==============================
-    Breadcumb
-============================== -->
-    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/category_bg_1.png">
+
+
+    <header class="th-header header-layout1">
+        <div class="header-top">
+            <div class="container th-container">
+                <div class="row justify-content-center justify-content-xl-between align-items-center">
+                    <div class="col-auto d-none d-md-block">
+                        <div class="header-links">
+                            <ul>
+                                <li class="d-none d-xl-inline-block"><i class="fa-sharp fa-regular  fa-location-dot"></i>
+                                    <span>68/29, Sri Sidhartha road, Kirulapane, Colombo-6</span>
+                                </li>
+                                <li class="d-none d-xl-inline-block"><i class="fa-regular fa-clock text-success"></i>
+                                    <span class="text-success">Always Open</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="header-right">
+                            <div class="header-links">
+                                <ul>
+                                    <li class="d-none d-md-inline-block"><a href="../privacy-policy.php">Privacy Policy</a></li>
+                                    <li class="d-none d-md-inline-block"><a href="../terms-conditions.php">Terms & Conditions</a></li>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sticky-wrapper">
+            <!-- Main Menu Area -->
+            <div class="menu-area">
+                <div class="container th-container">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto">
+                            <div class="header-logo">
+                                <a href="../index.php"><img src="../assets/img/logo-main.png" alt="Tour"></a>
+                            </div>
+                        </div>
+                        <div class="col-auto me-xl-auto">
+                            <nav class="main-menu d-none d-xl-inline-block">
+                                <ul>
+                                    <li><a href="../index.php">Home</a></li>
+                                    <li><a href="../tours.php">Tours</a></a></li>
+                                    <li><a href="../about.php">About Us</a></li>
+                                    <li><a href="../gallery.php">Gallery</a></li>
+                                    <li><a href="../paynow/">Paynow</a></li>
+                                    <li><a href="../contact.php">Contact us</a></li>
+                                </ul>
+                            </nav>
+                            <button type="button" class="th-menu-toggle d-block d-xl-none"><i class="far fa-bars"></i></button>
+                        </div>
+                        <div class="col-auto d-none d-xl-block">
+                            <div class="header-button">
+                                <a href="#" onclick="window.location.href='../tours.php'" class="th-btn style3 th-icon">Book Now</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="logo-bg" data-mask-src="../assets/img/logo_bg_mask.png"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Header -->
+
+
+    <div class="breadcumb-wrapper " data-bg-src="../assets/img/bg/category_bg_1.png">
         <div class="container">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">Single Tour Page</h1>
@@ -604,7 +671,7 @@ tour Area
                         <div class="destination-gallery-wrapper col-12 order-1">
                             <h3 class="page-title mt-30 mb-30">Destination Map</h3>
                             <div class="row gy-4">
-                                <iframe src="assets/process/livemapBody.php?id=<?php echo $tour_id; ?>" width="100%" height="480" style="border:0;"></iframe>
+                                <iframe src="../assets/process/livemapBody.php?id=<?php echo $tour_id; ?>" width="100%" height="480" style="border:0;"></iframe>
                             </div>
                         </div>
                         <div class="destination-gallery-wrapper">
@@ -628,7 +695,7 @@ tour Area
                                     ['w' => 312, 'h' => 215],
                                 ];
                                 for ($i = 0; $i < 4; $i++):
-                                    $img = $gallery_items[$i] ?? ['url' => 'assets/img/gallery/gallery_6_' . ($i + 1) . '.jpg', 'title' => 'Default'];
+                                    $img = $gallery_items[$i] ?? ['url' => '../assets/img/gallery/gallery_6_' . ($i + 1) . '.jpg', 'title' => 'Default'];
                                     $w = $sizes[$i]['w'];
                                     $h = $sizes[$i]['h'];
                                 ?>
@@ -680,7 +747,7 @@ tour Area
                                     <i class="far fa-pencil"></i>
                                 </div>
                                 <div class="col-12 form-group mb-0">
-                                    <button class="th-btn" type="button">Submit Review<img src="assets/img/icon/plane2.svg" alt=""></button>
+                                    <button class="th-btn" type="button">Submit Review<img src="../assets/img/icon/plane2.svg" alt=""></button>
                                 </div>
                             </div>
                         </div>
@@ -730,18 +797,179 @@ tour Area
             </div>
         </div>
         <div class="shape-mockup shape1 d-none d-xxl-block" data-bottom="35%" data-right="12%">
-            <img src="assets/img/shape/shape_1.png" alt="shape">
+            <img src="../assets/img/shape/shape_1.png" alt="shape">
         </div>
         <div class="shape-mockup shape2 d-none d-xl-block" data-bottom="31%" data-right="8%">
-            <img src="assets/img/shape/shape_2.png" alt="shape">
+            <img src="../assets/img/shape/shape_2.png" alt="shape">
         </div>
         <div class="shape-mockup shape3 d-none d-xxl-block" data-bottom="33%" data-right="5%">
-            <img src="assets/img/shape/shape_3.png" alt="shape">
+            <img src="../assets/img/shape/shape_3.png" alt="shape">
         </div>
     </section><!--==============================
 	Footer Area
 ==============================-->
-    <?php include 'footer.php'; ?>
+
+
+<!-- Footer -->
+ <footer class="footer-wrapper footer-layout1">
+    <div class="widget-area">
+        <div class="container">
+            <div class="newsletter-area">
+                <div class="newsletter-top">
+                    <div class="row gy-4 align-items-center">
+                        <div class="col-lg-5">
+                            <h2 class="newsletter-title text-capitalize mb-0">get updated the latest newsletter</h2>
+                        </div>
+                        <div class="col-lg-7">
+                            <form class="newsletter-form">
+                                <input class="form-control" type="email" name="email" placeholder="Email address." required id="Footer-Subscriber-email">
+                                <button type="button" id="subscribe-button" class="th-btn style3">
+                                    Subscribe Now
+                                    <img src="../assets/img/icon/plane.svg" alt="">
+                                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-between">
+                <div class="col-md-6 col-xl-3">
+                    <div class="widget footer-widget">
+                        <div class="th-widget-about">
+                            <div class="about-logo">
+                                <a href="home-travel.php"><img src="../assets/img/footer-logo.png" alt="Tour"></a>
+                            </div>
+                            <p class="about-text">Discover Sri Lanka with trusted tours, safe rides, lasting memories.</p>
+                            <div class="th-social">
+                                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
+                                <a href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-auto">
+                    <div class="widget widget_nav_menu footer-widget">
+                        <h3 class="widget_title">Quick Links</h3>
+                        <div class="menu-all-pages-container">
+                            <ul class="menu">
+
+                                <li><a href="../index.php">Home</a></li>
+                                <li><a href="../tours.php">Tours</a></li>
+                                <li><a href="../about.php">About us</a></li>
+                                <li><a href="../gallery.php">Gallery</a></li>
+                                <li><a href="../contact.php">Contact Us</a></li>
+                                <li><a href="../privacy-policy.php">Privacy Policy</a></li>
+                                <li><a href="../refund-policy.php">Return & Refund Policy</a></li>
+                                <li><a href="../terms-conditions.php">Terms & Conditions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-auto">
+                    <div class="widget footer-widget">
+                        <h3 class="widget_title">Address</h3>
+                        <div class="th-widget-contact">
+                            <div class="info-box_text">
+                                <div class="icon">
+                                    <img src="../assets/img/icon/phone.svg" alt="img">
+                                </div>
+                                <div class="details">
+                                    <p><a href="tel:+94713344399" class="info-box_link">+94713344399</a></p>
+                                </div>
+                            </div>
+                            <div class="info-box_text">
+                                <div class="icon">
+                                    <img src="../assets/img/icon/envelope.svg" alt="img">
+                                </div>
+                                <div class="details">
+                                    <p><a href="mailto:info@blaze-tours.com" class="info-box_link">info@blaze-tours.com</a></p>
+                                    <p><a href="mailto:booking@blaze-tours.com" class="info-box_link">booking@blaze-tours.com</a></p>
+                                </div>
+                            </div>
+                            <div class="info-box_text">
+                                <div class="icon"><img src="../assets/img/icon/location-dot.svg" alt="img"></div>
+                                <div class="details">
+                                    <p>68/29, Sri Sidhartha road, Kirulapane, Colombo-6</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-auto">
+                    <div class="widget footer-widget">
+                        <h3 class="widget_title">Instagram Post</h3>
+                        <div class="sidebar-gallery" id="insta-gallery">
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/travel_with_blaze/" data-instgrm-version="12" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%;">
+                                <div style="padding:16px;">
+                                    <a href="https://www.instagram.com/travel_with_blaze/" style="background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
+                                        <div style="display: flex; flex-direction: row; align-items: center;">
+                                            <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div>
+                                            <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;">
+                                                <div style="background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div>
+                                                <div style="background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div>
+                                            </div>
+                                        </div>
+                                        <div style="padding: 19% 0;"></div>
+                                        <div style="display:block; height:50px; margin:0 auto 12px; width:50px;">
+                                            <svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <g transform="translate(-511.000000, -20.000000)" fill="#000000">
+                                                        <path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path>
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <div style="padding-top: 8px;">
+                                            <div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div>
+                                        </div>
+                                    </a>
+                                    <p style="color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
+                                        A post shared by <a href="https://www.instagram.com/travel_with_blaze/" style="color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">travel_with_blaze</a>
+                                    </p>
+                                </div>
+                            </blockquote>
+                            <!-- Instagram's official embed script -->
+                            <script async src="https://www.instagram.com/embed.js"></script>
+                        </div>
+                        <style>
+                            .boxes3 {
+                                height: 175px;
+                                width: 153px;
+                            }
+                        </style>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="copyright-wrap">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-6">
+                    <p class="copyright-text">Copyright 2025 <a href="home-travel.php">BLAZE TOURS (PVT) LTD</a> | All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-end d-none d-md-block">
+                    <div class="footer-card">
+                        <span class="title">We Accept</span>
+                        <a href="https://www.payhere.lk" target="_blank"><img src="../assets/img/payhere.png" alt="PayHere" width="400" /></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</footer>
+
+<script src="assets/js/Footersubscriber.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+<!-- Footer -->
 
 
     <!-- Booking Modal -->
@@ -874,8 +1102,8 @@ tour Area
                                         <input type="number" class="form-control border-0 shadow-sm" id="paidAmount"
                                             step="any" min="0" placeholder="Min $00" required>
 
-                                        <small  class="fw-medium d-block mt-2">
-                                            Min. Advance <span class="text-danger" >$00 (00% of total)</span>
+                                        <small class="fw-medium d-block mt-2">
+                                            Min. Advance <span class="text-danger">$00 (00% of total)</span>
                                         </small>
 
                                         <div class="mt-3 border-top pt-2">
@@ -929,29 +1157,29 @@ tour Area
 ============================== -->
     <!-- Jquery -->
     <!-- Jquery -->
-    <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/vendor/jquery-3.6.0.min.js"></script>
     <!-- Swiper Js -->
-    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
     <!-- Bootstrap -->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
     <!-- Magnific Popup -->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
     <!-- Counter Up -->
-    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="../assets/js/jquery.counterup.min.js"></script>
     <!-- Range Slider -->
-    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="../assets/js/jquery-ui.min.js"></script>
     <!-- imagesloaded -->
-    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="../assets/js/imagesloaded.pkgd.min.js"></script>
     <!-- isotope -->
-    <script src="assets/js/isotope.pkgd.min.js"></script>
+    <script src="../assets/js/isotope.pkgd.min.js"></script>
     <!-- gsap -->
-    <script src="assets/js/gsap.min.js"></script>
+    <script src="../assets/js/gsap.min.js"></script>
 
     <!-- circle-progress -->
-    <script src="assets/js/circle-progress.js"></script>
+    <script src="../assets/js/circle-progress.js"></script>
 
-    <script src="assets/js/matter.min.js"></script>
-    <script src="assets/js/matterjs-custom.js"></script>
+    <script src="../assets/js/matter.min.js"></script>
+    <script src="../assets/js/matterjs-custom.js"></script>
 
     <!-- Intl-Tel-Input JS -->
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/intlTelInput.min.js"></script>
@@ -961,21 +1189,21 @@ tour Area
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 
     <!-- nice select -->
-    <script src="assets/js/nice-select.min.js"></script>
+    <script src="../assets/js/nice-select.min.js"></script>
 
     <!-- Main Js File -->
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/review.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/review.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
-    <!-- PayHere SDK -->
-    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+<script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 
-    <!-- Google Maps API - Replace YOUR_API_KEY with your actual Google Maps API key -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete" async defer></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            
+            // 1. Star Rating Logic
             const stars = document.querySelectorAll("#star-rating .star");
             const ratingInput = document.getElementById("rating");
 
@@ -989,7 +1217,7 @@ tour Area
                 });
             });
 
-            // Booking modal functionality
+            // 2. Booking Variables
             const adultCount = document.getElementById('adultCount');
             const childCount = document.getElementById('childCount');
             const adultPlus = document.getElementById('adultPlus');
@@ -1000,12 +1228,19 @@ tour Area
             const childPrice = document.getElementById('childPrice');
             const childPriceRow = document.getElementById('childPriceRow');
             const totalPrice = document.getElementById('totalPrice');
+            const paidAmountInput = document.getElementById('paidAmount');
+            
+            // Checkbox and Button
+            const privacyCheckbox = document.getElementById('privacyPolicyCheck');
+            const checkoutButton = document.getElementById('goToCheckout');
 
+            // PHP values to JS
             const adultPricePerPerson = <?php echo $tour['adult_price'] ?? 0; ?>;
             const childPricePerPerson = <?php echo $tour['kids_price'] ?? 0; ?>;
             const maximumAdultCount = <?php echo (int)($tour['maximum_adult_count'] ?? 0); ?>;
             const maximumKidsCount = <?php echo (int)($tour['maximum_kids_count'] ?? 0); ?>;
 
+            // 3. Price Update Function
             function updatePrices() {
                 const adults = parseInt(adultCount.value);
                 const children = parseInt(childCount.value);
@@ -1031,26 +1266,28 @@ tour Area
 
                 // Update adult price text
                 adultPrice.parentElement.querySelector('span:first-child').textContent = `Adults (${adults} x $${adultPricePerPerson.toFixed(2)})`;
+
+                updatePaidAmountPlaceholder();
+                updatePaidDisplays();
             }
 
-            // Currency conversion function
-            let usdToLkrRate = 0;
+            // 4. Currency & Advance Logic
+            let usdToLkrRate = 320; // Default
+            let advancePercentage = 100; // Default
+            window.usdToLkrRate = usdToLkrRate;
+            window.advancePercentage = advancePercentage;
+
+            function formatUSD(amount) { return '$' + Number(amount).toFixed(2); }
+            function formatLKR(amount) { return 'Rs. ' + Number(amount).toFixed(2); }
 
             async function fetchExchangeRate() {
                 try {
-                    const response = await fetch('assets/process/getCurrencyRate.php');
+                    const response = await fetch('../assets/process/getCurrencyRate.php');
                     const data = await response.json();
-                    if (data.success) {
-                        usdToLkrRate = data.rate;
-                    } else {
-                        usdToLkrRate = 320; // Fallback rate
-                    }
+                    if (data.success) usdToLkrRate = data.rate;
                     updateLKRPrice(parseFloat(totalPrice.textContent.replace('$', '')));
                 } catch (error) {
                     console.error('Error fetching exchange rate:', error);
-                    // Fallback rate if API fails
-                    usdToLkrRate = 320;
-                    updateLKRPrice(parseFloat(totalPrice.textContent.replace('$', '')));
                 }
             }
 
@@ -1063,25 +1300,70 @@ tour Area
                 }
             }
 
+            async function fetchAdvancePercentage() {
+                try {
+                    const response = await fetch('../assets/process/getAdvancePercentage.php');
+                    const data = await response.json();
+                    if (data.success) {
+                        advancePercentage = parseInt(data.value) || 30;
+                        updatePaidAmountPlaceholder();
+                    }
+                } catch (error) {
+                    console.error('Error fetching advance percentage:', error);
+                }
+            }
+
+            function updatePaidAmountPlaceholder() {
+                const totalUSD = parseFloat(totalPrice.textContent.replace('$', ''));
+                const minAdvance = (totalUSD * (advancePercentage / 100));
+                
+                paidAmountInput.placeholder = `Min ${formatUSD(minAdvance)} (${advancePercentage}% of total)`;
+                paidAmountInput.min = minAdvance;
+
+                const advanceText = document.querySelector('small.fw-medium span.text-danger');
+                if (advanceText) {
+                    advanceText.textContent = `${formatUSD(minAdvance)} (${advancePercentage}% of total)`;
+                }
+
+                if (!paidAmountInput.dataset.userEdited) {
+                    paidAmountInput.value = minAdvance.toFixed(2);
+                    updatePaidDisplays();
+                }
+            }
+
+            function updatePaidDisplays() {
+                const paidUSD = parseFloat(paidAmountInput.value || 0);
+                const totalUSD = parseFloat(totalPrice.textContent.replace('$', ''));
+                const minAdvance = totalUSD * (advancePercentage / 100);
+
+                if (paidUSD < minAdvance) {
+                    paidAmountInput.setCustomValidity(`Minimum payment is ${formatUSD(minAdvance)}`);
+                } else if (paidUSD > totalUSD) {
+                    paidAmountInput.setCustomValidity(`Maximum payment is ${formatUSD(totalUSD)}`);
+                    paidAmountInput.value = totalUSD.toFixed(2);
+                } else {
+                    paidAmountInput.setCustomValidity('');
+                }
+
+                const paidLKR = paidUSD * usdToLkrRate;
+                const totalLKR = totalUSD * usdToLkrRate;
+                const balanceLKR = Math.max(0, totalLKR - paidLKR);
+
+                document.getElementById('paidLKR').textContent = formatLKR(paidLKR);
+                document.getElementById('balanceLKR').textContent = formatLKR(balanceLKR);
+                document.getElementById('totalPriceLKR').textContent = formatLKR(totalLKR);
+            }
+
+            // 5. Button Click Handlers (Plus/Minus)
             function updateButtonsState() {
                 const currentAdults = parseInt(adultCount.value);
                 const currentKids = parseInt(childCount.value);
 
-                // Adults: min 1, max maximumAdultCount (if > 0)
                 adultMinus.disabled = currentAdults <= 1;
-                if (maximumAdultCount > 0) {
-                    adultPlus.disabled = currentAdults >= maximumAdultCount;
-                } else {
-                    adultPlus.disabled = false;
-                }
-
-                // Kids: min 0, max maximumKidsCount (if > 0)
+                if (maximumAdultCount > 0) adultPlus.disabled = currentAdults >= maximumAdultCount;
+                
                 childMinus.disabled = currentKids <= 0;
-                if (maximumKidsCount > 0) {
-                    childPlus.disabled = currentKids >= maximumKidsCount;
-                } else {
-                    childPlus.disabled = false;
-                }
+                if (maximumKidsCount > 0) childPlus.disabled = currentKids >= maximumKidsCount;
             }
 
             adultPlus.addEventListener('click', function() {
@@ -1120,142 +1402,14 @@ tour Area
                 }
             });
 
-            usdToLkrRate = 320; // Default rate
-            let advancePercentage = 100; // Default percentage
-            window.usdToLkrRate = usdToLkrRate;
-            window.advancePercentage = advancePercentage;
-
-            // Add these functions
-            function formatUSD(amount) {
-                return '$' + Number(amount).toFixed(2);
-            }
-
-            function formatLKR(amount) {
-                return 'Rs. ' + Number(amount).toFixed(2);
-            }
-
-            async function fetchAdvancePercentage() {
-                try {
-                    const response = await fetch('assets/process/getAdvancePercentage.php');
-                    const data = await response.json();
-                    if (data.success) {
-                        advancePercentage = parseInt(data.value) || 30;
-                        window.advancePercentage = advancePercentage;
-                        updatePaidAmountPlaceholder();
-                    }
-                } catch (error) {
-                    console.error('Error fetching advance percentage:', error);
-                }
-            }
-
-            function updatePaidAmountPlaceholder() {
-                const totalUSD = parseFloat(totalPrice.textContent.replace('$', ''));
-                const minAdvance = (totalUSD * (advancePercentage / 100));
-                const paidInput = document.getElementById('paidAmount');
-                
-                // Update placeholder and min attribute
-                paidInput.placeholder = `Min ${formatUSD(minAdvance)} (${advancePercentage}% of total)`;
-                paidInput.min = minAdvance;
-                
-                // Update the minimum advance text
-                const advanceText = document.querySelector('small.fw-medium span.text-danger');
-                if (advanceText) {
-                    advanceText.textContent = `${formatUSD(minAdvance)} (${advancePercentage}% of total)`;
-                }
-
-                // If no user input yet, set the default value
-                if (!paidInput.dataset.userEdited) {
-                    paidInput.value = minAdvance.toFixed(2);
-                    updatePaidDisplays();
-                }
-            }
-
-            function updatePaidDisplays() {
-                const paidInput = document.getElementById('paidAmount');
-                const paidUSD = parseFloat(paidInput.value || 0);
-                const totalUSD = parseFloat(totalPrice.textContent.replace('$', ''));
-                const minAdvance = totalUSD * (advancePercentage / 100);
-
-                // Validate input
-                if (paidUSD < minAdvance) {
-                    paidInput.setCustomValidity(`Minimum payment is ${formatUSD(minAdvance)}`);
-                } else if (paidUSD > totalUSD) {
-                    paidInput.setCustomValidity(`Maximum payment is ${formatUSD(totalUSD)}`);
-                    paidInput.value = totalUSD.toFixed(2);
-                } else {
-                    paidInput.setCustomValidity('');
-                }
-
-                // Calculate and display LKR amounts
-                const paidLKR = paidUSD * usdToLkrRate;
-                const totalLKR = totalUSD * usdToLkrRate;
-                const balanceLKR = Math.max(0, totalLKR - paidLKR);
-
-                document.getElementById('paidLKR').textContent = formatLKR(paidLKR);
-                document.getElementById('balanceLKR').textContent = formatLKR(balanceLKR);
-                document.getElementById('totalPriceLKR').textContent = formatLKR(totalLKR);
-            }
-
-            // Modify updatePrices() to call updatePaidAmountPlaceholder
-            function updatePrices() {
-                const adults = parseInt(adultCount.value);
-                const children = parseInt(childCount.value);
-
-                const adultTotal = adults * adultPricePerPerson;
-                const childTotal = children * childPricePerPerson;
-                const total = adultTotal + childTotal;
-
-                adultPrice.textContent = '$' + adultTotal.toFixed(2);
-                childPrice.textContent = '$' + childTotal.toFixed(2);
-                totalPrice.textContent = '$' + total.toFixed(2);
-
-                // Update LKR equivalent
-                updateLKRPrice(total);
-
-                // Show/hide child price row
-                if (children > 0) {
-                    childPriceRow.style.display = 'flex';
-                    childPriceRow.querySelector('span:first-child').textContent = `Children (${children} x $${childPricePerPerson.toFixed(2)})`;
-                } else {
-                    childPriceRow.style.display = 'none';
-                }
-
-                // Update adult price text
-                adultPrice.parentElement.querySelector('span:first-child').textContent = `Adults (${adults} x $${adultPricePerPerson.toFixed(2)})`;
-
-                updatePaidAmountPlaceholder();
-                updatePaidDisplays();
-            }
-
-            // Add paid amount input handler
-            const paidAmountInput = document.getElementById('paidAmount');
             paidAmountInput.addEventListener('input', function() {
                 this.dataset.userEdited = '1';
                 updatePaidDisplays();
             });
 
-            // Initialize everything
-            updatePrices();
-            updateButtonsState();
-            fetchExchangeRate();
-            fetchAdvancePercentage();
-
-            // Set minimum date to today
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('tourDate').setAttribute('min', today);
-
-            // click handler is implemented in assets/js/booking.js
-
-            // Get the checkbox and checkout button
-            const privacyCheckbox = document.getElementById('privacyPolicyCheck');
-            const checkoutButton = document.getElementById('goToCheckout');
-
-            // Add event listener to checkbox
+            // 6. Privacy Policy Checkbox
             privacyCheckbox.addEventListener('change', function() {
-                // Enable/disable checkout button based on checkbox state
                 checkoutButton.disabled = !this.checked;
-
-                // Optional: Add visual feedback
                 if (this.checked) {
                     checkoutButton.classList.remove('btn-secondary');
                     checkoutButton.classList.add('btn-primary');
@@ -1264,46 +1418,94 @@ tour Area
                     checkoutButton.classList.add('btn-secondary');
                 }
             });
+
+            // 7. Initialize
+            updatePrices();
+            updateButtonsState();
+            fetchExchangeRate();
+            fetchAdvancePercentage();
+
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('tourDate').setAttribute('min', today);
+
+
+            // =========================================================
+            // 8. PAYHERE CHECKOUT LOGIC (MERGED INSIDE DOMCONTENTLOADED)
+            // =========================================================
+            checkoutButton.addEventListener('click', function() {
+                
+                // Form Validation Check
+                const form = document.getElementById('bookingForm');
+                if (!form.checkValidity()) {
+                    form.reportValidity(); // Show default HTML5 validation errors
+                    return;
+                }
+
+                checkoutButton.disabled = true;
+                checkoutButton.innerHTML = 'Processing...';
+
+                const formData = new FormData(form);
+                formData.append('paidAmount', paidAmountInput.value);
+                formData.append('tour_id', '<?php echo $tour_id; ?>');
+
+                // Call submit_booking.php (Same folder)
+                fetch('submit_booking.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const payment = data.payhere_data;
+
+                        payhere.onCompleted = function onCompleted(orderId) {
+                            window.location.href = payment.return_url;
+                        };
+
+                        payhere.onDismissed = function onDismissed() {
+                            checkoutButton.disabled = false;
+                            checkoutButton.innerHTML = 'Go to Checkout';
+                        };
+
+                        payhere.onError = function onError(error) {
+                            console.log("Error:" + error);
+                            alert("Payment Error: " + error);
+                            checkoutButton.disabled = false;
+                            checkoutButton.innerHTML = 'Go to Checkout';
+                        };
+
+                        // Start PayHere Payment
+                        payhere.startPayment(payment);
+
+                    } else {
+                        alert('Error processing booking: ' + (data.message || 'Unknown error'));
+                        checkoutButton.disabled = false;
+                        checkoutButton.innerHTML = 'Go to Checkout';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Network Error');
+                    checkoutButton.disabled = false;
+                    checkoutButton.innerHTML = 'Go to Checkout';
+                });
+            });
+
         });
     </script>
 
-
     <script>
-        // Make the intl-tel-input instance available globally as window.iti
         (function() {
             const input = document.querySelector("#number3");
             if (!input) return;
             window.iti = window.intlTelInput(input, {
-                initialCountry: "lk", // default Sri Lanka
-                separateDialCode: true, // show +94 separately
+                initialCountry: "lk", 
+                separateDialCode: true, 
                 utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"
             });
         })();
     </script>
 
-    <script>
-        // Expose key tour variables globally for booking.js
-        window.tour_id = <?php echo (int)$tour_id; ?>;
-        window.tour_name = '<?php echo addslashes($tour['name'] ?? ''); ?>';
-        window.adultPricePerPerson = <?php echo (float)($tour['adult_price'] ?? 0); ?>;
-        window.childPricePerPerson = <?php echo (float)($tour['kids_price'] ?? 0); ?>;
-        // PayHere configuration (sandbox true for testing)
-        window.payhereSandbox = true; // set false on live
-        window.payhereMerchantId = '1232435'; // TODO: replace with your live merchant id
-        window.payhereReturnUrl = 'http://localhost/BLAZE-TOURS/user/payment_success.php';
-        window.payhereCancelUrl = 'http://localhost/BLAZE-TOURS/user/payment_cancel.php';
-        window.payhereNotifyUrl = 'http://localhost/BLAZE-TOURS/user/payment_notify.php';
-    </script>
-    <script src="assets/js/booking.js"></script>
-
-    <!-- PayHere Callback Functions -->
-    <script>
-        // Do not override PayHere callbacks here — booking.js installs callbacks that
-        // post to markPaid.php and perform the correct redirect. Keep a small log.
-        if (typeof window.payhere !== 'undefined') {
-            console.log('[payhere] callbacks handled by booking.js; no override from page.');
-        }
-    </script>
 </body>
 
 </html>
