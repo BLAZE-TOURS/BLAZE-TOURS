@@ -11,7 +11,7 @@ try {
     DATE(created_at) AS created_date
     FROM booking
     WHERE status IN ('Success', 'Done')
-    AND advance_paid_lkr > 0;
+    AND advance_paid_lkr > 0
 ";
     
     // Fetch paynow entries with status 1
@@ -39,7 +39,7 @@ try {
     while ($row = $result->fetch_assoc()) {
         $transactions[] = array(
             'id' => $row['id'],
-            'amount' => number_format($row['amount'], 2),
+            'amount' => (float) $row['amount'],
             'locate' => $row['locate'],
             'created_date' => $row['created_date']
         );
