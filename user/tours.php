@@ -304,7 +304,7 @@ Product Area
                                             </div>
                                             <div class="tour-content">
                                                 <h3 class="box-title">
-                                                    <a href="private-tour.php?id=<?php echo $tour['id']; ?>">
+                                                    <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>">
                                                         <?php echo htmlspecialchars($tour['name']); ?>
                                                     </a>
                                                 </h3>
@@ -313,13 +313,13 @@ Product Area
                                                     <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
                                                             <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
                                                             Rating)</span></div>
-                                                    <a href="private-tour.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">4.8</span>
+                                                    <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">4.8</span>
                                                         Rating)</a>
                                                 </div>
                                                 <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Person</h4>
                                                 <div class="tour-action">
                                                     <span><i class="fa-light fa-clock"></i><?php echo (int)$tour['duration']; ?> Hours</span>
-                                                    <a href="private-tour.php?id=<?php echo $tour['id']; ?>" class="th-btn style4">Detail View</a>
+                                                    <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="th-btn style4">Detail View</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -360,18 +360,18 @@ Product Area
                                                 <img src="../admin/assets/uploads/tour_images/<?php echo $main_image_name ? $main_image_name : 'default.png'; ?>" alt="image">
                                             </div>
                                             <div class="tour-content">
-                                                <h3 class="box-title"><a href="private-tour.php?id=<?php echo $tour['id']; ?>"><?php echo htmlspecialchars($tour['name']); ?></a></h3>
+                                                <h3 class="box-title"><a href="tour-page/index.php?id=<?php echo $tour['id']; ?>"><?php echo htmlspecialchars($tour['name']); ?></a></h3>
                                                 <div class="tour-rating">
                                                     <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
                                                             <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
                                                             Rating)</span></div>
-                                                    <a href="private-tour.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">4.8</span>
+                                                    <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">4.8</span>
                                                         Rating)</a>
                                                 </div>
                                                 <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Person</h4>
                                                 <div class="tour-action">
                                                     <span><i class="fa-light fa-clock"></i><?php echo (int)$tour['duration']; ?> Hours</span>
-                                                    <a href="private-tour.php?id=<?php echo $tour['id']; ?>" class="th-btn style4">Detail View</a>
+                                                    <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="th-btn style4">Detail View</a>
                                                 </div>
                                             </div>
                                         </div>

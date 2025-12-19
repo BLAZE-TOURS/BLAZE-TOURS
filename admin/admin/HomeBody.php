@@ -19,12 +19,17 @@ for ($i = 0; $i < 12; $i++) {
 // bookings totals grouped by year/month (status 1 & 4)
 $startDate = $start->format('Y-m-01') . ' 00:00:00';
 $booking_rs = Database::search(
-    "SELECT YEAR(created_at) AS y, MONTH(created_at) AS m, IFNULL(SUM(total_price_lkr),0) AS s
+    "SELECT 
+        YEAR(created_at) AS y,
+        MONTH(created_at) AS m,
+        IFNULL(SUM(total_price_lkr), 0) AS s
      FROM booking
-     WHERE status_id IN (1,4)
+     WHERE status IN ('Success', 'Done')
        AND created_at >= '$startDate'
-     GROUP BY y, m"
+     GROUP BY y, m
+     ORDER BY y, m"
 );
+
 $bookingMap = [];
 if ($booking_rs) {
     while ($r = $booking_rs->fetch_assoc()) {
@@ -60,12 +65,17 @@ if ($paynow_rs) {
 
 // booking counts grouped by year/month (status 1 & 4)
 $bookingCount_rs = Database::search(
-    "SELECT YEAR(created_at) AS y, MONTH(created_at) AS m, COUNT(*) AS cnt
+    "SELECT 
+        YEAR(created_at) AS y,
+        MONTH(created_at) AS m,
+        COUNT(*) AS cnt
      FROM booking
-     WHERE status_id IN (1,4)
+     WHERE status IN ('Success', 'Done')
        AND created_at >= '$startDate'
-     GROUP BY y, m"
+     GROUP BY y, m
+     ORDER BY y, m"
 );
+
 $bookingCountMap = [];
 if ($bookingCount_rs) {
     while ($r = $bookingCount_rs->fetch_assoc()) {
@@ -90,19 +100,19 @@ $today = date('Y-m-d');
 
 // Today's Bookings (status 1 and 4)
 $today_booking_rs = Database::search("
-    SELECT COUNT(*) AS c 
-    FROM booking 
-    WHERE status_id IN (1,4) 
-    AND DATE(created_at) = '$today'
+    SELECT COUNT(*) AS c
+    FROM booking
+    WHERE status IN ('Success', 'Done')
+      AND DATE(created_at) = '$today'
 ");
 $today_booking_row = $today_booking_rs->fetch_assoc();
 $todayBookings = (int)($today_booking_row['c'] ?? 0);
 
 // Total Bookings (status 1 and 4)
 $total_booking_rs = Database::search("
-    SELECT COUNT(*) AS c 
-    FROM booking 
-    WHERE status_id IN (1,4)
+    SELECT COUNT(*) AS c
+    FROM booking
+    WHERE status IN ('Success', 'Done')
 ");
 $total_booking_row = $total_booking_rs->fetch_assoc();
 $totalBookings = (int)($total_booking_row['c'] ?? 0);
@@ -110,10 +120,11 @@ $totalBookings = (int)($total_booking_row['c'] ?? 0);
 // Today's Earnings
 // From bookings (advance_paid_lkr where status 1,4)
 $today_booking_earn_rs = Database::search("
-    SELECT IFNULL(SUM(advance_paid_lkr), 0) AS s 
-    FROM booking 
-    WHERE status_id IN (1,4) 
-    AND DATE(created_at) = '$today'
+    SELECT IFNULL(SUM(advance_paid_lkr), 0) AS s
+    FROM booking
+    WHERE status IN ('Success', 'Done')
+      AND created_at >= '$today 00:00:00'
+      AND created_at <  '$today 23:59:59'
 ");
 $today_booking_earn = (float)($today_booking_earn_rs->fetch_assoc()['s'] ?? 0);
 
@@ -131,9 +142,9 @@ $todayEarnings = $today_booking_earn + $today_paynow_earn;
 // Total Earnings
 // From bookings (advance_paid_lkr where status 1,4)
 $total_booking_earn_rs = Database::search("
-    SELECT IFNULL(SUM(advance_paid_lkr), 0) AS s 
-    FROM booking 
-    WHERE status_id IN (1,4)
+    SELECT IFNULL(SUM(advance_paid_lkr), 0) AS s
+    FROM booking
+    WHERE status IN ('Success', 'Done')
 ");
 $total_booking_earn = (float)($total_booking_earn_rs->fetch_assoc()['s'] ?? 0);
 

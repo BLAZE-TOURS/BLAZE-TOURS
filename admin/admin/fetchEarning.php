@@ -5,13 +5,14 @@ require_once "../connection.php";
 try {
     // Fetch bookings with status 1 or 4
     $booking_query = "SELECT 
-        id,
-        advance_paid_lkr AS amount,
-        'Booking' AS locate,
-        DATE(created_at) AS created_date
-        FROM booking 
-        WHERE status_id IN (1,4) 
-        AND advance_paid_lkr > 0";
+    id,
+    advance_paid_lkr AS amount,
+    'Booking' AS locate,
+    DATE(created_at) AS created_date
+    FROM booking
+    WHERE status IN ('Success', 'Done')
+    AND advance_paid_lkr > 0;
+";
     
     // Fetch paynow entries with status 1
     $paynow_query = "SELECT 

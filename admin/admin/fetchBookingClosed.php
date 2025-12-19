@@ -13,20 +13,24 @@ if (isset($_SESSION["adminuser"])) {
 
     // get bookings with status 2 (Closed) or 3 (Processing)
     $booking_rs = Database::search("
-        SELECT booking.*, tour.name AS tours_type_name
-        FROM `booking`
-        INNER JOIN `tour` ON booking.tour_id = tour.id
-        WHERE booking.status_id IN (2,3)
-        ORDER BY booking.created_at DESC
-        LIMIT $start_from, $limit
+        SELECT 
+    booking.*,
+    tour.name AS tours_type_name
+FROM booking
+INNER JOIN tour ON booking.tour_id = tour.id
+WHERE booking.status IN ('Pending', 'Failed')
+ORDER BY booking.created_at DESC
+LIMIT $start_from, $limit;
+
     ");
     $booking_n = $booking_rs->num_rows;
 
     $total_booking_records = Database::search("
-        SELECT COUNT(*) 
-        FROM `booking`
-        INNER JOIN `tour` ON `booking`.tour_id=`tour`.id
-        WHERE booking.status_id IN (2,3)
+        SELECT COUNT(*)
+FROM booking
+INNER JOIN tour ON booking.tour_id = tour.id
+WHERE booking.status IN ('Pending', 'Failed');
+
     ")->fetch_row()[0];
     $total_booking_pages = ceil($total_booking_records / $limit);
 } else {
