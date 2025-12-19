@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Load reviews
     function loadReviews() {
-        fetch(`assets/process/fetchReview.php?tour_id=${tourId}`)
+        fetch(`../assets/process/fetchReview.php?tour_id=${tourId}`)
             .then(res => res.json())
             .then(data => {
                 reviewList.innerHTML = "";
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        fetch("assets/process/addReviewProcess.php", {
+        fetch("../assets/process/addReviewProcess.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
