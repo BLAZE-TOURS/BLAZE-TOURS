@@ -647,7 +647,7 @@ tour Area
                                 $main_image_name = basename($tour['main_image']);
                             }
                             ?>
-                            <img src="../admin/assets/uploads/tour_images/<?php echo $main_image_name ? $main_image_name : 'default.png'; ?>" alt="image">
+                            <img src="../../admin/assets/uploads/tour_images/<?php echo $main_image_name ? $main_image_name : 'default.png'; ?>" alt="image">
                         </div>
                         <div class="page-content d-block">
                             <div class="page-meta mt-50 mb-45">
@@ -665,7 +665,7 @@ tour Area
                                 }
                                 ?>
 
-                                <img src="../admin/assets/uploads/tour_images/<?php echo $second_image_name ? $second_image_name : 'default.png'; ?>" alt="image">
+                                <img src="../../admin/assets/uploads/tour_images/<?php echo $second_image_name ? $second_image_name : 'default.png'; ?>" alt="image">
                             </div>
                         </div>
                         <div class="destination-gallery-wrapper col-12 order-1">
