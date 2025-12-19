@@ -11,10 +11,16 @@ $result = Database::search($sql);
 
 $gallery = [];
 while ($row = $result->fetch_assoc()) {
-    // Path fix if needed
-    $row['url'] = str_replace('../admin/images/gallry/', '../admin/admin/images/gallry/', $row['url']);
+
+    // Extract only image filename (View.png)
+    $imageName = basename($row['url']);
+
+    // Build correct public path
+    $row['url'] = '/BLAZE-TOURS/admin/admin/images/gallry/' . $imageName;
+
     $gallery[] = $row;
 }
+
 
 // Fill up to 4 items with default images if less than 4
 $default_images = [
