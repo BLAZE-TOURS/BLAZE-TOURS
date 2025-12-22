@@ -85,13 +85,30 @@ while ($c = $currency_rs->fetch_assoc()) {
 <html class="no-js" lang="zxx">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Paynow | Blaze Tours (Pvt) Ltd - Colombo & Sri Lanka Tour Photos</title>
-    <meta name="author" content="Blaze Tours (Pvt) Ltd">
-    <meta name="description" content="Explore stunning photos of Colombo and Sri Lanka tours with Blaze Tours (Pvt) Ltd. See breathtaking landscapes, cultural sites, and memorable travel experiences captured from our adventures.">
-    <meta name="keywords" content="Blaze Tours gallery, Colombo tours photos, Sri Lanka travel pictures, travel memories, scenic destinations Sri Lanka, cultural sites Colombo">
-    <meta name="robots" content="INDEX,FOLLOW">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<title>Secure Payment | Blaze Tours (Pvt) Ltd</title>
+
+<meta name="author" content="Blaze Tours (Pvt) Ltd">
+<meta name="description" content="Complete your tour payment securely with Blaze Tours (Pvt) Ltd. Fast, safe, and trusted online payments for Colombo and Sri Lanka tours.">
+<meta name="keywords" content="Blaze Tours payment, PayNow Blaze Tours, secure tour payment Sri Lanka, online tour payment Colombo">
+<meta name="robots" content="noindex,nofollow">
+<!-- Payment pages should NOT be indexed. This is non-negotiable. -->
+
+<!-- Open Graph (OG) -->
+<meta property="og:title" content="Secure Payment | Blaze Tours (Pvt) Ltd">
+<meta property="og:description" content="Finalize your booking with Blaze Tours using our secure PayNow payment system. Safe, fast, and reliable.">
+<meta property="og:image" content="https://blaze-tours.com/user/assets/img/preview.png">
+<meta property="og:url" content="https://paynow.blaze-tours.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Blaze Tours PayNow">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Secure Payment | Blaze Tours (Pvt) Ltd">
+<meta name="twitter:description" content="Securely complete your Blaze Tours payment online via PayNow. Trusted Sri Lanka tour operator.">
+<meta name="twitter:image" content="https://blaze-tours.com/user/assets/img/preview.png">
 
 
     <!-- Mobile Specific Metas -->
