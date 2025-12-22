@@ -1203,6 +1203,29 @@ tour Area
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             
+            // Initialize Notyf for notifications
+            const notyf = new Notyf({
+                duration: 4000,
+                position: { x: 'center', y: 'top' },
+                dismissible: true
+            });
+
+            // Function to check if date is closed
+            async function checkClosedDay(date) {
+                if (!date) {
+                    return { success: false, message: 'Please select a date' };
+                }
+
+                try {
+                    const response = await fetch(`../assets/process/checkClosedDay.php?date=${date}`);
+                    const data = await response.json();
+                    return data;
+                } catch (error) {
+                    console.error('Error checking closed day:', error);
+                    return { success: false, message: 'Error checking date availability' };
+                }
+            }
+            
             // 1. Star Rating Logic
             const stars = document.querySelectorAll("#star-rating .star");
             const ratingInput = document.getElementById("rating");
@@ -1428,13 +1451,52 @@ tour Area
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('tourDate').setAttribute('min', today);
 
+            // Add validation when date is selected
+            document.getElementById('tourDate').addEventListener('change', async function() {
+                const selectedDate = this.value;
+                if (!selectedDate) return;
+
+                const result = await checkClosedDay(selectedDate);
+                
+                if (result.success && result.isClosed) {
+                    notyf.error(result.message || 'This date is not available for bookings');
+                    this.value = ''; // Clear the invalid date
+                    checkoutButton.disabled = true;
+                } else if (result.success && !result.isClosed) {
+                    notyf.success('Date is available for booking');
+                    // Re-check if checkbox is checked to enable button
+                    if (privacyCheckbox.checked) {
+                        checkoutButton.disabled = false;
+                    }
+                } else {
+                    notyf.error(result.message || 'Unable to verify date availability');
+                    this.value = '';
+                }
+            });
 
             // =========================================================
             // 8. PAYHERE CHECKOUT LOGIC (MERGED INSIDE DOMCONTENTLOADED)
             // =========================================================
-            checkoutButton.addEventListener('click', function() {
+            checkoutButton.addEventListener('click', async function() {
                 
-                // Form Validation Check
+                // 1. First check if date is closed (PRIORITY VALIDATION)
+                const selectedDate = document.getElementById('tourDate').value;
+                if (!selectedDate) {
+                    notyf.error('Please select a tour date');
+                    return;
+                }
+
+                const closedDayCheck = await checkClosedDay(selectedDate);
+                if (closedDayCheck.success && closedDayCheck.isClosed) {
+                    notyf.error(closedDayCheck.message || 'This date is not available for bookings. Please select another date.');
+                    document.getElementById('tourDate').value = '';
+                    return;
+                } else if (!closedDayCheck.success) {
+                    notyf.error(closedDayCheck.message || 'Unable to verify date availability. Please try again.');
+                    return;
+                }
+                
+                // 2. Form Validation Check
                 const form = document.getElementById('bookingForm');
                 if (!form.checkValidity()) {
                     form.reportValidity(); // Show default HTML5 validation errors
