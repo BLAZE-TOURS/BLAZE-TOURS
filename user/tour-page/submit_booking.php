@@ -1,6 +1,7 @@
 <?php
 // tour-page/submit_booking.php
 session_start();
+header('Content-Type: application/json');
 
 // 1. Connection එක එළියෙන් ගැනීම
 require_once '../assets/process/connection.php'; 
@@ -21,6 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $adultCount = (int)$_POST['adultCount'];
     $childCount = (int)$_POST['childCount'];
     $advance_usd = (float)$_POST['paidAmount']; 
+
+    // Block double bookings for the same tour/date/time (only when status is Success)
+    $availabilityQuery = "SELECT id FROM booking WHERE tour_id = '$tour_id' AND tourDate = '$tourDate' AND time_slot = '$timeSlot' AND status = 'Success' LIMIT 1";
+    $availabilityRes = Database::search($availabilityQuery);
+    if ($availabilityRes && $availabilityRes->num_rows > 0) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'That time slot is already booked. Please select another one.'
+        ]);
+        exit;
+    }
 
     // Tour & Currency Details
     $tour_res = Database::search("SELECT * FROM tour WHERE id = '$tour_id'");

@@ -1225,6 +1225,22 @@ tour Area
                     return { success: false, message: 'Error checking date availability' };
                 }
             }
+
+            // Function to check if the selected date/time slot already has a successful booking
+            async function checkSlotAvailability(date, timeSlot) {
+                if (!date || !timeSlot) {
+                    return { success: false, message: 'Select both date and time slot' };
+                }
+
+                try {
+                    const response = await fetch(`../assets/process/checkSlotAvailability.php?tour_id=${tourId}&date=${date}&timeSlot=${encodeURIComponent(timeSlot)}`);
+                    const data = await response.json();
+                    return data;
+                } catch (error) {
+                    console.error('Error checking slot availability:', error);
+                    return { success: false, message: 'Error checking slot availability' };
+                }
+            }
             
             // 1. Star Rating Logic
             const stars = document.querySelectorAll("#star-rating .star");
@@ -1258,6 +1274,7 @@ tour Area
             const checkoutButton = document.getElementById('goToCheckout');
 
             // PHP values to JS
+            const tourId = <?php echo (int)$tour_id; ?>;
             const adultPricePerPerson = <?php echo $tour['adult_price'] ?? 0; ?>;
             const childPricePerPerson = <?php echo $tour['kids_price'] ?? 0; ?>;
             const maximumAdultCount = <?php echo (int)($tour['maximum_adult_count'] ?? 0); ?>;
@@ -1377,6 +1394,11 @@ tour Area
                 document.getElementById('totalPriceLKR').textContent = formatLKR(totalLKR);
             }
 
+            function getSelectedTimeSlot() {
+                const selected = document.querySelector('input[name="timeSlot"]:checked');
+                return selected ? selected.value : '';
+            }
+
             // 5. Button Click Handlers (Plus/Minus)
             function updateButtonsState() {
                 const currentAdults = parseInt(adultCount.value);
@@ -1468,10 +1490,57 @@ tour Area
                     if (privacyCheckbox.checked) {
                         checkoutButton.disabled = false;
                     }
+
+                    // If a time slot is already selected, validate it for this date
+                    const currentTimeSlot = getSelectedTimeSlot();
+                    if (currentTimeSlot) {
+                        const slotResult = await checkSlotAvailability(selectedDate, currentTimeSlot);
+                        if (slotResult.success && slotResult.isAvailable) {
+                            if (privacyCheckbox.checked) {
+                                checkoutButton.disabled = false;
+                            }
+                        } else if (slotResult.success && !slotResult.isAvailable) {
+                            notyf.error(slotResult.message || 'This time slot is already booked for the selected date');
+                            const checkedSlot = document.querySelector('input[name="timeSlot"]:checked');
+                            if (checkedSlot) checkedSlot.checked = false;
+                            checkoutButton.disabled = true;
+                        } else {
+                            notyf.error(slotResult.message || 'Unable to verify time slot availability');
+                            checkoutButton.disabled = true;
+                        }
+                    }
                 } else {
                     notyf.error(result.message || 'Unable to verify date availability');
                     this.value = '';
                 }
+            });
+
+            // Validate time slot whenever user selects one
+            document.querySelectorAll('input[name="timeSlot"]').forEach(function(radio) {
+                radio.addEventListener('change', async function() {
+                    const selectedDate = document.getElementById('tourDate').value;
+                    if (!selectedDate) {
+                        notyf.error('Please select a date first');
+                        this.checked = false;
+                        return;
+                    }
+
+                    const result = await checkSlotAvailability(selectedDate, this.value);
+                    if (result.success && result.isAvailable) {
+                        notyf.success('Time slot available');
+                        if (privacyCheckbox.checked) {
+                            checkoutButton.disabled = false;
+                        }
+                    } else if (result.success && !result.isAvailable) {
+                        notyf.error(result.message || 'This time slot is already booked for the selected date');
+                        this.checked = false;
+                        checkoutButton.disabled = true;
+                    } else {
+                        notyf.error(result.message || 'Unable to verify time slot availability');
+                        this.checked = false;
+                        checkoutButton.disabled = true;
+                    }
+                });
             });
 
             // =========================================================
@@ -1495,8 +1564,24 @@ tour Area
                     notyf.error(closedDayCheck.message || 'Unable to verify date availability. Please try again.');
                     return;
                 }
+
+                // 2. Check time slot selection and availability
+                const selectedTimeSlot = getSelectedTimeSlot();
+                if (!selectedTimeSlot) {
+                    notyf.error('Please select a time slot');
+                    return;
+                }
+
+                const slotCheck = await checkSlotAvailability(selectedDate, selectedTimeSlot);
+                if (slotCheck.success && !slotCheck.isAvailable) {
+                    notyf.error(slotCheck.message || 'This time slot is already booked. Please choose another.');
+                    return;
+                } else if (!slotCheck.success) {
+                    notyf.error(slotCheck.message || 'Unable to verify time slot availability. Please try again.');
+                    return;
+                }
                 
-                // 2. Form Validation Check
+                // 3. Form Validation Check
                 const form = document.getElementById('bookingForm');
                 if (!form.checkValidity()) {
                     form.reportValidity(); // Show default HTML5 validation errors
