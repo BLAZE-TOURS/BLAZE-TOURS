@@ -57,6 +57,49 @@
     <!-- Notify CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
+    <!-- Snowfall Effect CSS -->
+    <style>
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            z-index: 9999;
+            user-select: none;
+            cursor: default;
+            animation-name: snowfall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            color: #fff;
+            opacity: 0.8;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate3d(15px, 100vh, 0);
+                opacity: 0.3;
+            }
+        }
+
+        .snowflake:nth-of-type(2n) {
+            font-size: 12px;
+        }
+
+        .snowflake:nth-of-type(3n) {
+            font-size: 16px;
+        }
+
+        .snowflake:nth-of-type(4n) {
+            font-size: 20px;
+        }
+
+        .snowflake:nth-of-type(5n) {
+            font-size: 14px;
+        }
+    </style>
+
     <!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
     <div class="elfsight-app-105fdd11-2a94-4811-b9aa-24f273aafc7e" data-elfsight-app-lazy></div>
@@ -855,6 +898,41 @@ Testimonial Area
             
             window.location.href = url;
         }
+    </script>
+
+    <!-- Snowfall Effect Script -->
+    <script>
+        // Create snowflakes
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄';
+            
+            // Random horizontal position
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            
+            // Random animation duration between 5-15 seconds
+            const duration = Math.random() * 10 + 5;
+            snowflake.style.animationDuration = duration + 's';
+            
+            // Random delay
+            snowflake.style.animationDelay = Math.random() * 5 + 's';
+            
+            document.body.appendChild(snowflake);
+            
+            // Remove snowflake after animation completes
+            setTimeout(() => {
+                snowflake.remove();
+            }, (duration + 5) * 1000);
+        }
+
+        // Create initial snowflakes
+        for (let i = 0; i < 50; i++) {
+            setTimeout(createSnowflake, i * 200);
+        }
+
+        // Continuously create new snowflakes
+        setInterval(createSnowflake, 400);
     </script>
 
 </body>
