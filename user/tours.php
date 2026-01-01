@@ -4,23 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Blaze Tours (Pvt) Ltd | Colombo City & Sri Lanka Tours</title>
-    <meta name="author" content="Blaze Tours (Pvt) Ltd">
-    <meta name="description" content="Blaze Tours (Pvt) Ltd is a Colombo-based travel company offering unforgettable city tours, cultural trips, and scenic getaways across Sri Lanka. Explore paradise with us!">
-    <meta name="keywords" content="Colombo tours, Sri Lanka travel, Blaze Tours, day trips Colombo, Sri Lanka sightseeing, private tours, cultural tours, beach tours">
-    <meta name="robots" content="INDEX,FOLLOW">
+    <title>Sri Lanka Tour Packages | Blaze Tours (Pvt) Ltd</title>
+    <meta name="description" content="Discover Colombo city tours, tuk tuk safaris, cultural trips, and private Sri Lanka tour packages with Blaze Tours (Pvt) Ltd.">
+    <meta name="keywords" content="Sri Lanka tour packages, Colombo tours, tuk tuk safari Sri Lanka, Blaze Tours">
+    <meta name="robots" content="index,follow">
 
-    <!-- meta -->
-    <meta property="og:title" content="Blaze Tours (Pvt) Ltd | Colombo & Sri Lanka Tours">
-    <meta property="og:description" content="Explore stunning Colombo city and Sri Lanka tours with Blaze Tours (Pvt) Ltd. Book your adventure today!">
-    <meta property="og:image" content="https://yourdomain.com/assets/img/preview.png">
-    <meta property="og:url" content="https://blaze-tours.com/">
-    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sri Lanka Tour Packages | Blaze Tours (Pvt) Ltd">
+    <meta property="og:description" content="Private and custom Sri Lanka tour packages including Colombo city tours and tuk tuk safaris.">
+    <meta property="og:url" content="https://blaze-tours.com/user/tours.php">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Blaze Tours (Pvt) Ltd | Colombo & Sri Lanka Tours">
-    <meta name="twitter:description" content="Explore stunning Colombo city and Sri Lanka tours with Blaze Tours (Pvt) Ltd. Book your adventure today!">
-    <meta name="twitter:image" content="https://blaze-tours.com/assets/img/preview.png">
+    <meta name="twitter:title" content="Sri Lanka Tour Packages | Blaze Tours">
+    <meta name="twitter:description" content="Explore private Sri Lanka tour packages with Blaze Tours (Pvt) Ltd.">
+    <meta name="twitter:image" content="https://blaze-tours.com/user/assets/img/preview.png">
+
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
