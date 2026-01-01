@@ -4,11 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Contact Us | Blaze Tours (Pvt) Ltd - Colombo Tour Company</title>
-    <meta name="author" content="Blaze Tours (Pvt) Ltd">
-    <meta name="description" content="Get in touch with Blaze Tours (Pvt) Ltd for Colombo city tours, Sri Lanka travel packages, and day trips. Contact us today via phone, email, or our booking form to plan your next adventure!">
-    <meta name="keywords" content="Contact Blaze Tours, Colombo tour company, Sri Lanka travel agency, book tours Sri Lanka, Blaze Tours contact, Colombo city tours, travel support Sri Lanka">
-    <meta name="robots" content="INDEX,FOLLOW">
+    <title>Contact Blaze Tours (Pvt) Ltd | Sri Lanka Tours</title>
+
+    <meta name="description" content="Contact Blaze Tours (Pvt) Ltd to book Colombo city tours, tuk tuk safaris, and Sri Lanka travel experiences.">
+    <meta name="keywords" content="contact Blaze Tours, Sri Lanka tour booking, Colombo tour contact">
+    <meta name="robots" content="index,follow">
+
+    <meta property="og:title" content="Contact Blaze Tours (Pvt) Ltd">
+    <meta property="og:description" content="Get in touch with Blaze Tours (Pvt) Ltd for Sri Lanka tours.">
+    <meta property="og:url" content="https://blaze-tours.com/user/contact.php">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Blaze Tours">
+    <meta name="twitter:description" content="Book your Sri Lanka tour with Blaze Tours (Pvt) Ltd.">
+    <meta name="twitter:image" content="https://blaze-tours.com/user/assets/img/preview.png">
 
 
     <!-- Mobile Specific Metas -->
