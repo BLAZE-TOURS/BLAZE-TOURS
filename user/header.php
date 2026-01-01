@@ -12,6 +12,7 @@
                 </li>
                 <li><a href="tours.php">Tours</a></a></li>
                 <li><a href="about.php">About Us</a></li>
+                <li><a href="blaze-tuk-tuk-safari.php">Blaze Tuk Tuk Safari</a></li>
                 <li><a href="gallery.php">Gallery</a></li>
                 <li><a href="paynow/">Paynow</a></li>
                 <li><a href="contact.php">Contact us</a></li>
@@ -68,6 +69,7 @@
                                 <li><a href="index.php">Home</a></li>
                                 <li><a href="tours.php">Tours</a></a></li>
                                 <li><a href="about.php">About Us</a></li>
+                                <li><a href="blaze-tuk-tuk-safari.php">Blaze Tuk Tuk Safari</a></li>
                                 <li><a href="gallery.php">Gallery</a></li>
                                 <li><a href="paynow/">Paynow</a></li>
                                 <li><a href="contact.php">Contact us</a></li>

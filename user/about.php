@@ -4,12 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>About Us | Blaze Tours (Pvt) Ltd - Colombo & Sri Lanka Travel Experts</title>
-    <meta name="author" content="Blaze Tours (Pvt) Ltd">
-    <meta name="description" content="Learn more about Blaze Tours (Pvt) Ltd, a trusted Colombo-based travel company offering city tours, cultural experiences, and scenic trips across Sri Lanka. Discover our story, mission, and passion for travel.">
-    <meta name="keywords" content="About Blaze Tours, Colombo travel agency, Sri Lanka tour company, private limited tours, cultural trips Sri Lanka, Blaze Tours story, travel experts Colombo">
-    <meta name="robots" content="INDEX,FOLLOW">
+    <title>About Blaze Tours (Pvt) Ltd | Sri Lanka Travel Company</title>
 
+    <meta name="description" content="Blaze Tours (Pvt) Ltd is a registered Sri Lankan travel company, formerly known as Blaze Tuk Tuk Safari, offering authentic travel experiences.">
+    <meta name="keywords" content="Blaze Tours company, Blaze Tuk Tuk Safari, Sri Lanka travel company">
+    <meta name="robots" content="index,follow">
+
+    <meta property="og:title" content="About Blaze Tours (Pvt) Ltd">
+    <meta property="og:description" content="From Blaze Tuk Tuk Safari to Blaze Tours (Pvt) Ltd – our journey in Sri Lanka tourism.">
+    <meta property="og:url" content="https://blaze-tours.com/user/about.php">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Blaze Tours (Pvt) Ltd">
+    <meta name="twitter:description" content="Learn about Blaze Tours (Pvt) Ltd, formerly Blaze Tuk Tuk Safari.">
+    <meta name="twitter:image" content="https://blaze-tours.com/user/assets/img/preview.png">
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -108,8 +116,12 @@ About Area
                             <span class="sub-title style1 ">Welcome To Blaze Tours</span>
                             <h2 class="sec-title mb-20 pe-xl-5 me-xl-5 heading">Your trusted Sri Lankan travel partner, known worldwide</h2>
                         </div>
-                        <p class="pe-xl-5">Experience the vibrant soul of Colombo on the BLAZE Tuk Tuk Safari. Glide through colorful streets, bustling markets, and historic landmarks while your local guide reveals hidden gems and fascinating stories. Comfortable, safe, and immersive, this tuk tuk tour captures Sri Lanka’s energy like no other.</p>
-                        <p class="mb-30 pe-xl-5">Hop aboard as your tuk tuk weaves through narrow lanes, past colonial architecture, modern skyscrapers, and fragrant spice shops. Witness serene temple courtyards, observe street food vendors preparing savory treats, and absorb the mix of tradition and progress. Ideal for photographers, culture lovers, or anyone curious to explore beyond the tourist map. Let BLAZE Tuk Tuk Safari transform your Colombo visit into a vivid, unforgettable journey.</p>
+                        <p class="pe-xl-5">
+                        Experience the vibrant soul of Colombo with <strong>Blaze Tours (Pvt) Ltd</strong>, a <strong>legally registered travel company in Sri Lanka</strong>. <strong>Registration No: P V 00319756</strong>. Discover colorful streets, bustling markets, and iconic landmarks while our professional local guides reveal hidden gems and authentic Colombo stories. Our tuk tuk tours are safe, comfortable, and fully compliant with Sri Lankan tourism standards.
+                        </p>
+                        <p class="mb-30 pe-xl-5">
+                        Ride through narrow lanes, colonial-era architecture, modern skyscrapers, and fragrant spice shops as Colombo comes alive around you. Witness peaceful temple courtyards, vibrant street food culture, and the seamless blend of tradition and modern life. Ideal for photographers, culture enthusiasts, and curious travelers, <strong>Blaze Tours (Pvt) Ltd</strong> delivers a reliable, immersive, and unforgettable Colombo tuk tuk experience.
+                        </p>
                         <div class="about-item-wrap">
                             <div class="about-item style2">
                                 <div class="about-item_img"><img src="assets/img/icon/about_1_1.svg" alt=""></div>
