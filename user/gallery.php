@@ -4,11 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Gallery | Blaze Tours (Pvt) Ltd - Colombo & Sri Lanka Tour Photos</title>
-    <meta name="author" content="Blaze Tours (Pvt) Ltd">
-    <meta name="description" content="Explore stunning photos of Colombo and Sri Lanka tours with Blaze Tours (Pvt) Ltd. See breathtaking landscapes, cultural sites, and memorable travel experiences captured from our adventures.">
-    <meta name="keywords" content="Blaze Tours gallery, Colombo tours photos, Sri Lanka travel pictures, travel memories, scenic destinations Sri Lanka, cultural sites Colombo">
-    <meta name="robots" content="INDEX,FOLLOW">
+    <title>Tour Gallery | Blaze Tours (Pvt) Ltd</title>
+
+    <meta name="description" content="View real tour moments from Colombo city tours and Sri Lanka travel experiences by Blaze Tours (Pvt) Ltd.">
+    <meta name="keywords" content="Sri Lanka tour photos, Colombo tour gallery, Blaze Tours gallery">
+    <meta name="robots" content="index,follow">
+
+    <meta property="og:title" content="Tour Gallery | Blaze Tours">
+    <meta property="og:description" content="Real moments from our Sri Lanka tours and Colombo city experiences.">
+    <meta property="og:url" content="https://blaze-tours.com/user/gallery.php">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tour Gallery | Blaze Tours">
+    <meta name="twitter:description" content="Explore our Sri Lanka tour gallery by Blaze Tours (Pvt) Ltd.">
+    <meta name="twitter:image" content="https://blaze-tours.com/user/assets/img/preview.png">
 
 
     <!-- Mobile Specific Metas -->
