@@ -47,6 +47,7 @@
                                 <li><a href="index.php">Home</a></li>
                                 <li><a href="tours.php">Tours</a></li>
                                 <li><a href="about.php">About us</a></li>
+                                <li><a href="blaze-tuk-tuk-safari.php">Blaze Tuk Tuk Safari</a></li>
                                 <li><a href="gallery.php">Gallery</a></li>
                                 <li><a href="contact.php">Contact Us</a></li>
                                 <li><a href="privacy-policy.php">Privacy Policy</a></li>
