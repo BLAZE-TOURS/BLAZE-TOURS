@@ -133,6 +133,28 @@
             background: #e6f1ff;
             color: #0f365f;
         }
+
+        .safari-hero-card {
+            background: #ffffff;
+            border: 1px solid #e3e9f3;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 14px 30px rgba(12, 42, 86, 0.1);
+        }
+
+        .safari-hero-logo {
+            max-width: 260px;
+        }
+
+        .safari-gallery img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            height: auto;
+            object-fit: cover;
+            border-radius: 14px;
+            border: 1px solid #e1e7f0;
+            box-shadow: 0 10px 22px rgba(0, 38, 84, 0.08);
+        }
     </style>
 
 </head>
@@ -141,9 +163,31 @@
 
     <?php include 'header.php'; ?>
 
-    <!--==============================
-    Breadcumb
-============================== -->
+    <section class="py-5" style="background:#f7f9fc;">
+        <div class="container">
+            <div class="row g-4 align-items-center safari-hero-card">
+                <div class="col-md-4 text-center">
+                    <img src="assets/img/BLAZE_TUK_TUK_LOGO.png" alt="Blaze Tuk Tuk Safari logo" class="img-fluid safari-hero-logo">
+                </div>
+                <div class="col-md-8">
+                    <h2 class="fw-bold mb-3 text-dark">Blaze Tuk Tuk Safari</h2>
+                    <p class="fs-5 text-muted mb-0">Travel with BlaZe Embark on an exhilarating journey with Blaze to uncover Sri Lanka's cultural heritage in captivate Colombo With over a decade of expertise, Blaze promises an immersive exploration beyond the tourist trail. Glide through bustling streets aboard our Cabrio Tuk Tuk, savoring Pettah market's vibrant colors. Delve into ancient temples, immersing yourself in Buddhism and Hinduism’s sacred traditions. Let Blaze be your trusted guide for an unforgettable adventure. Unlock the secrets of this enchanting island.</p>
+                </div>
+            </div>
+
+            <div class="row g-3 safari-gallery mt-4">
+                <div class="col-md-4">
+                    <img src="assets/img/gallery/gallery_8_1.jpg" alt="Colombo tuk tuk safari city view">
+                </div>
+                <div class="col-md-4">
+                    <img src="assets/img/gallery/gallery_8_2.jpg" alt="Guests enjoying Blaze Tuk Tuk Safari">
+                </div>
+                <div class="col-md-4">
+                    <img src="assets/img/gallery/gallery_8_3.jpg" alt="Evening lights during the safari">
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- section -->
     <section class="py-5 link-hub-hero">
