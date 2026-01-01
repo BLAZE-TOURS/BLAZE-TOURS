@@ -12,7 +12,7 @@
 
     <meta property="og:title" content="Blaze Tuk Tuk Safari | Colombo City Tour">
     <meta property="og:description" content="The original Blaze Tuk Tuk Safari, now operated by Blaze Tours (Pvt) Ltd.">
-    <meta property="og:url" content="https://blaze-tours.com/user/blaze-tuk-tuk-safari.php">
+    <meta property="og:url" content="blazetuk.blaze-tours.com">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Blaze Tuk Tuk Safari | Colombo City Tour">
@@ -51,6 +51,90 @@
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <style>
+        .link-hub-hero {
+            background: radial-gradient(120% 120% at 20% 20%, #f4f8ff 0, #e9f1ff 45%, #fefefe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-hub-hero::after {
+            content: "";
+            position: absolute;
+            inset: 15% -8% -20% 35%;
+            background: radial-gradient(220px at 30% 30%, rgba(255, 168, 120, 0.18), transparent 60%), radial-gradient(260px at 70% 40%, rgba(118, 182, 255, 0.22), transparent 65%);
+            filter: blur(14px);
+            pointer-events: none;
+        }
+
+        .link-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: rgba(12, 46, 91, 0.08);
+            color: #0f2642;
+        }
+
+        .link-card {
+            background: linear-gradient(145deg, #ffffff, #f7f9fc);
+            border: 1px solid #e2e9f3;
+            border-radius: 16px;
+            padding: 20px;
+            height: 100%;
+            color: #0f2035;
+            box-shadow: 0 16px 32px rgba(18, 53, 89, 0.12);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-6px);
+            border-color: #b8d5ff;
+            box-shadow: 0 20px 44px rgba(18, 53, 89, 0.16);
+        }
+
+        .link-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #0b1526;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .link-meta {
+            font-size: 14px;
+            color: #5b6b7c;
+            margin: 0;
+        }
+
+        .link-anchor {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0b5ed7;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .link-anchor:hover {
+            color: #0a58ca;
+        }
+
+        .link-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 13px;
+            background: #e6f1ff;
+            color: #0f365f;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -60,22 +144,270 @@
     <!--==============================
     Breadcumb
 ============================== -->
-    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/about-bg.jpg">
+
+    <!-- section -->
+    <section class="py-5 link-hub-hero">
         <div class="container">
-            <div class="breadcumb-content">
-                <h1 class="breadcumb-title">About Blaze Tuk Tuk Safari</h1>
-                <ul class="breadcumb-menu">
-                    <li><a href="index.php">Home</a></li>
-                    <li>About Blaze Tuk Tuk Safari</li>
-                </ul>
+            <div class="row align-items-center gy-4">
+                <div class="col-lg-6 position-relative">
+                    <div class="d-inline-flex align-items-center gap-2 mb-3">
+                        <span class="link-badge">Blaze Tuk Tuk Safari</span>
+                    </div>
+                    <h2 class="display-5 fw-bold mb-3 text-dark">Pick your platform and go.</h2>
+                    <p class="fs-5 text-muted mb-4">Every button opens in a new tab so you can keep this hub pinned. Replace the placeholder links with your live profiles to keep guests moving without friction.</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="elements-sec bg-white overflow-hidden">
-        <div class="container-fluid">
-            <div class="tags-container relative"></div>
+    </section>
+
+    <section style="background:#f5f7fb;">
+        <div class="container">
+            <div class="row g-3">
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="link-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="link-icon" style="background:#d4a5ff;"><i class="fa-solid fa-globe"></i></span>
+                                <div>
+                                    <h5 class="mb-1">Official Website</h5>
+                                    <p class="link-meta mb-0">Browse tours, gallery, and booking info.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-dark">Web</span>
+                        </div>
+                        <a class="link-anchor" href="https://blaze-tours.com" target="_blank" rel="noopener">
+                            Visit website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="link-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="link-icon" style="background:#96d5ff;"><i class="fa-solid fa-map-location-dot"></i></span>
+                                <div>
+                                    <h5 class="mb-1">Google Maps</h5>
+                                    <p class="link-meta mb-0">Meet point pinned for easy navigation.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-dark">Maps</span>
+                        </div>
+                        <a class="link-anchor" href="https://maps.app.goo.gl/EuViRxSQ3bwWyQrB8" target="_blank" rel="noopener">
+                            Open in Maps <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="link-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="link-icon" style="background:#8ff0d2;"><i class="fa-brands fa-tripadvisor"></i></span>
+                                <div>
+                                    <h5 class="mb-1">Tripadvisor</h5>
+                                    <p class="link-meta mb-0">See traveler reviews and photos.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-dark">Reviews</span>
+                        </div>
+                        <a class="link-anchor" href="https://www.tripadvisor.com/Attraction_Review-g293962-d23870821-Reviews-BLAZE_TUK_TUK_SAFARI-Colombo_Western_Province.html" target="_blank" rel="noopener">
+                            View listing <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="link-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="link-icon" style="background:#fba2d0;"><i class="fa-brands fa-instagram"></i></span>
+                                <div>
+                                    <h5 class="mb-1">Instagram</h5>
+                                    <p class="link-meta mb-0">Stories, reels, and daily snaps.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-dark">Social</span>
+                        </div>
+                        <a class="link-anchor" href="https://www.instagram.com/travel_with_blaze" target="_blank" rel="noopener">
+                            Visit profile <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="link-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="link-icon" style="background:#9ac0ff;"><i class="fa-brands fa-facebook-f"></i></span>
+                                <div>
+                                    <h5 class="mb-1">Facebook</h5>
+                                    <p class="link-meta mb-0">Posts, reviews, and latest offers.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-dark">Social</span>
+                        </div>
+                        <a class="link-anchor" href="https://www.facebook.com/p/Blaze-Tuk-Tuk-Safari-61574886306356/" target="_blank" rel="noopener">
+                            Open page <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="link-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="link-icon" style="background:#7bf0a9;"><i class="fa-brands fa-whatsapp"></i></span>
+                                <div>
+                                    <h5 class="mb-1">WhatsApp</h5>
+                                    <p class="link-meta mb-0">Instant confirmations and quick answers.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-dark">Chat</span>
+                        </div>
+                        <a class="link-anchor" href="https://wa.me/94713344399?text=Hello" target="_blank" rel="noopener">
+                            Start a chat <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="link-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="link-icon" style="background:#ffdf8f;"><i class="fa-brands fa-tiktok"></i></span>
+                                <div>
+                                    <h5 class="mb-1">TikTok</h5>
+                                    <p class="link-meta mb-0">Fast clips from the safari.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-dark">Social</span>
+                        </div>
+                        <a class="link-anchor" href="https://www.tiktok.com/@blazetuktuksafari" target="_blank" rel="noopener">
+                            Watch highlights <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="link-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="link-icon" style="background:#ffd27f;"><i class="fa-solid fa-ticket"></i></span>
+                                <div>
+                                    <h5 class="mb-1">GetYourGuide</h5>
+                                    <p class="link-meta mb-0">Direct booking with instant confirmation.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-dark">Booking</span>
+                        </div>
+                        <a class="link-anchor" href="https://www.getyourguide.com/" target="_blank" rel="noopener">
+                            Open listing <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="link-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="link-icon" style="background:#ffa6a6;"><i class="fa-solid fa-stars"></i></span>
+                                <div>
+                                    <h5 class="mb-1">Viator</h5>
+                                    <p class="link-meta mb-0">Bookings, reviews, and inclusions.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-dark">Booking</span>
+                        </div>
+                        <a class="link-anchor" href="https://www.viator.com/tours/Colombo/Tuk-Tuk-Private-Safari-Tour-Exploring-Sri-Lankas-Capital-Colombo/d4619-336215P1?medium=social-share-copy" target="_blank" rel="noopener">
+                            View tour <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="link-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="link-icon" style="background:#ffb86f;"><i class="fa-solid fa-ticket-simple"></i></span>
+                                <div>
+                                    <h5 class="mb-1">Klook</h5>
+                                    <p class="link-meta mb-0">Instant e-tickets and easy redemption.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-dark">Booking</span>
+                        </div>
+                        <a class="link-anchor" href="https://s.klook.com/c/D3ZxlDD83o" target="_blank" rel="noopener">
+                            Book on Klook <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="link-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="link-icon" style="background:#a0e4ff;"><i class="fa-solid fa-map-pin"></i></span>
+                                <div>
+                                    <h5 class="mb-1">Wanderlog</h5>
+                                    <p class="link-meta mb-0">Plan your trip and add us to your itinerary.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-dark">Planning</span>
+                        </div>
+                        <a class="link-anchor" href="https://wanderlog.com/place/details/3917295/blaze-tuk-tuk-safari" target="_blank" rel="noopener">
+                            Plan with Wanderlog <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="link-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="link-icon" style="background:#b3e6a5;"><i class="fa-solid fa-plane-departure"></i></span>
+                                <div>
+                                    <h5 class="mb-1">Pelago</h5>
+                                    <p class="link-meta mb-0">Seamless bookings and travel experiences.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-dark">Booking</span>
+                        </div>
+                        <a class="link-anchor" href="https://www.pelago.com/activity/pwcnz76p0-tuk-tuk-private-safari-tour-exploring-sri-lankas-capital-colombo--colombo/?utm_source=pelago&utm_medium=sharesheet" target="_blank" rel="noopener">
+                            Explore Pelago <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4">
+                    <div class="link-card">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="link-icon" style="background:#94c5ff;"><i class="fa-brands fa-linkedin-in"></i></span>
+                                <div>
+                                    <h5 class="mb-1">LinkedIn</h5>
+                                    <p class="link-meta mb-0">Connect with our team and company updates.</p>
+                                </div>
+                            </div>
+                            <span class="badge bg-light text-dark">Social</span>
+                        </div>
+                        <a class="link-anchor" href="https://www.linkedin.com/in/vinoth-blaze-95a13017b?originalSubdomain=lk" target="_blank" rel="noopener">
+                            Follow on LinkedIn <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
     <?php include 'footer.php'; ?>
 
