@@ -1052,7 +1052,7 @@ tour Area
 
                         <!-- Pickup Location -->
                         <div class="mb-3">
-                            <label for="pickup" class="form-label">Pickup Location *</label>
+                            <label for="pickup" class="form-label">Pickup Location (Only Colombo)*</label>
                             <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter your pickup location" required>
                         </div>
 
