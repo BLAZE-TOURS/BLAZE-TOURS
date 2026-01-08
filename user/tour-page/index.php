@@ -624,7 +624,7 @@ include '../assets/process/fetchTour.php';
     <div class="breadcumb-wrapper " data-bg-src="../assets/img/bg/category_bg_1.png">
         <div class="container">
             <div class="breadcumb-content">
-                <h1 class="breadcumb-title">Single Tour Page</h1>
+                <h1 class="breadcumb-title">Tour Page</h1>
                 <ul class="breadcumb-menu">
                     <li><a href="index.php">Home</a></li>
                     <li>Tour Details</li>
