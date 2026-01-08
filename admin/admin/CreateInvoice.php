@@ -83,7 +83,7 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="documentType" id="documentCotention" value="1">
                                         <label class="form-check-label" for="documentCotention">
-                                            Cotention Note
+                                            Quotation Note
                                         </label>
                                     </div>
                                 </div>
