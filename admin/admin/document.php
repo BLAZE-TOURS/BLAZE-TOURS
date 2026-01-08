@@ -187,7 +187,7 @@
                     <div class="inv-title">
 
                         <?php if ($document_type == 1): ?>
-                            Cotention
+                            Quotation
                         <?php else: ?>
                             Invoice
                         <?php endif; ?>
