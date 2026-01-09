@@ -360,9 +360,9 @@ Product Area
                                                 <h3 class="box-title"><a href="tour-page/index.php?id=<?php echo $tour['id']; ?>"><?php echo htmlspecialchars($tour['name']); ?></a></h3>
                                                 <div class="tour-rating">
                                                     <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
-                                                            <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
+                                                            <strong class="rating">5.00</strong> out of 5 based on <span class="rating">5.0</span>(5.0
                                                             Rating)</span></div>
-                                                    <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">4.8</span>
+                                                    <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">5.0</span>
                                                         Rating)</a>
                                                 </div>
                                                 <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Person</h4>
