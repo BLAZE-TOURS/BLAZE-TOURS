@@ -543,6 +543,7 @@ include '../assets/process/fetchTour.php';
                     </li>
                     <li><a href="../tours.php">Tours</a></a></li>
                     <li><a href="../about.php">About Us</a></li>
+                    <li><a href="../blaze-tuk-tuk-safari.php">Blaze Tuk Tuk Safari</a></li>
                     <li><a href="../gallery.php">Gallery</a></li>
                     <li><a href="../paynow/">Paynow</a></li>
                     <li><a href="../contact.php">Contact us</a></li>
@@ -599,6 +600,7 @@ include '../assets/process/fetchTour.php';
                                     <li><a href="../index.php">Home</a></li>
                                     <li><a href="../tours.php">Tours</a></a></li>
                                     <li><a href="../about.php">About Us</a></li>
+                                    <li><a href="../blaze-tuk-tuk-safari.php">Blaze Tuk Tuk Safari</a></li>
                                     <li><a href="../gallery.php">Gallery</a></li>
                                     <li><a href="../paynow/">Paynow</a></li>
                                     <li><a href="../contact.php">Contact us</a></li>
@@ -652,7 +654,7 @@ tour Area
                         <div class="page-content d-block">
                             <div class="page-meta mt-50 mb-45">
                                 <a class="page-tag" href="tour.php">POPULAR</a>
-                                <span class="ratting"><i class="fa-sharp fa-solid fa-star"></i><span>4.8</span></span>
+                                <span class="ratting"><i class="fa-sharp fa-solid fa-star"></i><span>5.0</span></span>
                             </div>
                             <h2 class="box-title"><?php echo htmlspecialchars($tour['name'] ?? ''); ?></h2>
                             <p class="box-text mb-30"><?php echo htmlspecialchars($tour['description'] ?? ''); ?></p>
@@ -1052,8 +1054,11 @@ tour Area
 
                         <!-- Pickup Location -->
                         <div class="mb-3">
-                            <label for="pickup" class="form-label">Pickup Location (Only Colombo)*</label>
+                            <label for="pickup" class="form-label">Pickup Location *</label>
                             <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter your pickup location" required>
+                            <small class="text-muted d-block mt-2">
+                                <i class="fa-light fa-circle-info" style="color: red;" ></i> <span>Free pickup within Colombo. Extra charges apply outside Colombo.</span>
+                            </small>
                         </div>
 
                         <!-- Price Summary -->

@@ -57,48 +57,6 @@
     <!-- Notify CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
-    <!-- Snowfall Effect CSS -->
-    <style>
-        .snowflake {
-            position: fixed;
-            top: -10px;
-            z-index: 9999;
-            user-select: none;
-            cursor: default;
-            animation-name: snowfall;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            color: #fff;
-            opacity: 0.8;
-        }
-
-        @keyframes snowfall {
-            0% {
-                transform: translate3d(0, 0, 0);
-                opacity: 1;
-            }
-            100% {
-                transform: translate3d(15px, 100vh, 0);
-                opacity: 0.3;
-            }
-        }
-
-        .snowflake:nth-of-type(2n) {
-            font-size: 12px;
-        }
-
-        .snowflake:nth-of-type(3n) {
-            font-size: 16px;
-        }
-
-        .snowflake:nth-of-type(4n) {
-            font-size: 20px;
-        }
-
-        .snowflake:nth-of-type(5n) {
-            font-size: 14px;
-        }
-    </style>
 
     <!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
@@ -391,10 +349,10 @@ Service Area
                                         <div class="tour-rating">
                                             <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5">
                                                 <span style="width:100%">Rated
-                                                    <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8 Rating)
+                                                    <strong class="rating">5.00</strong> out of 5 based on <span class="rating">5.0</span>(5.0 Rating)
                                                 </span>
                                             </div>
-                                            <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">4.8</span> Rating)</a>
+                                            <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">5.0</span> Rating)</a>
                                         </div>
                                         <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Person</h4>
                                         <div class="tour-action">
@@ -898,41 +856,6 @@ Testimonial Area
             
             window.location.href = url;
         }
-    </script>
-
-    <!-- Snowfall Effect Script -->
-    <script>
-        // Create snowflakes
-        function createSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            snowflake.innerHTML = '❄';
-            
-            // Random horizontal position
-            snowflake.style.left = Math.random() * window.innerWidth + 'px';
-            
-            // Random animation duration between 5-15 seconds
-            const duration = Math.random() * 10 + 5;
-            snowflake.style.animationDuration = duration + 's';
-            
-            // Random delay
-            snowflake.style.animationDelay = Math.random() * 5 + 's';
-            
-            document.body.appendChild(snowflake);
-            
-            // Remove snowflake after animation completes
-            setTimeout(() => {
-                snowflake.remove();
-            }, (duration + 5) * 1000);
-        }
-
-        // Create initial snowflakes
-        for (let i = 0; i < 50; i++) {
-            setTimeout(createSnowflake, i * 200);
-        }
-
-        // Continuously create new snowflakes
-        setInterval(createSnowflake, 400);
     </script>
 
 </body>
