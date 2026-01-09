@@ -157,7 +157,14 @@ Video Area
             <div class="row flex-row-reverse justify-content-center align-items-center">
                 <div class="col-lg-6">
                     <div class="video-box1">
-                        <a href="https://www.youtube.com/watch?v=cQfIUPw72Dk" class="play-btn style2 popup-video"><i class="fa-sharp fa-solid fa-play"></i></a>
+                        <a href="https://www.facebook.com/share/r/1JxZ8VpRBP/?mibextid=wwXIfr" 
+                        class="play-btn style2" 
+                        id="fbVideoBtn"
+                        target="_blank">
+                            <i class="fa-sharp fa-solid fa-play"></i>
+                        </a>
+
+                        <img src="assets/img/bg/video_thumbnail.jpg" alt="Video thumbnail" style="width: 100%; height: auto;">
                     </div>
 
                 </div>
