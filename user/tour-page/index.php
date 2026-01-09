@@ -1056,6 +1056,9 @@ tour Area
                         <div class="mb-3">
                             <label for="pickup" class="form-label">Pickup Location *</label>
                             <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter your pickup location" required>
+                            <small class="text-muted d-block mt-2">
+                                <i class="fa-light fa-circle-info" style="color: red;" ></i> <span>Free pickup within Colombo. Extra charges apply outside Colombo.</span>
+                            </small>
                         </div>
 
                         <!-- Price Summary -->
