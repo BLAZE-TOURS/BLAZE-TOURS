@@ -312,6 +312,25 @@
                                 <td class="text-end"><?= 'Rs. ' . number_format($kids_amount_lkr, 2) ?></td>
                             </tr>
                         <?php endif; ?>
+                        <?php
+                        $extra_items = isset($_POST['extra_items']) ? json_decode($_POST['extra_items'], true) : [];
+                        if (!empty($extra_items)) {
+                            foreach ($extra_items as $item) {
+                                if (!empty($item['name'])) {
+                                    $e_total_usd = (float)$item['total'];
+                                    $e_total_lkr = $e_total_usd * $usd_rate_post;
+                                    ?>
+                            <tr>
+                                <td><?= htmlspecialchars($item['name']) ?></td>
+                                <td class="text-center"><?= htmlspecialchars($item['qty']) ?></td>
+                                <td class="text-end"><?= '$' . number_format((float)$item['unit'], 2) ?></td>
+                                <td class="text-end"><?= 'Rs. ' . number_format($e_total_lkr, 2) ?></td>
+                            </tr>
+                                    <?php
+                                }
+                            }
+                        }
+                        ?>
                     </tbody>
                     <tfoot>
                         <tr>
@@ -331,6 +350,28 @@
                         </tr>
                     </tfoot>
                 </table>
+            </div>
+
+            <!-- Notes and Payment Details -->
+            <div class="row mt-4">
+                <div class="col-md-7">
+                    <?php if (!empty($_POST['notes'])): ?>
+                        <div class="mb-3">
+                            <div class="fw-bold text-decoration-underline">Notes:</div>
+                            <div class="small"><?= nl2br(htmlspecialchars($_POST['notes'])) ?></div>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="card border-0 bg-light">
+                        <div class="card-body p-2" style="font-size: 0.85rem;">
+                            <div class="fw-bold mb-1">Payment Details:</div>
+                            <div><strong>Beneficiary:</strong> M. Vinoth Kumar</div>
+                            <div><strong>Bank:</strong> Commercial Bank</div>
+                            <div><strong>Acc No:</strong> 8110023218</div>
+                            <div><strong>Branch:</strong> Kollupitiya Branch</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Footer -->
