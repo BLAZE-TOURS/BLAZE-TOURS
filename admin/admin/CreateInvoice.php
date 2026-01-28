@@ -162,6 +162,32 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                     <input id="phoneInput" type="tel" class="form-control" required>
                                 </div>
 
+                                <!-- Notes -->
+                                 <div class="mb-3">
+                                    <label class="form-label">Notes</label>
+                                    <textarea id="invoiceNotes" class="form-control" rows="2" placeholder="Any special notes..."></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Additional Items</label>
+                                    <div class="table-responsive">
+                                        <table class="table table-sm table-bordered" id="extraItemsTable">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Item</th>
+                                                    <th style="width: 80px;">People</th>
+                                                    <th style="width: 120px;">Unit Price (USD)</th>
+                                                    <th style="width: 120px;">Total (USD)</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="extraItemsBody">
+                                                </tbody>
+                                        </table>
+                                        <button type="button" class="btn btn-sm btn-secondary" id="addExtraItemBtn">+ Add Item</button>
+                                    </div>
+                                </div>
+
                                 <!-- Payment Status -->
                                 <div class="mb-3">
                                     <label class="form-label">Payment Status *</label>
@@ -292,7 +318,14 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                 const timeText = timeEl ? timeEl.dataset.timeslot : '-';
                                 const durationVal = opt ? opt.getAttribute('data-duration') : '';
                                 const durationText = durationVal ? (durationVal + ' h') : '-';
-                                const usdTotal = (adult * adultPrice) + (kids * kidsPrice);
+                                
+                                // Calculate extra items total
+                                let extraUsdTotal = 0;
+                                document.querySelectorAll('.extra-item-total').forEach(input => {
+                                    extraUsdTotal += parseFloat(input.value) || 0;
+                                });
+                                
+                                const usdTotal = (adult * adultPrice) + (kids * kidsPrice) + extraUsdTotal;
                                 const lkrTotal = usdTotal * usdToLkrRate;
 
                                 let ValidateLKR = lkrTotal;
@@ -412,6 +445,35 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                 updateSummary();
                             });
 
+                            // ===== ADD EXTRA ITEM =====
+                            document.getElementById('addExtraItemBtn').addEventListener('click', function() {
+                                const tbody = document.getElementById('extraItemsBody');
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                    <td><input type="text" class="form-control form-control-sm extra-item-name"></td>
+                                    <td><input type="number" class="form-control form-control-sm extra-item-qty" value="1" min="1"></td>
+                                    <td><input type="number" class="form-control form-control-sm extra-item-unit" value="0" min="0" step="0.01"></td>
+                                    <td><input type="text" class="form-control form-control-sm extra-item-total" value="0.00" readonly></td>
+                                    <td><button type="button" class="btn btn-sm btn-danger remove-item-btn">×</button></td>
+                                `;
+                                tbody.appendChild(row);
+
+                                // Add listeners for calculation
+                                row.querySelectorAll('input').forEach(input => {
+                                    input.addEventListener('input', () => {
+                                        const qty = parseFloat(row.querySelector('.extra-item-qty').value) || 0;
+                                        const unit = parseFloat(row.querySelector('.extra-item-unit').value) || 0;
+                                        row.querySelector('.extra-item-total').value = (qty * unit).toFixed(2);
+                                        updateSummary();
+                                    });
+                                });
+
+                                row.querySelector('.remove-item-btn').addEventListener('click', () => {
+                                    row.remove();
+                                    updateSummary();
+                                });
+                            });
+
                             // ===== CREATE INVOICE BTN =====
                             createInvoiceBtn.addEventListener('click', function(e) {
                                 e.preventDefault();
@@ -483,6 +545,17 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
 
                                 const finalTotal = Number((lkrTotal - discount).toFixed(2));
 
+                                // Collect extra items
+                                const extraItems = [];
+                                document.querySelectorAll('#extraItemsBody tr').forEach(row => {
+                                    extraItems.push({
+                                        name: row.querySelector('.extra-item-name').value,
+                                        qty: row.querySelector('.extra-item-qty').value,
+                                        unit: row.querySelector('.extra-item-unit').value,
+                                        total: row.querySelector('.extra-item-total').value
+                                    });
+                                });
+
                                 const payload = {
                                     tour_id: tourSelect.value,
                                     tour_name: tourSelect.options[tourSelect.selectedIndex].text,
@@ -504,7 +577,11 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                     // per-unit prices + rate so invoice can show per-line USD and LKR
                                     adult_unit_price: (opt ? parseFloat(opt.getAttribute('data-adult') || 0) : 0),
                                     kids_unit_price: (opt ? parseFloat(opt.getAttribute('data-kids') || 0) : 0),
-                                    usd_rate: usdToLkrRate
+                                    usd_rate: usdToLkrRate,
+                                    
+                                    // Add notes and extra items
+                                    notes: document.getElementById('invoiceNotes').value,
+                                    extra_items: JSON.stringify(extraItems)
                                 };
 
                                 Swal.fire({
