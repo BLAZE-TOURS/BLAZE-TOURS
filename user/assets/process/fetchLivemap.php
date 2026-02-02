@@ -5,7 +5,7 @@
 
     $tour_id = isset($_GET['tour_id']) ? intval($_GET['tour_id']) : 0;
 
-    $sql = "SELECT location.*, tour.name AS tour_name FROM `location` INNER JOIN `tour` ON location.tour_id = tour.id";
+    $sql = "SELECT location.*, tour.name AS tour_name, tour.tours_type_id FROM `location` INNER JOIN `tour` ON location.tour_id = tour.id";
     if ($tour_id > 0) {
         $sql .= " WHERE location.tour_id = $tour_id";
     }

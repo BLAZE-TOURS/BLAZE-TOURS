@@ -762,7 +762,7 @@ tour Area
                             <div class="info-list">
                                 <ul>
                                     <li>
-                                        <strong>Duration : <?php echo htmlspecialchars($tour['duration'] ?? ''); ?> hours</strong>
+                                        <strong>Duration : <?php echo htmlspecialchars($tour['duration'] ?? ''); ?> <?php echo (($tour['tours_type_id'] ?? 0) == 8) ? 'Days' : 'hours'; ?></strong>
                                     </li>
                                     <?php foreach ($highlights as $hl): ?>
                                         <li><strong><?php echo htmlspecialchars($hl); ?></strong></li>
@@ -779,7 +779,7 @@ tour Area
                                     <?php foreach ($locations as $loc): ?>
                                         <li>
                                             <strong><?php echo htmlspecialchars($loc['name']); ?></strong>
-                                            <span>Stop: <?php echo intval($loc['stop_duration_time']); ?> minutes</span>
+                                            <span><?php echo (($tour['tours_type_id'] ?? 0) == 8) ? 'Day' : 'Stop'; ?>: <?php echo intval($loc['stop_duration_time']); ?><?php echo (($tour['tours_type_id'] ?? 0) == 8) ? '' : ' minutes'; ?></span>
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>
