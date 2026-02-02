@@ -302,7 +302,7 @@ Service Area
 
     $tours = [];
     try {
-        $query = "SELECT t.id, t.name, t.description, t.duration, t.adult_price, ti.main_image
+        $query = "SELECT t.id, t.name, t.description, t.duration, t.adult_price, t.tours_type_id, ti.main_image
               FROM tour t
               LEFT JOIN tour_image ti ON t.id = ti.tour_id
               WHERE t.status_id = 1";
@@ -356,7 +356,7 @@ Service Area
                                         </div>
                                         <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Person</h4>
                                         <div class="tour-action">
-                                            <span><i class="fa-light fa-clock"></i><?php echo (int)$tour['duration']; ?> Hours</span>
+                                            <span><i class="fa-light fa-clock"></i><?php echo (int)$tour['duration']; ?> <?php echo ($tour['tours_type_id'] == 8) ? 'Days' : 'Hours'; ?></span>
                                             <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="th-btn th-icon">Book Now</a>
                                         </div>
                                     </div>

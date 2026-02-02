@@ -52,7 +52,7 @@
       <p style="margin: 0 0 6px; font-size: 14px;">📍 ${marker.address}</p>
       <p style="margin: 0 0 6px; font-size: 14px; color: #555; font-weight: 500;">🗺️ Tour: ${marker.tour_name || 'N/A'}</p>
       ${marker.description ? `<p style="margin: 0 0 6px; font-style: italic; color: #555;">📝 ${marker.description}</p>` : ''}
-      <p style="margin: 0; font-size: 14px; color: #666;">⏱️ Stop: ${marker.stop_duration_time || 0} min</p>
+            <p style="margin: 0; font-size: 14px; color: #666;">⏱️ ${marker.tours_type_id == 8 ? 'Day' : 'Stop'}: ${marker.stop_duration_time || 0}${marker.tours_type_id == 8 ? '' : ' min'}</p>
     </div>
   `
                         });

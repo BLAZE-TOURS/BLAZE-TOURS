@@ -762,7 +762,7 @@ tour Area
                             <div class="info-list">
                                 <ul>
                                     <li>
-                                        <strong>Duration : <?php echo htmlspecialchars($tour['duration'] ?? ''); ?> hours</strong>
+                                        <strong>Duration : <?php echo htmlspecialchars($tour['duration'] ?? ''); ?> <?php echo (($tour['tours_type_id'] ?? 0) == 8) ? 'Days' : 'hours'; ?></strong>
                                     </li>
                                     <?php foreach ($highlights as $hl): ?>
                                         <li><strong><?php echo htmlspecialchars($hl); ?></strong></li>
@@ -779,7 +779,7 @@ tour Area
                                     <?php foreach ($locations as $loc): ?>
                                         <li>
                                             <strong><?php echo htmlspecialchars($loc['name']); ?></strong>
-                                            <span>Stop: <?php echo intval($loc['stop_duration_time']); ?> minutes</span>
+                                            <span><?php echo (($tour['tours_type_id'] ?? 0) == 8) ? 'Day' : 'Stop'; ?>: <?php echo intval($loc['stop_duration_time']); ?><?php echo (($tour['tours_type_id'] ?? 0) == 8) ? '' : ' minutes'; ?></span>
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>
@@ -1101,8 +1101,9 @@ tour Area
 
                                     <hr class="my-3">
 
-                                    <!-- Paid Amount Section -->
-                                    <div class="form-group">
+                                    <!-- Paid Amount Section - Advance Payment (for tours_type_id = 8) -->
+                                    <?php if ($tour['tours_type_id'] == 8) { ?>
+                                    <div class="form-group" id="advancePaymentSection">
                                         <label for="paidAmount" class="form-label fw-semibold">Paid Amount (USD)</label>
                                         <input type="number" class="form-control border-0 shadow-sm" id="paidAmount"
                                             step="any" min="0" placeholder="Min $00" required>
@@ -1122,6 +1123,25 @@ tour Area
                                             </div>
                                         </div>
                                     </div>
+                                    <?php } else { ?>
+                                    <!-- Full Payment Section (for other tours_type_id) -->
+                                    <div class="form-group" id="fullPaymentSection">
+                                        <label for="paidAmount" class="form-label fw-semibold">Total Amount to Pay (USD)</label>
+                                        <input type="number" class="form-control border-0 shadow-sm" id="paidAmount"
+                                            step="any" min="0" placeholder="$00" required readonly>
+
+                                        <small class="fw-medium d-block mt-2 text-info">
+                                            Full payment is required to complete the booking
+                                        </small>
+
+                                        <div class="mt-3 border-top pt-2">
+                                            <div class="d-flex justify-content-between">
+                                                <span>Amount to Pay (LKR)</span>
+                                                <span id="paidLKR" class="fw-semibold">Rs. 0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -1284,6 +1304,7 @@ tour Area
             const childPricePerPerson = <?php echo $tour['kids_price'] ?? 0; ?>;
             const maximumAdultCount = <?php echo (int)($tour['maximum_adult_count'] ?? 0); ?>;
             const maximumKidsCount = <?php echo (int)($tour['maximum_kids_count'] ?? 0); ?>;
+            const toursTypeId = <?php echo (int)($tour['tours_type_id'] ?? 0); ?>;
 
             // 3. Price Update Function
             function updatePrices() {
@@ -1360,18 +1381,29 @@ tour Area
 
             function updatePaidAmountPlaceholder() {
                 const totalUSD = parseFloat(totalPrice.textContent.replace('$', ''));
-                const minAdvance = (totalUSD * (advancePercentage / 100));
                 
-                paidAmountInput.placeholder = `Min ${formatUSD(minAdvance)} (${advancePercentage}% of total)`;
-                paidAmountInput.min = minAdvance;
+                if (toursTypeId === 8) {
+                    // Advance Payment Logic
+                    const minAdvance = (totalUSD * (advancePercentage / 100));
+                    
+                    paidAmountInput.placeholder = `Min ${formatUSD(minAdvance)} (${advancePercentage}% of total)`;
+                    paidAmountInput.min = minAdvance;
+                    paidAmountInput.removeAttribute('readonly');
 
-                const advanceText = document.querySelector('small.fw-medium span.text-danger');
-                if (advanceText) {
-                    advanceText.textContent = `${formatUSD(minAdvance)} (${advancePercentage}% of total)`;
-                }
+                    const advanceText = document.querySelector('small.fw-medium span.text-danger');
+                    if (advanceText) {
+                        advanceText.textContent = `${formatUSD(minAdvance)} (${advancePercentage}% of total)`;
+                    }
 
-                if (!paidAmountInput.dataset.userEdited) {
-                    paidAmountInput.value = minAdvance.toFixed(2);
+                    if (!paidAmountInput.dataset.userEdited) {
+                        paidAmountInput.value = minAdvance.toFixed(2);
+                        updatePaidDisplays();
+                    }
+                } else {
+                    // Full Payment Logic
+                    paidAmountInput.placeholder = formatUSD(totalUSD);
+                    paidAmountInput.value = totalUSD.toFixed(2);
+                    paidAmountInput.setAttribute('readonly', 'readonly');
                     updatePaidDisplays();
                 }
             }
@@ -1379,24 +1411,37 @@ tour Area
             function updatePaidDisplays() {
                 const paidUSD = parseFloat(paidAmountInput.value || 0);
                 const totalUSD = parseFloat(totalPrice.textContent.replace('$', ''));
-                const minAdvance = totalUSD * (advancePercentage / 100);
+                const paidLKRElement = document.getElementById('paidLKR');
+                const balanceLKRElement = document.getElementById('balanceLKR');
+                
+                if (toursTypeId === 8) {
+                    // Advance Payment Logic
+                    const minAdvance = totalUSD * (advancePercentage / 100);
 
-                if (paidUSD < minAdvance) {
-                    paidAmountInput.setCustomValidity(`Minimum payment is ${formatUSD(minAdvance)}`);
-                } else if (paidUSD > totalUSD) {
-                    paidAmountInput.setCustomValidity(`Maximum payment is ${formatUSD(totalUSD)}`);
-                    paidAmountInput.value = totalUSD.toFixed(2);
+                    if (paidUSD < minAdvance) {
+                        paidAmountInput.setCustomValidity(`Minimum payment is ${formatUSD(minAdvance)}`);
+                    } else if (paidUSD > totalUSD) {
+                        paidAmountInput.setCustomValidity(`Maximum payment is ${formatUSD(totalUSD)}`);
+                        paidAmountInput.value = totalUSD.toFixed(2);
+                    } else {
+                        paidAmountInput.setCustomValidity('');
+                    }
+
+                    const paidLKR = paidUSD * usdToLkrRate;
+                    const totalLKR = totalUSD * usdToLkrRate;
+                    const balanceLKR = Math.max(0, totalLKR - paidLKR);
+
+                    if (paidLKRElement) paidLKRElement.textContent = formatLKR(paidLKR);
+                    if (balanceLKRElement) balanceLKRElement.textContent = formatLKR(balanceLKR);
+                    document.getElementById('totalPriceLKR').textContent = formatLKR(totalLKR);
                 } else {
+                    // Full Payment Logic
                     paidAmountInput.setCustomValidity('');
+                    
+                    const totalLKR = totalUSD * usdToLkrRate;
+                    if (paidLKRElement) paidLKRElement.textContent = formatLKR(totalLKR);
+                    document.getElementById('totalPriceLKR').textContent = formatLKR(totalLKR);
                 }
-
-                const paidLKR = paidUSD * usdToLkrRate;
-                const totalLKR = totalUSD * usdToLkrRate;
-                const balanceLKR = Math.max(0, totalLKR - paidLKR);
-
-                document.getElementById('paidLKR').textContent = formatLKR(paidLKR);
-                document.getElementById('balanceLKR').textContent = formatLKR(balanceLKR);
-                document.getElementById('totalPriceLKR').textContent = formatLKR(totalLKR);
             }
 
             function getSelectedTimeSlot() {
@@ -1453,8 +1498,11 @@ tour Area
             });
 
             paidAmountInput.addEventListener('input', function() {
-                this.dataset.userEdited = '1';
-                updatePaidDisplays();
+                if (toursTypeId === 8) {
+                    // Only allow editing for advance payments
+                    this.dataset.userEdited = '1';
+                    updatePaidDisplays();
+                }
             });
 
             // 6. Privacy Policy Checkbox
@@ -1473,7 +1521,12 @@ tour Area
             updatePrices();
             updateButtonsState();
             fetchExchangeRate();
-            fetchAdvancePercentage();
+            if (toursTypeId === 8) {
+                fetchAdvancePercentage();
+            } else {
+                // For full payment, just update the placeholder
+                updatePaidAmountPlaceholder();
+            }
 
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('tourDate').setAttribute('min', today);
