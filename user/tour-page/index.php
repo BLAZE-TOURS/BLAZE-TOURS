@@ -1130,7 +1130,7 @@ tour Area
                                         <input type="number" class="form-control border-0 shadow-sm" id="paidAmount"
                                             step="any" min="0" placeholder="$00" required readonly>
 
-                                        <small class="fw-medium d-block mt-2 text-info">
+                                        <small class="fw-medium d-block mt-2 text-secondary">
                                             Full payment is required to complete the booking
                                         </small>
 
@@ -1350,8 +1350,13 @@ tour Area
                 try {
                     const response = await fetch('../assets/process/getCurrencyRate.php');
                     const data = await response.json();
-                    if (data.success) usdToLkrRate = data.rate;
-                    updateLKRPrice(parseFloat(totalPrice.textContent.replace('$', '')));
+                    if (data.success) {
+                        usdToLkrRate = data.rate;
+                        window.usdToLkrRate = usdToLkrRate;
+                        // Update all displays with the correct rate
+                        updateLKRPrice(parseFloat(totalPrice.textContent.replace('$', '')));
+                        updatePaidDisplays();
+                    }
                 } catch (error) {
                     console.error('Error fetching exchange rate:', error);
                 }
@@ -1396,7 +1401,8 @@ tour Area
                     }
 
                     if (!paidAmountInput.dataset.userEdited) {
-                        paidAmountInput.value = minAdvance.toFixed(2);
+                        const roundedAdvance = Math.ceil(minAdvance);
+                        paidAmountInput.value = roundedAdvance.toFixed(2);
                         updatePaidDisplays();
                     }
                 } else {
@@ -1517,19 +1523,29 @@ tour Area
                 }
             });
 
-            // 7. Initialize
-            updatePrices();
-            updateButtonsState();
-            fetchExchangeRate();
-            if (toursTypeId === 8) {
-                fetchAdvancePercentage();
-            } else {
-                // For full payment, just update the placeholder
-                updatePaidAmountPlaceholder();
+            // 7. Initialize - Fetch exchange rate first
+            async function initialize() {
+                await fetchExchangeRate();
+                updatePrices();
+                updateButtonsState();
+                if (toursTypeId === 8) {
+                    await fetchAdvancePercentage();
+                } else {
+                    // For full payment, just update the placeholder
+                    updatePaidAmountPlaceholder();
+                }
             }
+            initialize();
 
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('tourDate').setAttribute('min', today);
+
+            // Refresh exchange rate and update displays when modal opens
+            const bookingModal = document.getElementById('bookingModal');
+            bookingModal.addEventListener('show.bs.modal', async function() {
+                await fetchExchangeRate();
+                updatePrices();
+            });
 
             // Add validation when date is selected
             document.getElementById('tourDate').addEventListener('change', async function() {
