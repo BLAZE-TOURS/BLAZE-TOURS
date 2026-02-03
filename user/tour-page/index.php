@@ -1401,7 +1401,8 @@ tour Area
                     }
 
                     if (!paidAmountInput.dataset.userEdited) {
-                        paidAmountInput.value = minAdvance.toFixed(2);
+                        const roundedAdvance = Math.ceil(minAdvance);
+                        paidAmountInput.value = roundedAdvance.toFixed(2);
                         updatePaidDisplays();
                     }
                 } else {
