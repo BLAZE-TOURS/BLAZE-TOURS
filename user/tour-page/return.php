@@ -163,6 +163,14 @@ $status = $booking_data['status']; // Success, Failed, Canceled, or Pending
                             <small><i class="fas fa-info-circle me-1"></i> A confirmation email has been sent to you.</small>
                         </div>
 
+                        <div class="mt-4 d-flex gap-3 justify-content-center">
+                            <a href="print_invoice.php?order_id=<?php echo $booking_data['order_id']; ?>"
+                                target="_blank"
+                                class="th-btn style3 btn btn-primary">
+                                <i class="fas fa-print me-2"></i> Print Invoice
+                            </a>
+                        </div>
+
                     <?php elseif ($status == 'Failed') : ?>
                         <div class="mb-4">
                             <i class="fas fa-times-circle text-danger" style="font-size: 80px;"></i>
@@ -191,9 +199,9 @@ $status = $booking_data['status']; // Success, Failed, Canceled, or Pending
                         <script>setTimeout(function(){ window.location.reload(); }, 5000);</script>
                     <?php endif; ?>
 
-                    <div class="mt-4">
-                        <a href="index.php" class="th-btn style3 btn btn-primary">
-                            <i class="fas fa-home me-2"></i> Back to Home
+                    <div class="mt-4 d-flex gap-3 justify-content-center">
+                        <a href="index.php" class="th-btn style3 btn btn-outline-primary">
+                            <i class="fas fa-home me-2"></i> Go to Home
                         </a>
                     </div>
 

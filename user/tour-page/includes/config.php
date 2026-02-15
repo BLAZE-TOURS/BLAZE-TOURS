@@ -11,7 +11,7 @@ define('PayHere_URL', 'https://sandbox.payhere.lk/pay/checkout');
 define('BASE_PATH', 'http://localhost/BLAZE-TOURS/user/tour-page/');
 
 // URLs
-define('NOTIFY_URL', 'https://6089664123a2.ngrok-free.app/BLAZE-TOURS/user/tour-page/notify.php'); // Live Server
+define('NOTIFY_URL', 'https://92aa88fcb5bd.ngrok-free.app/BLAZE-TOURS/user/tour-page/notify.php'); // Live Server
 define('RETURN_URL', BASE_PATH . 'return.php');
 define('CANCEL_URL', BASE_PATH . 'cancel.php');
 ?>
