@@ -438,7 +438,7 @@ if (isset($_SESSION["adminuser"])) {
 
                 <div id="CurrencyContainer" class="d-none"> <?php include 'fetchCurrency.php'; ?> <?php include "../admin/currencyBody.php"; ?> </div>
 
-                <div id="PayoutContainer" class="d-none"> <?php include 'fetchPayout.php'; ?> <?php include "../admin/payoutBody.php"; ?> </div>
+                <div id="PayoutContainer" class="d-none"> <?php include "../admin/payoutBody.php"; ?> </div>
 
                 <div id="EarningContainer" class="d-none"> <?php include 'fetchEarning.php'; ?> <?php include "../admin/earningBody.php"; ?> </div>
 
