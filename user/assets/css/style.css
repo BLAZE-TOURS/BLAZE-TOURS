@@ -735,6 +735,14 @@ ul.wp-block-rss a {
   z-index: 9999;
 }
 
+.modal-backdrop {
+  z-index: 19990;
+}
+
+.modal {
+  z-index: 20000;
+}
+
 @media (max-width: 782px) {
   .logged-in .sticky-wrapper.sticky,
   .logged-in .preloader .th-btn {
