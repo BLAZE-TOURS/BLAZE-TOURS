@@ -15,11 +15,22 @@ while ($c = $currency_rs->fetch_assoc()) {
                 <div class="card-body">
                     <h4 class="card-title text-center">All Payouts List</h4>
                     <!-- Add PayNow Section -->
-                    <div class="mb-4">
-                        <h4>Manual Payment</h4>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPaynowModal">
-                            <i class="fas fa-plus"></i> Create
-                        </button>
+                    <div class="mb-4 d-flex justify-content-between align-items-end flex-wrap gap-3">
+                        <div>
+                            <h4 class="mb-2">Manual Payment</h4>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPaynowModal">
+                                <i class="fas fa-plus"></i> Create
+                            </button>
+                        </div>
+                        <div style="min-width: 220px;">
+                            <label for="payoutStatusSelect" class="form-label mb-1">Status Filter</label>
+                            <select id="payoutStatusSelect" class="form-select" onchange="filterPayoutRowsByStatus(this.value)">
+                                <option value="all">All</option>
+                                <option value="success" selected>Success</option>
+                                <option value="failed">Failed</option>
+                                <option value="pending">Pending</option>
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Add PayNow Modal -->
@@ -40,7 +51,7 @@ while ($c = $currency_rs->fetch_assoc()) {
 
                                     <div class="mb-3">
                                         <label for="pn_description" class="form-label">Description</label>
-+                                       <textarea id="pn_description" name="description" class="form-control" rows="2" placeholder="Description (required)" required></textarea>
+                                        <textarea id="pn_description" name="description" class="form-control" rows="2" placeholder="Description (required)" required></textarea>
                                     </div>
 
                                     <div class="mb-3">
@@ -145,7 +156,7 @@ while ($c = $currency_rs->fetch_assoc()) {
 <!-- SweetAlert2 CDN (if not already included site-wide) -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script src="assets/js/Payout.js"></script>
+<script src="assets/js/Payout.js?v=<?= filemtime(__DIR__ . '/assets/js/Payout.js') ?>"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const currencySelect = document.getElementById('pn_currency');
