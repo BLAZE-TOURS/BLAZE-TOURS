@@ -107,7 +107,7 @@ Hero Area
                                     Natural Wonder of the world </h1>
                                 <div class="btn-group" data-ani="slideinup" data-ani-delay="0.6s">
                                     <a href="tours.php" class="th-btn th-icon">Explore Tours</a>
-                                    <a href="#customizetour" class="th-btn style2 th-icon">Customize Tour</a>
+                                    <button type="button" class="th-btn style2 th-icon" data-bs-toggle="modal" data-bs-target="#customizeTourModal">Customize Tour</button>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +124,7 @@ Hero Area
                                     Let’s make your best trip with us </h1>
                                 <div class="btn-group" data-ani="slideinup" data-ani-delay="0.6s">
                                     <a href="tours.php" class="th-btn th-icon">Explore Tours</a>
-                                    <a href="#customizetour" class="th-btn style2 th-icon">Customize Tour</a>
+                                    <button type="button" class="th-btn style2 th-icon" data-bs-toggle="modal" data-bs-target="#customizeTourModal">Customize Tour</button>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@ Hero Area
                                     Explore beauty of the whole world </h1>
                                 <div class="btn-group" data-ani="slideinup" data-ani-delay="0.6s">
                                     <a href="tours.php" class="th-btn th-icon">Explore Tours</a>
-                                    <a href="#customizetour" class="th-btn style2 th-icon">Customize Tour</a>
+                                    <button type="button" class="th-btn style2 th-icon" data-bs-toggle="modal" data-bs-target="#customizeTourModal">Customize Tour</button>
                                 </div>
                             </div>
                         </div>
@@ -372,162 +372,6 @@ Service Area
     <!--==============================
 Customize Tour Area
 ==============================-->
-    <section class="position-relative overflow-hidden space" id="customizetour" data-bg-src="assets/img/bg/contact_bg_1.png" style="background: linear-gradient(135deg, #f5f5f5 0%, #fff 100%);">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="title-area text-center mb-40">
-                        <span class="sub-title">Design Your Journey, Your Way.</span>
-                        <h2 class="sec-title">Customize Your Tour</h2>
-                    </div>
-
-                    <div class="booking-form-wrapper" style="background: white; border-radius: 12px; padding: 40px 30px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
-                        <form id="customizeTourForm" class="customize-form">
-                            <!-- Row 1: Pickup & Drop Location -->
-                            <div class="row mb-3 gy-3">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label" for="pickup_location">Pickup Location*</label>
-                                        <input 
-                                            type="text" 
-                                            id="pickup_location" 
-                                            name="pickup_location" 
-                                            class="form-control"
-                                            placeholder="e.g., Colombo Fort"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label" for="drop_location">Drop Location*</label>
-                                        <input 
-                                            type="text" 
-                                            id="drop_location" 
-                                            name="drop_location" 
-                                            class="form-control"
-                                            placeholder="e.g., Galle Face Hotel"
-                                            required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Row 2: Start & End Date (with note for day tours) -->
-                            <div class="row mb-3 gy-3">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label" for="start_date">Start Date*</label>
-                                        <input 
-                                            type="date" 
-                                            id="start_date" 
-                                            name="start_date" 
-                                            class="form-control"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label" for="end_date">End Date <small class="text-muted">(Optional for day tours)</small></label>
-                                        <input 
-                                            type="date" 
-                                            id="end_date" 
-                                            name="end_date" 
-                                            class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Row 3: People Count & Tour Type -->
-                            <div class="row mb-3 gy-3">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label" for="people_count">Number of People*</label>
-                                        <input 
-                                            type="number" 
-                                            id="people_count" 
-                                            name="people_count" 
-                                            class="form-control"
-                                            min="1"
-                                            placeholder="2"
-                                            required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label" for="tour_type">Tour Type* <small class="text-muted">(Suggest or type)</small></label>
-                                        <input 
-                                            type="text" 
-                                            id="tour_type" 
-                                            name="tour_type" 
-                                            class="form-control"
-                                            placeholder="e.g., Historical, Adventure, City"
-                                            list="tour_type_list"
-                                            required>
-                                        <datalist id="tour_type_list">
-                                            <option value="Historical">
-                                            <option value="Adventure">
-                                            <option value="City Tour">
-                                            <option value="Cultural">
-                                            <option value="Nature & Wildlife">
-                                        </datalist>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Row 4: Name -->
-                            <div class="row mb-3 gy-3">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="form-label" for="your_name">Your Name*</label>
-                                        <input 
-                                            type="text" 
-                                            id="your_name" 
-                                            name="your_name" 
-                                            class="form-control"
-                                            placeholder="Enter your full name"
-                                            required>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <!-- Row 6: Special Requests -->
-                            <div class="row mb-3">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="form-label" for="special_requests">Special Requests or Notes</label>
-                                        <textarea 
-                                            id="special_requests" 
-                                            name="special_requests" 
-                                            class="form-control"
-                                            rows="4"
-                                            placeholder="Tell us about any special requirements, dietary preferences, or additional information..."></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Info Box -->
-                            <div class="alert alert-info mb-3" role="alert">
-                                <i class="fa-light fa-circle-info" style="margin-right: 8px;"></i>
-                                <span>Final pricing will be confirmed after itinerary discussion.</span>
-                            </div>
-
-                            <!-- Submit Button -->
-                            <div class="row mb-0">
-                                <div class="col-12">
-                                    <button type="submit" class="th-btn w-100">
-                                        <i class="fa-solid fa-paper-plane" style="margin-right: 8px;"></i>
-                                        Send via WhatsApp
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!--==============================
 Gallery Area  
 ==============================-->
@@ -941,6 +785,156 @@ Testimonial Area
 	Footer Area
 ==============================-->
     <?php include 'footer.php'; ?>
+
+    <!-- Customize Tour Modal -->
+    <div class="modal fade" id="customizeTourModal" tabindex="-1" aria-labelledby="customizeTourModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="border-radius: 12px; border: none;">
+                <div class="modal-header" style="border-bottom: 1px solid #e9ecef; padding: 25px;">
+                    <div>
+                        <h5 class="modal-title" id="customizeTourModalLabel" style="font-size: 24px; font-weight: 600;">Customize Your Tour</h5>
+                        <p style="font-size: 14px; color: #666; margin-top: 5px;">Design your journey, your way</p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding: 30px;">
+                    <form id="customizeTourForm" class="customize-form">
+                        <!-- Row 1: Pickup & Drop Location -->
+                        <div class="row mb-3 gy-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="pickup_location">Pickup Location*</label>
+                                    <input 
+                                        type="text" 
+                                        id="pickup_location" 
+                                        name="pickup_location" 
+                                        class="form-control"
+                                        placeholder="e.g., Colombo Fort"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="drop_location">Drop Location*</label>
+                                    <input 
+                                        type="text" 
+                                        id="drop_location" 
+                                        name="drop_location" 
+                                        class="form-control"
+                                        placeholder="e.g., Galle Face Hotel"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Start & End Date -->
+                        <div class="row mb-3 gy-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="start_date">Start Date*</label>
+                                    <input 
+                                        type="date" 
+                                        id="start_date" 
+                                        name="start_date" 
+                                        class="form-control"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="end_date">End Date <small class="text-muted">(Optional)</small></label>
+                                    <input 
+                                        type="date" 
+                                        id="end_date" 
+                                        name="end_date" 
+                                        class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: People Count & Tour Type -->
+                        <div class="row mb-3 gy-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="people_count">Number of People*</label>
+                                    <input 
+                                        type="number" 
+                                        id="people_count" 
+                                        name="people_count" 
+                                        class="form-control"
+                                        min="1"
+                                        placeholder="2"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="tour_type">Tour Type*</label>
+                                    <input 
+                                        type="text" 
+                                        id="tour_type" 
+                                        name="tour_type" 
+                                        class="form-control"
+                                        placeholder="e.g., Historical, Adventure"
+                                        list="tour_type_list"
+                                        required>
+                                    <datalist id="tour_type_list">
+                                        <option value="Historical">
+                                        <option value="Adventure">
+                                        <option value="City Tour">
+                                        <option value="Cultural">
+                                        <option value="Nature & Wildlife">
+                                    </datalist>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 4: Name -->
+                        <div class="row mb-3 gy-3">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="your_name">Your Name*</label>
+                                    <input 
+                                        type="text" 
+                                        id="your_name" 
+                                        name="your_name" 
+                                        class="form-control"
+                                        placeholder="Enter your full name"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 5: Special Requests -->
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="special_requests">Special Requests or Notes</label>
+                                    <textarea 
+                                        id="special_requests" 
+                                        name="special_requests" 
+                                        class="form-control"
+                                        rows="3"
+                                        placeholder="Any special requirements..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Info Box -->
+                        <div class="alert alert-info mb-3" role="alert" style="font-size: 13px;">
+                            <strong>Note:</strong> Final pricing will be confirmed after discussing your itinerary.
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style="border-top: 1px solid #e9ecef; padding: 15px 25px;">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('customizeTourForm').dispatchEvent(new Event('submit'))">
+                        Send via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--********************************
 			Code End  Here 
