@@ -370,6 +370,24 @@ Service Area
     </section>
 
     <!--==============================
+Customize Tour Banner
+==============================-->
+    <section class="space" aria-label="Customize tour banner">
+        <div class="container">
+            <div class="row align-items-center" style="background: linear-gradient(135deg, #0f1e3a 0%, #1b3b6f 100%); border-radius: 16px; padding: 32px 28px; color: #ffffff;">
+                <div class="col-lg-8">
+                    <span class="sub-title" style="color: rgba(255, 255, 255, 0.85);">Tailor-Made Journeys</span>
+                    <h3 class="sec-title" style="color: #ffffff; margin-bottom: 10px;">Customize Your Tour with Blaze Tours</h3>
+                    <p style="color: rgba(255, 255, 255, 0.85); margin-bottom: 0;">Tell us your pickup point, dates, and preferences. We will craft a tour that fits your time, budget, and interests.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                    <button type="button" class="th-btn style2 th-icon" data-bs-toggle="modal" data-bs-target="#customizeTourModal">Customize Tour</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--==============================
 Customize Tour Area
 ==============================-->
     <!--==============================
