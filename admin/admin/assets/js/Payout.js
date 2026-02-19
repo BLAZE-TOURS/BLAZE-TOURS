@@ -111,6 +111,8 @@ function renderPayoutRows() {
         const row = `
             <tr>
                 <td>${item.id ?? '-'}</td>
+                <td>${item.customer_name ?? '-'}</td>
+                <td>${item.whatsapp ?? '-'}</td>
                 <td>${item.email ?? '-'}</td>
                 <td>${item.lkr_amount != null ? item.lkr_amount : '-'}</td>
                 <td>${badge}</td>
@@ -129,7 +131,7 @@ function renderPayoutRows() {
     if (count === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="6" class="text-center text-muted">No payouts found for selected status.</td>
+                <td colspan="8" class="text-center text-muted">No payouts found for selected status.</td>
             </tr>
         `;
         return;
@@ -169,6 +171,8 @@ function showDetails(index) {
 
     // Fill modal fields safely using textContent
     document.getElementById('pd_id').textContent = item.id ?? '-';
+    document.getElementById('pd_customer_name').textContent = item.customer_name ?? '-';
+    document.getElementById('pd_whatsapp').textContent = item.whatsapp ?? '-';
     document.getElementById('pd_email').textContent = item.email ?? '-';
     document.getElementById('pd_description').textContent = item.description ?? '-';
     document.getElementById('pd_currency').textContent = (item.currency_code ?? item.currency ?? '-') + (item.currency_name ? ' (' + item.currency_name + ')' : '');

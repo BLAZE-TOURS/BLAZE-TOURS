@@ -6,6 +6,8 @@ $query = "
     SELECT 
         p.id,
         p.order_id,
+        p.customer_name,
+        p.whatsapp,
         p.email,
         p.description,
         p.amount,
