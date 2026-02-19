@@ -758,7 +758,7 @@ tour Area
                 <div class="col-xxl-4 col-lg-5">
                     <aside class="sidebar-area style3">
                         <div class="widget tour-booking">
-                            <p class="widget_subtitle">From <span class="widget_price">$<?php echo number_format($tour['adult_price'] ?? 0, 2); ?></span>/Person</p>
+                            <p class="widget_subtitle">From <span class="widget_price">$<?php echo number_format($tour['adult_price'] ?? 0, 2); ?></span>/Per Person</p>
                             <div class="info-list">
                                 <ul>
                                     <li>
