@@ -994,25 +994,38 @@ tour Area
                             </div>
                         </div>
 
+                        <?php
+                        $is_fixed_count_tour = (($tour['tours_type_id'] ?? 0) == 8);
+                        $default_adult_count = $is_fixed_count_tour ? max(1, (int)($tour['maximum_adult_count'] ?? 1)) : 1;
+                        $default_kids_count = $is_fixed_count_tour ? max(0, (int)($tour['maximum_kids_count'] ?? 0)) : 0;
+                        ?>
+
                         <!-- People Count -->
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">Adults *</label>
                                 <div class="input-group">
-                                    <button type="button" class="btn btn-outline-secondary" id="adultMinus">-</button>
-                                    <input type="number" class="form-control text-center" id="adultCount" name="adultCount" value="1" min="1" readonly>
-                                    <button type="button" class="btn btn-outline-secondary" id="adultPlus">+</button>
+                                    <button type="button" class="btn btn-outline-secondary" id="adultMinus" <?php echo $is_fixed_count_tour ? 'disabled' : ''; ?>>-</button>
+                                    <input type="number" class="form-control text-center" id="adultCount" name="adultCount" value="<?php echo $default_adult_count; ?>" min="1" readonly>
+                                    <button type="button" class="btn btn-outline-secondary" id="adultPlus" <?php echo $is_fixed_count_tour ? 'disabled' : ''; ?>>+</button>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Children</label>
                                 <div class="input-group">
-                                    <button type="button" class="btn btn-outline-secondary" id="childMinus">-</button>
-                                    <input type="number" class="form-control text-center" id="childCount" name="childCount" value="0" min="0" readonly>
-                                    <button type="button" class="btn btn-outline-secondary" id="childPlus">+</button>
+                                    <button type="button" class="btn btn-outline-secondary" id="childMinus" <?php echo $is_fixed_count_tour ? 'disabled' : ''; ?>>-</button>
+                                    <input type="number" class="form-control text-center" id="childCount" name="childCount" value="<?php echo $default_kids_count; ?>" min="0" readonly>
+                                    <button type="button" class="btn btn-outline-secondary" id="childPlus" <?php echo $is_fixed_count_tour ? 'disabled' : ''; ?>>+</button>
                                 </div>
                             </div>
                         </div>
+                        <?php if ($is_fixed_count_tour): ?>
+                            <div class="mb-3">
+                                <small class="text-muted d-block">
+                                    This is a family tour, so guest count is fixed. Need more people? Please <a href="../contact.php" class="text-decoration-underline">Contact Us</a>.
+                                </small>
+                            </div>
+                        <?php endif; ?>
 
                         <!-- Time Slot Selection -->
                         <div class="mb-3">
@@ -1305,6 +1318,12 @@ tour Area
             const maximumAdultCount = <?php echo (int)($tour['maximum_adult_count'] ?? 0); ?>;
             const maximumKidsCount = <?php echo (int)($tour['maximum_kids_count'] ?? 0); ?>;
             const toursTypeId = <?php echo (int)($tour['tours_type_id'] ?? 0); ?>;
+            const isFixedCountTour = toursTypeId === 8;
+
+            if (isFixedCountTour) {
+                adultCount.value = Math.max(1, maximumAdultCount || 1);
+                childCount.value = Math.max(0, maximumKidsCount || 0);
+            }
 
             // 3. Price Update Function
             function updatePrices() {
@@ -1457,6 +1476,14 @@ tour Area
 
             // 5. Button Click Handlers (Plus/Minus)
             function updateButtonsState() {
+                if (isFixedCountTour) {
+                    adultMinus.disabled = true;
+                    adultPlus.disabled = true;
+                    childMinus.disabled = true;
+                    childPlus.disabled = true;
+                    return;
+                }
+
                 const currentAdults = parseInt(adultCount.value);
                 const currentKids = parseInt(childCount.value);
 
@@ -1468,6 +1495,7 @@ tour Area
             }
 
             adultPlus.addEventListener('click', function() {
+                if (isFixedCountTour) return;
                 const current = parseInt(adultCount.value);
                 if (maximumAdultCount === 0 || current < maximumAdultCount) {
                     adultCount.value = current + 1;
@@ -1477,6 +1505,7 @@ tour Area
             });
 
             adultMinus.addEventListener('click', function() {
+                if (isFixedCountTour) return;
                 const current = parseInt(adultCount.value);
                 if (current > 1) {
                     adultCount.value = current - 1;
@@ -1486,6 +1515,7 @@ tour Area
             });
 
             childPlus.addEventListener('click', function() {
+                if (isFixedCountTour) return;
                 const current = parseInt(childCount.value);
                 if (maximumKidsCount === 0 || current < maximumKidsCount) {
                     childCount.value = current + 1;
@@ -1495,6 +1525,7 @@ tour Area
             });
 
             childMinus.addEventListener('click', function() {
+                if (isFixedCountTour) return;
                 const current = parseInt(childCount.value);
                 if (current > 0) {
                     childCount.value = current - 1;
