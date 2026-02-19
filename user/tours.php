@@ -313,7 +313,7 @@ Product Area
                                                     <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">4.8</span>
                                                         Rating)</a>
                                                 </div>
-                                                <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Person</h4>
+                                                <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Per Person</h4>
                                                 <div class="tour-action">
                                                     <span><i class="fa-light fa-clock"></i><?php echo (int)$tour['duration']; ?> <?php echo ($tour['tours_type_id'] == 8) ? 'Days' : 'Hours'; ?></span>
                                                     <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="th-btn style4">Detail View</a>
@@ -365,7 +365,7 @@ Product Area
                                                     <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">5.0</span>
                                                         Rating)</a>
                                                 </div>
-                                                <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Person</h4>
+                                                <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Per Person</h4>
                                                 <div class="tour-action">
                                                     <span><i class="fa-light fa-clock"></i><?php echo (int)$tour['duration']; ?> <?php echo ($tour['tours_type_id'] == 8) ? 'Days' : 'Hours'; ?></span>
                                                     <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="th-btn style4">Detail View</a>
