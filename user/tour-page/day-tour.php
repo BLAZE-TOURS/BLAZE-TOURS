@@ -769,7 +769,7 @@ tour Area
                                     <?php endforeach; ?>
                                 </ul>
                             </div>
-                            <button class="th-btn th-icon" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
+                            <button class="th-btn th-icon" data-bs-toggle="modal" data-bs-target="#customizeTourModal">Book Now</button>
                             <span class="review"><i class="fa-light fa-heart"></i> 88% of travelers recommend this experience</span>
                         </div>
                         <div class="widget tour-booking col-12 order-2 order-lg-3 ">
@@ -973,6 +973,148 @@ tour Area
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <!-- Footer -->
 
+    <!-- Customize Tour Modal -->
+    <div class="modal fade" id="customizeTourModal" tabindex="-1" aria-labelledby="customizeTourModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="border-radius: 12px; border: none;">
+                <div class="modal-header" style="border-bottom: 1px solid #e9ecef; padding: 25px;">
+                    <div>
+                        <h5 class="modal-title" id="customizeTourModalLabel" style="font-size: 24px; font-weight: 600;">
+                            <?php echo htmlspecialchars($tour['name'] ?? 'Customize Your Tour'); ?>
+                        </h5>
+                        <p style="font-size: 14px; color: #666; margin-top: 5px;">Design your journey, your way</p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding: 30px;">
+                    <form id="customizeTourForm" class="customize-form">
+                        <!-- Row 1: Pickup & Drop Location -->
+                        <div class="row mb-3 gy-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="pickup_location">Pickup Location*</label>
+                                    <input
+                                        type="text"
+                                        id="pickup_location"
+                                        name="pickup_location"
+                                        class="form-control"
+                                        placeholder="e.g., Colombo Fort"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="drop_location">Drop Location*</label>
+                                    <input
+                                        type="text"
+                                        id="drop_location"
+                                        name="drop_location"
+                                        class="form-control"
+                                        placeholder="e.g., Galle Face Hotel"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Tour Date -->
+                        <div class="row mb-3 gy-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="tour_date">Tour Date*</label>
+                                    <input
+                                        type="date"
+                                        id="tour_date"
+                                        name="tour_date"
+                                        class="form-control"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: People Count & Tour Type -->
+                        <div class="row mb-3 gy-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="people_count">Number of People*</label>
+                                    <input
+                                        type="number"
+                                        id="people_count"
+                                        name="people_count"
+                                        class="form-control"
+                                        min="1"
+                                        placeholder="2"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="tour_type">Tour Type*</label>
+                                    <input
+                                        type="text"
+                                        id="tour_type"
+                                        name="tour_type"
+                                        class="form-control"
+                                        placeholder="e.g., Historical, Adventure"
+                                        list="tour_type_list"
+                                        required>
+                                    <datalist id="tour_type_list">
+                                        <option value="Historical">
+                                        <option value="Adventure">
+                                        <option value="City Tour">
+                                        <option value="Cultural">
+                                        <option value="Nature & Wildlife">
+                                    </datalist>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 4: Name -->
+                        <div class="row mb-3 gy-3">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="your_name">Your Name*</label>
+                                    <input
+                                        type="text"
+                                        id="your_name"
+                                        name="your_name"
+                                        class="form-control"
+                                        placeholder="Enter your full name"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 5: Special Requests -->
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="special_requests">Special Requests or Notes</label>
+                                    <textarea
+                                        id="special_requests"
+                                        name="special_requests"
+                                        class="form-control"
+                                        rows="3"
+                                        placeholder="Any special requirements..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Info Box -->
+                        <div class="alert alert-info mb-3" role="alert" style="font-size: 13px;">
+                            <strong>Note:</strong> Final pricing will be confirmed after discussing your itinerary.
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style="border-top: 1px solid #e9ecef; padding: 15px 25px;">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('customizeTourForm').dispatchEvent(new Event('submit'))">
+                        Send via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Scroll To Top -->
     <div class="scroll-top">
@@ -1041,6 +1183,56 @@ tour Area
                 utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"
             });
         })();
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const customizeTourForm = document.getElementById('customizeTourForm');
+            if (!customizeTourForm) return;
+
+            customizeTourForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const tourName = <?php echo json_encode($tour['name'] ?? ''); ?>;
+                const yourName = document.getElementById('your_name').value || 'Not specified';
+                const pickupLocation = document.getElementById('pickup_location').value || 'Not specified';
+                const dropLocation = document.getElementById('drop_location').value || 'Not specified';
+                const tourDate = document.getElementById('tour_date').value || 'Not specified';
+                const peopleCount = document.getElementById('people_count').value || 'Not specified';
+                const tourType = document.getElementById('tour_type').value || 'Not specified';
+                const specialRequests = document.getElementById('special_requests').value || 'No special requests';
+
+                const message = `*NEW CUSTOMIZE TOUR REQUEST*
+
+Tour Name: ${tourName}
+Name: ${yourName}
+
+--- TOUR DETAILS ---
+Pickup Location: ${pickupLocation}
+Drop Location: ${dropLocation}
+Tour Date: ${tourDate}
+Number of People: ${peopleCount}
+Tour Type: ${tourType}
+
+--- SPECIAL REQUESTS ---
+${specialRequests}`;
+
+                const encodedMessage = encodeURIComponent(message);
+                const phoneNumber = '94713344399';
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+                window.open(whatsappUrl, '_blank');
+
+                if (typeof Notyf !== 'undefined') {
+                    const notyf = new Notyf();
+                    notyf.success('Opening WhatsApp to send your tour request...');
+                } else {
+                    alert('Opening WhatsApp to send your tour request...');
+                }
+
+                customizeTourForm.reset();
+            });
+        });
     </script>
 
 </body>
