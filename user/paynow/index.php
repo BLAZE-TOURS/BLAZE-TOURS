@@ -5,41 +5,52 @@ require_once 'includes/config.php'; // Config ෆයිල් එක link කර
 // 1. PAYMENT PROCESSING LOGIC (Form එක Submit කළාම වැඩ කරන කොටස)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pay_submit'])) {
 
+    $customer_name_raw = trim($_POST['customer_name'] ?? '');
+    $whatsapp_raw = trim($_POST['whatsapp'] ?? '');
     $email = Database::escape_string($_POST['email']);
     $description = Database::escape_string($_POST['description']);
     $currency_id = intval($_POST['currency_id']);
     $amount = floatval($_POST['amount']); // Foreign Currency Amount
 
-    // Currency Rate එක DB එකෙන් ගැනීම
-    $curr_res = Database::search("SELECT * FROM currency WHERE id = '$currency_id'");
+    if ($customer_name_raw === '' || $whatsapp_raw === '') {
+        echo "<script>alert('Name and WhatsApp number are required');</script>";
+    } else {
+        $customer_name = Database::escape_string($customer_name_raw);
+        $whatsapp = Database::escape_string($whatsapp_raw);
+        $name_parts = preg_split('/\s+/', $customer_name_raw, 2);
+        $first_name = trim($name_parts[0] ?? 'Customer');
+        $last_name = trim($name_parts[1] ?? '');
 
-    if ($curr_res->num_rows > 0) {
-        $curr_row = $curr_res->fetch_assoc();
-        $rate = floatval($curr_row['LKR']);
-        $currency_code = $curr_row['currency']; // USD, EUR etc.
+        // Currency Rate එක DB එකෙන් ගැනීම
+        $curr_res = Database::search("SELECT * FROM currency WHERE id = '$currency_id'");
 
-        // LKR අගය ගණනය කිරීම (Database එකට සහ Payment එකට යවන්න)
-        $lkr_amount = $amount * $rate;
-        $order_id = uniqid('ORD-'); // Unique Order ID
+        if ($curr_res->num_rows > 0) {
+            $curr_row = $curr_res->fetch_assoc();
+            $rate = floatval($curr_row['LKR']);
+            $currency_code = $curr_row['currency']; // USD, EUR etc.
 
-        // Database එකට Insert කිරීම (Pending Status)
-        $sql = "INSERT INTO paynow (order_id, email, description, currency_id, amount, lkr_amount, status, status_code, createdAt) 
-                VALUES ('$order_id', '$email', '$description', '$currency_id', '$amount', '$lkr_amount', 'Pending', 0, NOW())";
+            // LKR අගය ගණනය කිරීම (Database එකට සහ Payment එකට යවන්න)
+            $lkr_amount = $amount * $rate;
+            $order_id = uniqid('ORD-'); // Unique Order ID
 
-        Database::iud($sql);
+            // Database එකට Insert කිරීම (Pending Status)
+            $sql = "INSERT INTO paynow (order_id, customer_name, whatsapp, email, description, currency_id, amount, lkr_amount, status, status_code, createdAt) 
+                VALUES ('$order_id', '$customer_name', '$whatsapp', '$email', '$description', '$currency_id', '$amount', '$lkr_amount', 'Pending', 0, NOW())";
 
-        // --- PAYHERE Redirect Form සැකසීම ---
-        // PayHere එකට යවන්නේ LKR ගාන. ඒ නිසා currency = LKR ලෙස යවමු.
+            Database::iud($sql);
 
-        $pay_currency = 'LKR';
-        $pay_amount = number_format($lkr_amount, 2, '.', ''); // දශම ස්ථාන 2කට හදාගන්න
+            // --- PAYHERE Redirect Form සැකසීම ---
+            // PayHere එකට යවන්නේ LKR ගාන. ඒ නිසා currency = LKR ලෙස යවමු.
 
-        // Hash Generation
-        $hash_str = MERCHANT_ID . $order_id . $pay_amount . $pay_currency . strtoupper(md5(MERCHANT_SECRET));
-        $hash = strtoupper(md5($hash_str));
+            $pay_currency = 'LKR';
+            $pay_amount = number_format($lkr_amount, 2, '.', ''); // දශම ස්ථාන 2කට හදාගන්න
 
-        // Auto Submit Form එක Output කිරීම
-        echo '<!DOCTYPE html>
+            // Hash Generation
+            $hash_str = MERCHANT_ID . $order_id . $pay_amount . $pay_currency . strtoupper(md5(MERCHANT_SECRET));
+            $hash = strtoupper(md5($hash_str));
+
+            // Auto Submit Form එක Output කිරීම
+            echo '<!DOCTYPE html>
         <html>
         <head><title>Redirecting...</title></head>
         <body>
@@ -55,9 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pay_submit'])) {
                 <input type="hidden" name="currency" value="' . $pay_currency . '">
                 <input type="hidden" name="amount" value="' . $pay_amount . '">
                 
-                <input type="hidden" name="first_name" value="Customer">
-                <input type="hidden" name="last_name" value="">
+                <input type="hidden" name="first_name" value="' . htmlspecialchars($first_name, ENT_QUOTES) . '">
+                <input type="hidden" name="last_name" value="' . htmlspecialchars($last_name, ENT_QUOTES) . '">
                 <input type="hidden" name="email" value="' . $email . '">
+                <input type="hidden" name="phone" value="' . htmlspecialchars($whatsapp_raw, ENT_QUOTES) . '">
                 <input type="hidden" name="address" value="Sri Lanka">
                 <input type="hidden" name="city" value="Colombo">
                 <input type="hidden" name="country" value="Sri Lanka">
@@ -67,9 +79,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pay_submit'])) {
             <script>document.getElementById("payhere_auto").submit();</script>
         </body>
         </html>';
-        exit(); // Code එක මෙතනින් නවත්වනවා (Redirect වෙන නිසා)
-    } else {
-        echo "<script>alert('Invalid Currency Selected');</script>";
+            exit(); // Code එක මෙතනින් නවත්වනවා (Redirect වෙන නිසා)
+        } else {
+            echo "<script>alert('Invalid Currency Selected');</script>";
+        }
     }
 }
 
@@ -268,6 +281,16 @@ while ($c = $currency_rs->fetch_assoc()) {
                         <form id="paymentForm" method="POST">
 
                             <input type="hidden" name="pay_submit" value="1">
+
+                            <div class="mb-3">
+                                <label for="customer_name" class="form-label">Name *</label>
+                                <input type="text" name="customer_name" id="customer_name" class="form-control" placeholder="Enter your full name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="whatsapp" class="form-label">WhatsApp Number *</label>
+                                <input type="tel" name="whatsapp" id="whatsapp" class="form-control" placeholder="Enter WhatsApp number" required>
+                            </div>
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email *</label>
