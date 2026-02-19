@@ -769,7 +769,7 @@ tour Area
                                     <?php endforeach; ?>
                                 </ul>
                             </div>
-                            <button class="th-btn th-icon" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
+                            <button class="th-btn th-icon" data-bs-toggle="modal" data-bs-target="#customizeTourModal">Book Now</button>
                             <span class="review"><i class="fa-light fa-heart"></i> 88% of travelers recommend this experience</span>
                         </div>
                         <div class="widget tour-booking col-12 order-2 order-lg-3 ">
@@ -973,213 +973,148 @@ tour Area
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <!-- Footer -->
 
-
-    <!-- Booking Modal -->
-    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-
-                <div class="modal-body">
-                    <form id="bookingForm">
-                        <!-- Tour Name -->
-                        <div class="mb-4">
-                            <h4 class="fw-bold"><?php echo htmlspecialchars($tour['name'] ?? ''); ?></h4>
-                        </div>
-
-                        <!-- Date Selection -->
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="tourDate" class="form-label">Select Date *</label>
-                                <input type="date" class="form-control" id="tourDate" name="tourDate" required>
-                            </div>
-                        </div>
-
-                        <?php
-                        $is_fixed_count_tour = (($tour['tours_type_id'] ?? 0) == 8);
-                        $default_adult_count = $is_fixed_count_tour ? max(1, (int)($tour['maximum_adult_count'] ?? 1)) : 1;
-                        $default_kids_count = $is_fixed_count_tour ? max(0, (int)($tour['maximum_kids_count'] ?? 0)) : 0;
-                        ?>
-
-                        <!-- People Count -->
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label">Adults *</label>
-                                <div class="input-group">
-                                    <button type="button" class="btn btn-outline-secondary" id="adultMinus" <?php echo $is_fixed_count_tour ? 'disabled' : ''; ?>>-</button>
-                                    <input type="number" class="form-control text-center" id="adultCount" name="adultCount" value="<?php echo $default_adult_count; ?>" min="1" readonly>
-                                    <button type="button" class="btn btn-outline-secondary" id="adultPlus" <?php echo $is_fixed_count_tour ? 'disabled' : ''; ?>>+</button>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Children</label>
-                                <div class="input-group">
-                                    <button type="button" class="btn btn-outline-secondary" id="childMinus" <?php echo $is_fixed_count_tour ? 'disabled' : ''; ?>>-</button>
-                                    <input type="number" class="form-control text-center" id="childCount" name="childCount" value="<?php echo $default_kids_count; ?>" min="0" readonly>
-                                    <button type="button" class="btn btn-outline-secondary" id="childPlus" <?php echo $is_fixed_count_tour ? 'disabled' : ''; ?>>+</button>
-                                </div>
-                            </div>
-                        </div>
-                        <?php if ($is_fixed_count_tour): ?>
-                            <div class="mb-3">
-                                <small class="text-muted d-block">
-                                    This is a family tour, so guest count is fixed. Need more people? Please <a href="../contact.php" class="text-decoration-underline">Contact Us</a>.
-                                </small>
-                            </div>
-                        <?php endif; ?>
-
-                        <!-- Time Slot Selection -->
-                        <div class="mb-3">
-                            <label class="form-label">Select Time Slot *</label>
-                            <div class="row">
-                                <?php foreach ($times as $index => $time): ?>
-                                    <div class="col-md-4 col-sm-6 col-6 mb-2">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="timeSlot" id="timeSlot<?php echo $index; ?>" value="<?php echo $time; ?>" required>
-                                            <label class="form-check-label" for="timeSlot<?php echo $index; ?>">
-                                                <?php echo date('g:i A', strtotime($time)); ?>
-                                            </label>
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        </div>
-
-                        <!-- Contact Information -->
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="fullName" class="form-label">Full Name *</label>
-                                <input type="text" class="form-control" id="fullName" name="fullName" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="email" class="form-label">Email Address *</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                        </div>
-
-                        <!-- Phone Number with Country Code -->
-                        <div class="mb-3">
-                            <label for="phoneNumber" class="form-label">Phone Number *</label>
-                            <div class="phone-input">
-                                <input name="number3" id="number3" type="tel" placeholder="Enter phone number" class="form-control" />
-                            </div>
-
-                        </div>
-
-                        <!-- Pickup Location -->
-                        <div class="mb-3">
-                            <label for="pickup" class="form-label">Pickup Location *</label>
-                            <input type="text" class="form-control" id="pickup" name="pickup" placeholder="Enter your pickup location" required>
-                            <small class="text-muted d-block mt-2">
-                                <i class="fa-light fa-circle-info" style="color: red;" ></i> <span>Free pickup within Colombo. Extra charges apply outside Colombo.</span>
-                            </small>
-                        </div>
-
-                        <!-- Price Summary -->
-                        <div class="mb-4">
-                            <div class="card shadow-sm border-0 rounded-3">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center fw-bold text-primary mb-3">
-                                        Price Summary
-                                    </h5>
-
-                                    <!-- Adults -->
-                                    <div class="d-flex justify-content-between align-items-center py-2">
-                                        <span class="fw-medium">Adults (1 × $<?php echo number_format($tour['adult_price'] ?? 0, 2); ?>)</span>
-                                        <span id="adultPrice" class="fw-semibold text-dark">
-                                            $<?php echo number_format($tour['adult_price'] ?? 0, 2); ?>
-                                        </span>
-                                    </div>
-
-                                    <!-- Children -->
-                                    <div class="d-flex justify-content-between align-items-center py-2 border-top" id="childPriceRow" style="display: none;">
-                                        <span class="fw-medium">Children (0 × $<?php echo number_format($tour['kids_price'] ?? 0, 2); ?>)</span>
-                                        <span id="childPrice" class="fw-semibold text-dark">$0.00</span>
-                                    </div>
-
-                                    <hr class="my-3">
-
-                                    <!-- Total -->
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <strong class="text-success">Total Price</strong>
-                                        <strong id="totalPrice" class="text-success fs-5">
-                                            $<?php echo number_format($tour['adult_price'] ?? 0, 2); ?>
-                                        </strong>
-                                    </div>
-
-                                    <!-- LKR Equivalent -->
-                                    <div class="d-flex justify-content-between text-muted small mt-1">
-                                        <span>LKR Equivalent</span>
-                                        <span id="totalPriceLKR">Loading...</span>
-                                    </div>
-
-                                    <hr class="my-3">
-
-                                    <!-- Paid Amount Section - Advance Payment (for tours_type_id = 8) -->
-                                    <?php if ($tour['tours_type_id'] == 8) { ?>
-                                    <div class="form-group" id="advancePaymentSection">
-                                        <label for="paidAmount" class="form-label fw-semibold">Paid Amount (USD)</label>
-                                        <input type="number" class="form-control border-0 shadow-sm" id="paidAmount"
-                                            step="any" min="0" placeholder="Min $00" required>
-
-                                        <small class="fw-medium d-block mt-2">
-                                            Min. Advance <span class="text-danger">$00 (00% of total)</span>
-                                        </small>
-
-                                        <div class="mt-3 border-top pt-2">
-                                            <div class="d-flex justify-content-between">
-                                                <span>Paid Amount (LKR)</span>
-                                                <span id="paidLKR" class="fw-semibold">Rs. 0</span>
-                                            </div>
-                                            <div class="d-flex justify-content-between mt-2">
-                                                <span>Balance Due (LKR)</span>
-                                                <span id="balanceLKR" class="fw-semibold text-danger">Rs. 0</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php } else { ?>
-                                    <!-- Full Payment Section (for other tours_type_id) -->
-                                    <div class="form-group" id="fullPaymentSection">
-                                        <label for="paidAmount" class="form-label fw-semibold">Total Amount to Pay (USD)</label>
-                                        <input type="number" class="form-control border-0 shadow-sm" id="paidAmount"
-                                            step="any" min="0" placeholder="$00" required readonly>
-
-                                        <small class="fw-medium d-block mt-2 text-secondary">
-                                            Full payment is required to complete the booking
-                                        </small>
-
-                                        <div class="mt-3 border-top pt-2">
-                                            <div class="d-flex justify-content-between">
-                                                <span>Amount to Pay (LKR)</span>
-                                                <span id="paidLKR" class="fw-semibold">Rs. 0</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                        </div>
-
-                    </form>
-                    <!-- Add this just before the modal-footer div -->
-                    <div class="modal-body border-top pt-3">
-                        <div class="small text-muted mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="privacyPolicyCheck" required>
-                                <label class="form-check-label" for="privacyPolicyCheck">
-                                    I agree to the <a href="privacy-policy.php" target="_blank" class="text-decoration-underline">Privacy Policy</a>
-                                    & <a href="refund-policy.php" target="_blank" class="text-decoration-underline">Refund Policy</a>
-                                </label>
-                            </div>
-                        </div>
+    <!-- Customize Tour Modal -->
+    <div class="modal fade" id="customizeTourModal" tabindex="-1" aria-labelledby="customizeTourModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="border-radius: 12px; border: none;">
+                <div class="modal-header" style="border-bottom: 1px solid #e9ecef; padding: 25px;">
+                    <div>
+                        <h5 class="modal-title" id="customizeTourModalLabel" style="font-size: 24px; font-weight: 600;">
+                            <?php echo htmlspecialchars($tour['name'] ?? 'Customize Your Tour'); ?>
+                        </h5>
+                        <p style="font-size: 14px; color: #666; margin-top: 5px;">Design your journey, your way</p>
                     </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="goToCheckout" disabled>Go to Checkout</button>
+                <div class="modal-body" style="padding: 30px;">
+                    <form id="customizeTourForm" class="customize-form">
+                        <!-- Row 1: Pickup & Drop Location -->
+                        <div class="row mb-3 gy-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="pickup_location">Pickup Location*</label>
+                                    <input
+                                        type="text"
+                                        id="pickup_location"
+                                        name="pickup_location"
+                                        class="form-control"
+                                        placeholder="e.g., Colombo Fort"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="drop_location">Drop Location*</label>
+                                    <input
+                                        type="text"
+                                        id="drop_location"
+                                        name="drop_location"
+                                        class="form-control"
+                                        placeholder="e.g., Galle Face Hotel"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Tour Date -->
+                        <div class="row mb-3 gy-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="tour_date">Tour Date*</label>
+                                    <input
+                                        type="date"
+                                        id="tour_date"
+                                        name="tour_date"
+                                        class="form-control"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: People Count & Tour Type -->
+                        <div class="row mb-3 gy-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="people_count">Number of People*</label>
+                                    <input
+                                        type="number"
+                                        id="people_count"
+                                        name="people_count"
+                                        class="form-control"
+                                        min="1"
+                                        placeholder="2"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="tour_type">Tour Type*</label>
+                                    <input
+                                        type="text"
+                                        id="tour_type"
+                                        name="tour_type"
+                                        class="form-control"
+                                        placeholder="e.g., Historical, Adventure"
+                                        list="tour_type_list"
+                                        required>
+                                    <datalist id="tour_type_list">
+                                        <option value="Historical">
+                                        <option value="Adventure">
+                                        <option value="City Tour">
+                                        <option value="Cultural">
+                                        <option value="Nature & Wildlife">
+                                    </datalist>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 4: Name -->
+                        <div class="row mb-3 gy-3">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="your_name">Your Name*</label>
+                                    <input
+                                        type="text"
+                                        id="your_name"
+                                        name="your_name"
+                                        class="form-control"
+                                        placeholder="Enter your full name"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 5: Special Requests -->
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="special_requests">Special Requests or Notes</label>
+                                    <textarea
+                                        id="special_requests"
+                                        name="special_requests"
+                                        class="form-control"
+                                        rows="3"
+                                        placeholder="Any special requirements..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Info Box -->
+                        <div class="alert alert-info mb-3" role="alert" style="font-size: 13px;">
+                            <strong>Note:</strong> Final pricing will be confirmed after discussing your itinerary.
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style="border-top: 1px solid #e9ecef; padding: 15px 25px;">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('customizeTourForm').dispatchEvent(new Event('submit'))">
+                        Send via WhatsApp
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- Scroll To Top -->
     <div class="scroll-top">
@@ -1239,514 +1174,6 @@ tour Area
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete" async defer></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            
-            // Initialize Notyf for notifications
-            const notyf = new Notyf({
-                duration: 4000,
-                position: { x: 'center', y: 'top' },
-                dismissible: true
-            });
-
-            // Function to check if date is closed
-            async function checkClosedDay(date) {
-                if (!date) {
-                    return { success: false, message: 'Please select a date' };
-                }
-
-                try {
-                    const response = await fetch(`../assets/process/checkClosedDay.php?date=${date}`);
-                    const data = await response.json();
-                    return data;
-                } catch (error) {
-                    console.error('Error checking closed day:', error);
-                    return { success: false, message: 'Error checking date availability' };
-                }
-            }
-
-            // Function to check if the selected date/time slot already has a successful booking
-            async function checkSlotAvailability(date, timeSlot) {
-                if (!date || !timeSlot) {
-                    return { success: false, message: 'Select both date and time slot' };
-                }
-
-                try {
-                    const response = await fetch(`../assets/process/checkSlotAvailability.php?tour_id=${tourId}&date=${date}&timeSlot=${encodeURIComponent(timeSlot)}`);
-                    const data = await response.json();
-                    return data;
-                } catch (error) {
-                    console.error('Error checking slot availability:', error);
-                    return { success: false, message: 'Error checking slot availability' };
-                }
-            }
-            
-            // 1. Star Rating Logic
-            const stars = document.querySelectorAll("#star-rating .star");
-            const ratingInput = document.getElementById("rating");
-
-            stars.forEach(star => {
-                star.addEventListener("click", function() {
-                    const rating = this.getAttribute("data-value");
-                    ratingInput.value = rating;
-                    stars.forEach(s => {
-                        s.style.color = (s.getAttribute("data-value") <= rating) ? "#FFD700" : "#ccc";
-                    });
-                });
-            });
-
-            // 2. Booking Variables
-            const adultCount = document.getElementById('adultCount');
-            const childCount = document.getElementById('childCount');
-            const adultPlus = document.getElementById('adultPlus');
-            const adultMinus = document.getElementById('adultMinus');
-            const childPlus = document.getElementById('childPlus');
-            const childMinus = document.getElementById('childMinus');
-            const adultPrice = document.getElementById('adultPrice');
-            const childPrice = document.getElementById('childPrice');
-            const childPriceRow = document.getElementById('childPriceRow');
-            const totalPrice = document.getElementById('totalPrice');
-            const paidAmountInput = document.getElementById('paidAmount');
-            
-            // Checkbox and Button
-            const privacyCheckbox = document.getElementById('privacyPolicyCheck');
-            const checkoutButton = document.getElementById('goToCheckout');
-
-            // PHP values to JS
-            const tourId = <?php echo (int)$tour_id; ?>;
-            const adultPricePerPerson = <?php echo $tour['adult_price'] ?? 0; ?>;
-            const childPricePerPerson = <?php echo $tour['kids_price'] ?? 0; ?>;
-            const maximumAdultCount = <?php echo (int)($tour['maximum_adult_count'] ?? 0); ?>;
-            const maximumKidsCount = <?php echo (int)($tour['maximum_kids_count'] ?? 0); ?>;
-            const toursTypeId = <?php echo (int)($tour['tours_type_id'] ?? 0); ?>;
-            const isFixedCountTour = toursTypeId === 8;
-
-            if (isFixedCountTour) {
-                adultCount.value = Math.max(1, maximumAdultCount || 1);
-                childCount.value = Math.max(0, maximumKidsCount || 0);
-            }
-
-            // 3. Price Update Function
-            function updatePrices() {
-                const adults = parseInt(adultCount.value);
-                const children = parseInt(childCount.value);
-
-                const adultTotal = adults * adultPricePerPerson;
-                const childTotal = children * childPricePerPerson;
-                const total = adultTotal + childTotal;
-
-                adultPrice.textContent = '$' + adultTotal.toFixed(2);
-                childPrice.textContent = '$' + childTotal.toFixed(2);
-                totalPrice.textContent = '$' + total.toFixed(2);
-
-                // Update LKR equivalent
-                updateLKRPrice(total);
-
-                // Show/hide child price row
-                if (children > 0) {
-                    childPriceRow.style.display = 'flex';
-                    childPriceRow.querySelector('span:first-child').textContent = `Children (${children} x $${childPricePerPerson.toFixed(2)})`;
-                } else {
-                    childPriceRow.style.display = 'none';
-                }
-
-                // Update adult price text
-                adultPrice.parentElement.querySelector('span:first-child').textContent = `Adults (${adults} x $${adultPricePerPerson.toFixed(2)})`;
-
-                updatePaidAmountPlaceholder();
-                updatePaidDisplays();
-            }
-
-            // 4. Currency & Advance Logic
-            let usdToLkrRate = 320; // Default
-            let advancePercentage = 100; // Default
-            window.usdToLkrRate = usdToLkrRate;
-            window.advancePercentage = advancePercentage;
-
-            function formatUSD(amount) { return '$' + Number(amount).toFixed(2); }
-            function formatLKR(amount) { return 'Rs. ' + Number(amount).toFixed(2); }
-
-            async function fetchExchangeRate() {
-                try {
-                    const response = await fetch('../assets/process/getCurrencyRate.php');
-                    const data = await response.json();
-                    if (data.success) {
-                        usdToLkrRate = data.rate;
-                        window.usdToLkrRate = usdToLkrRate;
-                        // Update all displays with the correct rate
-                        updateLKRPrice(parseFloat(totalPrice.textContent.replace('$', '')));
-                        updatePaidDisplays();
-                    }
-                } catch (error) {
-                    console.error('Error fetching exchange rate:', error);
-                }
-            }
-
-            function updateLKRPrice(usdAmount) {
-                if (usdToLkrRate > 0) {
-                    const lkrAmount = usdAmount * usdToLkrRate;
-                    document.getElementById('totalPriceLKR').textContent = 'Rs. ' + lkrAmount.toFixed(2);
-                } else {
-                    document.getElementById('totalPriceLKR').textContent = 'Loading...';
-                }
-            }
-
-            async function fetchAdvancePercentage() {
-                try {
-                    const response = await fetch('../assets/process/getAdvancePercentage.php');
-                    const data = await response.json();
-                    if (data.success) {
-                        advancePercentage = parseInt(data.value) || 30;
-                        updatePaidAmountPlaceholder();
-                    }
-                } catch (error) {
-                    console.error('Error fetching advance percentage:', error);
-                }
-            }
-
-            function updatePaidAmountPlaceholder() {
-                const totalUSD = parseFloat(totalPrice.textContent.replace('$', ''));
-                
-                if (toursTypeId === 8) {
-                    // Advance Payment Logic
-                    const minAdvance = (totalUSD * (advancePercentage / 100));
-                    
-                    paidAmountInput.placeholder = `Min ${formatUSD(minAdvance)} (${advancePercentage}% of total)`;
-                    paidAmountInput.min = minAdvance;
-                    paidAmountInput.removeAttribute('readonly');
-
-                    const advanceText = document.querySelector('small.fw-medium span.text-danger');
-                    if (advanceText) {
-                        advanceText.textContent = `${formatUSD(minAdvance)} (${advancePercentage}% of total)`;
-                    }
-
-                    if (!paidAmountInput.dataset.userEdited) {
-                        const roundedAdvance = Math.ceil(minAdvance);
-                        paidAmountInput.value = roundedAdvance.toFixed(2);
-                        updatePaidDisplays();
-                    }
-                } else {
-                    // Full Payment Logic
-                    paidAmountInput.placeholder = formatUSD(totalUSD);
-                    paidAmountInput.value = totalUSD.toFixed(2);
-                    paidAmountInput.setAttribute('readonly', 'readonly');
-                    updatePaidDisplays();
-                }
-            }
-
-            function updatePaidDisplays() {
-                const paidUSD = parseFloat(paidAmountInput.value || 0);
-                const totalUSD = parseFloat(totalPrice.textContent.replace('$', ''));
-                const paidLKRElement = document.getElementById('paidLKR');
-                const balanceLKRElement = document.getElementById('balanceLKR');
-                
-                if (toursTypeId === 8) {
-                    // Advance Payment Logic
-                    const minAdvance = totalUSD * (advancePercentage / 100);
-
-                    if (paidUSD < minAdvance) {
-                        paidAmountInput.setCustomValidity(`Minimum payment is ${formatUSD(minAdvance)}`);
-                    } else if (paidUSD > totalUSD) {
-                        paidAmountInput.setCustomValidity(`Maximum payment is ${formatUSD(totalUSD)}`);
-                        paidAmountInput.value = totalUSD.toFixed(2);
-                    } else {
-                        paidAmountInput.setCustomValidity('');
-                    }
-
-                    const paidLKR = paidUSD * usdToLkrRate;
-                    const totalLKR = totalUSD * usdToLkrRate;
-                    const balanceLKR = Math.max(0, totalLKR - paidLKR);
-
-                    if (paidLKRElement) paidLKRElement.textContent = formatLKR(paidLKR);
-                    if (balanceLKRElement) balanceLKRElement.textContent = formatLKR(balanceLKR);
-                    document.getElementById('totalPriceLKR').textContent = formatLKR(totalLKR);
-                } else {
-                    // Full Payment Logic
-                    paidAmountInput.setCustomValidity('');
-                    
-                    const totalLKR = totalUSD * usdToLkrRate;
-                    if (paidLKRElement) paidLKRElement.textContent = formatLKR(totalLKR);
-                    document.getElementById('totalPriceLKR').textContent = formatLKR(totalLKR);
-                }
-            }
-
-            function getSelectedTimeSlot() {
-                const selected = document.querySelector('input[name="timeSlot"]:checked');
-                return selected ? selected.value : '';
-            }
-
-            // 5. Button Click Handlers (Plus/Minus)
-            function updateButtonsState() {
-                if (isFixedCountTour) {
-                    adultMinus.disabled = true;
-                    adultPlus.disabled = true;
-                    childMinus.disabled = true;
-                    childPlus.disabled = true;
-                    return;
-                }
-
-                const currentAdults = parseInt(adultCount.value);
-                const currentKids = parseInt(childCount.value);
-
-                adultMinus.disabled = currentAdults <= 1;
-                if (maximumAdultCount > 0) adultPlus.disabled = currentAdults >= maximumAdultCount;
-                
-                childMinus.disabled = currentKids <= 0;
-                if (maximumKidsCount > 0) childPlus.disabled = currentKids >= maximumKidsCount;
-            }
-
-            adultPlus.addEventListener('click', function() {
-                if (isFixedCountTour) return;
-                const current = parseInt(adultCount.value);
-                if (maximumAdultCount === 0 || current < maximumAdultCount) {
-                    adultCount.value = current + 1;
-                    updatePrices();
-                    updateButtonsState();
-                }
-            });
-
-            adultMinus.addEventListener('click', function() {
-                if (isFixedCountTour) return;
-                const current = parseInt(adultCount.value);
-                if (current > 1) {
-                    adultCount.value = current - 1;
-                    updatePrices();
-                    updateButtonsState();
-                }
-            });
-
-            childPlus.addEventListener('click', function() {
-                if (isFixedCountTour) return;
-                const current = parseInt(childCount.value);
-                if (maximumKidsCount === 0 || current < maximumKidsCount) {
-                    childCount.value = current + 1;
-                    updatePrices();
-                    updateButtonsState();
-                }
-            });
-
-            childMinus.addEventListener('click', function() {
-                if (isFixedCountTour) return;
-                const current = parseInt(childCount.value);
-                if (current > 0) {
-                    childCount.value = current - 1;
-                    updatePrices();
-                    updateButtonsState();
-                }
-            });
-
-            paidAmountInput.addEventListener('input', function() {
-                if (toursTypeId === 8) {
-                    // Only allow editing for advance payments
-                    this.dataset.userEdited = '1';
-                    updatePaidDisplays();
-                }
-            });
-
-            // 6. Privacy Policy Checkbox
-            privacyCheckbox.addEventListener('change', function() {
-                checkoutButton.disabled = !this.checked;
-                if (this.checked) {
-                    checkoutButton.classList.remove('btn-secondary');
-                    checkoutButton.classList.add('btn-primary');
-                } else {
-                    checkoutButton.classList.remove('btn-primary');
-                    checkoutButton.classList.add('btn-secondary');
-                }
-            });
-
-            // 7. Initialize - Fetch exchange rate first
-            async function initialize() {
-                await fetchExchangeRate();
-                updatePrices();
-                updateButtonsState();
-                if (toursTypeId === 8) {
-                    await fetchAdvancePercentage();
-                } else {
-                    // For full payment, just update the placeholder
-                    updatePaidAmountPlaceholder();
-                }
-            }
-            initialize();
-
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('tourDate').setAttribute('min', today);
-
-            // Refresh exchange rate and update displays when modal opens
-            const bookingModal = document.getElementById('bookingModal');
-            bookingModal.addEventListener('show.bs.modal', async function() {
-                await fetchExchangeRate();
-                updatePrices();
-            });
-
-            // Add validation when date is selected
-            document.getElementById('tourDate').addEventListener('change', async function() {
-                const selectedDate = this.value;
-                if (!selectedDate) return;
-
-                const result = await checkClosedDay(selectedDate);
-                
-                if (result.success && result.isClosed) {
-                    notyf.error(result.message || 'This date is not available for bookings');
-                    this.value = ''; // Clear the invalid date
-                    checkoutButton.disabled = true;
-                } else if (result.success && !result.isClosed) {
-                    notyf.success('Date is available for booking');
-                    // Re-check if checkbox is checked to enable button
-                    if (privacyCheckbox.checked) {
-                        checkoutButton.disabled = false;
-                    }
-
-                    // If a time slot is already selected, validate it for this date
-                    const currentTimeSlot = getSelectedTimeSlot();
-                    if (currentTimeSlot) {
-                        const slotResult = await checkSlotAvailability(selectedDate, currentTimeSlot);
-                        if (slotResult.success && slotResult.isAvailable) {
-                            if (privacyCheckbox.checked) {
-                                checkoutButton.disabled = false;
-                            }
-                        } else if (slotResult.success && !slotResult.isAvailable) {
-                            notyf.error(slotResult.message || 'This time slot is already booked for the selected date');
-                            const checkedSlot = document.querySelector('input[name="timeSlot"]:checked');
-                            if (checkedSlot) checkedSlot.checked = false;
-                            checkoutButton.disabled = true;
-                        } else {
-                            notyf.error(slotResult.message || 'Unable to verify time slot availability');
-                            checkoutButton.disabled = true;
-                        }
-                    }
-                } else {
-                    notyf.error(result.message || 'Unable to verify date availability');
-                    this.value = '';
-                }
-            });
-
-            // Validate time slot whenever user selects one
-            document.querySelectorAll('input[name="timeSlot"]').forEach(function(radio) {
-                radio.addEventListener('change', async function() {
-                    const selectedDate = document.getElementById('tourDate').value;
-                    if (!selectedDate) {
-                        notyf.error('Please select a date first');
-                        this.checked = false;
-                        return;
-                    }
-
-                    const result = await checkSlotAvailability(selectedDate, this.value);
-                    if (result.success && result.isAvailable) {
-                        notyf.success('Time slot available');
-                        if (privacyCheckbox.checked) {
-                            checkoutButton.disabled = false;
-                        }
-                    } else if (result.success && !result.isAvailable) {
-                        notyf.error(result.message || 'This time slot is already booked for the selected date');
-                        this.checked = false;
-                        checkoutButton.disabled = true;
-                    } else {
-                        notyf.error(result.message || 'Unable to verify time slot availability');
-                        this.checked = false;
-                        checkoutButton.disabled = true;
-                    }
-                });
-            });
-
-            // =========================================================
-            // 8. PAYHERE CHECKOUT LOGIC (MERGED INSIDE DOMCONTENTLOADED)
-            // =========================================================
-            checkoutButton.addEventListener('click', async function() {
-                
-                // 1. First check if date is closed (PRIORITY VALIDATION)
-                const selectedDate = document.getElementById('tourDate').value;
-                if (!selectedDate) {
-                    notyf.error('Please select a tour date');
-                    return;
-                }
-
-                const closedDayCheck = await checkClosedDay(selectedDate);
-                if (closedDayCheck.success && closedDayCheck.isClosed) {
-                    notyf.error(closedDayCheck.message || 'This date is not available for bookings. Please select another date.');
-                    document.getElementById('tourDate').value = '';
-                    return;
-                } else if (!closedDayCheck.success) {
-                    notyf.error(closedDayCheck.message || 'Unable to verify date availability. Please try again.');
-                    return;
-                }
-
-                // 2. Check time slot selection and availability
-                const selectedTimeSlot = getSelectedTimeSlot();
-                if (!selectedTimeSlot) {
-                    notyf.error('Please select a time slot');
-                    return;
-                }
-
-                const slotCheck = await checkSlotAvailability(selectedDate, selectedTimeSlot);
-                if (slotCheck.success && !slotCheck.isAvailable) {
-                    notyf.error(slotCheck.message || 'This time slot is already booked. Please choose another.');
-                    return;
-                } else if (!slotCheck.success) {
-                    notyf.error(slotCheck.message || 'Unable to verify time slot availability. Please try again.');
-                    return;
-                }
-                
-                // 3. Form Validation Check
-                const form = document.getElementById('bookingForm');
-                if (!form.checkValidity()) {
-                    form.reportValidity(); // Show default HTML5 validation errors
-                    return;
-                }
-
-                checkoutButton.disabled = true;
-                checkoutButton.innerHTML = 'Processing...';
-
-                const formData = new FormData(form);
-                formData.append('paidAmount', paidAmountInput.value);
-                formData.append('tour_id', '<?php echo $tour_id; ?>');
-
-                // Call submit_booking.php (Same folder)
-                fetch('submit_booking.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        const payment = data.payhere_data;
-
-                        payhere.onCompleted = function onCompleted(orderId) {
-                            window.location.href = payment.return_url;
-                        };
-
-                        payhere.onDismissed = function onDismissed() {
-                            checkoutButton.disabled = false;
-                            checkoutButton.innerHTML = 'Go to Checkout';
-                        };
-
-                        payhere.onError = function onError(error) {
-                            console.log("Error:" + error);
-                            alert("Payment Error: " + error);
-                            checkoutButton.disabled = false;
-                            checkoutButton.innerHTML = 'Go to Checkout';
-                        };
-
-                        // Start PayHere Payment
-                        payhere.startPayment(payment);
-
-                    } else {
-                        alert('Error processing booking: ' + (data.message || 'Unknown error'));
-                        checkoutButton.disabled = false;
-                        checkoutButton.innerHTML = 'Go to Checkout';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Network Error');
-                    checkoutButton.disabled = false;
-                    checkoutButton.innerHTML = 'Go to Checkout';
-                });
-            });
-
-        });
-    </script>
-
-    <script>
         (function() {
             const input = document.querySelector("#number3");
             if (!input) return;
@@ -1756,6 +1183,56 @@ tour Area
                 utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.5.1/build/js/utils.js"
             });
         })();
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const customizeTourForm = document.getElementById('customizeTourForm');
+            if (!customizeTourForm) return;
+
+            customizeTourForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const tourName = <?php echo json_encode($tour['name'] ?? ''); ?>;
+                const yourName = document.getElementById('your_name').value || 'Not specified';
+                const pickupLocation = document.getElementById('pickup_location').value || 'Not specified';
+                const dropLocation = document.getElementById('drop_location').value || 'Not specified';
+                const tourDate = document.getElementById('tour_date').value || 'Not specified';
+                const peopleCount = document.getElementById('people_count').value || 'Not specified';
+                const tourType = document.getElementById('tour_type').value || 'Not specified';
+                const specialRequests = document.getElementById('special_requests').value || 'No special requests';
+
+                const message = `*NEW CUSTOMIZE TOUR REQUEST*
+
+Tour Name: ${tourName}
+Name: ${yourName}
+
+--- TOUR DETAILS ---
+Pickup Location: ${pickupLocation}
+Drop Location: ${dropLocation}
+Tour Date: ${tourDate}
+Number of People: ${peopleCount}
+Tour Type: ${tourType}
+
+--- SPECIAL REQUESTS ---
+${specialRequests}`;
+
+                const encodedMessage = encodeURIComponent(message);
+                const phoneNumber = '94713344399';
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+                window.open(whatsappUrl, '_blank');
+
+                if (typeof Notyf !== 'undefined') {
+                    const notyf = new Notyf();
+                    notyf.success('Opening WhatsApp to send your tour request...');
+                } else {
+                    alert('Opening WhatsApp to send your tour request...');
+                }
+
+                customizeTourForm.reset();
+            });
+        });
     </script>
 
 </body>

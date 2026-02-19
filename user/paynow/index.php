@@ -5,41 +5,67 @@ require_once 'includes/config.php'; // Config ෆයිල් එක link කර
 // 1. PAYMENT PROCESSING LOGIC (Form එක Submit කළාම වැඩ කරන කොටස)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pay_submit'])) {
 
+    $customer_name_raw = trim($_POST['customer_name'] ?? '');
+    $whatsapp_raw = trim($_POST['whatsapp'] ?? '');
+    $dial_code_raw = trim($_POST['whatsapp_dial_code'] ?? '');
     $email = Database::escape_string($_POST['email']);
     $description = Database::escape_string($_POST['description']);
     $currency_id = intval($_POST['currency_id']);
     $amount = floatval($_POST['amount']); // Foreign Currency Amount
 
-    // Currency Rate එක DB එකෙන් ගැනීම
-    $curr_res = Database::search("SELECT * FROM currency WHERE id = '$currency_id'");
+    if ($customer_name_raw === '' || $whatsapp_raw === '') {
+        echo "<script>alert('Name and WhatsApp number are required');</script>";
+    } else {
+        $normalized_whatsapp = preg_replace('/[^0-9+]/', '', $whatsapp_raw);
+        $dial_digits = preg_replace('/\D/', '', $dial_code_raw);
 
-    if ($curr_res->num_rows > 0) {
-        $curr_row = $curr_res->fetch_assoc();
-        $rate = floatval($curr_row['LKR']);
-        $currency_code = $curr_row['currency']; // USD, EUR etc.
+        if (strpos($normalized_whatsapp, '+') !== 0 && $dial_digits !== '') {
+            $local_digits = preg_replace('/\D/', '', $normalized_whatsapp);
+            $local_digits = ltrim($local_digits, '0');
+            $normalized_whatsapp = '+' . $dial_digits . $local_digits;
+        }
 
-        // LKR අගය ගණනය කිරීම (Database එකට සහ Payment එකට යවන්න)
-        $lkr_amount = $amount * $rate;
-        $order_id = uniqid('ORD-'); // Unique Order ID
+        if (strpos($normalized_whatsapp, '+') !== 0) {
+            echo "<script>alert('Please enter a valid WhatsApp number with country code');</script>";
+            return;
+        }
 
-        // Database එකට Insert කිරීම (Pending Status)
-        $sql = "INSERT INTO paynow (order_id, email, description, currency_id, amount, lkr_amount, status, status_code, createdAt) 
-                VALUES ('$order_id', '$email', '$description', '$currency_id', '$amount', '$lkr_amount', 'Pending', 0, NOW())";
+        $customer_name = Database::escape_string($customer_name_raw);
+        $whatsapp = Database::escape_string($normalized_whatsapp);
+        $name_parts = preg_split('/\s+/', $customer_name_raw, 2);
+        $first_name = trim($name_parts[0] ?? 'Customer');
+        $last_name = trim($name_parts[1] ?? '');
 
-        Database::iud($sql);
+        // Currency Rate එක DB එකෙන් ගැනීම
+        $curr_res = Database::search("SELECT * FROM currency WHERE id = '$currency_id'");
 
-        // --- PAYHERE Redirect Form සැකසීම ---
-        // PayHere එකට යවන්නේ LKR ගාන. ඒ නිසා currency = LKR ලෙස යවමු.
+        if ($curr_res->num_rows > 0) {
+            $curr_row = $curr_res->fetch_assoc();
+            $rate = floatval($curr_row['LKR']);
+            $currency_code = $curr_row['currency']; // USD, EUR etc.
 
-        $pay_currency = 'LKR';
-        $pay_amount = number_format($lkr_amount, 2, '.', ''); // දශම ස්ථාන 2කට හදාගන්න
+            // LKR අගය ගණනය කිරීම (Database එකට සහ Payment එකට යවන්න)
+            $lkr_amount = $amount * $rate;
+            $order_id = uniqid('ORD-'); // Unique Order ID
 
-        // Hash Generation
-        $hash_str = MERCHANT_ID . $order_id . $pay_amount . $pay_currency . strtoupper(md5(MERCHANT_SECRET));
-        $hash = strtoupper(md5($hash_str));
+            // Database එකට Insert කිරීම (Pending Status)
+            $sql = "INSERT INTO paynow (order_id, customer_name, whatsapp, email, description, currency_id, amount, lkr_amount, status, status_code, createdAt) 
+                VALUES ('$order_id', '$customer_name', '$whatsapp', '$email', '$description', '$currency_id', '$amount', '$lkr_amount', 'Pending', 0, NOW())";
 
-        // Auto Submit Form එක Output කිරීම
-        echo '<!DOCTYPE html>
+            Database::iud($sql);
+
+            // --- PAYHERE Redirect Form සැකසීම ---
+            // PayHere එකට යවන්නේ LKR ගාන. ඒ නිසා currency = LKR ලෙස යවමු.
+
+            $pay_currency = 'LKR';
+            $pay_amount = number_format($lkr_amount, 2, '.', ''); // දශම ස්ථාන 2කට හදාගන්න
+
+            // Hash Generation
+            $hash_str = MERCHANT_ID . $order_id . $pay_amount . $pay_currency . strtoupper(md5(MERCHANT_SECRET));
+            $hash = strtoupper(md5($hash_str));
+
+            // Auto Submit Form එක Output කිරීම
+            echo '<!DOCTYPE html>
         <html>
         <head><title>Redirecting...</title></head>
         <body>
@@ -55,9 +81,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pay_submit'])) {
                 <input type="hidden" name="currency" value="' . $pay_currency . '">
                 <input type="hidden" name="amount" value="' . $pay_amount . '">
                 
-                <input type="hidden" name="first_name" value="Customer">
-                <input type="hidden" name="last_name" value="">
+                <input type="hidden" name="first_name" value="' . htmlspecialchars($first_name, ENT_QUOTES) . '">
+                <input type="hidden" name="last_name" value="' . htmlspecialchars($last_name, ENT_QUOTES) . '">
                 <input type="hidden" name="email" value="' . $email . '">
+                <input type="hidden" name="phone" value="' . htmlspecialchars($normalized_whatsapp, ENT_QUOTES) . '">
                 <input type="hidden" name="address" value="Sri Lanka">
                 <input type="hidden" name="city" value="Colombo">
                 <input type="hidden" name="country" value="Sri Lanka">
@@ -67,9 +94,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pay_submit'])) {
             <script>document.getElementById("payhere_auto").submit();</script>
         </body>
         </html>';
-        exit(); // Code එක මෙතනින් නවත්වනවා (Redirect වෙන නිසා)
-    } else {
-        echo "<script>alert('Invalid Currency Selected');</script>";
+            exit(); // Code එක මෙතනින් නවත්වනවා (Redirect වෙන නිසා)
+        } else {
+            echo "<script>alert('Invalid Currency Selected');</script>";
+        }
     }
 }
 
@@ -142,10 +170,18 @@ while ($c = $currency_rs->fetch_assoc()) {
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.7/build/css/intlTelInput.css">
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
     <!-- PayHere SDK -->
     <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.7/build/js/intlTelInput.min.js"></script>
+
+    <style>
+        .iti {
+            width: 100%;
+        }
+    </style>
 
     <!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
@@ -270,6 +306,17 @@ while ($c = $currency_rs->fetch_assoc()) {
                             <input type="hidden" name="pay_submit" value="1">
 
                             <div class="mb-3">
+                                <label for="customer_name" class="form-label">Name *</label>
+                                <input type="text" name="customer_name" id="customer_name" class="form-control" placeholder="Enter your full name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="whatsapp" class="form-label">WhatsApp Number *</label>
+                                <input type="tel" name="whatsapp" id="whatsapp" class="form-control" placeholder="Enter WhatsApp number" required>
+                                <input type="hidden" name="whatsapp_dial_code" id="whatsapp_dial_code" value="94">
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="email" class="form-label">Email *</label>
                                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter email" required>
                             </div>
@@ -319,9 +366,33 @@ while ($c = $currency_rs->fetch_assoc()) {
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const paymentForm = document.getElementById('paymentForm');
             const currencySelect = document.getElementById('currency');
             const amountInput = document.getElementById('amount');
             const finalInput = document.getElementById('finalAmount');
+            const whatsappInput = document.getElementById('whatsapp');
+            const whatsappDialCodeInput = document.getElementById('whatsapp_dial_code');
+
+            let iti = null;
+            if (whatsappInput && window.intlTelInput) {
+                iti = window.intlTelInput(whatsappInput, {
+                    initialCountry: 'lk',
+                    separateDialCode: true,
+                    preferredCountries: ['lk', 'in', 'gb', 'us', 'au'],
+                    utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.7/build/js/utils.js'
+                });
+
+                if (whatsappDialCodeInput) {
+                    const selected = iti.getSelectedCountryData();
+                    whatsappDialCodeInput.value = selected && selected.dialCode ? selected.dialCode : '94';
+                }
+
+                whatsappInput.addEventListener('countrychange', function() {
+                    if (!whatsappDialCodeInput) return;
+                    const selected = iti.getSelectedCountryData();
+                    whatsappDialCodeInput.value = selected && selected.dialCode ? selected.dialCode : '';
+                });
+            }
 
             function parseRate(option) {
                 if (!option) return 0;
@@ -340,6 +411,20 @@ while ($c = $currency_rs->fetch_assoc()) {
 
             if (currencySelect) currencySelect.addEventListener('change', updateFinalAmount);
             if (amountInput) amountInput.addEventListener('input', updateFinalAmount);
+
+            if (paymentForm && iti) {
+                paymentForm.addEventListener('submit', function() {
+                    const localNumber = whatsappInput.value.trim();
+                    if (localNumber !== '') {
+                        whatsappInput.value = iti.getNumber();
+                    }
+                    if (whatsappDialCodeInput) {
+                        const selected = iti.getSelectedCountryData();
+                        whatsappDialCodeInput.value = selected && selected.dialCode ? selected.dialCode : '';
+                    }
+                });
+            }
+
             updateFinalAmount();
         });
     </script>

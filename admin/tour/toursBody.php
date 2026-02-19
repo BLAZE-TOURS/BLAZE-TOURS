@@ -153,6 +153,10 @@ include_once "fetchTours.php";
                             onclick='showTourDetails(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)'>
                             <i class="fas fa-eye"></i> View
                           </button>
+                          <button type="button" class="btn btn-warning btn-sm"
+                            onclick='openUpdateTourModal(<?php echo htmlspecialchars(json_encode($row), ENT_QUOTES, 'UTF-8'); ?>)'>
+                            <i class="fas fa-edit"></i> Update
+                          </button>
                           <button class="btn btn-sm btn-primary"
                             onclick="changeStatusTours(<?php echo $row['id']; ?>);"
                             <?php echo ($row['status_id'] == 3) ? 'disabled' : ''; ?>>
@@ -169,6 +173,58 @@ include_once "fetchTours.php";
             </table>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Update Tour Modal (Status and Tour Type are intentionally excluded) -->
+<div class="modal fade" id="updateTourModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update Tour</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="update-tour-errors" class="alert alert-danger d-none" role="alert"></div>
+        <form id="updateTourForm">
+          <input type="hidden" id="update-tour-id" name="id">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="update-tour-name">Tour Name</label>
+              <input type="text" class="form-control" id="update-tour-name" name="name" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="update-tour-duration">Duration (Hours)</label>
+              <input type="number" min="1" class="form-control" id="update-tour-duration" name="duration" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="update-tour-kids-price">Kids Price</label>
+              <input type="number" min="0" step="0.01" class="form-control" id="update-tour-kids-price" name="kids_price" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="update-tour-adult-price">Adult Price</label>
+              <input type="number" min="0" step="0.01" class="form-control" id="update-tour-adult-price" name="adult_price" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="update-tour-max-adults">Maximum Adult Count</label>
+              <input type="number" min="1" class="form-control" id="update-tour-max-adults" name="maximum_adult_count" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="update-tour-max-kids">Maximum Kids Count</label>
+              <input type="number" min="1" class="form-control" id="update-tour-max-kids" name="maximum_kids_count" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="update-tour-description">Description</label>
+              <textarea class="form-control" id="update-tour-description" name="description" rows="4" required></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="submit-update-tour-btn" onclick="submitTourUpdate();">Update</button>
       </div>
     </div>
   </div>
@@ -231,6 +287,103 @@ include_once "fetchTours.php";
 
 <!-- Consolidated script block for Tour Details and DataTable initialization -->
 <script>
+  let updateTourModalInstance = null;
+
+  function openUpdateTourModal(data) {
+    const errorsDiv = document.getElementById('update-tour-errors');
+    errorsDiv.classList.add('d-none');
+    errorsDiv.innerHTML = '';
+
+    document.getElementById('update-tour-id').value = data.id || '';
+    document.getElementById('update-tour-name').value = data.name || '';
+    document.getElementById('update-tour-description').value = data.description || '';
+    document.getElementById('update-tour-duration').value = data.duration || '';
+    document.getElementById('update-tour-kids-price').value = data.kids_price || '';
+    document.getElementById('update-tour-adult-price').value = data.adult_price || '';
+    document.getElementById('update-tour-max-adults').value = data.maximum_adult_count || '';
+    document.getElementById('update-tour-max-kids').value = data.maximum_kids_count || '';
+
+    const modalEl = document.getElementById('updateTourModal');
+    updateTourModalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+    updateTourModalInstance.show();
+  }
+
+  function submitTourUpdate() {
+    const id = document.getElementById('update-tour-id').value;
+    const name = document.getElementById('update-tour-name').value.trim();
+    const description = document.getElementById('update-tour-description').value.trim();
+    const duration = document.getElementById('update-tour-duration').value.trim();
+    const kidsPrice = document.getElementById('update-tour-kids-price').value.trim();
+    const adultPrice = document.getElementById('update-tour-adult-price').value.trim();
+    const maxAdults = document.getElementById('update-tour-max-adults').value.trim();
+    const maxKids = document.getElementById('update-tour-max-kids').value.trim();
+
+    const errors = [];
+    if (!id || isNaN(id) || Number(id) <= 0) errors.push('Invalid tour id.');
+    if (!name) errors.push('Tour Name is required.');
+    if (!description) errors.push('Description is required.');
+    if (!duration || isNaN(duration) || Number(duration) <= 0) errors.push('Duration must be a positive number.');
+    if (!kidsPrice || isNaN(kidsPrice) || Number(kidsPrice) < 0) errors.push('Kids Price must be a non-negative number.');
+    if (!adultPrice || isNaN(adultPrice) || Number(adultPrice) < 0) errors.push('Adult Price must be a non-negative number.');
+    if (!maxAdults || isNaN(maxAdults) || Number(maxAdults) <= 0) errors.push('Maximum Adult Count must be a positive number.');
+    if (!maxKids || isNaN(maxKids) || Number(maxKids) <= 0) errors.push('Maximum Kids Count must be a positive number.');
+
+    const errorsDiv = document.getElementById('update-tour-errors');
+    errorsDiv.innerHTML = '';
+    errorsDiv.classList.add('d-none');
+
+    if (errors.length > 0) {
+      errorsDiv.innerHTML = errors.join('<br>');
+      errorsDiv.classList.remove('d-none');
+      return;
+    }
+
+    const submitBtn = document.getElementById('submit-update-tour-btn');
+    submitBtn.disabled = true;
+
+    fetch('../process/updateTourProcess.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+          id: id,
+          name: name,
+          description: description,
+          duration: duration,
+          kids_price: kidsPrice,
+          adult_price: adultPrice,
+          maximum_adult_count: maxAdults,
+          maximum_kids_count: maxKids
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        submitBtn.disabled = false;
+        if (data.success) {
+          if (updateTourModalInstance) {
+            updateTourModalInstance.hide();
+          }
+          if (typeof Swal !== 'undefined') {
+            Swal.fire('Updated!', data.message, 'success').then(() => {
+              location.reload();
+            });
+          } else {
+            alert(data.message);
+            location.reload();
+          }
+        } else {
+          errorsDiv.innerHTML = data.message || 'Failed to update tour.';
+          errorsDiv.classList.remove('d-none');
+        }
+      })
+      .catch(() => {
+        submitBtn.disabled = false;
+        errorsDiv.innerHTML = 'An error occurred while updating the tour.';
+        errorsDiv.classList.remove('d-none');
+      });
+  }
+
   // Tour details modal handler
   function showTourDetails(data) {
     // Initialize modal if needed

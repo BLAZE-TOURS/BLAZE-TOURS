@@ -92,6 +92,8 @@ while ($c = $currency_rs->fetch_assoc()) {
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Customer Name</th>
+                                    <th>WhatsApp</th>
                                     <th>Email</th>
                                     <th>Amount (LKR)</th>
                                     <th>Status</th>
@@ -122,6 +124,12 @@ while ($c = $currency_rs->fetch_assoc()) {
                 <dl class="row">
                     <dt class="col-sm-4">ID</dt>
                     <dd class="col-sm-8" id="pd_id">-</dd>
+
+                    <dt class="col-sm-4">Customer Name</dt>
+                    <dd class="col-sm-8" id="pd_customer_name">-</dd>
+
+                    <dt class="col-sm-4">WhatsApp</dt>
+                    <dd class="col-sm-8" id="pd_whatsapp">-</dd>
 
                     <dt class="col-sm-4">Email</dt>
                     <dd class="col-sm-8" id="pd_email">-</dd>

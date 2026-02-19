@@ -301,23 +301,37 @@ Product Area
                                             </div>
                                             <div class="tour-content">
                                                 <h3 class="box-title">
-                                                    <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>">
-                                                        <?php echo htmlspecialchars($tour['name']); ?>
-                                                    </a>
+                                                    <?php if ($tour['tours_type_id'] != 9): ?>
+                                                        <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>">
+                                                            <?php echo htmlspecialchars($tour['name']); ?>
+                                                        </a>
+                                                    <?php else: ?>
+                                                        <a href="tour-page/day-tour.php?id=<?php echo $tour['id']; ?>">
+                                                            <?php echo htmlspecialchars($tour['name']); ?>
+                                                        </a>
+                                                    <?php endif; ?>
                                                 </h3>
 
                                                 <div class="tour-rating">
                                                     <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
                                                             <strong class="rating">5.00</strong> out of 5 based on <span class="rating">4.8</span>(4.8
                                                             Rating)</span></div>
-                                                    <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">4.8</span>
-                                                        Rating)</a>
+                                                    <?php if ($tour['tours_type_id'] != 9): ?>
+                                                        <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">4.8</span>
+                                                            Rating)</a>
+                                                    <?php else: ?>
+                                                        <a href="tour-page/day-tour.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">4.8</span>
+                                                            Rating)</a>
+                                                    <?php endif; ?>
                                                 </div>
-                                                <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Person</h4>
+                                                <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Per Person</h4>
                                                 <div class="tour-action">
                                                     <span><i class="fa-light fa-clock"></i><?php echo (int)$tour['duration']; ?> <?php echo ($tour['tours_type_id'] == 8) ? 'Days' : 'Hours'; ?></span>
-                                                    <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="th-btn style4">Detail View</a>
-                                                </div>
+                                            <?php if ($tour['tours_type_id'] != 9): ?>
+                                                <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="th-btn th-icon">Book Now</a>
+                                            <?php else: ?>
+                                                <a href="tour-page/day-tour.php?id=<?php echo $tour['id']; ?>" class="th-btn th-icon">Book Now</a>
+                                            <?php endif; ?>                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -357,19 +371,27 @@ Product Area
                                                 <img src="../admin/assets/uploads/tour_images/<?php echo $main_image_name ? $main_image_name : 'default.png'; ?>" alt="image">
                                             </div>
                                             <div class="tour-content">
-                                                <h3 class="box-title"><a href="tour-page/index.php?id=<?php echo $tour['id']; ?>"><?php echo htmlspecialchars($tour['name']); ?></a></h3>
+                                                <h3 class="box-title"><?php if ($tour['tours_type_id'] != 9): ?><a href="tour-page/index.php?id=<?php echo $tour['id']; ?>"><?php echo htmlspecialchars($tour['name']); ?></a><?php else: ?><a href="tour-page/day-tour.php?id=<?php echo $tour['id']; ?>"><?php echo htmlspecialchars($tour['name']); ?></a><?php endif; ?></h3>
                                                 <div class="tour-rating">
                                                     <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated
                                                             <strong class="rating">5.00</strong> out of 5 based on <span class="rating">5.0</span>(5.0
                                                             Rating)</span></div>
-                                                    <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">5.0</span>
-                                                        Rating)</a>
+                                                    <?php if ($tour['tours_type_id'] != 9): ?>
+                                                        <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">5.0</span>
+                                                            Rating)</a>
+                                                    <?php else: ?>
+                                                        <a href="tour-page/day-tour.php?id=<?php echo $tour['id']; ?>" class="woocommerce-review-link">(<span class="count">5.0</span>
+                                                            Rating)</a>
+                                                    <?php endif; ?>
                                                 </div>
-                                                <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Person</h4>
+                                                <h4 class="tour-box_price"><span class="currency">$<?php echo number_format($tour['adult_price'], 2); ?></span>/Per Person</h4>
                                                 <div class="tour-action">
                                                     <span><i class="fa-light fa-clock"></i><?php echo (int)$tour['duration']; ?> <?php echo ($tour['tours_type_id'] == 8) ? 'Days' : 'Hours'; ?></span>
-                                                    <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="th-btn style4">Detail View</a>
-                                                </div>
+                                            <?php if ($tour['tours_type_id'] != 9): ?>
+                                                <a href="tour-page/index.php?id=<?php echo $tour['id']; ?>" class="th-btn th-icon">Book Now</a>
+                                            <?php else: ?>
+                                                <a href="tour-page/day-tour.php?id=<?php echo $tour['id']; ?>" class="th-btn th-icon">Book Now</a>
+                                            <?php endif; ?>                                                </div>
                                             </div>
                                         </div>
                                     </div>
