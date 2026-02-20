@@ -117,7 +117,7 @@
                         ?>
 
                         <div class="btn-group" role="group" style="gap: 8px;">
-                          <button type="button" class="btn btn-info btn-sm" onclick='showMessageDetails(<?php echo json_encode($row); ?>)'>
+                          <button type="button" class="btn btn-info btn-sm" onclick='showRepliedMessageDetails(<?php echo json_encode($row); ?>)'>
                             <i class="fas fa-eye"></i> View
                           </button>
 
@@ -143,7 +143,7 @@
 </div>
 
 <!-- Message Only Modal -->
-<div class="modal fade" id="messageModal" tabindex="-1">
+<div class="modal fade" id="repliedMessageModal" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content border-0 shadow-sm">
       <div class="modal-header bg-primary text-white">
@@ -152,7 +152,7 @@
       </div>
       <div class="modal-body">
         <div class="review-wrapper position-relative">
-          <div id="msg-text" class="review-text bg-light rounded p-3" style="max-height: 200px; overflow-y: auto;">
+          <div id="replied-msg-text" class="review-text bg-light rounded p-3" style="max-height: 200px; overflow-y: auto;">
             <!-- message content goes here -->
           </div>
         </div>
@@ -167,13 +167,13 @@
 </div>
 
 <script>
-  function showMessageDetails(data) {
+  function showRepliedMessageDetails(data) {
     // Display only the message
-    document.getElementById('msg-text').innerHTML = data.massage ?
+    document.getElementById('replied-msg-text').innerHTML = data.massage ?
       data.massage.replace(/\n/g, '<br>') :
       '<em>No message content</em>';
 
-    const modal = new bootstrap.Modal(document.getElementById('messageModal'));
+    const modal = new bootstrap.Modal(document.getElementById('repliedMessageModal'));
     modal.show();
   }
 </script>

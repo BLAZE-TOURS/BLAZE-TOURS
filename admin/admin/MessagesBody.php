@@ -14,9 +14,7 @@
     word-break: break-word;
     line-height: 1.35;
   }
-  .review-text.expanded { /* when expanded we remove the clamp via inline style or class */
-    /* no fixed max-height here; JS will set exact px value to allow smooth animation */
-  }
+  /* .review-text.expanded intentionally has no fixed max-height; JS sets it dynamically */
   .toggle-review-btn {
     position: absolute;
     top: 6px;
@@ -237,12 +235,12 @@
   }
 
   function showMessageDetails(data) {
-    document.getElementById('msg-id').textContent = data.id;
-    document.getElementById('msg-name').textContent = data.fullName;
-    document.getElementById('msg-mobile').textContent = data.mobile;
-    document.getElementById('msg-email').textContent = data.email;
-    document.getElementById('msg-datetime').textContent = data.dateTime;
-    document.getElementById('msg-text').innerHTML = data.massage ? data.massage.replace(/\n/g, '<br>') : '';
+    const msgTextEl = document.getElementById('msg-text');
+    if (!msgTextEl) return;
+
+    msgTextEl.innerHTML = (data.massage || data.message) ?
+      (data.massage || data.message).replace(/\n/g, '<br>') :
+      '<em>No message content</em>';
 
     const modal = new bootstrap.Modal(document.getElementById('messageModal'));
     modal.show();
