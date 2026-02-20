@@ -58,10 +58,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
 
-    <!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
-    <div class="elfsight-app-105fdd11-2a94-4811-b9aa-24f273aafc7e" data-elfsight-app-lazy></div>
-
+<!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-d59ef06e-0b83-417b-97df-87262edb08cc" data-elfsight-app-lazy></div>
 </head>
 
 <body>
