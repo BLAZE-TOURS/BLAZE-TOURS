@@ -111,6 +111,22 @@ include_once "fetchTours.php";
     white-space: normal;
     display: inline-block;
   }
+
+  #tour-status-filter-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #tour-status-filter {
+    min-width: 140px;
+  }
+
+  .dataTables_filter #tour-status-filter-wrapper {
+    display: inline-flex;
+    margin-right: 12px;
+    vertical-align: middle;
+  }
 </style>
 
 <div class="content-page mt-5 fade-in">
@@ -120,6 +136,15 @@ include_once "fetchTours.php";
       <div class="card shadow-sm">
         <div class="card-body">
           <h3 class="card-title text-center">Tour List</h3>
+          <div class="d-flex justify-content-end mb-3">
+            <div id="tour-status-filter-wrapper">
+              <label for="tour-status-filter" class="mb-0">Status:</label>
+              <select id="tour-status-filter" class="form-select form-select-sm">
+                <option value="Active" selected>Active</option>
+                <option value="All">All</option>
+              </select>
+            </div>
+          </div>
           <div class="table-responsive col-12 mx-auto mb-5">
             <table id="datatable-tourType" class="table table-striped table-bordered table-sm">
               <thead>
@@ -484,7 +509,7 @@ include_once "fetchTours.php";
     try {
       if (window.jQuery && $.fn.dataTable) {
         if ($('#datatable-tourType').length) {
-          $('#datatable-tourType').DataTable({
+          const table = $('#datatable-tourType').DataTable({
             responsive: true,
             scrollX: false,
             autoWidth: true, // changed to true
@@ -504,6 +529,28 @@ include_once "fetchTours.php";
               } // Status column width
             ]
           });
+
+          const statusFilter = document.getElementById('tour-status-filter');
+          const statusFilterWrapper = document.getElementById('tour-status-filter-wrapper');
+          if (statusFilter) {
+            const dataTableFilterArea = document.querySelector('#datatable-tourType_wrapper .dataTables_filter');
+            if (statusFilterWrapper && dataTableFilterArea) {
+              dataTableFilterArea.prepend(statusFilterWrapper);
+            }
+
+            const applyStatusFilter = function() {
+              const selectedStatus = statusFilter.value;
+              if (selectedStatus === 'All') {
+                table.column(2).search('').draw();
+              } else {
+                table.column(2).search('^' + selectedStatus + '$', true, false).draw();
+              }
+            };
+
+            statusFilter.value = 'Active';
+            applyStatusFilter();
+            statusFilter.addEventListener('change', applyStatusFilter);
+          }
         }
       }
     } catch (e) {
