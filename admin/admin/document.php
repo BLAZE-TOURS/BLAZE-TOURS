@@ -296,7 +296,7 @@
                     $final_total_lkr_num = round((float)$final_total_lkr, 2);
                     ?>
                     <tbody>
-                        <?php if ($adults > 0): ?>
+                        <?php if ($adults > 0 && $adult_unit > 0): ?>
                             <tr>
                                 <td>Adults</td>
                                 <td class="text-center"><?= $adults ?></td>
@@ -304,7 +304,7 @@
                                 <td class="text-end"><?= 'Rs. ' . number_format($adult_amount_lkr, 2) ?></td>
                             </tr>
                         <?php endif; ?>
-                        <?php if ($kids > 0): ?>
+                        <?php if ($kids > 0 && $kids_unit > 0): ?>
                             <tr>
                                 <td>Children</td>
                                 <td class="text-center"><?= $kids ?></td>
