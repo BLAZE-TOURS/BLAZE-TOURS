@@ -190,8 +190,13 @@ Video Area
                                     <textarea name="message" id="message" cols="30" rows="3" class="form-control" placeholder="Your Message"></textarea>
                                     <img src="assets/img/icon/chat.svg" alt="">
                                 </div>
-                                <div class="form-btn col-12 mt-24"><button type="submit" class="th-btn style3">Send message
-                                        <img src="assets/img/icon/plane.svg" alt=""></button>
+                                <div class="form-btn col-12 mt-24"><button type="submit" class="th-btn style3" id="submitBtn">
+                                        <span id="btnText">Send message</span>
+                                        <img id="btnIcon" src="assets/img/icon/plane.svg" alt="" style="display: inline-block; margin-left: 8px;">
+                                        <span id="spinner" style="display: none; margin-left: 8px;">
+                                            <i class="fa fa-spinner fa-spin"></i>
+                                        </span>
+                                    </button>
                                 </div>
                             </div>
                             <p class="form-messages mb-0 mt-3"></p>
