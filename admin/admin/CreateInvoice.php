@@ -529,7 +529,12 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                 const opt = tourSelect.options[tourSelect.selectedIndex];
                                 const adultPrice = opt ? parseFloat(opt.getAttribute('data-adult') || 0) : 0;
                                 const kidsPrice = opt ? parseFloat(opt.getAttribute('data-kids') || 0) : 0;
-                                const usdTotal = (adult * adultPrice) + (kids * kidsPrice);
+                                let extraUsdTotal = 0;
+                                document.querySelectorAll('.extra-item-total').forEach(input => {
+                                    extraUsdTotal += parseFloat(input.value) || 0;
+                                });
+
+                                const usdTotal = (adult * adultPrice) + (kids * kidsPrice) + extraUsdTotal;
                                 const lkrTotal = Number((usdTotal * usdToLkrRate).toFixed(2));
 
                                 const discount = Math.max(0, parseFloat(discountInput ? discountInput.value : 0) || 0);
@@ -569,7 +574,7 @@ if ($rate_rs && $rate_rs->num_rows > 0) {
                                     full_name: fullName,
                                     email: email,
                                     phone: iti ? iti.getNumber() : phoneInput.value.trim(),
-                                    subtotal_usd: subtotalUSD.textContent,
+                                    subtotal_usd: '$' + usdTotal.toFixed(2),
                                     subtotal_lkr: 'Rs. ' + lkrTotal.toFixed(2),
                                     discount_lkr: discount.toFixed(2),
                                     final_total_lkr: finalTotal.toFixed(2),
