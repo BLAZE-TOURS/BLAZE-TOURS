@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (e) {
         e.preventDefault();
 
+        const submitBtn = document.getElementById("submitBtn");
+        const spinner = document.getElementById("spinner");
+        const btnIcon = document.getElementById("btnIcon");
+
         // Get values
         const name = document.getElementById("name3").value.trim();
         const email = document.getElementById("email3").value.trim();
@@ -36,6 +40,11 @@ document.addEventListener("DOMContentLoaded", function () {
             notyf.error("Invalid mobile number!");
             return;
         }
+
+        // Show spinner, hide icon, disable button
+        submitBtn.disabled = true;
+        spinner.style.display = "inline-block";
+        btnIcon.style.display = "none";
 
         // AJAX
         fetch("assets/process/sendMessageProcess.php", {
@@ -60,6 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(() => {
             notyf.error("Server error!");
+        })
+        .finally(() => {
+            // Hide spinner, show icon, enable button
+            submitBtn.disabled = false;
+            spinner.style.display = "none";
+            btnIcon.style.display = "inline-block";
         });
     });
 });
