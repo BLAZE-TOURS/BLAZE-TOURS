@@ -490,7 +490,70 @@ Gallery Area
         <div class="shape-mockup movingX d-none d-xl-block" data-top="30%" data-left="3%">
             <img class="gmovingX" src="assets/img/shape/shape_4.png" alt="shape">
         </div>
-    </div><!--==============================
+    </div>
+
+    <!--==============================
+Airport Pickup Area
+==============================-->
+    <style>
+        .airport-pickup-area .airport-whatsapp-btn {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-width: 240px;
+            padding: 14px 26px;
+            background: #25d366 !important;
+            color: #ffffff !important;
+            border-radius: 12px;
+            font-weight: 600;
+            line-height: 1.2;
+            text-decoration: none !important;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+            transition: background 0.2s ease, transform 0.2s ease;
+            white-space: nowrap;
+        }
+        .airport-pickup-area .airport-whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .airport-pickup-area .airport-whatsapp-btn:hover {
+            background: #1ebe56 !important;
+            transform: translateY(-1px);
+            color: #ffffff !important;
+        }
+    </style>
+    <section class="airport-pickup-area space" aria-label="Airport pickup and transportation services">
+        <div class="container">
+            <div class="row align-items-center gy-4">
+                <div class="col-lg-6">
+                    <div class="service-card d-flex flex-column justify-content-center h-100" style="background: #f8f9ff; border-radius: 24px; padding: 40px;">
+                        <span class="sub-title">Airport Transfer</span>
+                        <h2 class="sec-title">Airport Pickup, Drop-off & Transportation</h2>
+                        <p class="sec-text">We provide reliable airport pickup, drop-off, and city transportation services with experienced drivers and comfortable vehicles. Book hassle-free travel in Sri Lanka with fast support and WhatsApp booking.</p>
+                        <ul class="list-unstyled mt-4 mb-4">
+                            <li>• Airport pickup & drop-off</li>
+                            <li>• Private transfers across Colombo & Sri Lanka</li>
+                            <li>• Comfortable vehicles for small groups</li>
+                            <li>• 24/7 WhatsApp booking support</li>
+                        </ul>
+                        <div class="d-flex flex-column align-items-start gap-3">
+                            <a href="https://wa.me/94713344399?text=Hello%20Blaze%20Tours%2C%20I%20would%20like%20to%20book%20airport%20pickup%20and%20transportation%20services.%20Please%20assist%20me.%20" target="_blank" class="airport-whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> Contact via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="img-box1">
+                        <img src="assets/img/bg/airport -bg.png" alt="Airport pickup service" class="img-fluid rounded-4 shadow-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--==============================
 Counter Area  
 ==============================-->
     <div class="counter-area space">
